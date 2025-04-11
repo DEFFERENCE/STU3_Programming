@@ -1,0 +1,10 @@
+#ifndef ENCODER_H
+#define ENCODER_H
+
+#include "stm32g4xx_hal.h" // or your specific device HAL
+
+void Encoder_Init(TIM_HandleTypeDef *htim);
+int32_t Encoder_GetPosition(void);
+int32_t Encoder_GetVelocity(void);
+
+#endif // ENCODER_H

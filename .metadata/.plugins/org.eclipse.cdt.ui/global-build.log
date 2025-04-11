@@ -1,4 +1,251 @@
-14:58:22 **** Build of configuration Debug for project STU3_Test ****
+19:15:55 **** Build of configuration Debug for project STU3_Test ****
+make -j16 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "STU3_Test.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\Fibo\Year2\Term2\STU\STU_3_Programming\STU3_Programming\STU3_Test\STM32G474RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STU3_Test.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: STU3_Test.elf
+ 
+arm-none-eabi-size  STU3_Test.elf 
+arm-none-eabi-objdump -h -S STU3_Test.elf  > "STU3_Test.list"
+   text	   data	    bss	    dec	    hex	filename
+  19432	     12	   2060	  21504	   5400	STU3_Test.elf
+Finished building: default.size.stdout
+ 
+Finished building: STU3_Test.list
+ 
+19:19:20 **** Build of configuration Debug for project QEI_Learning ****
+make -j16 all 
+arm-none-eabi-size  QEI_Learning.elf 
+   text	   data	    bss	    dec	    hex	filename
+  16740	     12	   1856	  18608	   48b0	QEI_Learning.elf
+Finished building: default.size.stdout
+ 
+19:20:28 **** Incremental Build of configuration Debug for project STU3_Test ****
+make -j16 all 
+arm-none-eabi-size  STU3_Test.elf 
+   text	   data	    bss	    dec	    hex	filename
+  19432	     12	   2060	  21504	   5400	STU3_Test.elf
+Finished building: default.size.stdout
+ 
+19:22:28 **** Build of configuration Debug for project STU3_Test ****
+make -j16 all 
+arm-none-eabi-size  STU3_Test.elf 
+   text	   data	    bss	    dec	    hex	filename
+  19432	     12	   2060	  21504	   5400	STU3_Test.elf
+Finished building: default.size.stdout
+ 
+19:42:00 **** Incremental Build of configuration Debug for project STU3_Test ****
+make -j16 all 
+arm-none-eabi-size  STU3_Test.elf 
+   text	   data	    bss	    dec	    hex	filename
+  19432	     12	   2060	  21504	   5400	STU3_Test.elf
+Finished building: default.size.stdout
+ 
+20:19:04 **** Incremental Build of configuration Debug for project STU3_Test ****
+make -j16 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "STU3_Test.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\Fibo\Year2\Term2\STU\STU_3_Programming\STU3_Programming\STU3_Test\STM32G474RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STU3_Test.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: STU3_Test.elf
+ 
+arm-none-eabi-size  STU3_Test.elf 
+arm-none-eabi-objdump -h -S STU3_Test.elf  > "STU3_Test.list"
+   text	   data	    bss	    dec	    hex	filename
+  19432	     12	   2060	  21504	   5400	STU3_Test.elf
+Finished building: default.size.stdout
+ 
+Finished building: STU3_Test.list
+ 
+20:19:48 **** Incremental Build of configuration Debug for project STU3_Test ****
+make -j16 all 
+arm-none-eabi-size  STU3_Test.elf 
+   text	   data	    bss	    dec	    hex	filename
+  19432	     12	   2060	  21504	   5400	STU3_Test.elf
+Finished building: default.size.stdout
+ 
+20:21:11 **** Incremental Build of configuration Debug for project STU3_Test ****
+make -j16 all 
+arm-none-eabi-size  STU3_Test.elf 
+   text	   data	    bss	    dec	    hex	filename
+  19432	     12	   2060	  21504	   5400	STU3_Test.elf
+Finished building: default.size.stdout
+ 
+20:22:52 **** Incremental Build of configuration Debug for project STU3_Test ****
+make -j16 all 
+arm-none-eabi-size  STU3_Test.elf 
+   text	   data	    bss	    dec	    hex	filename
+  19432	     12	   2060	  21504	   5400	STU3_Test.elf
+Finished building: default.size.stdout
+ 
+20:30:04 **** Incremental Build of configuration Debug for project STU3_Test ****
+make -j16 all 
+arm-none-eabi-size  STU3_Test.elf 
+   text	   data	    bss	    dec	    hex	filename
+  19432	     12	   2060	  21504	   5400	STU3_Test.elf
+Finished building: default.size.stdout
+ 
+20:33:15 **** Incremental Build of configuration Debug for project STU3_Test ****
+make -j16 all 
+arm-none-eabi-size  STU3_Test.elf 
+   text	   data	    bss	    dec	    hex	filename
+  19432	     12	   2060	  21504	   5400	STU3_Test.elf
+Finished building: default.size.stdout
+ 
+20:33:33 **** Incremental Build of configuration Debug for project STU3_Test ****
+make -j16 all 
+arm-none-eabi-size  STU3_Test.elf 
+   text	   data	    bss	    dec	    hex	filename
+  19432	     12	   2060	  21504	   5400	STU3_Test.elf
+Finished building: default.size.stdout
+ 
+20:33:37 **** Incremental Build of configuration Debug for project STU3_Test ****
+make -j16 all 
+arm-none-eabi-size  STU3_Test.elf 
+   text	   data	    bss	    dec	    hex	filename
+  19432	     12	   2060	  21504	   5400	STU3_Test.elf
+Finished building: default.size.stdout
+ 
+20:33:44 **** Incremental Build of configuration Debug for project STU3_Test ****
+make -j16 all 
+arm-none-eabi-size  STU3_Test.elf 
+   text	   data	    bss	    dec	    hex	filename
+  19432	     12	   2060	  21504	   5400	STU3_Test.elf
+Finished building: default.size.stdout
+ 
+20:36:36 **** Incremental Build of configuration Debug for project STU3_Test ****
+make -j16 all 
+arm-none-eabi-size  STU3_Test.elf 
+   text	   data	    bss	    dec	    hex	filename
+  19432	     12	   2060	  21504	   5400	STU3_Test.elf
+Finished building: default.size.stdout
+ 
+20:36:40 **** Incremental Build of configuration Debug for project STU3_Test ****
+make -j16 all 
+arm-none-eabi-size  STU3_Test.elf 
+   text	   data	    bss	    dec	    hex	filename
+  19432	     12	   2060	  21504	   5400	STU3_Test.elf
+Finished building: default.size.stdout
+ 
+20:37:09 **** Incremental Build of configuration Debug for project STU3_Test ****
+make -j16 all 
+arm-none-eabi-size  STU3_Test.elf 
+   text	   data	    bss	    dec	    hex	filename
+  19432	     12	   2060	  21504	   5400	STU3_Test.elf
+Finished building: default.size.stdout
+ 
+20:39:12 **** Incremental Build of configuration Debug for project STU3_Test ****
+make -j16 all 
+arm-none-eabi-size  STU3_Test.elf 
+   text	   data	    bss	    dec	    hex	filename
+  19432	     12	   2060	  21504	   5400	STU3_Test.elf
+Finished building: default.size.stdout
+ 
+20:39:22 **** Incremental Build of configuration Debug for project STU3_Test ****
+make -j16 all 
+arm-none-eabi-size  STU3_Test.elf 
+   text	   data	    bss	    dec	    hex	filename
+  19432	     12	   2060	  21504	   5400	STU3_Test.elf
+Finished building: default.size.stdout
+ 
+20:46:35 **** Incremental Build of configuration Debug for project STU3_Test ****
+make -j16 all 
+arm-none-eabi-size  STU3_Test.elf 
+   text	   data	    bss	    dec	    hex	filename
+  19432	     12	   2060	  21504	   5400	STU3_Test.elf
+Finished building: default.size.stdout
+ 
+20:49:06 **** Incremental Build of configuration Debug for project STU3_Test ****
+make -j16 all 
+arm-none-eabi-size  STU3_Test.elf 
+   text	   data	    bss	    dec	    hex	filename
+  19432	     12	   2060	  21504	   5400	STU3_Test.elf
+Finished building: default.size.stdout
+ 
+20:49:54 **** Incremental Build of configuration Debug for project STU3_Test ****
+make -j16 all 
+arm-none-eabi-size  STU3_Test.elf 
+   text	   data	    bss	    dec	    hex	filename
+  19432	     12	   2060	  21504	   5400	STU3_Test.elf
+Finished building: default.size.stdout
+ 
+20:52:16 **** Incremental Build of configuration Debug for project STU3_Test ****
+make -j16 all 
+arm-none-eabi-size  STU3_Test.elf 
+   text	   data	    bss	    dec	    hex	filename
+  19432	     12	   2060	  21504	   5400	STU3_Test.elf
+Finished building: default.size.stdout
+ 
+20:54:58 **** Incremental Build of configuration Debug for project STU3_Test ****
+make -j16 all 
+arm-none-eabi-size  STU3_Test.elf 
+   text	   data	    bss	    dec	    hex	filename
+  19432	     12	   2060	  21504	   5400	STU3_Test.elf
+Finished building: default.size.stdout
+ 
+20:59:56 **** Incremental Build of configuration Debug for project STU3_Test ****
+make -j16 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:125:23: warning: unused variable 'acc' [-Wunused-variable]
+  125 |                 float acc = Encoder_GetAcceleration();
+      |                       ^~~
+../Core/Src/main.c:124:23: warning: unused variable 'vel' [-Wunused-variable]
+  124 |                 float vel = Encoder_GetVelocity();
+      |                       ^~~
+../Core/Src/main.c:123:23: warning: unused variable 'pos' [-Wunused-variable]
+  123 |                 float pos = Encoder_GetPosition();
+      |                       ^~~
+arm-none-eabi-gcc -o "STU3_Test.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\Fibo\Year2\Term2\STU\STU_3_Programming\STU3_Programming\STU3_Test\STM32G474RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STU3_Test.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+C:/Users/User/STM32CubeIDE_1.16.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/bin/ld.exe: ./Core/Src/main.o: in function `main':
+D:/Fibo/Year2/Term2/STU/STU_3_Programming/STU3_Programming/STU3_Test/Debug/../Core/Src/main.c:109: undefined reference to `Encoder_Init'
+C:/Users/User/STM32CubeIDE_1.16.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/bin/ld.exe: D:/Fibo/Year2/Term2/STU/STU_3_Programming/STU3_Programming/STU3_Test/Debug/../Core/Src/main.c:121: undefined reference to `Encoder_Update'
+C:/Users/User/STM32CubeIDE_1.16.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/bin/ld.exe: D:/Fibo/Year2/Term2/STU/STU_3_Programming/STU3_Programming/STU3_Test/Debug/../Core/Src/main.c:123: undefined reference to `Encoder_GetPosition'
+C:/Users/User/STM32CubeIDE_1.16.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/bin/ld.exe: D:/Fibo/Year2/Term2/STU/STU_3_Programming/STU3_Programming/STU3_Test/Debug/../Core/Src/main.c:124: undefined reference to `Encoder_GetVelocity'
+C:/Users/User/STM32CubeIDE_1.16.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/bin/ld.exe: D:/Fibo/Year2/Term2/STU/STU_3_Programming/STU3_Programming/STU3_Test/Debug/../Core/Src/main.c:125: undefined reference to `Encoder_GetAcceleration'
+collect2.exe: error: ld returned 1 exit status
+make: *** [makefile:65: STU3_Test.elf] Error 1
+"make -j16 all" terminated with exit code 2. Build might be incomplete.
+21:01:35 **** Incremental Build of configuration Debug for project STU3_Test ****
+make -j16 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:125:23: warning: unused variable 'acc' [-Wunused-variable]
+  125 |                 float acc = Encoder_GetAcceleration();
+      |                       ^~~
+../Core/Src/main.c:124:23: warning: unused variable 'vel' [-Wunused-variable]
+  124 |                 float vel = Encoder_GetVelocity();
+      |                       ^~~
+../Core/Src/main.c:123:23: warning: unused variable 'pos' [-Wunused-variable]
+  123 |                 float pos = Encoder_GetPosition();
+      |                       ^~~
+arm-none-eabi-gcc -o "STU3_Test.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\Fibo\Year2\Term2\STU\STU_3_Programming\STU3_Programming\STU3_Test\STM32G474RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STU3_Test.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+C:/Users/User/STM32CubeIDE_1.16.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/bin/ld.exe: ./Core/Src/main.o: in function `main':
+D:/Fibo/Year2/Term2/STU/STU_3_Programming/STU3_Programming/STU3_Test/Debug/../Core/Src/main.c:109: undefined reference to `Encoder_Init'
+C:/Users/User/STM32CubeIDE_1.16.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/bin/ld.exe: D:/Fibo/Year2/Term2/STU/STU_3_Programming/STU3_Programming/STU3_Test/Debug/../Core/Src/main.c:121: undefined reference to `Encoder_Update'
+C:/Users/User/STM32CubeIDE_1.16.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/bin/ld.exe: D:/Fibo/Year2/Term2/STU/STU_3_Programming/STU3_Programming/STU3_Test/Debug/../Core/Src/main.c:123: undefined reference to `Encoder_GetPosition'
+C:/Users/User/STM32CubeIDE_1.16.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/bin/ld.exe: D:/Fibo/Year2/Term2/STU/STU_3_Programming/STU3_Programming/STU3_Test/Debug/../Core/Src/main.c:124: undefined reference to `Encoder_GetVelocity'
+C:/Users/User/STM32CubeIDE_1.16.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/bin/ld.exe: D:/Fibo/Year2/Term2/STU/STU_3_Programming/STU3_Programming/STU3_Test/Debug/../Core/Src/main.c:125: undefined reference to `Encoder_GetAcceleration'
+collect2.exe: error: ld returned 1 exit status
+make: *** [makefile:65: STU3_Test.elf] Error 1
+"make -j16 all" terminated with exit code 2. Build might be incomplete.
+21:01:39 **** Incremental Build of configuration Debug for project STU3_Test ****
+make -j16 all 
+arm-none-eabi-gcc -o "STU3_Test.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\Fibo\Year2\Term2\STU\STU_3_Programming\STU3_Programming\STU3_Test\STM32G474RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STU3_Test.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+C:/Users/User/STM32CubeIDE_1.16.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/bin/ld.exe: ./Core/Src/main.o: in function `main':
+D:/Fibo/Year2/Term2/STU/STU_3_Programming/STU3_Programming/STU3_Test/Debug/../Core/Src/main.c:109: undefined reference to `Encoder_Init'
+C:/Users/User/STM32CubeIDE_1.16.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/bin/ld.exe: D:/Fibo/Year2/Term2/STU/STU_3_Programming/STU3_Programming/STU3_Test/Debug/../Core/Src/main.c:121: undefined reference to `Encoder_Update'
+C:/Users/User/STM32CubeIDE_1.16.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/bin/ld.exe: D:/Fibo/Year2/Term2/STU/STU_3_Programming/STU3_Programming/STU3_Test/Debug/../Core/Src/main.c:123: undefined reference to `Encoder_GetPosition'
+C:/Users/User/STM32CubeIDE_1.16.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/bin/ld.exe: D:/Fibo/Year2/Term2/STU/STU_3_Programming/STU3_Programming/STU3_Test/Debug/../Core/Src/main.c:124: undefined reference to `Encoder_GetVelocity'
+C:/Users/User/STM32CubeIDE_1.16.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/bin/ld.exe: D:/Fibo/Year2/Term2/STU/STU_3_Programming/STU3_Programming/STU3_Test/Debug/../Core/Src/main.c:125: undefined reference to `Encoder_GetAcceleration'
+collect2.exe: error: ld returned 1 exit status
+make: *** [makefile:65: STU3_Test.elf] Error 1
+"make -j16 all" terminated with exit code 2. Build might be incomplete.
+21:03:56 **** Clean-only build of configuration Debug for project STU3_Test ****
+make -j16 clean 
+rm -rf ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal.cyclo ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal.d ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal.o ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal.su ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_adc.cyclo ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_adc.d ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_adc.o ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_adc.su ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_adc_ex.cyclo ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_adc_ex.d ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_adc_ex.o ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_adc_ex.su ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_cortex.cyclo ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_cortex.d ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_cortex.o ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_cortex.su ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_dma.cyclo ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_dma.d ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_dma.o ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_dma.su ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_dma_ex.cyclo ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_dma_ex.d ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_dma_ex.o ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_dma_ex.su ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_exti.cyclo ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_exti.d ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_exti.o ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_exti.su ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash.cyclo ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash.d ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash.o ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash.su ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ex.cyclo ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ex.d ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ex.o ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ex.su ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ramfunc.cyclo ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ramfunc.d ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ramfunc.o ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ramfunc.su ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_gpio.cyclo ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_gpio.d ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_gpio.o ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_gpio.su ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_pwr.cyclo ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_pwr.d ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_pwr.o ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_pwr.su ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_pwr_ex.cyclo ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_pwr_ex.d ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_pwr_ex.o ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_pwr_ex.su ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_rcc.cyclo ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_rcc.d ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_rcc.o ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_rcc.su ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_rcc_ex.cyclo ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_rcc_ex.d ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_rcc_ex.o ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_rcc_ex.su ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_tim.cyclo ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_tim.d ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_tim.o ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_tim.su ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_tim_ex.cyclo ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_tim_ex.d ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_tim_ex.o ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_tim_ex.su ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_adc.cyclo ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_adc.d ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_adc.o ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_adc.su
+rm -rf ./Core/Startup/startup_stm32g474retx.d ./Core/Startup/startup_stm32g474retx.o
+rm -rf ./Core/Src/main.cyclo ./Core/Src/main.d ./Core/Src/main.o ./Core/Src/main.su ./Core/Src/stm32g4xx_hal_msp.cyclo ./Core/Src/stm32g4xx_hal_msp.d ./Core/Src/stm32g4xx_hal_msp.o ./Core/Src/stm32g4xx_hal_msp.su ./Core/Src/stm32g4xx_it.cyclo ./Core/Src/stm32g4xx_it.d ./Core/Src/stm32g4xx_it.o ./Core/Src/stm32g4xx_it.su ./Core/Src/syscalls.cyclo ./Core/Src/syscalls.d ./Core/Src/syscalls.o ./Core/Src/syscalls.su ./Core/Src/sysmem.cyclo ./Core/Src/sysmem.d ./Core/Src/sysmem.o ./Core/Src/sysmem.su ./Core/Src/system_stm32g4xx.cyclo ./Core/Src/system_stm32g4xx.d ./Core/Src/system_stm32g4xx.o ./Core/Src/system_stm32g4xx.su
+rm -rf STU3_Test.elf STU3_Test.list STU3_Test.map default.size.stdout
+ 
+21:03:56 **** Incremental Build of configuration Debug for project STU3_Test ****
 make -j16 all 
 arm-none-eabi-gcc "../Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal.d" -MT"Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal.o"
 arm-none-eabi-gcc "../Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_adc.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_adc.d" -MT"Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_adc.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_adc.o"
@@ -25,71 +272,50 @@ arm-none-eabi-gcc "../Core/Src/stm32g4xx_it.c" -mcpu=cortex-m4 -std=gnu11 -g3 -D
 arm-none-eabi-gcc "../Core/Src/syscalls.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/syscalls.d" -MT"Core/Src/syscalls.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/syscalls.o"
 arm-none-eabi-gcc "../Core/Src/sysmem.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/sysmem.d" -MT"Core/Src/sysmem.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/sysmem.o"
 arm-none-eabi-gcc "../Core/Src/system_stm32g4xx.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/system_stm32g4xx.d" -MT"Core/Src/system_stm32g4xx.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/system_stm32g4xx.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:125:23: warning: unused variable 'acc' [-Wunused-variable]
+  125 |                 float acc = Encoder_GetAcceleration();
+      |                       ^~~
+../Core/Src/main.c:124:23: warning: unused variable 'vel' [-Wunused-variable]
+  124 |                 float vel = Encoder_GetVelocity();
+      |                       ^~~
+../Core/Src/main.c:123:23: warning: unused variable 'pos' [-Wunused-variable]
+  123 |                 float pos = Encoder_GetPosition();
+      |                       ^~~
 arm-none-eabi-gcc -o "STU3_Test.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\Fibo\Year2\Term2\STU\STU_3_Programming\STU3_Programming\STU3_Test\STM32G474RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STU3_Test.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: STU3_Test.elf
- 
-arm-none-eabi-size  STU3_Test.elf 
-arm-none-eabi-objdump -h -S STU3_Test.elf  > "STU3_Test.list"
-   text	   data	    bss	    dec	    hex	filename
-  19012	     12	   2060	  21084	   525c	STU3_Test.elf
-Finished building: default.size.stdout
- 
-Finished building: STU3_Test.list
- 
-14:58:38 **** Incremental Build of configuration Debug for project STU3_Test ****
+C:/Users/User/STM32CubeIDE_1.16.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/bin/ld.exe: ./Core/Src/main.o: in function `main':
+D:/Fibo/Year2/Term2/STU/STU_3_Programming/STU3_Programming/STU3_Test/Debug/../Core/Src/main.c:109: undefined reference to `Encoder_Init'
+C:/Users/User/STM32CubeIDE_1.16.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/bin/ld.exe: D:/Fibo/Year2/Term2/STU/STU_3_Programming/STU3_Programming/STU3_Test/Debug/../Core/Src/main.c:121: undefined reference to `Encoder_Update'
+C:/Users/User/STM32CubeIDE_1.16.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/bin/ld.exe: D:/Fibo/Year2/Term2/STU/STU_3_Programming/STU3_Programming/STU3_Test/Debug/../Core/Src/main.c:123: undefined reference to `Encoder_GetPosition'
+C:/Users/User/STM32CubeIDE_1.16.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/bin/ld.exe: D:/Fibo/Year2/Term2/STU/STU_3_Programming/STU3_Programming/STU3_Test/Debug/../Core/Src/main.c:124: undefined reference to `Encoder_GetVelocity'
+C:/Users/User/STM32CubeIDE_1.16.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/bin/ld.exe: D:/Fibo/Year2/Term2/STU/STU_3_Programming/STU3_Programming/STU3_Test/Debug/../Core/Src/main.c:125: undefined reference to `Encoder_GetAcceleration'
+collect2.exe: error: ld returned 1 exit status
+make: *** [makefile:64: STU3_Test.elf] Error 1
+"make -j16 all" terminated with exit code 2. Build might be incomplete.
+21:04:48 **** Incremental Build of configuration Debug for project STU3_Test ****
 make -j16 all 
-arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
 arm-none-eabi-gcc -o "STU3_Test.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\Fibo\Year2\Term2\STU\STU_3_Programming\STU3_Programming\STU3_Test\STM32G474RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STU3_Test.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: STU3_Test.elf
- 
-arm-none-eabi-size  STU3_Test.elf 
-arm-none-eabi-objdump -h -S STU3_Test.elf  > "STU3_Test.list"
-   text	   data	    bss	    dec	    hex	filename
-  19396	     12	   2060	  21468	   53dc	STU3_Test.elf
-Finished building: default.size.stdout
- 
-Finished building: STU3_Test.list
- 
-14:59:15 **** Incremental Build of configuration Debug for project STU3_Test ****
-make -j16 all 
-arm-none-eabi-size  STU3_Test.elf 
-   text	   data	    bss	    dec	    hex	filename
-  19396	     12	   2060	  21468	   53dc	STU3_Test.elf
-Finished building: default.size.stdout
- 
-15:03:44 **** Incremental Build of configuration Debug for project STU3_Test ****
-make -j16 all 
-arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
-arm-none-eabi-gcc "../Core/Src/stm32g4xx_hal_msp.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/stm32g4xx_hal_msp.d" -MT"Core/Src/stm32g4xx_hal_msp.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/stm32g4xx_hal_msp.o"
-arm-none-eabi-gcc "../Core/Src/stm32g4xx_it.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/stm32g4xx_it.d" -MT"Core/Src/stm32g4xx_it.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/stm32g4xx_it.o"
-arm-none-eabi-gcc -o "STU3_Test.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\Fibo\Year2\Term2\STU\STU_3_Programming\STU3_Programming\STU3_Test\STM32G474RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STU3_Test.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: STU3_Test.elf
- 
-arm-none-eabi-size  STU3_Test.elf 
-arm-none-eabi-objdump -h -S STU3_Test.elf  > "STU3_Test.list"
-   text	   data	    bss	    dec	    hex	filename
-  19388	     12	   2060	  21460	   53d4	STU3_Test.elf
-Finished building: default.size.stdout
- 
-Finished building: STU3_Test.list
- 
-15:05:32 **** Incremental Build of configuration Debug for project STU3_Test ****
-make -j16 all 
-arm-none-eabi-size  STU3_Test.elf 
-   text	   data	    bss	    dec	    hex	filename
-  19388	     12	   2060	  21460	   53d4	STU3_Test.elf
-Finished building: default.size.stdout
- 
-15:10:17 **** Clean-only build of configuration Debug for project QEI_Learning ****
+C:/Users/User/STM32CubeIDE_1.16.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/bin/ld.exe: ./Core/Src/main.o: in function `main':
+D:/Fibo/Year2/Term2/STU/STU_3_Programming/STU3_Programming/STU3_Test/Debug/../Core/Src/main.c:109: undefined reference to `Encoder_Init'
+C:/Users/User/STM32CubeIDE_1.16.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/bin/ld.exe: D:/Fibo/Year2/Term2/STU/STU_3_Programming/STU3_Programming/STU3_Test/Debug/../Core/Src/main.c:121: undefined reference to `Encoder_Update'
+C:/Users/User/STM32CubeIDE_1.16.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/bin/ld.exe: D:/Fibo/Year2/Term2/STU/STU_3_Programming/STU3_Programming/STU3_Test/Debug/../Core/Src/main.c:123: undefined reference to `Encoder_GetPosition'
+C:/Users/User/STM32CubeIDE_1.16.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/bin/ld.exe: D:/Fibo/Year2/Term2/STU/STU_3_Programming/STU3_Programming/STU3_Test/Debug/../Core/Src/main.c:124: undefined reference to `Encoder_GetVelocity'
+C:/Users/User/STM32CubeIDE_1.16.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/bin/ld.exe: D:/Fibo/Year2/Term2/STU/STU_3_Programming/STU3_Programming/STU3_Test/Debug/../Core/Src/main.c:125: undefined reference to `Encoder_GetAcceleration'
+collect2.exe: error: ld returned 1 exit status
+make: *** [makefile:64: STU3_Test.elf] Error 1
+"make -j16 all" terminated with exit code 2. Build might be incomplete.
+21:23:38 **** Clean-only build of configuration Debug for project STU3_Test ****
 make -j16 clean 
-rm -rf ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal.cyclo ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal.d ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal.o ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal.su ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_cortex.cyclo ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_cortex.d ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_cortex.o ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_cortex.su ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_dma.cyclo ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_dma.d ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_dma.o ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_dma.su ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_dma_ex.cyclo ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_dma_ex.d ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_dma_ex.o ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_dma_ex.su ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_exti.cyclo ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_exti.d ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_exti.o ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_exti.su ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash.cyclo ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash.d ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash.o ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash.su ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ex.cyclo ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ex.d ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ex.o ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ex.su ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ramfunc.cyclo ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ramfunc.d ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ramfunc.o ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ramfunc.su ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_gpio.cyclo ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_gpio.d ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_gpio.o ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_gpio.su ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_pwr.cyclo ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_pwr.d ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_pwr.o ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_pwr.su ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_pwr_ex.cyclo ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_pwr_ex.d ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_pwr_ex.o ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_pwr_ex.su ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_rcc.cyclo ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_rcc.d ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_rcc.o ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_rcc.su ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_rcc_ex.cyclo ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_rcc_ex.d ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_rcc_ex.o ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_rcc_ex.su ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_tim.cyclo ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_tim.d ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_tim.o ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_tim.su ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_tim_ex.cyclo ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_tim_ex.d ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_tim_ex.o ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_tim_ex.su
+rm -rf ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal.cyclo ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal.d ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal.o ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal.su ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_adc.cyclo ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_adc.d ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_adc.o ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_adc.su ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_adc_ex.cyclo ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_adc_ex.d ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_adc_ex.o ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_adc_ex.su ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_cortex.cyclo ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_cortex.d ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_cortex.o ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_cortex.su ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_dma.cyclo ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_dma.d ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_dma.o ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_dma.su ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_dma_ex.cyclo ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_dma_ex.d ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_dma_ex.o ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_dma_ex.su ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_exti.cyclo ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_exti.d ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_exti.o ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_exti.su ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash.cyclo ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash.d ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash.o ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash.su ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ex.cyclo ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ex.d ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ex.o ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ex.su ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ramfunc.cyclo ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ramfunc.d ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ramfunc.o ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ramfunc.su ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_gpio.cyclo ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_gpio.d ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_gpio.o ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_gpio.su ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_pwr.cyclo ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_pwr.d ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_pwr.o ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_pwr.su ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_pwr_ex.cyclo ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_pwr_ex.d ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_pwr_ex.o ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_pwr_ex.su ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_rcc.cyclo ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_rcc.d ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_rcc.o ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_rcc.su ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_rcc_ex.cyclo ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_rcc_ex.d ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_rcc_ex.o ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_rcc_ex.su ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_tim.cyclo ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_tim.d ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_tim.o ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_tim.su ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_tim_ex.cyclo ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_tim_ex.d ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_tim_ex.o ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_tim_ex.su ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_adc.cyclo ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_adc.d ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_adc.o ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_adc.su
 rm -rf ./Core/Startup/startup_stm32g474retx.d ./Core/Startup/startup_stm32g474retx.o
 rm -rf ./Core/Src/main.cyclo ./Core/Src/main.d ./Core/Src/main.o ./Core/Src/main.su ./Core/Src/stm32g4xx_hal_msp.cyclo ./Core/Src/stm32g4xx_hal_msp.d ./Core/Src/stm32g4xx_hal_msp.o ./Core/Src/stm32g4xx_hal_msp.su ./Core/Src/stm32g4xx_it.cyclo ./Core/Src/stm32g4xx_it.d ./Core/Src/stm32g4xx_it.o ./Core/Src/stm32g4xx_it.su ./Core/Src/syscalls.cyclo ./Core/Src/syscalls.d ./Core/Src/syscalls.o ./Core/Src/syscalls.su ./Core/Src/sysmem.cyclo ./Core/Src/sysmem.d ./Core/Src/sysmem.o ./Core/Src/sysmem.su ./Core/Src/system_stm32g4xx.cyclo ./Core/Src/system_stm32g4xx.d ./Core/Src/system_stm32g4xx.o ./Core/Src/system_stm32g4xx.su
-rm -rf QEI_Learning.elf QEI_Learning.list QEI_Learning.map default.size.stdout
+rm -rf STU3_Test.elf STU3_Test.list STU3_Test.map default.size.stdout
  
-15:10:17 **** Build of configuration Debug for project QEI_Learning ****
+21:23:38 **** Incremental Build of configuration Debug for project STU3_Test ****
 make -j16 all 
 arm-none-eabi-gcc "../Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal.d" -MT"Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal.o"
+arm-none-eabi-gcc "../Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_adc.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_adc.d" -MT"Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_adc.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_adc.o"
+arm-none-eabi-gcc "../Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_adc_ex.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_adc_ex.d" -MT"Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_adc_ex.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_adc_ex.o"
 arm-none-eabi-gcc "../Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_cortex.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_cortex.d" -MT"Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_cortex.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_cortex.o"
 arm-none-eabi-gcc "../Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_dma.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_dma.d" -MT"Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_dma.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_dma.o"
 arm-none-eabi-gcc "../Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_dma_ex.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_dma_ex.d" -MT"Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_dma_ex.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_dma_ex.o"
@@ -104,6 +330,7 @@ arm-none-eabi-gcc "../Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_rcc.c" -mcp
 arm-none-eabi-gcc "../Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_rcc_ex.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_rcc_ex.d" -MT"Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_rcc_ex.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_rcc_ex.o"
 arm-none-eabi-gcc "../Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_tim.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_tim.d" -MT"Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_tim.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_tim.o"
 arm-none-eabi-gcc "../Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_tim_ex.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_tim_ex.d" -MT"Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_tim_ex.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_tim_ex.o"
+arm-none-eabi-gcc "../Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_adc.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_adc.d" -MT"Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_adc.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_adc.o"
 arm-none-eabi-gcc -mcpu=cortex-m4 -g3 -DDEBUG -c -x assembler-with-cpp -MMD -MP -MF"Core/Startup/startup_stm32g474retx.d" -MT"Core/Startup/startup_stm32g474retx.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Startup/startup_stm32g474retx.o" "../Core/Startup/startup_stm32g474retx.s"
 arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
 arm-none-eabi-gcc "../Core/Src/stm32g4xx_hal_msp.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/stm32g4xx_hal_msp.d" -MT"Core/Src/stm32g4xx_hal_msp.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/stm32g4xx_hal_msp.o"
@@ -111,32 +338,575 @@ arm-none-eabi-gcc "../Core/Src/stm32g4xx_it.c" -mcpu=cortex-m4 -std=gnu11 -g3 -D
 arm-none-eabi-gcc "../Core/Src/syscalls.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/syscalls.d" -MT"Core/Src/syscalls.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/syscalls.o"
 arm-none-eabi-gcc "../Core/Src/sysmem.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/sysmem.d" -MT"Core/Src/sysmem.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/sysmem.o"
 arm-none-eabi-gcc "../Core/Src/system_stm32g4xx.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/system_stm32g4xx.d" -MT"Core/Src/system_stm32g4xx.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/system_stm32g4xx.o"
-arm-none-eabi-gcc -o "QEI_Learning.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\Fibo\Year2\Term2\FRA222_Microcontroller_Interface\QEI_Learning\STM32G474RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="QEI_Learning.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: QEI_Learning.elf
- 
-arm-none-eabi-size  QEI_Learning.elf 
-arm-none-eabi-objdump -h -S QEI_Learning.elf  > "QEI_Learning.list"
-   text	   data	    bss	    dec	    hex	filename
-  16740	     12	   1856	  18608	   48b0	QEI_Learning.elf
-Finished building: default.size.stdout
- 
-Finished building: QEI_Learning.list
- 
-15:10:27 **** Incremental Build of configuration Debug for project QEI_Learning ****
+arm-none-eabi-gcc "../Core/Inc/Encoder.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Inc/Encoder.d" -MT"Core/Inc/Encoder.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Inc/Encoder.o"
+../Core/Inc/Encoder.c:1:10: fatal error: Encoder.h: No such file or directory
+    1 | #include "Encoder.h"
+      |          ^~~~~~~~~~~
+compilation terminated.
+make: *** [Core/Inc/subdir.mk:19: Core/Inc/Encoder.o] Error 1
+make: *** Waiting for unfinished jobs....
+"make -j16 all" terminated with exit code 2. Build might be incomplete.
+21:24:06 **** Incremental Build of configuration Debug for project STU3_Test ****
 make -j16 all 
-arm-none-eabi-size  QEI_Learning.elf 
+arm-none-eabi-gcc "../Core/Src/Encoder.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Encoder.d" -MT"Core/Src/Encoder.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Encoder.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc "../Core/Src/stm32g4xx_hal_msp.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/stm32g4xx_hal_msp.d" -MT"Core/Src/stm32g4xx_hal_msp.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/stm32g4xx_hal_msp.o"
+arm-none-eabi-gcc "../Core/Src/stm32g4xx_it.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/stm32g4xx_it.d" -MT"Core/Src/stm32g4xx_it.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/stm32g4xx_it.o"
+arm-none-eabi-gcc "../Core/Src/syscalls.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/syscalls.d" -MT"Core/Src/syscalls.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/syscalls.o"
+arm-none-eabi-gcc "../Core/Src/sysmem.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/sysmem.d" -MT"Core/Src/sysmem.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/sysmem.o"
+arm-none-eabi-gcc "../Core/Src/system_stm32g4xx.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/system_stm32g4xx.d" -MT"Core/Src/system_stm32g4xx.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/system_stm32g4xx.o"
+../Core/Src/Encoder.c:3:16: warning: 'position' defined but not used [-Wunused-variable]
+    3 | static int32_t position = 0;
+      |                ^~~~~~~~
+arm-none-eabi-gcc -o "STU3_Test.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\Fibo\Year2\Term2\STU\STU_3_Programming\STU3_Programming\STU3_Test\STM32G474RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STU3_Test.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: STU3_Test.elf
+ 
+arm-none-eabi-size  STU3_Test.elf 
+arm-none-eabi-objdump -h -S STU3_Test.elf  > "STU3_Test.list"
    text	   data	    bss	    dec	    hex	filename
-  16740	     12	   1856	  18608	   48b0	QEI_Learning.elf
+  19496	     12	   2068	  21576	   5448	STU3_Test.elf
 Finished building: default.size.stdout
  
-15:11:08 **** Incremental Build of configuration Debug for project QEI_Learning ****
+Finished building: STU3_Test.list
+ 
+21:24:23 **** Incremental Build of configuration Debug for project STU3_Test ****
 make -j16 all 
-arm-none-eabi-size  QEI_Learning.elf 
+arm-none-eabi-gcc -o "STU3_Test.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\Fibo\Year2\Term2\STU\STU_3_Programming\STU3_Programming\STU3_Test\STM32G474RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STU3_Test.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: STU3_Test.elf
+ 
+arm-none-eabi-size  STU3_Test.elf 
+arm-none-eabi-objdump -h -S STU3_Test.elf  > "STU3_Test.list"
    text	   data	    bss	    dec	    hex	filename
-  16740	     12	   1856	  18608	   48b0	QEI_Learning.elf
+  19496	     12	   2068	  21576	   5448	STU3_Test.elf
 Finished building: default.size.stdout
  
-15:13:35 **** Incremental Build of configuration Debug for project STU3_Test ****
+Finished building: STU3_Test.list
+ 
+21:24:35 **** Incremental Build of configuration Debug for project STU3_Test ****
+make -j16 all 
+arm-none-eabi-size  STU3_Test.elf 
+   text	   data	    bss	    dec	    hex	filename
+  19496	     12	   2068	  21576	   5448	STU3_Test.elf
+Finished building: default.size.stdout
+ 
+21:31:06 **** Incremental Build of configuration Debug for project STU3_Test ****
+make -j16 all 
+arm-none-eabi-gcc "../Core/Src/Encoder.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Encoder.d" -MT"Core/Src/Encoder.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Encoder.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:131:31: warning: unused variable 'acc' [-Wunused-variable]
+  131 |                         float acc = Encoder_GetAcceleration();
+      |                               ^~~
+../Core/Src/main.c:130:31: warning: unused variable 'vel' [-Wunused-variable]
+  130 |                         float vel = Encoder_GetVelocity();
+      |                               ^~~
+../Core/Src/main.c:129:31: warning: unused variable 'pos' [-Wunused-variable]
+  129 |                         float pos = Encoder_GetPosition();
+      |                               ^~~
+../Core/Src/main.c:186:21: error: invalid storage class for function 'MX_ADC1_Init'
+  186 |         static void MX_ADC1_Init(void) {
+      |                     ^~~~~~~~~~~~
+../Core/Src/main.c:250:21: error: invalid storage class for function 'MX_TIM1_Init'
+  250 |         static void MX_TIM1_Init(void) {
+      |                     ^~~~~~~~~~~~
+../Core/Src/main.c:328:21: error: invalid storage class for function 'MX_TIM2_Init'
+  328 |         static void MX_TIM2_Init(void) {
+      |                     ^~~~~~~~~~~~
+../Core/Src/main.c:370:21: error: invalid storage class for function 'MX_TIM3_Init'
+  370 |         static void MX_TIM3_Init(void) {
+      |                     ^~~~~~~~~~~~
+../Core/Src/main.c:417:21: error: invalid storage class for function 'MX_TIM4_Init'
+  417 |         static void MX_TIM4_Init(void) {
+      |                     ^~~~~~~~~~~~
+../Core/Src/main.c:464:21: error: invalid storage class for function 'MX_TIM20_Init'
+  464 |         static void MX_TIM20_Init(void) {
+      |                     ^~~~~~~~~~~~~
+../Core/Src/main.c:542:21: error: invalid storage class for function 'MX_GPIO_Init'
+  542 |         static void MX_GPIO_Init(void) {
+      |                     ^~~~~~~~~~~~
+../Core/Src/main.c:667:9: error: expected declaration or statement at end of input
+  667 |         }
+      |         ^
+../Core/Src/main.c: At top level:
+../Core/Src/main.c:59:13: warning: 'MX_GPIO_Init' used but never defined
+   59 | static void MX_GPIO_Init(void);
+      |             ^~~~~~~~~~~~
+../Core/Src/main.c:60:13: warning: 'MX_TIM3_Init' used but never defined
+   60 | static void MX_TIM3_Init(void);
+      |             ^~~~~~~~~~~~
+../Core/Src/main.c:61:13: warning: 'MX_ADC1_Init' used but never defined
+   61 | static void MX_ADC1_Init(void);
+      |             ^~~~~~~~~~~~
+../Core/Src/main.c:62:13: warning: 'MX_TIM1_Init' used but never defined
+   62 | static void MX_TIM1_Init(void);
+      |             ^~~~~~~~~~~~
+../Core/Src/main.c:63:13: warning: 'MX_TIM2_Init' used but never defined
+   63 | static void MX_TIM2_Init(void);
+      |             ^~~~~~~~~~~~
+../Core/Src/main.c:64:13: warning: 'MX_TIM4_Init' used but never defined
+   64 | static void MX_TIM4_Init(void);
+      |             ^~~~~~~~~~~~
+../Core/Src/main.c:65:13: warning: 'MX_TIM20_Init' used but never defined
+   65 | static void MX_TIM20_Init(void);
+      |             ^~~~~~~~~~~~~
+../Core/Src/main.c:660:14: warning: 'Error_Handler' defined but not used [-Wunused-function]
+  660 |         void Error_Handler(void) {
+      |              ^~~~~~~~~~~~~
+../Core/Src/main.c:542:21: warning: 'MX_GPIO_Init' defined but not used [-Wunused-function]
+  542 |         static void MX_GPIO_Init(void) {
+      |                     ^~~~~~~~~~~~
+../Core/Src/main.c:464:21: warning: 'MX_TIM20_Init' defined but not used [-Wunused-function]
+  464 |         static void MX_TIM20_Init(void) {
+      |                     ^~~~~~~~~~~~~
+../Core/Src/main.c:417:21: warning: 'MX_TIM4_Init' defined but not used [-Wunused-function]
+  417 |         static void MX_TIM4_Init(void) {
+      |                     ^~~~~~~~~~~~
+../Core/Src/main.c:370:21: warning: 'MX_TIM3_Init' defined but not used [-Wunused-function]
+  370 |         static void MX_TIM3_Init(void) {
+      |                     ^~~~~~~~~~~~
+../Core/Src/main.c:328:21: warning: 'MX_TIM2_Init' defined but not used [-Wunused-function]
+  328 |         static void MX_TIM2_Init(void) {
+      |                     ^~~~~~~~~~~~
+../Core/Src/main.c:250:21: warning: 'MX_TIM1_Init' defined but not used [-Wunused-function]
+  250 |         static void MX_TIM1_Init(void) {
+      |                     ^~~~~~~~~~~~
+../Core/Src/main.c:186:21: warning: 'MX_ADC1_Init' defined but not used [-Wunused-function]
+  186 |         static void MX_ADC1_Init(void) {
+      |                     ^~~~~~~~~~~~
+../Core/Src/main.c:141:14: warning: 'SystemClock_Config' defined but not used [-Wunused-function]
+  141 |         void SystemClock_Config(void) {
+      |              ^~~~~~~~~~~~~~~~~~
+make: *** [Core/Src/subdir.mk:37: Core/Src/main.o] Error 1
+make: *** Waiting for unfinished jobs....
+"make -j16 all" terminated with exit code 2. Build might be incomplete.
+21:32:42 **** Incremental Build of configuration Debug for project STU3_Test ****
+make -j16 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:123:23: warning: unused variable 'acc' [-Wunused-variable]
+  123 |                 float acc = Encoder_GetAcceleration();
+      |                       ^~~
+../Core/Src/main.c:122:23: warning: unused variable 'vel' [-Wunused-variable]
+  122 |                 float vel = Encoder_GetVelocity();
+      |                       ^~~
+../Core/Src/main.c:121:23: warning: unused variable 'pos' [-Wunused-variable]
+  121 |                 float pos = Encoder_GetPosition();
+      |                       ^~~
+arm-none-eabi-gcc -o "STU3_Test.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\Fibo\Year2\Term2\STU\STU_3_Programming\STU3_Programming\STU3_Test\STM32G474RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STU3_Test.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: STU3_Test.elf
+ 
+arm-none-eabi-size  STU3_Test.elf 
+arm-none-eabi-objdump -h -S STU3_Test.elf  > "STU3_Test.list"
+   text	   data	    bss	    dec	    hex	filename
+  19664	     12	   2092	  21768	   5508	STU3_Test.elf
+Finished building: default.size.stdout
+ 
+Finished building: STU3_Test.list
+ 
+21:35:09 **** Incremental Build of configuration Debug for project STU3_Test ****
+make -j16 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:124:23: warning: unused variable 'acc' [-Wunused-variable]
+  124 |                 float acc = Encoder_GetAcceleration();
+      |                       ^~~
+../Core/Src/main.c:123:23: warning: unused variable 'vel' [-Wunused-variable]
+  123 |                 float vel = Encoder_GetVelocity();
+      |                       ^~~
+../Core/Src/main.c:122:23: warning: unused variable 'pos' [-Wunused-variable]
+  122 |                 float pos = Encoder_GetPosition();
+      |                       ^~~
+arm-none-eabi-gcc -o "STU3_Test.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\Fibo\Year2\Term2\STU\STU_3_Programming\STU3_Programming\STU3_Test\STM32G474RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STU3_Test.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: STU3_Test.elf
+ 
+arm-none-eabi-size  STU3_Test.elf 
+arm-none-eabi-objdump -h -S STU3_Test.elf  > "STU3_Test.list"
+   text	   data	    bss	    dec	    hex	filename
+  19664	     12	   2092	  21768	   5508	STU3_Test.elf
+Finished building: default.size.stdout
+ 
+Finished building: STU3_Test.list
+ 
+21:35:22 **** Incremental Build of configuration Debug for project STU3_Test ****
+make -j16 all 
+arm-none-eabi-size  STU3_Test.elf 
+   text	   data	    bss	    dec	    hex	filename
+  19664	     12	   2092	  21768	   5508	STU3_Test.elf
+Finished building: default.size.stdout
+ 
+21:36:55 **** Incremental Build of configuration Debug for project STU3_Test ****
+make -j16 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:131:31: warning: unused variable 'acc' [-Wunused-variable]
+  131 |                         float acc = Encoder_GetAcceleration();
+      |                               ^~~
+../Core/Src/main.c:130:31: warning: unused variable 'vel' [-Wunused-variable]
+  130 |                         float vel = Encoder_GetVelocity();
+      |                               ^~~
+../Core/Src/main.c:129:31: warning: unused variable 'pos' [-Wunused-variable]
+  129 |                         float pos = Encoder_GetPosition();
+      |                               ^~~
+../Core/Src/main.c:190:21: error: invalid storage class for function 'MX_ADC1_Init'
+  190 |         static void MX_ADC1_Init(void) {
+      |                     ^~~~~~~~~~~~
+../Core/Src/main.c:254:21: error: invalid storage class for function 'MX_TIM1_Init'
+  254 |         static void MX_TIM1_Init(void) {
+      |                     ^~~~~~~~~~~~
+../Core/Src/main.c:332:21: error: invalid storage class for function 'MX_TIM2_Init'
+  332 |         static void MX_TIM2_Init(void) {
+      |                     ^~~~~~~~~~~~
+../Core/Src/main.c:374:21: error: invalid storage class for function 'MX_TIM3_Init'
+  374 |         static void MX_TIM3_Init(void) {
+      |                     ^~~~~~~~~~~~
+../Core/Src/main.c:421:21: error: invalid storage class for function 'MX_TIM4_Init'
+  421 |         static void MX_TIM4_Init(void) {
+      |                     ^~~~~~~~~~~~
+../Core/Src/main.c:468:21: error: invalid storage class for function 'MX_TIM20_Init'
+  468 |         static void MX_TIM20_Init(void) {
+      |                     ^~~~~~~~~~~~~
+../Core/Src/main.c:546:21: error: invalid storage class for function 'MX_GPIO_Init'
+  546 |         static void MX_GPIO_Init(void) {
+      |                     ^~~~~~~~~~~~
+../Core/Src/main.c:671:9: error: expected declaration or statement at end of input
+  671 |         }
+      |         ^
+../Core/Src/main.c: At top level:
+../Core/Src/main.c:60:13: warning: 'MX_GPIO_Init' used but never defined
+   60 | static void MX_GPIO_Init(void);
+      |             ^~~~~~~~~~~~
+../Core/Src/main.c:61:13: warning: 'MX_TIM3_Init' used but never defined
+   61 | static void MX_TIM3_Init(void);
+      |             ^~~~~~~~~~~~
+../Core/Src/main.c:62:13: warning: 'MX_ADC1_Init' used but never defined
+   62 | static void MX_ADC1_Init(void);
+      |             ^~~~~~~~~~~~
+../Core/Src/main.c:63:13: warning: 'MX_TIM1_Init' used but never defined
+   63 | static void MX_TIM1_Init(void);
+      |             ^~~~~~~~~~~~
+../Core/Src/main.c:64:13: warning: 'MX_TIM2_Init' used but never defined
+   64 | static void MX_TIM2_Init(void);
+      |             ^~~~~~~~~~~~
+../Core/Src/main.c:65:13: warning: 'MX_TIM4_Init' used but never defined
+   65 | static void MX_TIM4_Init(void);
+      |             ^~~~~~~~~~~~
+../Core/Src/main.c:66:13: warning: 'MX_TIM20_Init' used but never defined
+   66 | static void MX_TIM20_Init(void);
+      |             ^~~~~~~~~~~~~
+../Core/Src/main.c:664:14: warning: 'Error_Handler' defined but not used [-Wunused-function]
+  664 |         void Error_Handler(void) {
+      |              ^~~~~~~~~~~~~
+../Core/Src/main.c:546:21: warning: 'MX_GPIO_Init' defined but not used [-Wunused-function]
+  546 |         static void MX_GPIO_Init(void) {
+      |                     ^~~~~~~~~~~~
+../Core/Src/main.c:468:21: warning: 'MX_TIM20_Init' defined but not used [-Wunused-function]
+  468 |         static void MX_TIM20_Init(void) {
+      |                     ^~~~~~~~~~~~~
+../Core/Src/main.c:421:21: warning: 'MX_TIM4_Init' defined but not used [-Wunused-function]
+  421 |         static void MX_TIM4_Init(void) {
+      |                     ^~~~~~~~~~~~
+../Core/Src/main.c:374:21: warning: 'MX_TIM3_Init' defined but not used [-Wunused-function]
+  374 |         static void MX_TIM3_Init(void) {
+      |                     ^~~~~~~~~~~~
+../Core/Src/main.c:332:21: warning: 'MX_TIM2_Init' defined but not used [-Wunused-function]
+  332 |         static void MX_TIM2_Init(void) {
+      |                     ^~~~~~~~~~~~
+../Core/Src/main.c:254:21: warning: 'MX_TIM1_Init' defined but not used [-Wunused-function]
+  254 |         static void MX_TIM1_Init(void) {
+      |                     ^~~~~~~~~~~~
+../Core/Src/main.c:190:21: warning: 'MX_ADC1_Init' defined but not used [-Wunused-function]
+  190 |         static void MX_ADC1_Init(void) {
+      |                     ^~~~~~~~~~~~
+../Core/Src/main.c:145:14: warning: 'SystemClock_Config' defined but not used [-Wunused-function]
+  145 |         void SystemClock_Config(void) {
+      |              ^~~~~~~~~~~~~~~~~~
+make: *** [Core/Src/subdir.mk:37: Core/Src/main.o] Error 1
+"make -j16 all" terminated with exit code 2. Build might be incomplete.
+21:37:04 **** Incremental Build of configuration Debug for project STU3_Test ****
+make -j16 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:131:31: warning: unused variable 'acc' [-Wunused-variable]
+  131 |                         float acc = Encoder_GetAcceleration();
+      |                               ^~~
+../Core/Src/main.c:130:31: warning: unused variable 'vel' [-Wunused-variable]
+  130 |                         float vel = Encoder_GetVelocity();
+      |                               ^~~
+../Core/Src/main.c:129:31: warning: unused variable 'pos' [-Wunused-variable]
+  129 |                         float pos = Encoder_GetPosition();
+      |                               ^~~
+../Core/Src/main.c:190:21: error: invalid storage class for function 'MX_ADC1_Init'
+  190 |         static void MX_ADC1_Init(void) {
+      |                     ^~~~~~~~~~~~
+../Core/Src/main.c:254:21: error: invalid storage class for function 'MX_TIM1_Init'
+  254 |         static void MX_TIM1_Init(void) {
+      |                     ^~~~~~~~~~~~
+../Core/Src/main.c:332:21: error: invalid storage class for function 'MX_TIM2_Init'
+  332 |         static void MX_TIM2_Init(void) {
+      |                     ^~~~~~~~~~~~
+../Core/Src/main.c:374:21: error: invalid storage class for function 'MX_TIM3_Init'
+  374 |         static void MX_TIM3_Init(void) {
+      |                     ^~~~~~~~~~~~
+../Core/Src/main.c:421:21: error: invalid storage class for function 'MX_TIM4_Init'
+  421 |         static void MX_TIM4_Init(void) {
+      |                     ^~~~~~~~~~~~
+../Core/Src/main.c:468:21: error: invalid storage class for function 'MX_TIM20_Init'
+  468 |         static void MX_TIM20_Init(void) {
+      |                     ^~~~~~~~~~~~~
+../Core/Src/main.c:546:21: error: invalid storage class for function 'MX_GPIO_Init'
+  546 |         static void MX_GPIO_Init(void) {
+      |                     ^~~~~~~~~~~~
+../Core/Src/main.c:671:9: error: expected declaration or statement at end of input
+  671 |         }
+      |         ^
+../Core/Src/main.c: At top level:
+../Core/Src/main.c:60:13: warning: 'MX_GPIO_Init' used but never defined
+   60 | static void MX_GPIO_Init(void);
+      |             ^~~~~~~~~~~~
+../Core/Src/main.c:61:13: warning: 'MX_TIM3_Init' used but never defined
+   61 | static void MX_TIM3_Init(void);
+      |             ^~~~~~~~~~~~
+../Core/Src/main.c:62:13: warning: 'MX_ADC1_Init' used but never defined
+   62 | static void MX_ADC1_Init(void);
+      |             ^~~~~~~~~~~~
+../Core/Src/main.c:63:13: warning: 'MX_TIM1_Init' used but never defined
+   63 | static void MX_TIM1_Init(void);
+      |             ^~~~~~~~~~~~
+../Core/Src/main.c:64:13: warning: 'MX_TIM2_Init' used but never defined
+   64 | static void MX_TIM2_Init(void);
+      |             ^~~~~~~~~~~~
+../Core/Src/main.c:65:13: warning: 'MX_TIM4_Init' used but never defined
+   65 | static void MX_TIM4_Init(void);
+      |             ^~~~~~~~~~~~
+../Core/Src/main.c:66:13: warning: 'MX_TIM20_Init' used but never defined
+   66 | static void MX_TIM20_Init(void);
+      |             ^~~~~~~~~~~~~
+../Core/Src/main.c:664:14: warning: 'Error_Handler' defined but not used [-Wunused-function]
+  664 |         void Error_Handler(void) {
+      |              ^~~~~~~~~~~~~
+../Core/Src/main.c:546:21: warning: 'MX_GPIO_Init' defined but not used [-Wunused-function]
+  546 |         static void MX_GPIO_Init(void) {
+      |                     ^~~~~~~~~~~~
+../Core/Src/main.c:468:21: warning: 'MX_TIM20_Init' defined but not used [-Wunused-function]
+  468 |         static void MX_TIM20_Init(void) {
+      |                     ^~~~~~~~~~~~~
+../Core/Src/main.c:421:21: warning: 'MX_TIM4_Init' defined but not used [-Wunused-function]
+  421 |         static void MX_TIM4_Init(void) {
+      |                     ^~~~~~~~~~~~
+../Core/Src/main.c:374:21: warning: 'MX_TIM3_Init' defined but not used [-Wunused-function]
+  374 |         static void MX_TIM3_Init(void) {
+      |                     ^~~~~~~~~~~~
+../Core/Src/main.c:332:21: warning: 'MX_TIM2_Init' defined but not used [-Wunused-function]
+  332 |         static void MX_TIM2_Init(void) {
+      |                     ^~~~~~~~~~~~
+../Core/Src/main.c:254:21: warning: 'MX_TIM1_Init' defined but not used [-Wunused-function]
+  254 |         static void MX_TIM1_Init(void) {
+      |                     ^~~~~~~~~~~~
+../Core/Src/main.c:190:21: warning: 'MX_ADC1_Init' defined but not used [-Wunused-function]
+  190 |         static void MX_ADC1_Init(void) {
+      |                     ^~~~~~~~~~~~
+../Core/Src/main.c:145:14: warning: 'SystemClock_Config' defined but not used [-Wunused-function]
+  145 |         void SystemClock_Config(void) {
+      |              ^~~~~~~~~~~~~~~~~~
+make: *** [Core/Src/subdir.mk:37: Core/Src/main.o] Error 1
+"make -j16 all" terminated with exit code 2. Build might be incomplete.
+21:38:11 **** Incremental Build of configuration Debug for project STU3_Test ****
+make -j16 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:131:23: error: redefinition of 'pos'
+  131 |                 float pos = Encoder_GetPosition();
+      |                       ^~~
+../Core/Src/main.c:127:35: note: previous definition of 'pos' with type 'float'
+  127 |                             float pos = Encoder_GetPosition();
+      |                                   ^~~
+../Core/Src/main.c:132:23: error: redefinition of 'vel'
+  132 |                 float vel = Encoder_GetVelocity();
+      |                       ^~~
+../Core/Src/main.c:128:35: note: previous definition of 'vel' with type 'float'
+  128 |                             float vel = Encoder_GetVelocity();
+      |                                   ^~~
+../Core/Src/main.c:133:23: error: redefinition of 'acc'
+  133 |                 float acc = Encoder_GetAcceleration();
+      |                       ^~~
+../Core/Src/main.c:129:35: note: previous definition of 'acc' with type 'float'
+  129 |                             float acc = Encoder_GetAcceleration();
+      |                                   ^~~
+../Core/Src/main.c:133:23: warning: unused variable 'acc' [-Wunused-variable]
+  133 |                 float acc = Encoder_GetAcceleration();
+      |                       ^~~
+../Core/Src/main.c:132:23: warning: unused variable 'vel' [-Wunused-variable]
+  132 |                 float vel = Encoder_GetVelocity();
+      |                       ^~~
+../Core/Src/main.c:131:23: warning: unused variable 'pos' [-Wunused-variable]
+  131 |                 float pos = Encoder_GetPosition();
+      |                       ^~~
+../Core/Src/main.c:125:33: warning: unused variable 'lastTick' [-Wunused-variable]
+  125 |                             int lastTick = currentTick;
+      |                                 ^~~~~~~~
+../Core/Src/main.c:187:13: error: invalid storage class for function 'MX_ADC1_Init'
+  187 | static void MX_ADC1_Init(void) {
+      |             ^~~~~~~~~~~~
+../Core/Src/main.c:251:13: error: invalid storage class for function 'MX_TIM1_Init'
+  251 | static void MX_TIM1_Init(void) {
+      |             ^~~~~~~~~~~~
+../Core/Src/main.c:329:13: error: invalid storage class for function 'MX_TIM2_Init'
+  329 | static void MX_TIM2_Init(void) {
+      |             ^~~~~~~~~~~~
+../Core/Src/main.c:371:13: error: invalid storage class for function 'MX_TIM3_Init'
+  371 | static void MX_TIM3_Init(void) {
+      |             ^~~~~~~~~~~~
+../Core/Src/main.c:418:13: error: invalid storage class for function 'MX_TIM4_Init'
+  418 | static void MX_TIM4_Init(void) {
+      |             ^~~~~~~~~~~~
+../Core/Src/main.c:465:13: error: invalid storage class for function 'MX_TIM20_Init'
+  465 | static void MX_TIM20_Init(void) {
+      |             ^~~~~~~~~~~~~
+../Core/Src/main.c:543:13: error: invalid storage class for function 'MX_GPIO_Init'
+  543 | static void MX_GPIO_Init(void) {
+      |             ^~~~~~~~~~~~
+../Core/Src/main.c:667:1: error: expected declaration or statement at end of input
+  667 | }
+      | ^
+../Core/Src/main.c: At top level:
+../Core/Src/main.c:60:13: warning: 'MX_GPIO_Init' used but never defined
+   60 | static void MX_GPIO_Init(void);
+      |             ^~~~~~~~~~~~
+../Core/Src/main.c:61:13: warning: 'MX_TIM3_Init' used but never defined
+   61 | static void MX_TIM3_Init(void);
+      |             ^~~~~~~~~~~~
+../Core/Src/main.c:62:13: warning: 'MX_ADC1_Init' used but never defined
+   62 | static void MX_ADC1_Init(void);
+      |             ^~~~~~~~~~~~
+../Core/Src/main.c:63:13: warning: 'MX_TIM1_Init' used but never defined
+   63 | static void MX_TIM1_Init(void);
+      |             ^~~~~~~~~~~~
+../Core/Src/main.c:64:13: warning: 'MX_TIM2_Init' used but never defined
+   64 | static void MX_TIM2_Init(void);
+      |             ^~~~~~~~~~~~
+../Core/Src/main.c:65:13: warning: 'MX_TIM4_Init' used but never defined
+   65 | static void MX_TIM4_Init(void);
+      |             ^~~~~~~~~~~~
+../Core/Src/main.c:66:13: warning: 'MX_TIM20_Init' used but never defined
+   66 | static void MX_TIM20_Init(void);
+      |             ^~~~~~~~~~~~~
+../Core/Src/main.c:660:6: warning: 'Error_Handler' defined but not used [-Wunused-function]
+  660 | void Error_Handler(void) {
+      |      ^~~~~~~~~~~~~
+../Core/Src/main.c:543:13: warning: 'MX_GPIO_Init' defined but not used [-Wunused-function]
+  543 | static void MX_GPIO_Init(void) {
+      |             ^~~~~~~~~~~~
+../Core/Src/main.c:465:13: warning: 'MX_TIM20_Init' defined but not used [-Wunused-function]
+  465 | static void MX_TIM20_Init(void) {
+      |             ^~~~~~~~~~~~~
+../Core/Src/main.c:418:13: warning: 'MX_TIM4_Init' defined but not used [-Wunused-function]
+  418 | static void MX_TIM4_Init(void) {
+      |             ^~~~~~~~~~~~
+../Core/Src/main.c:371:13: warning: 'MX_TIM3_Init' defined but not used [-Wunused-function]
+  371 | static void MX_TIM3_Init(void) {
+      |             ^~~~~~~~~~~~
+../Core/Src/main.c:329:13: warning: 'MX_TIM2_Init' defined but not used [-Wunused-function]
+  329 | static void MX_TIM2_Init(void) {
+      |             ^~~~~~~~~~~~
+../Core/Src/main.c:251:13: warning: 'MX_TIM1_Init' defined but not used [-Wunused-function]
+  251 | static void MX_TIM1_Init(void) {
+      |             ^~~~~~~~~~~~
+../Core/Src/main.c:187:13: warning: 'MX_ADC1_Init' defined but not used [-Wunused-function]
+  187 | static void MX_ADC1_Init(void) {
+      |             ^~~~~~~~~~~~
+../Core/Src/main.c:143:6: warning: 'SystemClock_Config' defined but not used [-Wunused-function]
+  143 | void SystemClock_Config(void) {
+      |      ^~~~~~~~~~~~~~~~~~
+make: *** [Core/Src/subdir.mk:37: Core/Src/main.o] Error 1
+"make -j16 all" terminated with exit code 2. Build might be incomplete.
+21:38:43 **** Incremental Build of configuration Debug for project STU3_Test ****
+make -j16 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:131:31: error: redefinition of 'pos'
+  131 |                         float pos = Encoder_GetPosition();
+      |                               ^~~
+../Core/Src/main.c:127:31: note: previous definition of 'pos' with type 'float'
+  127 |                         float pos = Encoder_GetPosition();
+      |                               ^~~
+../Core/Src/main.c:132:31: error: redefinition of 'vel'
+  132 |                         float vel = Encoder_GetVelocity();
+      |                               ^~~
+../Core/Src/main.c:128:31: note: previous definition of 'vel' with type 'float'
+  128 |                         float vel = Encoder_GetVelocity();
+      |                               ^~~
+../Core/Src/main.c:133:31: error: redefinition of 'acc'
+  133 |                         float acc = Encoder_GetAcceleration();
+      |                               ^~~
+../Core/Src/main.c:129:31: note: previous definition of 'acc' with type 'float'
+  129 |                         float acc = Encoder_GetAcceleration();
+      |                               ^~~
+../Core/Src/main.c:133:31: warning: unused variable 'acc' [-Wunused-variable]
+  133 |                         float acc = Encoder_GetAcceleration();
+      |                               ^~~
+../Core/Src/main.c:132:31: warning: unused variable 'vel' [-Wunused-variable]
+  132 |                         float vel = Encoder_GetVelocity();
+      |                               ^~~
+../Core/Src/main.c:131:31: warning: unused variable 'pos' [-Wunused-variable]
+  131 |                         float pos = Encoder_GetPosition();
+      |                               ^~~
+../Core/Src/main.c:125:29: warning: unused variable 'lastTick' [-Wunused-variable]
+  125 |                         int lastTick = currentTick;
+      |                             ^~~~~~~~
+make: *** [Core/Src/subdir.mk:37: Core/Src/main.o] Error 1
+"make -j16 all" terminated with exit code 2. Build might be incomplete.
+21:39:17 **** Incremental Build of configuration Debug for project STU3_Test ****
+make -j16 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:129:31: warning: unused variable 'acc' [-Wunused-variable]
+  129 |                         float acc = Encoder_GetAcceleration();
+      |                               ^~~
+../Core/Src/main.c:128:31: warning: unused variable 'vel' [-Wunused-variable]
+  128 |                         float vel = Encoder_GetVelocity();
+      |                               ^~~
+../Core/Src/main.c:127:31: warning: unused variable 'pos' [-Wunused-variable]
+  127 |                         float pos = Encoder_GetPosition();
+      |                               ^~~
+../Core/Src/main.c:125:29: warning: unused variable 'lastTick' [-Wunused-variable]
+  125 |                         int lastTick = currentTick;
+      |                             ^~~~~~~~
+arm-none-eabi-gcc -o "STU3_Test.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\Fibo\Year2\Term2\STU\STU_3_Programming\STU3_Programming\STU3_Test\STM32G474RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STU3_Test.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: STU3_Test.elf
+ 
+arm-none-eabi-size  STU3_Test.elf 
+arm-none-eabi-objdump -h -S STU3_Test.elf  > "STU3_Test.list"
+   text	   data	    bss	    dec	    hex	filename
+  19940	     12	   2092	  22044	   561c	STU3_Test.elf
+Finished building: default.size.stdout
+ 
+Finished building: STU3_Test.list
+ 
+21:39:54 **** Incremental Build of configuration Debug for project STU3_Test ****
+make -j16 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:130:31: warning: unused variable 'acc' [-Wunused-variable]
+  130 |                         float acc = Encoder_GetAcceleration();
+      |                               ^~~
+../Core/Src/main.c:129:31: warning: unused variable 'vel' [-Wunused-variable]
+  129 |                         float vel = Encoder_GetVelocity();
+      |                               ^~~
+../Core/Src/main.c:128:31: warning: unused variable 'pos' [-Wunused-variable]
+  128 |                         float pos = Encoder_GetPosition();
+      |                               ^~~
+arm-none-eabi-gcc -o "STU3_Test.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\Fibo\Year2\Term2\STU\STU_3_Programming\STU3_Programming\STU3_Test\STM32G474RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STU3_Test.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: STU3_Test.elf
+ 
+arm-none-eabi-size  STU3_Test.elf 
+arm-none-eabi-objdump -h -S STU3_Test.elf  > "STU3_Test.list"
+   text	   data	    bss	    dec	    hex	filename
+  19948	     12	   2092	  22052	   5624	STU3_Test.elf
+Finished building: default.size.stdout
+ 
+Finished building: STU3_Test.list
+ 
+21:40:46 **** Incremental Build of configuration Debug for project STU3_Test ****
 make -j16 all 
 arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
 arm-none-eabi-gcc -o "STU3_Test.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\Fibo\Year2\Term2\STU\STU_3_Programming\STU3_Programming\STU3_Test\STM32G474RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STU3_Test.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
@@ -145,19 +915,152 @@ Finished building target: STU3_Test.elf
 arm-none-eabi-size  STU3_Test.elf 
 arm-none-eabi-objdump -h -S STU3_Test.elf  > "STU3_Test.list"
    text	   data	    bss	    dec	    hex	filename
-  19388	     12	   2060	  21460	   53d4	STU3_Test.elf
+  19980	     12	   2100	  22092	   564c	STU3_Test.elf
 Finished building: default.size.stdout
  
 Finished building: STU3_Test.list
  
-15:13:43 **** Incremental Build of configuration Debug for project STU3_Test ****
+22:04:32 **** Incremental Build of configuration Debug for project STU3_Test ****
 make -j16 all 
+arm-none-eabi-gcc "../Core/Src/Encoder.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Encoder.d" -MT"Core/Src/Encoder.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Encoder.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:111:22: warning: passing argument 1 of 'Encoder_Init' from incompatible pointer type [-Wincompatible-pointer-types]
+  111 |         Encoder_Init(&htim3);
+      |                      ^~~~~~
+      |                      |
+      |                      TIM_HandleTypeDef *
+In file included from ../Core/Src/main.c:21:
+../Core/Inc/Encoder.h:19:28: note: expected 'Encoder *' but argument is of type 'TIM_HandleTypeDef *'
+   19 | void Encoder_Init(Encoder *enc, TIM_HandleTypeDef *htim);
+      |                   ~~~~~~~~~^~~
+../Core/Src/main.c:111:9: error: too few arguments to function 'Encoder_Init'
+  111 |         Encoder_Init(&htim3);
+      |         ^~~~~~~~~~~~
+../Core/Inc/Encoder.h:19:6: note: declared here
+   19 | void Encoder_Init(Encoder *enc, TIM_HandleTypeDef *htim);
+      |      ^~~~~~~~~~~~
+../Core/Src/main.c:125:40: error: incompatible type for argument 1 of 'Encoder_Update'
+  125 |                         Encoder_Update(dt);
+      |                                        ^~
+      |                                        |
+      |                                        float
+../Core/Inc/Encoder.h:20:30: note: expected 'Encoder *' but argument is of type 'float'
+   20 | void Encoder_Update(Encoder *enc, float dt);
+      |                     ~~~~~~~~~^~~
+../Core/Src/main.c:125:25: error: too few arguments to function 'Encoder_Update'
+  125 |                         Encoder_Update(dt);
+      |                         ^~~~~~~~~~~~~~
+../Core/Inc/Encoder.h:20:6: note: declared here
+   20 | void Encoder_Update(Encoder *enc, float dt);
+      |      ^~~~~~~~~~~~~~
+../Core/Src/main.c:127:31: error: too few arguments to function 'Encoder_GetPosition'
+  127 |                         pos = Encoder_GetPosition();
+      |                               ^~~~~~~~~~~~~~~~~~~
+../Core/Inc/Encoder.h:22:7: note: declared here
+   22 | float Encoder_GetPosition(Encoder *enc);
+      |       ^~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:128:31: error: too few arguments to function 'Encoder_GetVelocity'
+  128 |                         vel = Encoder_GetVelocity();
+      |                               ^~~~~~~~~~~~~~~~~~~
+../Core/Inc/Encoder.h:23:7: note: declared here
+   23 | float Encoder_GetVelocity(Encoder *enc);
+      |       ^~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:129:31: error: too few arguments to function 'Encoder_GetAcceleration'
+  129 |                         acc = Encoder_GetAcceleration();
+      |                               ^~~~~~~~~~~~~~~~~~~~~~~
+../Core/Inc/Encoder.h:24:7: note: declared here
+   24 | float Encoder_GetAcceleration(Encoder *enc);
+      |       ^~~~~~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:130:38: error: too few arguments to function 'Encoder_GetPosition'
+  130 |                         QEIReadRaw = Encoder_GetPosition();
+      |                                      ^~~~~~~~~~~~~~~~~~~
+../Core/Inc/Encoder.h:22:7: note: declared here
+   22 | float Encoder_GetPosition(Encoder *enc);
+      |       ^~~~~~~~~~~~~~~~~~~
+make: *** [Core/Src/subdir.mk:37: Core/Src/main.o] Error 1
+make: *** Waiting for unfinished jobs....
+"make -j16 all" terminated with exit code 2. Build might be incomplete.
+22:09:24 **** Incremental Build of configuration Debug for project STU3_Test ****
+make -j16 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:111:9: error: unknown type name 'Encoder'
+  111 |         Encoder encoder1;
+      |         ^~~~~~~
+../Core/Src/main.c:112:9: error: unknown type name 'Encoder'
+  112 |         Encoder encoder2;
+      |         ^~~~~~~
+../Core/Src/main.c:113:9: warning: implicit declaration of function 'Encoder_Init'; did you mean 'Encoder_2_Pin'? [-Wimplicit-function-declaration]
+  113 |         Encoder_Init(&encoder1, &htim4);
+      |         ^~~~~~~~~~~~
+      |         Encoder_2_Pin
+../Core/Src/main.c:129:25: warning: implicit declaration of function 'Encoder_Update' [-Wimplicit-function-declaration]
+  129 |                         Encoder_Update(&encoder1, dt);
+      |                         ^~~~~~~~~~~~~~
+../Core/Src/main.c:133:36: warning: implicit declaration of function 'Encoder_GetPosition' [-Wimplicit-function-declaration]
+  133 |                         float p1 = Encoder_GetPosition(&encoder1);
+      |                                    ^~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:134:36: warning: implicit declaration of function 'Encoder_GetVelocity' [-Wimplicit-function-declaration]
+  134 |                         float v1 = Encoder_GetVelocity(&encoder1);
+      |                                    ^~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:135:36: warning: implicit declaration of function 'Encoder_GetAcceleration' [-Wimplicit-function-declaration]
+  135 |                         float a1 = Encoder_GetAcceleration(&encoder1);
+      |                                    ^~~~~~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:139:31: warning: unused variable 'a2' [-Wunused-variable]
+  139 |                         float a2 = Encoder_GetAcceleration(&encoder2);
+      |                               ^~
+../Core/Src/main.c:138:31: warning: unused variable 'v2' [-Wunused-variable]
+  138 |                         float v2 = Encoder_GetVelocity(&encoder2);
+      |                               ^~
+../Core/Src/main.c:137:31: warning: unused variable 'p2' [-Wunused-variable]
+  137 |                         float p2 = Encoder_GetPosition(&encoder2);
+      |                               ^~
+../Core/Src/main.c:135:31: warning: unused variable 'a1' [-Wunused-variable]
+  135 |                         float a1 = Encoder_GetAcceleration(&encoder1);
+      |                               ^~
+../Core/Src/main.c:134:31: warning: unused variable 'v1' [-Wunused-variable]
+  134 |                         float v1 = Encoder_GetVelocity(&encoder1);
+      |                               ^~
+../Core/Src/main.c:133:31: warning: unused variable 'p1' [-Wunused-variable]
+  133 |                         float p1 = Encoder_GetPosition(&encoder1);
+      |                               ^~
+make: *** [Core/Src/subdir.mk:37: Core/Src/main.o] Error 1
+"make -j16 all" terminated with exit code 2. Build might be incomplete.
+22:12:06 **** Incremental Build of configuration Debug for project STU3_Test ****
+make -j16 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:138:31: warning: unused variable 'a2' [-Wunused-variable]
+  138 |                         float a2 = Encoder_GetAcceleration(&encoder2);
+      |                               ^~
+../Core/Src/main.c:137:31: warning: unused variable 'v2' [-Wunused-variable]
+  137 |                         float v2 = Encoder_GetVelocity(&encoder2);
+      |                               ^~
+../Core/Src/main.c:136:31: warning: unused variable 'p2' [-Wunused-variable]
+  136 |                         float p2 = Encoder_GetPosition(&encoder2);
+      |                               ^~
+../Core/Src/main.c:134:31: warning: unused variable 'a1' [-Wunused-variable]
+  134 |                         float a1 = Encoder_GetAcceleration(&encoder1);
+      |                               ^~
+../Core/Src/main.c:133:31: warning: unused variable 'v1' [-Wunused-variable]
+  133 |                         float v1 = Encoder_GetVelocity(&encoder1);
+      |                               ^~
+../Core/Src/main.c:132:31: warning: unused variable 'p1' [-Wunused-variable]
+  132 |                         float p1 = Encoder_GetPosition(&encoder1);
+      |                               ^~
+arm-none-eabi-gcc -o "STU3_Test.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\Fibo\Year2\Term2\STU\STU_3_Programming\STU3_Programming\STU3_Test\STM32G474RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STU3_Test.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: STU3_Test.elf
+ 
 arm-none-eabi-size  STU3_Test.elf 
+arm-none-eabi-objdump -h -S STU3_Test.elf  > "STU3_Test.list"
    text	   data	    bss	    dec	    hex	filename
-  19388	     12	   2060	  21460	   53d4	STU3_Test.elf
+  19968	     12	   2060	  22040	   5618	STU3_Test.elf
 Finished building: default.size.stdout
  
-15:16:05 **** Build of configuration Debug for project STU3_Test ****
+Finished building: STU3_Test.list
+ 
+22:13:48 **** Incremental Build of configuration Debug for project STU3_Test ****
 make -j16 all 
 arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
 arm-none-eabi-gcc -o "STU3_Test.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\Fibo\Year2\Term2\STU\STU_3_Programming\STU3_Programming\STU3_Test\STM32G474RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STU3_Test.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
@@ -166,12 +1069,40 @@ Finished building target: STU3_Test.elf
 arm-none-eabi-size  STU3_Test.elf 
 arm-none-eabi-objdump -h -S STU3_Test.elf  > "STU3_Test.list"
    text	   data	    bss	    dec	    hex	filename
-  19388	     12	   2060	  21460	   53d4	STU3_Test.elf
+  20028	     12	   2084	  22124	   566c	STU3_Test.elf
 Finished building: default.size.stdout
  
 Finished building: STU3_Test.list
  
-15:18:23 **** Incremental Build of configuration Debug for project STU3_Test ****
+22:18:12 **** Incremental Build of configuration Debug for project STU3_Test ****
+make -j16 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:117:9: error: unknown type name 'Encoder'
+  117 |         Encoder encoder1;
+      |         ^~~~~~~
+../Core/Src/main.c:118:9: error: unknown type name 'Encoder'
+  118 |         Encoder encoder2;
+      |         ^~~~~~~
+../Core/Src/main.c:119:9: warning: implicit declaration of function 'Encoder_Init'; did you mean 'Encoder_2_Pin'? [-Wimplicit-function-declaration]
+  119 |         Encoder_Init(&encoder1, &htim4);
+      |         ^~~~~~~~~~~~
+      |         Encoder_2_Pin
+../Core/Src/main.c:135:25: warning: implicit declaration of function 'Encoder_Update' [-Wimplicit-function-declaration]
+  135 |                         Encoder_Update(&encoder1, dt);
+      |                         ^~~~~~~~~~~~~~
+../Core/Src/main.c:139:30: warning: implicit declaration of function 'Encoder_GetPosition' [-Wimplicit-function-declaration]
+  139 |                         p1 = Encoder_GetPosition(&encoder1);
+      |                              ^~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:140:30: warning: implicit declaration of function 'Encoder_GetVelocity' [-Wimplicit-function-declaration]
+  140 |                         v1 = Encoder_GetVelocity(&encoder1);
+      |                              ^~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:141:30: warning: implicit declaration of function 'Encoder_GetAcceleration' [-Wimplicit-function-declaration]
+  141 |                         a1 = Encoder_GetAcceleration(&encoder1);
+      |                              ^~~~~~~~~~~~~~~~~~~~~~~
+make: *** [Core/Src/subdir.mk:37: Core/Src/main.o] Error 1
+"make -j16 all" terminated with exit code 2. Build might be incomplete.
+22:18:46 **** Incremental Build of configuration Debug for project STU3_Test ****
 make -j16 all 
 arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
 arm-none-eabi-gcc -o "STU3_Test.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\Fibo\Year2\Term2\STU\STU_3_Programming\STU3_Programming\STU3_Test\STM32G474RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STU3_Test.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
@@ -180,12 +1111,53 @@ Finished building target: STU3_Test.elf
 arm-none-eabi-size  STU3_Test.elf 
 arm-none-eabi-objdump -h -S STU3_Test.elf  > "STU3_Test.list"
    text	   data	    bss	    dec	    hex	filename
-  19388	     12	   2060	  21460	   53d4	STU3_Test.elf
+  20028	     12	   2084	  22124	   566c	STU3_Test.elf
 Finished building: default.size.stdout
  
 Finished building: STU3_Test.list
  
-15:19:37 **** Incremental Build of configuration Debug for project STU3_Test ****
+22:21:29 **** Incremental Build of configuration Debug for project STU3_Test ****
+make -j16 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "STU3_Test.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\Fibo\Year2\Term2\STU\STU_3_Programming\STU3_Programming\STU3_Test\STM32G474RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STU3_Test.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: STU3_Test.elf
+ 
+arm-none-eabi-size  STU3_Test.elf 
+arm-none-eabi-objdump -h -S STU3_Test.elf  > "STU3_Test.list"
+   text	   data	    bss	    dec	    hex	filename
+  20044	     12	   2084	  22140	   567c	STU3_Test.elf
+Finished building: default.size.stdout
+ 
+Finished building: STU3_Test.list
+ 
+22:27:03 **** Incremental Build of configuration Debug for project STU3_Test ****
+make -j16 all 
+arm-none-eabi-gcc -o "STU3_Test.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\Fibo\Year2\Term2\STU\STU_3_Programming\STU3_Programming\STU3_Test\STM32G474RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STU3_Test.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: STU3_Test.elf
+ 
+arm-none-eabi-size  STU3_Test.elf 
+arm-none-eabi-objdump -h -S STU3_Test.elf  > "STU3_Test.list"
+   text	   data	    bss	    dec	    hex	filename
+  20044	     12	   2084	  22140	   567c	STU3_Test.elf
+Finished building: default.size.stdout
+ 
+Finished building: STU3_Test.list
+ 
+22:36:28 **** Incremental Build of configuration Debug for project STU3_Test ****
+make -j16 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "STU3_Test.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\Fibo\Year2\Term2\STU\STU_3_Programming\STU3_Programming\STU3_Test\STM32G474RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STU3_Test.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: STU3_Test.elf
+ 
+arm-none-eabi-size  STU3_Test.elf 
+arm-none-eabi-objdump -h -S STU3_Test.elf  > "STU3_Test.list"
+   text	   data	    bss	    dec	    hex	filename
+  20056	     12	   2084	  22152	   5688	STU3_Test.elf
+Finished building: default.size.stdout
+ 
+Finished building: STU3_Test.list
+ 
+22:38:39 **** Incremental Build of configuration Debug for project STU3_Test ****
 make -j16 all 
 arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
 arm-none-eabi-gcc "../Core/Src/stm32g4xx_hal_msp.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/stm32g4xx_hal_msp.d" -MT"Core/Src/stm32g4xx_hal_msp.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/stm32g4xx_hal_msp.o"
@@ -196,28 +1168,12 @@ Finished building target: STU3_Test.elf
 arm-none-eabi-size  STU3_Test.elf 
 arm-none-eabi-objdump -h -S STU3_Test.elf  > "STU3_Test.list"
    text	   data	    bss	    dec	    hex	filename
-  19388	     12	   2060	  21460	   53d4	STU3_Test.elf
+  20056	     12	   2084	  22152	   5688	STU3_Test.elf
 Finished building: default.size.stdout
  
 Finished building: STU3_Test.list
  
-15:20:47 **** Incremental Build of configuration Debug for project STU3_Test ****
-make -j16 all 
-arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
-arm-none-eabi-gcc "../Core/Src/stm32g4xx_hal_msp.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/stm32g4xx_hal_msp.d" -MT"Core/Src/stm32g4xx_hal_msp.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/stm32g4xx_hal_msp.o"
-arm-none-eabi-gcc "../Core/Src/stm32g4xx_it.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/stm32g4xx_it.d" -MT"Core/Src/stm32g4xx_it.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/stm32g4xx_it.o"
-arm-none-eabi-gcc -o "STU3_Test.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\Fibo\Year2\Term2\STU\STU_3_Programming\STU3_Programming\STU3_Test\STM32G474RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STU3_Test.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: STU3_Test.elf
- 
-arm-none-eabi-size  STU3_Test.elf 
-arm-none-eabi-objdump -h -S STU3_Test.elf  > "STU3_Test.list"
-   text	   data	    bss	    dec	    hex	filename
-  19396	     12	   2060	  21468	   53dc	STU3_Test.elf
-Finished building: default.size.stdout
- 
-Finished building: STU3_Test.list
- 
-15:27:07 **** Incremental Build of configuration Debug for project STU3_Test ****
+22:42:06 **** Incremental Build of configuration Debug for project STU3_Test ****
 make -j16 all 
 arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
 arm-none-eabi-gcc -o "STU3_Test.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\Fibo\Year2\Term2\STU\STU_3_Programming\STU3_Programming\STU3_Test\STM32G474RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STU3_Test.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
@@ -226,12 +1182,12 @@ Finished building target: STU3_Test.elf
 arm-none-eabi-size  STU3_Test.elf 
 arm-none-eabi-objdump -h -S STU3_Test.elf  > "STU3_Test.list"
    text	   data	    bss	    dec	    hex	filename
-  19396	     12	   2060	  21468	   53dc	STU3_Test.elf
+  20060	     12	   2084	  22156	   568c	STU3_Test.elf
 Finished building: default.size.stdout
  
 Finished building: STU3_Test.list
  
-15:28:16 **** Incremental Build of configuration Debug for project STU3_Test ****
+22:45:13 **** Incremental Build of configuration Debug for project STU3_Test ****
 make -j16 all 
 arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
 arm-none-eabi-gcc -o "STU3_Test.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\Fibo\Year2\Term2\STU\STU_3_Programming\STU3_Programming\STU3_Test\STM32G474RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STU3_Test.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
@@ -240,81 +1196,7 @@ Finished building target: STU3_Test.elf
 arm-none-eabi-size  STU3_Test.elf 
 arm-none-eabi-objdump -h -S STU3_Test.elf  > "STU3_Test.list"
    text	   data	    bss	    dec	    hex	filename
-  19396	     12	   2060	  21468	   53dc	STU3_Test.elf
-Finished building: default.size.stdout
- 
-Finished building: STU3_Test.list
- 
-15:30:02 **** Incremental Build of configuration Debug for project STU3_Test ****
-make -j16 all 
-arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
-arm-none-eabi-gcc -o "STU3_Test.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\Fibo\Year2\Term2\STU\STU_3_Programming\STU3_Programming\STU3_Test\STM32G474RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STU3_Test.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: STU3_Test.elf
- 
-arm-none-eabi-size  STU3_Test.elf 
-arm-none-eabi-objdump -h -S STU3_Test.elf  > "STU3_Test.list"
-   text	   data	    bss	    dec	    hex	filename
-  19396	     12	   2060	  21468	   53dc	STU3_Test.elf
-Finished building: default.size.stdout
- 
-Finished building: STU3_Test.list
- 
-15:32:40 **** Incremental Build of configuration Debug for project STU3_Test ****
-make -j16 all 
-arm-none-eabi-size  STU3_Test.elf 
-   text	   data	    bss	    dec	    hex	filename
-  19396	     12	   2060	  21468	   53dc	STU3_Test.elf
-Finished building: default.size.stdout
- 
-15:39:21 **** Incremental Build of configuration Debug for project STU3_Test ****
-make -j16 all 
-arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
-arm-none-eabi-gcc "../Core/Src/stm32g4xx_hal_msp.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/stm32g4xx_hal_msp.d" -MT"Core/Src/stm32g4xx_hal_msp.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/stm32g4xx_hal_msp.o"
-arm-none-eabi-gcc "../Core/Src/stm32g4xx_it.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/stm32g4xx_it.d" -MT"Core/Src/stm32g4xx_it.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/stm32g4xx_it.o"
-arm-none-eabi-gcc -o "STU3_Test.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\Fibo\Year2\Term2\STU\STU_3_Programming\STU3_Programming\STU3_Test\STM32G474RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STU3_Test.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: STU3_Test.elf
- 
-arm-none-eabi-size  STU3_Test.elf 
-arm-none-eabi-objdump -h -S STU3_Test.elf  > "STU3_Test.list"
-   text	   data	    bss	    dec	    hex	filename
-  19396	     12	   2060	  21468	   53dc	STU3_Test.elf
-Finished building: default.size.stdout
- 
-Finished building: STU3_Test.list
- 
-15:40:52 **** Incremental Build of configuration Debug for project STU3_Test ****
-make -j16 all 
-arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
-arm-none-eabi-gcc -o "STU3_Test.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\Fibo\Year2\Term2\STU\STU_3_Programming\STU3_Programming\STU3_Test\STM32G474RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STU3_Test.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: STU3_Test.elf
- 
-arm-none-eabi-size  STU3_Test.elf 
-arm-none-eabi-objdump -h -S STU3_Test.elf  > "STU3_Test.list"
-   text	   data	    bss	    dec	    hex	filename
-  19396	     12	   2060	  21468	   53dc	STU3_Test.elf
-Finished building: default.size.stdout
- 
-Finished building: STU3_Test.list
- 
-15:41:23 **** Incremental Build of configuration Debug for project STU3_Test ****
-make -j16 all 
-arm-none-eabi-size  STU3_Test.elf 
-   text	   data	    bss	    dec	    hex	filename
-  19396	     12	   2060	  21468	   53dc	STU3_Test.elf
-Finished building: default.size.stdout
- 
-15:51:00 **** Incremental Build of configuration Debug for project STU3_Test ****
-make -j16 all 
-arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
-arm-none-eabi-gcc "../Core/Src/stm32g4xx_hal_msp.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/stm32g4xx_hal_msp.d" -MT"Core/Src/stm32g4xx_hal_msp.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/stm32g4xx_hal_msp.o"
-arm-none-eabi-gcc "../Core/Src/stm32g4xx_it.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/stm32g4xx_it.d" -MT"Core/Src/stm32g4xx_it.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/stm32g4xx_it.o"
-arm-none-eabi-gcc -o "STU3_Test.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\Fibo\Year2\Term2\STU\STU_3_Programming\STU3_Programming\STU3_Test\STM32G474RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STU3_Test.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: STU3_Test.elf
- 
-arm-none-eabi-size  STU3_Test.elf 
-arm-none-eabi-objdump -h -S STU3_Test.elf  > "STU3_Test.list"
-   text	   data	    bss	    dec	    hex	filename
-  19432	     12	   2060	  21504	   5400	STU3_Test.elf
+  20056	     12	   2084	  22152	   5688	STU3_Test.elf
 Finished building: default.size.stdout
  
 Finished building: STU3_Test.list

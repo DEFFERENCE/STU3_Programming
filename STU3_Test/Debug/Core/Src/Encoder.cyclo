@@ -1,0 +1,5 @@
+../Core/Src/Encoder.c:3:6:Encoder_Init	1
+../Core/Src/Encoder.c:15:6:Encoder_Update	3
+../Core/Src/Encoder.c:34:7:Encoder_GetPosition	1
+../Core/Src/Encoder.c:38:7:Encoder_GetVelocity	1
+../Core/Src/Encoder.c:42:7:Encoder_GetAcceleration	1

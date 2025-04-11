@@ -1,0 +1,16 @@
+/*
+ * Hello.h
+ *
+ *  Created on: Apr 11, 2025
+ *      Author: User
+ */
+
+#ifndef SRC_HELLO_H_
+#define SRC_HELLO_H_
+
+class Hello {
+public:
+	Hello();
+};
+
+#endif /* SRC_HELLO_H_ */

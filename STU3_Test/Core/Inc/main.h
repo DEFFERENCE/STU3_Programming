@@ -109,10 +109,6 @@ void Error_Handler(void);
 #define Emergency_Pin GPIO_PIN_11
 #define Emergency_GPIO_Port GPIOC
 #define Emergency_EXTI_IRQn EXTI15_10_IRQn
-#define Encoder_2_Pin GPIO_PIN_6
-#define Encoder_2_GPIO_Port GPIOB
-#define Encoder_2B7_Pin GPIO_PIN_7
-#define Encoder_2B7_GPIO_Port GPIOB
 #define Limit_Switch_pen_1_Pin GPIO_PIN_9
 #define Limit_Switch_pen_1_GPIO_Port GPIOB
 #define Limit_Switch_pen_1_EXTI_IRQn EXTI9_5_IRQn

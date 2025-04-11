@@ -1,0 +1,8 @@
+#include "Encoder.h"
+
+Encoder::Encoder(TIM_HandleTypeDef *htim)
+    : _htim(htim), _position(0), _velocity(0), _acceleration(0),
+      _lastPosition(0), _lastVelocity(0)
+{
+    HAL_TIM_Encoder_Start(_htim, TIM_CHANNEL_ALL);  // ✅ สำคัญ
+}

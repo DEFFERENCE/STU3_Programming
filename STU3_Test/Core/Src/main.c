@@ -1,27 +1,27 @@
 /* USER CODE BEGIN Header */
 /**
-  ******************************************************************************
-  * @file           : main.c
-  * @brief          : Main program body
-  ******************************************************************************
-  * @attention
-  *
-  * Copyright (c) 2025 STMicroelectronics.
-  * All rights reserved.
-  *
-  * This software is licensed under terms that can be found in the LICENSE file
-  * in the root directory of this software component.
-  * If no LICENSE file comes with this software, it is provided AS-IS.
-  *
-  ******************************************************************************
-  */
+ ******************************************************************************
+ * @file           : main.c
+ * @brief          : Main program body
+ ******************************************************************************
+ * @attention
+ *
+ * Copyright (c) 2025 STMicroelectronics.
+ * All rights reserved.
+ *
+ * This software is licensed under terms that can be found in the LICENSE file
+ * in the root directory of this software component.
+ * If no LICENSE file comes with this software, it is provided AS-IS.
+ *
+ ******************************************************************************
+ */
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "Encoder.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -49,7 +49,16 @@ TIM_HandleTypeDef htim4;
 TIM_HandleTypeDef htim20;
 
 /* USER CODE BEGIN PV */
-uint32_t QEIReadRaw ;
+uint32_t QEIReadRaw;
+float pos;
+float vel;
+float acc;
+float p1= 0;
+float v1 = 0;
+float a1 = 0;
+float p2= 0;
+float v2 = 0;
+float a2 = 0;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -87,7 +96,6 @@ int main(void)
   HAL_Init();
 
   /* USER CODE BEGIN Init */
-
   /* USER CODE END Init */
 
   /* Configure the system clock */
@@ -106,18 +114,40 @@ int main(void)
   MX_TIM4_Init();
   MX_TIM20_Init();
   /* USER CODE BEGIN 2 */
-HAL_TIM_Encoder_Start(&htim3, TIM_CHANNEL_ALL);
+	Encoder encoder1;
+	Encoder encoder2;
+	Encoder_Init(&encoder1, &htim4);
+	Encoder_Init(&encoder2, &htim3);
+	int lastTick = 0;
+	HAL_TIM_Encoder_Start(&htim3, TIM_CHANNEL_ALL);
+	HAL_TIM_Encoder_Start(&htim4, TIM_CHANNEL_ALL);
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  while (1)
-  {
+	while (1) {
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-	  QEIReadRaw = __HAL_TIM_GET_COUNTER(&htim3);
-  }
+		uint32_t currentTick = HAL_GetTick();
+		float dt = (currentTick - lastTick) / 1000.0f;
+		QEIReadRaw = __HAL_TIM_GET_COUNTER(&htim4);
+		if (dt >= 0.01f) {
+			Encoder_Update(&encoder1, dt);
+			Encoder_Update(&encoder2, dt);
+			lastTick = currentTick;
+
+			p1 = Encoder_GetPosition(&encoder1);
+			v1 = Encoder_GetVelocity(&encoder1);
+			a1 = Encoder_GetAcceleration(&encoder1);
+
+			p2 = Encoder_GetPosition(&encoder2);
+			v2 = Encoder_GetVelocity(&encoder2);
+			a2 = Encoder_GetAcceleration(&encoder2);
+
+			// Now use p1,v1,a1 and p2,v2,a2 as needed
+		}
+	}
   /* USER CODE END 3 */
 }
 
@@ -432,10 +462,10 @@ static void MX_TIM4_Init(void)
   htim4.Instance = TIM4;
   htim4.Init.Prescaler = 0;
   htim4.Init.CounterMode = TIM_COUNTERMODE_UP;
-  htim4.Init.Period = 65535;
+  htim4.Init.Period = 47;
   htim4.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
   htim4.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
-  sConfig.EncoderMode = TIM_ENCODERMODE_TI1;
+  sConfig.EncoderMode = TIM_ENCODERMODE_TI12;
   sConfig.IC1Polarity = TIM_ICPOLARITY_RISING;
   sConfig.IC1Selection = TIM_ICSELECTION_DIRECTTI;
   sConfig.IC1Prescaler = TIM_ICPSC_DIV1;
@@ -665,11 +695,10 @@ static void MX_GPIO_Init(void)
 void Error_Handler(void)
 {
   /* USER CODE BEGIN Error_Handler_Debug */
-  /* User can add his own implementation to report the HAL error return state */
-  __disable_irq();
-  while (1)
-  {
-  }
+/* User can add his own implementation to report the HAL error return state */
+__disable_irq();
+while (1) {
+}
   /* USER CODE END Error_Handler_Debug */
 }
 

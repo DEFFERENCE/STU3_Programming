@@ -1,0 +1,16 @@
+/*
+ * Encoder.h
+ *
+ *  Created on: Apr 11, 2025
+ *      Author: User
+ */
+
+#ifndef ENCODER_H_
+#define ENCODER_H_
+
+class Encoder {
+public:
+	Encoder();
+};
+
+#endif /* ENCODER_H_ */

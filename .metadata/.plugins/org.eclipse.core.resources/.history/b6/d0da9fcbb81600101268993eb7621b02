@@ -1,0 +1,38 @@
+/*
+ * Encoder.cpp
+ *
+ *  Created on: Apr 11, 2025
+ *      Author: User
+ */
+
+#include "Encoder.h"
+
+Encoder::Encoder() :
+		_position(0.0f), _velocity(0.0f), _acceleration(0.0f), _lastPosition(
+				0.0f), _lastVelocity(0.0f) {
+}
+
+float MotionData::getPosition() const {
+	return _position;
+}
+
+float MotionData::getVelocity() const {
+	return _velocity;
+}
+
+float MotionData::getAcceleration() const {
+	return _acceleration;
+}
+
+void MotionData::update(float newPosition, float dt) {
+	if (dt <= 0.0f)
+		return;
+
+	_lastVelocity = _velocity;
+	_lastPosition = _position;
+
+	_position = newPosition;
+	_velocity = (_position - _lastPosition) / dt;
+	_acceleration = (_velocity - _lastVelocity) / dt;
+}
+

@@ -1,0 +1,28 @@
+#include "EncoderC.h"
+#include "Encoder.h"
+
+static Encoder encoder;
+
+extern "C" {
+
+void Encoder_Init() {
+    // Already initialized statically
+}
+
+void Encoder_Update(float dt) {
+    encoder.update(dt);
+}
+
+float Encoder_GetPosition() {
+    return encoder.getPosition();
+}
+
+float Encoder_GetVelocity() {
+    return encoder.getVelocity();
+}
+
+float Encoder_GetAcceleration() {
+    return encoder.getAcceleration();
+}
+
+}

@@ -1,0 +1,24 @@
+/*
+ * EncoderC.h
+ *
+ *  Created on: Apr 11, 2025
+ *      Author: User
+ */
+
+#ifndef ENCODERC_H_
+#define ENCODERC_H_
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+class Encoder_C {
+public:
+	Encoder_C();
+};
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif/* ENCODERC_H_ */

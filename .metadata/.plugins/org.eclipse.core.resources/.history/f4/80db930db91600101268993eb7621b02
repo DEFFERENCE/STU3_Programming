@@ -1,0 +1,14 @@
+/*
+ * EncoderC.cpp
+ *
+ *  Created on: Apr 11, 2025
+ *      Author: User
+ */
+
+#include "EncoderC.h"
+
+Encoder_C::Encoder_C() {
+	// TODO Auto-generated constructor stub
+
+}
+

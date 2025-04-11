@@ -1,0 +1,14 @@
+/*
+ * Hello.c
+ *
+ *  Created on: Apr 11, 2025
+ *      Author: User
+ */
+
+#include "Hello.h"
+
+Hello::Hello()
+{
+	// TODO Auto-generated constructor stub
+
+}

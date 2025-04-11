@@ -1,0 +1,59 @@
+#include "Encoder.h"
+
+static TIM_HandleTypeDef *encoderTimer;
+static int32_t lastRawPosition = 0;
+
+static float position = 0;
+static float velocity = 0;
+static float acceleration = 0;
+
+static float lastPosition = 0;
+static float lastVelocity = 0;
+
+void Encoder_Init(TIM_HandleTypeDef *htim) {
+    encoderTimer = htim;
+    HAL_TIM_Encoder_Start(htim, TIM_CHANNEL_ALL);
+
+    lastRawPosition = __HAL_TIM_GET_COUNTER(htim);
+    position = lastPosition = 0;
+    velocity = lastVelocity = 0;
+    acceleration = 0;
+}
+
+void Encoder_Update(float dt) {
+    int32_t rawPosition = __HAL_TIM_GET_COUNTER(encoderTimer);
+
+    // Handle wraparound (assuming 16-bit counter)
+    int32_t deltaRaw = rawPosition - lastRawPosition;
+    if (deltaRaw > 32767) {
+        deltaRaw -= 65536;
+    } else if (deltaRaw < -32767) {
+        deltaRaw += 65536;
+    }
+
+    // Update position (assuming 1 count = 1 unit)
+    position += deltaRaw;
+
+    // Velocity: Δx / Δt
+    velocity = (position - lastPosition) / dt;
+
+    // Acceleration: Δv / Δt
+    acceleration = (velocity - lastVelocity) / dt;
+
+    // Save for next update
+    lastRawPosition = rawPosition;
+    lastPosition = position;
+    lastVelocity = velocity;
+}
+
+float Encoder_GetPosition(void) {
+    return position;
+}
+
+float Encoder_GetVelocity(void) {
+    return velocity;
+}
+
+float Encoder_GetAcceleration(void) {
+    return acceleration;
+}
