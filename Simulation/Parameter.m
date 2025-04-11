@@ -25,9 +25,10 @@ Pris_J = 1.77E-05;
 Prismatic_Intertia = 1; % kg*m^2
 Prismatic_Mass = 1; % kg
 Prismatic_Length = 1; % m
+Pris_Time_Constant = 1;
 
 %% Revolute Axis
-
+Revo_Time_Constant = 1;
 
 %% End Effector
 
