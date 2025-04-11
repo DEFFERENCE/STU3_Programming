@@ -1,0 +1,10 @@
+15:11:08 **** Incremental Build of configuration Debug for project QEI_Learning ****
+make -j16 all 
+arm-none-eabi-size  QEI_Learning.elf 
+   text	   data	    bss	    dec	    hex	filename
+  16740	     12	   1856	  18608	   48b0	QEI_Learning.elf
+Finished building: default.size.stdout
+ 
+
+15:11:08 Build Finished. 0 errors, 0 warnings. (took 342ms)
+
