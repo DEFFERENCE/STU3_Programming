@@ -35,11 +35,6 @@ void Encoder_Update(Encoder *enc, float dt) {
     enc->lastVelocity = enc->velocity;
 }
 
-void Encoder_setLimit(Encoder *enc, float limit)
-{
-		enc->position = limit;
-}
-
 float Encoder_GetPosition(Encoder *enc) {
     return enc->position;
 }

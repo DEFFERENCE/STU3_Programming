@@ -1,5 +1,6 @@
 ../Core/Src/Encoder.c:6:6:Encoder_Init	16	static
 ../Core/Src/Encoder.c:18:6:Encoder_Update	24	static
-../Core/Src/Encoder.c:38:7:Encoder_GetPosition	16	static
-../Core/Src/Encoder.c:42:7:Encoder_GetVelocity	16	static
-../Core/Src/Encoder.c:46:7:Encoder_GetAcceleration	16	static
+../Core/Src/Encoder.c:38:6:Encoder_setLimit	16	static
+../Core/Src/Encoder.c:43:7:Encoder_GetPosition	16	static
+../Core/Src/Encoder.c:47:7:Encoder_GetVelocity	16	static
+../Core/Src/Encoder.c:51:7:Encoder_GetAcceleration	16	static

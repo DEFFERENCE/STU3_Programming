@@ -50,8 +50,6 @@ TIM_HandleTypeDef htim8;
 TIM_HandleTypeDef htim20;
 
 /* USER CODE BEGIN PV */
-Encoder encoder1;
-Encoder encoder2;
 uint32_t QEIReadRaw;
 float pos;
 float vel;
@@ -120,6 +118,8 @@ int main(void)
   MX_TIM20_Init();
   MX_TIM8_Init();
   /* USER CODE BEGIN 2 */
+	Encoder encoder1;
+	Encoder encoder2;
 	Encoder_Init(&encoder1, &htim4);
 	Encoder_Init(&encoder2, &htim3);
 	int lastTick = 0;
@@ -681,6 +681,12 @@ static void MX_GPIO_Init(void)
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(DIR_MD20A_24V_GPIO_Port, DIR_MD20A_24V_Pin, GPIO_PIN_RESET);
 
+  /*Configure GPIO pins : PC13 PS2_Joy_stick_Attention_Pin */
+  GPIO_InitStruct.Pin = GPIO_PIN_13|PS2_Joy_stick_Attention_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
+
   /*Configure GPIO pins : LPUART1_TX_Pin LPUART1_RX_Pin */
   GPIO_InitStruct.Pin = LPUART1_TX_Pin|LPUART1_RX_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
@@ -725,23 +731,17 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
 
-  /*Configure GPIO pin : Proximity_Sensor_Pin */
-  GPIO_InitStruct.Pin = Proximity_Sensor_Pin;
+  /*Configure GPIO pin : Proximity_sensor_Pin */
+  GPIO_InitStruct.Pin = Proximity_sensor_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_IT_FALLING;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
-  HAL_GPIO_Init(Proximity_Sensor_GPIO_Port, &GPIO_InitStruct);
+  HAL_GPIO_Init(Proximity_sensor_GPIO_Port, &GPIO_InitStruct);
 
-  /*Configure GPIO pins : Proximity_sensor_Pin Limit_Switch_Prismatic2_Pin */
-  GPIO_InitStruct.Pin = Proximity_sensor_Pin|Limit_Switch_Prismatic2_Pin;
+  /*Configure GPIO pins : Proximity_sensorA12_Pin Limit_Switch_Prismatic2_Pin */
+  GPIO_InitStruct.Pin = Proximity_sensorA12_Pin|Limit_Switch_Prismatic2_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_IT_RISING;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
-
-  /*Configure GPIO pin : PS2_Joy_stick_Attention_Pin */
-  GPIO_InitStruct.Pin = PS2_Joy_stick_Attention_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
-  HAL_GPIO_Init(PS2_Joy_stick_Attention_GPIO_Port, &GPIO_InitStruct);
 
   /*Configure GPIO pin : Emergency_Pin */
   GPIO_InitStruct.Pin = Emergency_Pin;
@@ -758,9 +758,6 @@ static void MX_GPIO_Init(void)
   HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
 
   /* EXTI interrupt init*/
-  HAL_NVIC_SetPriority(EXTI9_5_IRQn, 0, 0);
-  HAL_NVIC_EnableIRQ(EXTI9_5_IRQn);
-
   HAL_NVIC_SetPriority(EXTI15_10_IRQn, 0, 0);
   HAL_NVIC_EnableIRQ(EXTI15_10_IRQn);
 
@@ -771,7 +768,7 @@ static void MX_GPIO_Init(void)
 /* USER CODE BEGIN 4 */
 void HAL_GPIO_EXTI_Callback (uint16_t GPIO_Pin)
 {
-	if (GPIO_Pin == GPIO_PIN_13)
+	if (GPIO_Pin == 13)
 	{
 		Encoder_setLimit(&encoder1,180);
 		Encoder_setLimit(&encoder2,180);

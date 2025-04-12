@@ -50,8 +50,6 @@ TIM_HandleTypeDef htim8;
 TIM_HandleTypeDef htim20;
 
 /* USER CODE BEGIN PV */
-Encoder encoder1;
-Encoder encoder2;
 uint32_t QEIReadRaw;
 float pos;
 float vel;
@@ -120,6 +118,8 @@ int main(void)
   MX_TIM20_Init();
   MX_TIM8_Init();
   /* USER CODE BEGIN 2 */
+	Encoder encoder1;
+	Encoder encoder2;
 	Encoder_Init(&encoder1, &htim4);
 	Encoder_Init(&encoder2, &htim3);
 	int lastTick = 0;
@@ -151,6 +151,7 @@ int main(void)
 
 			// Now use p1,v1,a1 and p2,v2,a2 as needed
 		}
+
 	}
   /* USER CODE END 3 */
 }
@@ -773,8 +774,8 @@ void HAL_GPIO_EXTI_Callback (uint16_t GPIO_Pin)
 {
 	if (GPIO_Pin == GPIO_PIN_13)
 	{
-		Encoder_setLimit(&encoder1,180);
-		Encoder_setLimit(&encoder2,180);
+		//Encoder_setLimit(&encoder1,180);
+		//Encoder_setLimit(&encoder2,180);
 		check += 1;
 	}
 }
