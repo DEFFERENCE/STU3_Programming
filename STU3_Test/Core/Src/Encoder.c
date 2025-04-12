@@ -1,5 +1,8 @@
 #include "Encoder.h"
 
+#define Count_PER_REV 12000.0f
+#define TWO_PI 6.283185f
+
 void Encoder_Init(Encoder *enc, TIM_HandleTypeDef *htim) {
     enc->htim = htim;
     HAL_TIM_Encoder_Start(htim, TIM_CHANNEL_ALL);
@@ -14,15 +17,16 @@ void Encoder_Init(Encoder *enc, TIM_HandleTypeDef *htim) {
 
 void Encoder_Update(Encoder *enc, float dt) {
     int32_t rawPosition = __HAL_TIM_GET_COUNTER(enc->htim);
-
     int32_t deltaRaw = rawPosition - enc->lastRawPosition;
-    if (deltaRaw > 32767) {
-        deltaRaw -= 65536;
-    } else if (deltaRaw < -32767) {
-        deltaRaw += 65536;
+
+    // Handle 16-bit counter wrap-around
+    if (deltaRaw > 30000) {
+        deltaRaw -= 60000;
+    } else if (deltaRaw < -30000) {
+        deltaRaw += 60000;
     }
 
-    enc->position += deltaRaw;
+    enc->position += ((float)deltaRaw * TWO_PI) / Count_PER_REV;
     enc->velocity = (enc->position - enc->lastPosition) / dt;
     enc->acceleration = (enc->velocity - enc->lastVelocity) / dt;
 
