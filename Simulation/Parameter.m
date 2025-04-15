@@ -22,14 +22,14 @@ Pris_J = 1.77E-05;
 
 %% Prismatic Axis
 
-Prismatic_Intertia = 1; % kg*m^2
-Prismatic_Mass = 1; % kg
+Prismatic_Intertia = 6; % kg*m^2
+Prismatic_Mass = 6; % kg
 Prismatic_Length = 1; % m
-Pris_Time_Constant = 1;
+Pris_Time_Constant = 0.01;
 
 %% Revolute Axis
-Revo_Time_Constant = 1;
-
+Revo_Time_Constant = 0.01 ;
+I_static = Rev_J+Prismatic_Intertia+0.1;
 %% End Effector
 
 End_Effector_Inertia = 0.1; % kg*m^2
@@ -44,3 +44,15 @@ End_Effector_Mass = 0.5; % kg
 g = 9.81 ; % m/s^2
 Gear_ratio = 4 ;
 sampling_time = 0.001;
+%% 
+
+% คำนวณ numerator และ denominator แล้ว assign เป็น vector
+num = [Pris_J * Pris_Lm, 
+       Pris_b * Pris_Lm + Pris_R * Pris_J, 
+       Pris_R * Pris_b + Pris_ke * Pris_Km];
+
+den = [Pris_J * Pris_Time_Constant^3, 
+       3 * Pris_J * Pris_Time_Constant^2 + Pris_b * Pris_Time_Constant^3, 
+       3 * Pris_J * Pris_Time_Constant + 3 * Pris_b * Pris_Time_Constant^2, 
+       Pris_J + 3 * Pris_b * Pris_Time_Constant, 
+       Pris_b];

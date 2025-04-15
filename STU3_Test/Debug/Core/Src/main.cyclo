@@ -8,5 +8,5 @@
 ../Core/Src/main.c:502:13:MX_TIM8_Init	7
 ../Core/Src/main.c:584:13:MX_TIM20_Init	7
 ../Core/Src/main.c:666:13:MX_GPIO_Init	1
-../Core/Src/main.c:772:6:HAL_GPIO_EXTI_Callback	2
-../Core/Src/main.c:787:6:Error_Handler	1
+../Core/Src/main.c:766:6:HAL_GPIO_EXTI_Callback	2
+../Core/Src/main.c:781:6:Error_Handler	1
