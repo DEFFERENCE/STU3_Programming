@@ -22,6 +22,7 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "Encoder.h"
+#include "Trajectory.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
