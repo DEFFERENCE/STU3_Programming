@@ -4,5 +4,5 @@
 ../Core/Src/stm32g4xx_hal_msp.c:168:6:HAL_TIM_Base_MspInit	32	static
 ../Core/Src/stm32g4xx_hal_msp.c:223:6:HAL_TIM_Encoder_MspInit	64	static
 ../Core/Src/stm32g4xx_hal_msp.c:293:6:HAL_TIM_MspPostInit	48	static
-../Core/Src/stm32g4xx_hal_msp.c:366:6:HAL_TIM_Base_MspDeInit	16	static
-../Core/Src/stm32g4xx_hal_msp.c:421:6:HAL_TIM_Encoder_MspDeInit	16	static
+../Core/Src/stm32g4xx_hal_msp.c:354:6:HAL_TIM_Base_MspDeInit	16	static
+../Core/Src/stm32g4xx_hal_msp.c:409:6:HAL_TIM_Encoder_MspDeInit	16	static

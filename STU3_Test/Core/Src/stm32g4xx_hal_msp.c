@@ -60,7 +60,7 @@
 /* USER CODE END 0 */
 
 void HAL_TIM_MspPostInit(TIM_HandleTypeDef *htim);
-                                                            /**
+                                        /**
   * Initializes the Global MSP.
   */
 void HAL_MspInit(void)
@@ -293,42 +293,21 @@ void HAL_TIM_Encoder_MspInit(TIM_HandleTypeDef* htim_encoder)
 void HAL_TIM_MspPostInit(TIM_HandleTypeDef* htim)
 {
   GPIO_InitTypeDef GPIO_InitStruct = {0};
-  if(htim->Instance==TIM1)
-  {
-  /* USER CODE BEGIN TIM1_MspPostInit 0 */
-
-  /* USER CODE END TIM1_MspPostInit 0 */
-    __HAL_RCC_GPIOC_CLK_ENABLE();
-    /**TIM1 GPIO Configuration
-    PC2     ------> TIM1_CH3
-    */
-    GPIO_InitStruct.Pin = PWM_MD20A_24V_Pin;
-    GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
-    GPIO_InitStruct.Pull = GPIO_NOPULL;
-    GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-    GPIO_InitStruct.Alternate = GPIO_AF2_TIM1;
-    HAL_GPIO_Init(PWM_MD20A_24V_GPIO_Port, &GPIO_InitStruct);
-
-  /* USER CODE BEGIN TIM1_MspPostInit 1 */
-
-  /* USER CODE END TIM1_MspPostInit 1 */
-  }
-  else if(htim->Instance==TIM8)
+  if(htim->Instance==TIM8)
   {
   /* USER CODE BEGIN TIM8_MspPostInit 0 */
 
   /* USER CODE END TIM8_MspPostInit 0 */
-
     __HAL_RCC_GPIOC_CLK_ENABLE();
     /**TIM8 GPIO Configuration
-    PC6     ------> TIM8_CH1
+    PC9     ------> TIM8_CH4
     */
-    GPIO_InitStruct.Pin = Servo_Pin;
+    GPIO_InitStruct.Pin = PWM_Servo_Pin;
     GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
     GPIO_InitStruct.Pull = GPIO_NOPULL;
     GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
     GPIO_InitStruct.Alternate = GPIO_AF4_TIM8;
-    HAL_GPIO_Init(Servo_GPIO_Port, &GPIO_InitStruct);
+    HAL_GPIO_Init(PWM_Servo_GPIO_Port, &GPIO_InitStruct);
 
   /* USER CODE BEGIN TIM8_MspPostInit 1 */
 
@@ -341,14 +320,23 @@ void HAL_TIM_MspPostInit(TIM_HandleTypeDef* htim)
   /* USER CODE END TIM20_MspPostInit 0 */
 
     __HAL_RCC_GPIOB_CLK_ENABLE();
+    __HAL_RCC_GPIOC_CLK_ENABLE();
     /**TIM20 GPIO Configuration
     PB2     ------> TIM20_CH1
+    PC8     ------> TIM20_CH3
     */
-    GPIO_InitStruct.Pin = PWM_MD20A_18V_Pin;
+    GPIO_InitStruct.Pin = PWM_MD20A_24V_Pin;
     GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
     GPIO_InitStruct.Pull = GPIO_NOPULL;
     GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
     GPIO_InitStruct.Alternate = GPIO_AF3_TIM20;
+    HAL_GPIO_Init(PWM_MD20A_24V_GPIO_Port, &GPIO_InitStruct);
+
+    GPIO_InitStruct.Pin = PWM_MD20A_18V_Pin;
+    GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
+    GPIO_InitStruct.Pull = GPIO_NOPULL;
+    GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+    GPIO_InitStruct.Alternate = GPIO_AF6_TIM20;
     HAL_GPIO_Init(PWM_MD20A_18V_GPIO_Port, &GPIO_InitStruct);
 
   /* USER CODE BEGIN TIM20_MspPostInit 1 */
