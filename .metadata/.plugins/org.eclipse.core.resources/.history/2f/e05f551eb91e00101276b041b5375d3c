@@ -1,0 +1,34 @@
+/*
+ * Based_System_Communication.h
+ *
+ *  Created on: Apr 21, 2025
+ *      Author: User
+ */
+
+#ifndef INC_BASED_SYSTEM_COMMUNICATION_H_
+#define INC_BASED_SYSTEM_COMMUNICATION_H_
+
+#include "stm32g4xx_hal.h"
+#include "ModBusRTU.h"
+
+
+void modbus_heartbeat();
+uint8_t modbus_Base_System_Status();
+
+uint8_t modbus_servo_Status();
+void modbus_write_servo_up(uint8_t Servo_PWM); //Optional
+void modbus_write_servo_down(uint8_t Servo_PWM); //Optional
+
+uint8_t R_Theta_moving_Status();
+void modbus_r_position(float *pos);
+void modbus_theta_position(float *pos);
+void modbus_r_speed(float *speed);
+void modbus_theta_speed(float *speed);
+void modbus_r_acceleration(float *acceleration);
+void modbus_theta_acceleration(float *acceleration);
+void modbus_Update_All();
+
+float modbus_set_goal_r_position();
+float modbus_set_goal_theta_position();
+
+#endif /* INC_BASED_SYSTEM_COMMUNICATION_H_ */

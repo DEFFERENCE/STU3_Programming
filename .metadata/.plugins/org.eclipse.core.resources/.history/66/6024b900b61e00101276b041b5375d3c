@@ -23,8 +23,7 @@
 /* USER CODE BEGIN Includes */
 #include "Encoder.h"
 #include "Trajectory.h"
-//#include "ModBusRTU.h"
-#include "Based_System_Communication.h"
+#include "ModBusRTU.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -159,9 +158,8 @@ int main(void)
 
     /* USER CODE BEGIN 3 */
 		Modbus_Protocal_Worker();
-		hmodbus.RegisterAddress[0x00].U16 = 22881;
-		hmodbus.RegisterAddress[0x15].U16 = 100;
-		  //registerFrame[0x15].U16 = 100;
+		  registerFrame[0x00].U16 = 22881;
+		  registerFrame[0x15].U16 = 100;
 //		for (int i = 0;i<31;i++)
 //		{
 //		registerFrame[0x00].U16 = 1;
@@ -173,7 +171,7 @@ int main(void)
 //		registerFrame[0x06].U16 = 7;
 //		registerFrame[0x07].U16 = 8;
 //		registerFrame[0x08].U16 = 9;
-		//registerFrame[0x15].U16 = 10;
+		registerFrame[0x15].U16 = 10;
 		//}
 //		uint32_t currentTick = HAL_GetTick();
 //		float dt = (currentTick - lastTick) / 1000.0f;

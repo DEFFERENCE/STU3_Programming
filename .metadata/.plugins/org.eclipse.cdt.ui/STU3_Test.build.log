@@ -1,10 +1,22 @@
-20:01:24 **** Incremental Build of configuration Debug for project STU3_Test ****
+21:02:02 **** Incremental Build of configuration Debug for project STU3_Test ****
 make -j16 all 
+arm-none-eabi-gcc "../Core/Src/Based_System_Communication.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Based_System_Communication.d" -MT"Core/Src/Based_System_Communication.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Based_System_Communication.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:143:13: warning: unused variable 'lastTick' [-Wunused-variable]
+  143 |         int lastTick = 0;
+      |             ^~~~~~~~
+arm-none-eabi-gcc -o "STU3_Test.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\Fibo\Year2\Term2\STU\STU_3_Programming\STU3_Programming\STU3_Test\STM32G474RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STU3_Test.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: STU3_Test.elf
+ 
 arm-none-eabi-size  STU3_Test.elf 
+arm-none-eabi-objdump -h -S STU3_Test.elf  > "STU3_Test.list"
    text	   data	    bss	    dec	    hex	filename
   39024	    524	   5108	  44656	   ae70	STU3_Test.elf
 Finished building: default.size.stdout
  
+Finished building: STU3_Test.list
+ 
 
-20:01:24 Build Finished. 0 errors, 0 warnings. (took 383ms)
+21:02:04 Build Finished. 0 errors, 1 warnings. (took 1s.304ms)
 

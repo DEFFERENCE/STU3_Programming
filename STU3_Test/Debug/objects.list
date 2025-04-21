@@ -1,4 +1,5 @@
 "./Core/.metadata/.plugins/org.eclipse.cdt.make.core/specs.o"
+"./Core/Src/Based_System_Communication.o"
 "./Core/Src/Encoder.o"
 "./Core/Src/ModBusRTU.o"
 "./Core/Src/Trajectory.o"
