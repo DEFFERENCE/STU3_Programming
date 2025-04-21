@@ -146,10 +146,44 @@ Discarded input sections
  .text          0x00000000        0x0 ./Core/Src/Based_System_Communication.o
  .data          0x00000000        0x0 ./Core/Src/Based_System_Communication.o
  .bss           0x00000000        0x0 ./Core/Src/Based_System_Communication.o
- .debug_info    0x00000000       0x77 ./Core/Src/Based_System_Communication.o
- .debug_abbrev  0x00000000       0x28 ./Core/Src/Based_System_Communication.o
- .debug_aranges
+ .text.modbus_heartbeat
+                0x00000000        0xe ./Core/Src/Based_System_Communication.o
+ .text.modbus_Base_System_Status
+                0x00000000       0x10 ./Core/Src/Based_System_Communication.o
+ .text.modbus_servo_Status
                 0x00000000       0x18 ./Core/Src/Based_System_Communication.o
+ .text.modbus_write_servo_up
+                0x00000000       0x16 ./Core/Src/Based_System_Communication.o
+ .text.modbus_write_servo_down
+                0x00000000       0x16 ./Core/Src/Based_System_Communication.o
+ .text.R_Theta_moving_Status
+                0x00000000       0x18 ./Core/Src/Based_System_Communication.o
+ .text.modbus_r_position
+                0x00000000       0x16 ./Core/Src/Based_System_Communication.o
+ .text.modbus_theta_position
+                0x00000000       0x16 ./Core/Src/Based_System_Communication.o
+ .text.modbus_r_velocity
+                0x00000000       0x16 ./Core/Src/Based_System_Communication.o
+ .text.modbus_theta_velocity
+                0x00000000       0x16 ./Core/Src/Based_System_Communication.o
+ .text.modbus_r_acceleration
+                0x00000000       0x16 ./Core/Src/Based_System_Communication.o
+ .text.modbus_theta_acceleration
+                0x00000000       0x16 ./Core/Src/Based_System_Communication.o
+ .text.modbus_Update_All
+                0x00000000       0x2a ./Core/Src/Based_System_Communication.o
+ .text.set_Target_Position_ten_points
+                0x00000000       0x16 ./Core/Src/Based_System_Communication.o
+ .text.modbus_set_goal_r_position
+                0x00000000       0x12 ./Core/Src/Based_System_Communication.o
+ .text.modbus_set_goal_theta_position
+                0x00000000       0x12 ./Core/Src/Based_System_Communication.o
+ .debug_info    0x00000000      0x2e1 ./Core/Src/Based_System_Communication.o
+ .debug_abbrev  0x00000000       0xba ./Core/Src/Based_System_Communication.o
+ .debug_aranges
+                0x00000000       0x98 ./Core/Src/Based_System_Communication.o
+ .debug_rnglists
+                0x00000000       0x6d ./Core/Src/Based_System_Communication.o
  .debug_macro   0x00000000      0x2d9 ./Core/Src/Based_System_Communication.o
  .debug_macro   0x00000000      0xad8 ./Core/Src/Based_System_Communication.o
  .debug_macro   0x00000000      0x161 ./Core/Src/Based_System_Communication.o
@@ -208,9 +242,10 @@ Discarded input sections
  .debug_macro   0x00000000       0x10 ./Core/Src/Based_System_Communication.o
  .debug_macro   0x00000000       0x3c ./Core/Src/Based_System_Communication.o
  .debug_macro   0x00000000       0x20 ./Core/Src/Based_System_Communication.o
- .debug_line    0x00000000      0xa00 ./Core/Src/Based_System_Communication.o
- .debug_str     0x00000000   0x10ba36 ./Core/Src/Based_System_Communication.o
+ .debug_line    0x00000000      0xb3c ./Core/Src/Based_System_Communication.o
+ .debug_str     0x00000000   0x10bc1b ./Core/Src/Based_System_Communication.o
  .comment       0x00000000       0x44 ./Core/Src/Based_System_Communication.o
+ .debug_frame   0x00000000      0x270 ./Core/Src/Based_System_Communication.o
  .ARM.attributes
                 0x00000000       0x34 ./Core/Src/Based_System_Communication.o
  .group         0x00000000        0xc ./Core/Src/Encoder.o
