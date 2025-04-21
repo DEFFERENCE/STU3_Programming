@@ -71,10 +71,6 @@ void Error_Handler(void);
 #define Current_Sensor_GPIO_Port GPIOA
 #define Current_SensorA1_Pin GPIO_PIN_1
 #define Current_SensorA1_GPIO_Port GPIOA
-#define LPUART1_TX_Pin GPIO_PIN_2
-#define LPUART1_TX_GPIO_Port GPIOA
-#define LPUART1_RX_Pin GPIO_PIN_3
-#define LPUART1_RX_GPIO_Port GPIOA
 #define Encoder_1_Pin GPIO_PIN_6
 #define Encoder_1_GPIO_Port GPIOA
 #define DIR_MD20A_24V_Pin GPIO_PIN_1
