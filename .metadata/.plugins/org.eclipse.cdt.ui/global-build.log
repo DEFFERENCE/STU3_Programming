@@ -1,7 +1,611 @@
-21:06:19 **** Incremental Build of configuration Debug for project STU3_Test ****
+12:06:46 **** Incremental Build of configuration Debug for project STU3_Test ****
+make -j16 all 
+arm-none-eabi-gcc "../Core/Src/Based_System_Communication.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Based_System_Communication.d" -MT"Core/Src/Based_System_Communication.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Based_System_Communication.o"
+../Core/Src/Based_System_Communication.c: In function 'modbus_r_position':
+../Core/Src/Based_System_Communication.c:28:9: error: 'hmodbus' undeclared (first use in this function)
+   28 |         hmodbus.RegisterAddress[0x11].U16 = r_pos;
+      |         ^~~~~~~
+../Core/Src/Based_System_Communication.c:28:9: note: each undeclared identifier is reported only once for each function it appears in
+../Core/Src/Based_System_Communication.c: In function 'modbus_theta_position':
+../Core/Src/Based_System_Communication.c:32:9: error: 'hmodbus' undeclared (first use in this function)
+   32 |         hmodbus.RegisterAddress[0x12].U16 = theta_pos;
+      |         ^~~~~~~
+../Core/Src/Based_System_Communication.c: In function 'modbus_r_velocity':
+../Core/Src/Based_System_Communication.c:35:9: error: 'hmodbus' undeclared (first use in this function)
+   35 |         hmodbus.RegisterAddress[0x13].U16 = r_Velo;
+      |         ^~~~~~~
+../Core/Src/Based_System_Communication.c: In function 'modbus_theta_velocity':
+../Core/Src/Based_System_Communication.c:38:9: error: 'hmodbus' undeclared (first use in this function)
+   38 |         hmodbus.RegisterAddress[0x14].U16 = theta_Velo;
+      |         ^~~~~~~
+../Core/Src/Based_System_Communication.c: In function 'modbus_r_acceleration':
+../Core/Src/Based_System_Communication.c:41:9: error: 'hmodbus' undeclared (first use in this function)
+   41 |         hmodbus.RegisterAddress[0x15].U16 = r_accel;
+      |         ^~~~~~~
+../Core/Src/Based_System_Communication.c: In function 'modbus_theta_acceleration':
+../Core/Src/Based_System_Communication.c:44:9: error: 'hmodbus' undeclared (first use in this function)
+   44 |         hmodbus.RegisterAddress[0x16].U16 = theta_accel;
+      |         ^~~~~~~
+../Core/Src/Based_System_Communication.c: In function 'modbus_Update_All':
+../Core/Src/Based_System_Communication.c:48:9: error: 'hmodbus' undeclared (first use in this function)
+   48 |         hmodbus.RegisterAddress[0x11].U16 = r_pos;
+      |         ^~~~~~~
+../Core/Src/Based_System_Communication.c: In function 'modbus_Base_System_Status':
+../Core/Src/Based_System_Communication.c:13:1: warning: control reaches end of non-void function [-Wreturn-type]
+   13 | }
+      | ^
+../Core/Src/Based_System_Communication.c: In function 'modbus_servo_Status':
+../Core/Src/Based_System_Communication.c:16:1: warning: control reaches end of non-void function [-Wreturn-type]
+   16 | }
+      | ^
+../Core/Src/Based_System_Communication.c: In function 'R_Theta_moving_Status':
+../Core/Src/Based_System_Communication.c:25:1: warning: control reaches end of non-void function [-Wreturn-type]
+   25 | }
+      | ^
+../Core/Src/Based_System_Communication.c: In function 'modbus_set_goal_r_position':
+../Core/Src/Based_System_Communication.c:59:1: warning: control reaches end of non-void function [-Wreturn-type]
+   59 | }
+      | ^
+../Core/Src/Based_System_Communication.c: In function 'modbus_set_goal_theta_position':
+../Core/Src/Based_System_Communication.c:61:1: warning: control reaches end of non-void function [-Wreturn-type]
+   61 | }
+      | ^
+make: *** [Core/Src/subdir.mk:46: Core/Src/Based_System_Communication.o] Error 1
+"make -j16 all" terminated with exit code 2. Build might be incomplete.
+12:10:04 **** Incremental Build of configuration Debug for project STU3_Test ****
+make -j16 all 
+arm-none-eabi-gcc "../Core/Src/Based_System_Communication.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Based_System_Communication.d" -MT"Core/Src/Based_System_Communication.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Based_System_Communication.o"
+../Core/Src/Based_System_Communication.c: In function 'modbus_r_position':
+../Core/Src/Based_System_Communication.c:28:9: error: 'hmodbus' undeclared (first use in this function); did you mean 'hModbus'?
+   28 |         hmodbus.RegisterAddress[0x11].U16 = r_pos;
+      |         ^~~~~~~
+      |         hModbus
+../Core/Src/Based_System_Communication.c:28:9: note: each undeclared identifier is reported only once for each function it appears in
+../Core/Src/Based_System_Communication.c: In function 'modbus_theta_position':
+../Core/Src/Based_System_Communication.c:32:9: error: 'hmodbus' undeclared (first use in this function); did you mean 'hModbus'?
+   32 |         hmodbus.RegisterAddress[0x12].U16 = theta_pos;
+      |         ^~~~~~~
+      |         hModbus
+../Core/Src/Based_System_Communication.c: In function 'modbus_r_velocity':
+../Core/Src/Based_System_Communication.c:35:9: error: 'hmodbus' undeclared (first use in this function); did you mean 'hModbus'?
+   35 |         hmodbus.RegisterAddress[0x13].U16 = r_Velo;
+      |         ^~~~~~~
+      |         hModbus
+../Core/Src/Based_System_Communication.c: In function 'modbus_theta_velocity':
+../Core/Src/Based_System_Communication.c:38:9: error: 'hmodbus' undeclared (first use in this function); did you mean 'hModbus'?
+   38 |         hmodbus.RegisterAddress[0x14].U16 = theta_Velo;
+      |         ^~~~~~~
+      |         hModbus
+../Core/Src/Based_System_Communication.c: In function 'modbus_r_acceleration':
+../Core/Src/Based_System_Communication.c:41:9: error: 'hmodbus' undeclared (first use in this function); did you mean 'hModbus'?
+   41 |         hmodbus.RegisterAddress[0x15].U16 = r_accel;
+      |         ^~~~~~~
+      |         hModbus
+../Core/Src/Based_System_Communication.c: In function 'modbus_theta_acceleration':
+../Core/Src/Based_System_Communication.c:44:9: error: 'hmodbus' undeclared (first use in this function); did you mean 'hModbus'?
+   44 |         hmodbus.RegisterAddress[0x16].U16 = theta_accel;
+      |         ^~~~~~~
+      |         hModbus
+../Core/Src/Based_System_Communication.c: In function 'modbus_Update_All':
+../Core/Src/Based_System_Communication.c:48:9: error: 'hmodbus' undeclared (first use in this function); did you mean 'hModbus'?
+   48 |         hmodbus.RegisterAddress[0x11].U16 = r_pos;
+      |         ^~~~~~~
+      |         hModbus
+../Core/Src/Based_System_Communication.c: In function 'modbus_Base_System_Status':
+../Core/Src/Based_System_Communication.c:13:1: warning: control reaches end of non-void function [-Wreturn-type]
+   13 | }
+      | ^
+../Core/Src/Based_System_Communication.c: In function 'modbus_servo_Status':
+../Core/Src/Based_System_Communication.c:16:1: warning: control reaches end of non-void function [-Wreturn-type]
+   16 | }
+      | ^
+../Core/Src/Based_System_Communication.c: In function 'R_Theta_moving_Status':
+../Core/Src/Based_System_Communication.c:25:1: warning: control reaches end of non-void function [-Wreturn-type]
+   25 | }
+      | ^
+../Core/Src/Based_System_Communication.c: In function 'modbus_set_goal_r_position':
+../Core/Src/Based_System_Communication.c:59:1: warning: control reaches end of non-void function [-Wreturn-type]
+   59 | }
+      | ^
+../Core/Src/Based_System_Communication.c: In function 'modbus_set_goal_theta_position':
+../Core/Src/Based_System_Communication.c:61:1: warning: control reaches end of non-void function [-Wreturn-type]
+   61 | }
+      | ^
+make: *** [Core/Src/subdir.mk:46: Core/Src/Based_System_Communication.o] Error 1
+"make -j16 all" terminated with exit code 2. Build might be incomplete.
+12:10:18 **** Incremental Build of configuration Debug for project STU3_Test ****
+make -j16 all 
+arm-none-eabi-gcc "../Core/Src/Based_System_Communication.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Based_System_Communication.d" -MT"Core/Src/Based_System_Communication.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Based_System_Communication.o"
+../Core/Src/Based_System_Communication.c: In function 'modbus_r_position':
+../Core/Src/Based_System_Communication.c:28:16: error: 'hmodbus' is a pointer; did you mean to use '->'?
+   28 |         hmodbus.RegisterAddress[0x11].U16 = r_pos;
+      |                ^
+      |                ->
+../Core/Src/Based_System_Communication.c: In function 'modbus_theta_position':
+../Core/Src/Based_System_Communication.c:32:16: error: 'hmodbus' is a pointer; did you mean to use '->'?
+   32 |         hmodbus.RegisterAddress[0x12].U16 = theta_pos;
+      |                ^
+      |                ->
+../Core/Src/Based_System_Communication.c: In function 'modbus_r_velocity':
+../Core/Src/Based_System_Communication.c:35:16: error: 'hmodbus' is a pointer; did you mean to use '->'?
+   35 |         hmodbus.RegisterAddress[0x13].U16 = r_Velo;
+      |                ^
+      |                ->
+../Core/Src/Based_System_Communication.c: In function 'modbus_theta_velocity':
+../Core/Src/Based_System_Communication.c:38:16: error: 'hmodbus' is a pointer; did you mean to use '->'?
+   38 |         hmodbus.RegisterAddress[0x14].U16 = theta_Velo;
+      |                ^
+      |                ->
+../Core/Src/Based_System_Communication.c: In function 'modbus_r_acceleration':
+../Core/Src/Based_System_Communication.c:41:16: error: 'hmodbus' is a pointer; did you mean to use '->'?
+   41 |         hmodbus.RegisterAddress[0x15].U16 = r_accel;
+      |                ^
+      |                ->
+../Core/Src/Based_System_Communication.c: In function 'modbus_theta_acceleration':
+../Core/Src/Based_System_Communication.c:44:16: error: 'hmodbus' is a pointer; did you mean to use '->'?
+   44 |         hmodbus.RegisterAddress[0x16].U16 = theta_accel;
+      |                ^
+      |                ->
+../Core/Src/Based_System_Communication.c: In function 'modbus_Update_All':
+../Core/Src/Based_System_Communication.c:48:16: error: 'hmodbus' is a pointer; did you mean to use '->'?
+   48 |         hmodbus.RegisterAddress[0x11].U16 = r_pos;
+      |                ^
+      |                ->
+../Core/Src/Based_System_Communication.c:49:16: error: 'hmodbus' is a pointer; did you mean to use '->'?
+   49 |         hmodbus.RegisterAddress[0x12].U16 = theta_pos;
+      |                ^
+      |                ->
+../Core/Src/Based_System_Communication.c:50:16: error: 'hmodbus' is a pointer; did you mean to use '->'?
+   50 |         hmodbus.RegisterAddress[0x13].U16 = r_Velo;
+      |                ^
+      |                ->
+../Core/Src/Based_System_Communication.c:51:16: error: 'hmodbus' is a pointer; did you mean to use '->'?
+   51 |         hmodbus.RegisterAddress[0x14].U16 = theta_Velo;
+      |                ^
+      |                ->
+../Core/Src/Based_System_Communication.c:52:16: error: 'hmodbus' is a pointer; did you mean to use '->'?
+   52 |         hmodbus.RegisterAddress[0x15].U16 = r_accel;
+      |                ^
+      |                ->
+../Core/Src/Based_System_Communication.c:53:16: error: 'hmodbus' is a pointer; did you mean to use '->'?
+   53 |         hmodbus.RegisterAddress[0x16].U16 = theta_accel;
+      |                ^
+      |                ->
+../Core/Src/Based_System_Communication.c: In function 'modbus_Base_System_Status':
+../Core/Src/Based_System_Communication.c:13:1: warning: control reaches end of non-void function [-Wreturn-type]
+   13 | }
+      | ^
+../Core/Src/Based_System_Communication.c: In function 'modbus_servo_Status':
+../Core/Src/Based_System_Communication.c:16:1: warning: control reaches end of non-void function [-Wreturn-type]
+   16 | }
+      | ^
+../Core/Src/Based_System_Communication.c: In function 'R_Theta_moving_Status':
+../Core/Src/Based_System_Communication.c:25:1: warning: control reaches end of non-void function [-Wreturn-type]
+   25 | }
+      | ^
+../Core/Src/Based_System_Communication.c: In function 'modbus_set_goal_r_position':
+../Core/Src/Based_System_Communication.c:59:1: warning: control reaches end of non-void function [-Wreturn-type]
+   59 | }
+      | ^
+../Core/Src/Based_System_Communication.c: In function 'modbus_set_goal_theta_position':
+../Core/Src/Based_System_Communication.c:61:1: warning: control reaches end of non-void function [-Wreturn-type]
+   61 | }
+      | ^
+make: *** [Core/Src/subdir.mk:46: Core/Src/Based_System_Communication.o] Error 1
+"make -j16 all" terminated with exit code 2. Build might be incomplete.
+12:10:56 **** Incremental Build of configuration Debug for project STU3_Test ****
+make -j16 all 
+arm-none-eabi-gcc "../Core/Src/Based_System_Communication.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Based_System_Communication.d" -MT"Core/Src/Based_System_Communication.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Based_System_Communication.o"
+../Core/Src/Based_System_Communication.c:9:22: error: expected identifier or '(' before '->' token
+    9 | ModbusHandleTypedef *->;
+      |                      ^~
+../Core/Src/Based_System_Communication.c: In function 'modbus_r_position':
+../Core/Src/Based_System_Communication.c:28:9: error: 'hmodbus' undeclared (first use in this function)
+   28 |         hmodbus->RegisterAddress[0x11].U16 = r_pos;
+      |         ^~~~~~~
+../Core/Src/Based_System_Communication.c:28:9: note: each undeclared identifier is reported only once for each function it appears in
+../Core/Src/Based_System_Communication.c: In function 'modbus_theta_position':
+../Core/Src/Based_System_Communication.c:32:9: error: 'hmodbus' undeclared (first use in this function)
+   32 |         hmodbus->RegisterAddress[0x12].U16 = theta_pos;
+      |         ^~~~~~~
+../Core/Src/Based_System_Communication.c: In function 'modbus_r_velocity':
+../Core/Src/Based_System_Communication.c:35:9: error: 'hmodbus' undeclared (first use in this function)
+   35 |         hmodbus->RegisterAddress[0x13].U16 = r_Velo;
+      |         ^~~~~~~
+../Core/Src/Based_System_Communication.c: In function 'modbus_theta_velocity':
+../Core/Src/Based_System_Communication.c:38:9: error: 'hmodbus' undeclared (first use in this function)
+   38 |         hmodbus->RegisterAddress[0x14].U16 = theta_Velo;
+      |         ^~~~~~~
+../Core/Src/Based_System_Communication.c: In function 'modbus_r_acceleration':
+../Core/Src/Based_System_Communication.c:41:9: error: 'hmodbus' undeclared (first use in this function)
+   41 |         hmodbus->RegisterAddress[0x15].U16 = r_accel;
+      |         ^~~~~~~
+../Core/Src/Based_System_Communication.c: In function 'modbus_theta_acceleration':
+../Core/Src/Based_System_Communication.c:44:9: error: 'hmodbus' undeclared (first use in this function)
+   44 |         hmodbus->RegisterAddress[0x16].U16 = theta_accel;
+      |         ^~~~~~~
+../Core/Src/Based_System_Communication.c: In function 'modbus_Update_All':
+../Core/Src/Based_System_Communication.c:48:9: error: 'hmodbus' undeclared (first use in this function)
+   48 |         hmodbus->RegisterAddress[0x11].U16 = r_pos;
+      |         ^~~~~~~
+../Core/Src/Based_System_Communication.c: In function 'modbus_Base_System_Status':
+../Core/Src/Based_System_Communication.c:13:1: warning: control reaches end of non-void function [-Wreturn-type]
+   13 | }
+      | ^
+../Core/Src/Based_System_Communication.c: In function 'modbus_servo_Status':
+../Core/Src/Based_System_Communication.c:16:1: warning: control reaches end of non-void function [-Wreturn-type]
+   16 | }
+      | ^
+../Core/Src/Based_System_Communication.c: In function 'R_Theta_moving_Status':
+../Core/Src/Based_System_Communication.c:25:1: warning: control reaches end of non-void function [-Wreturn-type]
+   25 | }
+      | ^
+../Core/Src/Based_System_Communication.c: In function 'modbus_set_goal_r_position':
+../Core/Src/Based_System_Communication.c:59:1: warning: control reaches end of non-void function [-Wreturn-type]
+   59 | }
+      | ^
+../Core/Src/Based_System_Communication.c: In function 'modbus_set_goal_theta_position':
+../Core/Src/Based_System_Communication.c:61:1: warning: control reaches end of non-void function [-Wreturn-type]
+   61 | }
+      | ^
+make: *** [Core/Src/subdir.mk:46: Core/Src/Based_System_Communication.o] Error 1
+"make -j16 all" terminated with exit code 2. Build might be incomplete.
+12:11:26 **** Incremental Build of configuration Debug for project STU3_Test ****
+make -j16 all 
+arm-none-eabi-gcc "../Core/Src/Based_System_Communication.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Based_System_Communication.d" -MT"Core/Src/Based_System_Communication.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Based_System_Communication.o"
+../Core/Src/Based_System_Communication.c: In function 'modbus_r_position':
+../Core/Src/Based_System_Communication.c:28:9: error: 'hmodbus' undeclared (first use in this function); did you mean 'hModbus'?
+   28 |         hmodbus->RegisterAddress[0x11].U16 = r_pos;
+      |         ^~~~~~~
+      |         hModbus
+../Core/Src/Based_System_Communication.c:28:9: note: each undeclared identifier is reported only once for each function it appears in
+../Core/Src/Based_System_Communication.c: In function 'modbus_theta_position':
+../Core/Src/Based_System_Communication.c:32:9: error: 'hmodbus' undeclared (first use in this function); did you mean 'hModbus'?
+   32 |         hmodbus->RegisterAddress[0x12].U16 = theta_pos;
+      |         ^~~~~~~
+      |         hModbus
+../Core/Src/Based_System_Communication.c: In function 'modbus_r_velocity':
+../Core/Src/Based_System_Communication.c:35:9: error: 'hmodbus' undeclared (first use in this function); did you mean 'hModbus'?
+   35 |         hmodbus->RegisterAddress[0x13].U16 = r_Velo;
+      |         ^~~~~~~
+      |         hModbus
+../Core/Src/Based_System_Communication.c: In function 'modbus_theta_velocity':
+../Core/Src/Based_System_Communication.c:38:9: error: 'hmodbus' undeclared (first use in this function); did you mean 'hModbus'?
+   38 |         hmodbus->RegisterAddress[0x14].U16 = theta_Velo;
+      |         ^~~~~~~
+      |         hModbus
+../Core/Src/Based_System_Communication.c: In function 'modbus_r_acceleration':
+../Core/Src/Based_System_Communication.c:41:9: error: 'hmodbus' undeclared (first use in this function); did you mean 'hModbus'?
+   41 |         hmodbus->RegisterAddress[0x15].U16 = r_accel;
+      |         ^~~~~~~
+      |         hModbus
+../Core/Src/Based_System_Communication.c: In function 'modbus_theta_acceleration':
+../Core/Src/Based_System_Communication.c:44:9: error: 'hmodbus' undeclared (first use in this function); did you mean 'hModbus'?
+   44 |         hmodbus->RegisterAddress[0x16].U16 = theta_accel;
+      |         ^~~~~~~
+      |         hModbus
+../Core/Src/Based_System_Communication.c: In function 'modbus_Update_All':
+../Core/Src/Based_System_Communication.c:48:9: error: 'hmodbus' undeclared (first use in this function); did you mean 'hModbus'?
+   48 |         hmodbus->RegisterAddress[0x11].U16 = r_pos;
+      |         ^~~~~~~
+      |         hModbus
+../Core/Src/Based_System_Communication.c: In function 'modbus_Base_System_Status':
+../Core/Src/Based_System_Communication.c:13:1: warning: control reaches end of non-void function [-Wreturn-type]
+   13 | }
+      | ^
+../Core/Src/Based_System_Communication.c: In function 'modbus_servo_Status':
+../Core/Src/Based_System_Communication.c:16:1: warning: control reaches end of non-void function [-Wreturn-type]
+   16 | }
+      | ^
+../Core/Src/Based_System_Communication.c: In function 'R_Theta_moving_Status':
+../Core/Src/Based_System_Communication.c:25:1: warning: control reaches end of non-void function [-Wreturn-type]
+   25 | }
+      | ^
+../Core/Src/Based_System_Communication.c: In function 'modbus_set_goal_r_position':
+../Core/Src/Based_System_Communication.c:59:1: warning: control reaches end of non-void function [-Wreturn-type]
+   59 | }
+      | ^
+../Core/Src/Based_System_Communication.c: In function 'modbus_set_goal_theta_position':
+../Core/Src/Based_System_Communication.c:61:1: warning: control reaches end of non-void function [-Wreturn-type]
+   61 | }
+      | ^
+make: *** [Core/Src/subdir.mk:46: Core/Src/Based_System_Communication.o] Error 1
+"make -j16 all" terminated with exit code 2. Build might be incomplete.
+12:11:42 **** Incremental Build of configuration Debug for project STU3_Test ****
+make -j16 all 
+arm-none-eabi-gcc "../Core/Src/Based_System_Communication.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Based_System_Communication.d" -MT"Core/Src/Based_System_Communication.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Based_System_Communication.o"
+../Core/Src/Based_System_Communication.c: In function 'modbus_Base_System_Status':
+../Core/Src/Based_System_Communication.c:13:1: warning: control reaches end of non-void function [-Wreturn-type]
+   13 | }
+      | ^
+../Core/Src/Based_System_Communication.c: In function 'modbus_servo_Status':
+../Core/Src/Based_System_Communication.c:16:1: warning: control reaches end of non-void function [-Wreturn-type]
+   16 | }
+      | ^
+../Core/Src/Based_System_Communication.c: In function 'R_Theta_moving_Status':
+../Core/Src/Based_System_Communication.c:25:1: warning: control reaches end of non-void function [-Wreturn-type]
+   25 | }
+      | ^
+../Core/Src/Based_System_Communication.c: In function 'modbus_set_goal_r_position':
+../Core/Src/Based_System_Communication.c:59:1: warning: control reaches end of non-void function [-Wreturn-type]
+   59 | }
+      | ^
+../Core/Src/Based_System_Communication.c: In function 'modbus_set_goal_theta_position':
+../Core/Src/Based_System_Communication.c:61:1: warning: control reaches end of non-void function [-Wreturn-type]
+   61 | }
+      | ^
+arm-none-eabi-gcc -o "STU3_Test.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\Fibo\Year2\Term2\STU\STU_3_Programming\STU3_Programming\STU3_Test\STM32G474RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STU3_Test.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+C:/Users/User/STM32CubeIDE_1.16.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/bin/ld.exe: ./Core/Src/main.o:D:/Fibo/Year2/Term2/STU/STU_3_Programming/STU3_Programming/STU3_Test/Debug/../Core/Src/main.c:74: multiple definition of `hmodbus'; ./Core/Src/Based_System_Communication.o:D:/Fibo/Year2/Term2/STU/STU_3_Programming/STU3_Programming/STU3_Test/Debug/../Core/Src/Based_System_Communication.c:9: first defined here
+collect2.exe: error: ld returned 1 exit status
+make: *** [makefile:65: STU3_Test.elf] Error 1
+"make -j16 all" terminated with exit code 2. Build might be incomplete.
+12:12:32 **** Incremental Build of configuration Debug for project STU3_Test ****
+make -j16 all 
+arm-none-eabi-gcc "../Core/Src/Based_System_Communication.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Based_System_Communication.d" -MT"Core/Src/Based_System_Communication.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Based_System_Communication.o"
+../Core/Src/Based_System_Communication.c: In function 'modbus_Base_System_Status':
+../Core/Src/Based_System_Communication.c:13:1: warning: control reaches end of non-void function [-Wreturn-type]
+   13 | }
+      | ^
+../Core/Src/Based_System_Communication.c: In function 'modbus_servo_Status':
+../Core/Src/Based_System_Communication.c:16:1: warning: control reaches end of non-void function [-Wreturn-type]
+   16 | }
+      | ^
+../Core/Src/Based_System_Communication.c: In function 'R_Theta_moving_Status':
+../Core/Src/Based_System_Communication.c:25:1: warning: control reaches end of non-void function [-Wreturn-type]
+   25 | }
+      | ^
+arm-none-eabi-gcc -o "STU3_Test.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\Fibo\Year2\Term2\STU\STU_3_Programming\STU3_Programming\STU3_Test\STM32G474RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STU3_Test.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+C:/Users/User/STM32CubeIDE_1.16.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/bin/ld.exe: ./Core/Src/main.o:D:/Fibo/Year2/Term2/STU/STU_3_Programming/STU3_Programming/STU3_Test/Debug/../Core/Src/main.c:74: multiple definition of `hmodbus'; ./Core/Src/Based_System_Communication.o:D:/Fibo/Year2/Term2/STU/STU_3_Programming/STU3_Programming/STU3_Test/Debug/../Core/Src/Based_System_Communication.c:9: first defined here
+collect2.exe: error: ld returned 1 exit status
+make: *** [makefile:65: STU3_Test.elf] Error 1
+"make -j16 all" terminated with exit code 2. Build might be incomplete.
+12:13:10 **** Incremental Build of configuration Debug for project STU3_Test ****
+make -j16 all 
+arm-none-eabi-gcc "../Core/Src/Based_System_Communication.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Based_System_Communication.d" -MT"Core/Src/Based_System_Communication.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Based_System_Communication.o"
+arm-none-eabi-gcc -o "STU3_Test.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\Fibo\Year2\Term2\STU\STU_3_Programming\STU3_Programming\STU3_Test\STM32G474RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STU3_Test.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+C:/Users/User/STM32CubeIDE_1.16.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/bin/ld.exe: ./Core/Src/main.o:D:/Fibo/Year2/Term2/STU/STU_3_Programming/STU3_Programming/STU3_Test/Debug/../Core/Src/main.c:74: multiple definition of `hmodbus'; ./Core/Src/Based_System_Communication.o:D:/Fibo/Year2/Term2/STU/STU_3_Programming/STU3_Programming/STU3_Test/Debug/../Core/Src/Based_System_Communication.c:9: first defined here
+collect2.exe: error: ld returned 1 exit status
+make: *** [makefile:65: STU3_Test.elf] Error 1
+"make -j16 all" terminated with exit code 2. Build might be incomplete.
+12:14:42 **** Incremental Build of configuration Debug for project STU3_Test ****
+make -j16 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:143:13: warning: unused variable 'lastTick' [-Wunused-variable]
+  143 |         int lastTick = 0;
+      |             ^~~~~~~~
+arm-none-eabi-gcc -o "STU3_Test.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\Fibo\Year2\Term2\STU\STU_3_Programming\STU3_Programming\STU3_Test\STM32G474RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STU3_Test.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+C:/Users/User/STM32CubeIDE_1.16.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/bin/ld.exe: ./Core/Src/main.o:D:/Fibo/Year2/Term2/STU/STU_3_Programming/STU3_Programming/STU3_Test/Debug/../Core/Src/main.c:74: multiple definition of `hmodbus'; ./Core/Src/Based_System_Communication.o:D:/Fibo/Year2/Term2/STU/STU_3_Programming/STU3_Programming/STU3_Test/Debug/../Core/Src/Based_System_Communication.c:9: first defined here
+collect2.exe: error: ld returned 1 exit status
+make: *** [makefile:65: STU3_Test.elf] Error 1
+"make -j16 all" terminated with exit code 2. Build might be incomplete.
+12:16:32 **** Incremental Build of configuration Debug for project STU3_Test ****
+make -j16 all 
+arm-none-eabi-gcc "../Core/Src/Based_System_Communication.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Based_System_Communication.d" -MT"Core/Src/Based_System_Communication.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Based_System_Communication.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/Based_System_Communication.c:29:6: error: conflicting types for 'modbus_r_position'; have 'void(ModbusHandleTypedef *, float)' {aka 'void(struct _ModbusHandleTypedef *, float)'}
+   29 | void modbus_r_position(ModbusHandleTypedef* hmodbus,float r_pos) {
+      |      ^~~~~~~~~~~~~~~~~
+In file included from ../Core/Src/Based_System_Communication.c:8:
+../Core/Inc/Based_System_Communication.h:22:6: note: previous declaration of 'modbus_r_position' with type 'void(float)'
+   22 | void modbus_r_position(float r_pos);
+      |      ^~~~~~~~~~~~~~~~~
+../Core/Src/Based_System_Communication.c: In function 'modbus_theta_position':
+../Core/Src/Based_System_Communication.c:34:9: error: 'hmodbus' undeclared (first use in this function)
+   34 |         hmodbus->RegisterAddress[0x12].U16 = theta_pos;
+      |         ^~~~~~~
+../Core/Src/Based_System_Communication.c:34:9: note: each undeclared identifier is reported only once for each function it appears in
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:162:35: error: incompatible type for argument 1 of 'modbus_r_position'
+  162 |                 modbus_r_position(&hmodbus,7);
+      |                                   ^~~~~~~~
+      |                                   |
+      |                                   ModbusHandleTypedef * {aka struct _ModbusHandleTypedef *}
+In file included from ../Core/Src/main.c:27:
+../Core/Inc/Based_System_Communication.h:22:30: note: expected 'float' but argument is of type 'ModbusHandleTypedef *' {aka 'struct _ModbusHandleTypedef *'}
+   22 | void modbus_r_position(float r_pos);
+      |                        ~~~~~~^~~~~
+../Core/Src/main.c:162:17: error: too many arguments to function 'modbus_r_position'
+  162 |                 modbus_r_position(&hmodbus,7);
+      |                 ^~~~~~~~~~~~~~~~~
+../Core/Inc/Based_System_Communication.h:22:6: note: declared here
+   22 | void modbus_r_position(float r_pos);
+      |      ^~~~~~~~~~~~~~~~~
+../Core/Src/Based_System_Communication.c: In function 'modbus_r_velocity':
+../Core/Src/main.c:143:13: warning: unused variable 'lastTick' [-Wunused-variable]
+  143 |         int lastTick = 0;
+      |             ^~~~~~~~
+../Core/Src/Based_System_Communication.c:37:9: error: 'hmodbus' undeclared (first use in this function)
+   37 |         hmodbus->RegisterAddress[0x13].U16 = r_Velo;
+      |         ^~~~~~~
+../Core/Src/Based_System_Communication.c: In function 'modbus_theta_velocity':
+../Core/Src/Based_System_Communication.c:40:9: error: 'hmodbus' undeclared (first use in this function)
+   40 |         hmodbus->RegisterAddress[0x14].U16 = theta_Velo;
+      |         ^~~~~~~
+../Core/Src/Based_System_Communication.c: In function 'modbus_r_acceleration':
+../Core/Src/Based_System_Communication.c:43:9: error: 'hmodbus' undeclared (first use in this function)
+   43 |         hmodbus->RegisterAddress[0x15].U16 = r_accel;
+      |         ^~~~~~~
+make: *** [Core/Src/subdir.mk:46: Core/Src/main.o] Error 1
+make: *** Waiting for unfinished jobs....
+../Core/Src/Based_System_Communication.c: In function 'modbus_theta_acceleration':
+../Core/Src/Based_System_Communication.c:46:9: error: 'hmodbus' undeclared (first use in this function)
+   46 |         hmodbus->RegisterAddress[0x16].U16 = theta_accel;
+      |         ^~~~~~~
+../Core/Src/Based_System_Communication.c: In function 'modbus_Update_All':
+../Core/Src/Based_System_Communication.c:50:9: error: 'hmodbus' undeclared (first use in this function)
+   50 |         hmodbus->RegisterAddress[0x11].U16 = r_pos;
+      |         ^~~~~~~
+make: *** [Core/Src/subdir.mk:46: Core/Src/Based_System_Communication.o] Error 1
+"make -j16 all" terminated with exit code 2. Build might be incomplete.
+12:17:01 **** Incremental Build of configuration Debug for project STU3_Test ****
+make -j16 all 
+arm-none-eabi-gcc "../Core/Src/Based_System_Communication.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Based_System_Communication.d" -MT"Core/Src/Based_System_Communication.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Based_System_Communication.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/Based_System_Communication.c:29:6: error: conflicting types for 'modbus_r_position'; have 'void(ModbusHandleTypedef *, float)' {aka 'void(struct _ModbusHandleTypedef *, float)'}
+   29 | void modbus_r_position(ModbusHandleTypedef* hmodbus,float r_pos) {
+      |      ^~~~~~~~~~~~~~~~~
+In file included from ../Core/Src/Based_System_Communication.c:8:
+../Core/Inc/Based_System_Communication.h:22:6: note: previous declaration of 'modbus_r_position' with type 'void(float)'
+   22 | void modbus_r_position(float r_pos);
+      |      ^~~~~~~~~~~~~~~~~
+make: *** [Core/Src/subdir.mk:46: Core/Src/Based_System_Communication.o] Error 1
+make: *** Waiting for unfinished jobs....
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:162:35: error: incompatible type for argument 1 of 'modbus_r_position'
+  162 |                 modbus_r_position(&hmodbus,7);
+      |                                   ^~~~~~~~
+      |                                   |
+      |                                   ModbusHandleTypedef * {aka struct _ModbusHandleTypedef *}
+In file included from ../Core/Src/main.c:27:
+../Core/Inc/Based_System_Communication.h:22:30: note: expected 'float' but argument is of type 'ModbusHandleTypedef *' {aka 'struct _ModbusHandleTypedef *'}
+   22 | void modbus_r_position(float r_pos);
+      |                        ~~~~~~^~~~~
+../Core/Src/main.c:162:17: error: too many arguments to function 'modbus_r_position'
+  162 |                 modbus_r_position(&hmodbus,7);
+      |                 ^~~~~~~~~~~~~~~~~
+../Core/Inc/Based_System_Communication.h:22:6: note: declared here
+   22 | void modbus_r_position(float r_pos);
+      |      ^~~~~~~~~~~~~~~~~
+../Core/Src/main.c:143:13: warning: unused variable 'lastTick' [-Wunused-variable]
+  143 |         int lastTick = 0;
+      |             ^~~~~~~~
+make: *** [Core/Src/subdir.mk:46: Core/Src/main.o] Error 1
+"make -j16 all" terminated with exit code 2. Build might be incomplete.
+12:17:23 **** Incremental Build of configuration Debug for project STU3_Test ****
+make -j16 all 
+arm-none-eabi-gcc "../Core/Src/Based_System_Communication.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Based_System_Communication.d" -MT"Core/Src/Based_System_Communication.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Based_System_Communication.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/Based_System_Communication.c:29:6: error: conflicting types for 'modbus_r_position'; have 'void(ModbusHandleTypedef *, float)' {aka 'void(struct _ModbusHandleTypedef *, float)'}
+   29 | void modbus_r_position(ModbusHandleTypedef* hmodbus,float r_pos) {
+      |      ^~~~~~~~~~~~~~~~~
+In file included from ../Core/Src/Based_System_Communication.c:8:
+../Core/Inc/Based_System_Communication.h:22:6: note: previous declaration of 'modbus_r_position' with type 'void(float)'
+   22 | void modbus_r_position(float r_pos);
+      |      ^~~~~~~~~~~~~~~~~
+make: *** [Core/Src/subdir.mk:46: Core/Src/Based_System_Communication.o] Error 1
+make: *** Waiting for unfinished jobs....
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:162:35: error: incompatible type for argument 1 of 'modbus_r_position'
+  162 |                 modbus_r_position(&hmodbus,7);
+      |                                   ^~~~~~~~
+      |                                   |
+      |                                   ModbusHandleTypedef * {aka struct _ModbusHandleTypedef *}
+In file included from ../Core/Src/main.c:27:
+../Core/Inc/Based_System_Communication.h:22:30: note: expected 'float' but argument is of type 'ModbusHandleTypedef *' {aka 'struct _ModbusHandleTypedef *'}
+   22 | void modbus_r_position(float r_pos);
+      |                        ~~~~~~^~~~~
+../Core/Src/main.c:162:17: error: too many arguments to function 'modbus_r_position'
+  162 |                 modbus_r_position(&hmodbus,7);
+      |                 ^~~~~~~~~~~~~~~~~
+../Core/Inc/Based_System_Communication.h:22:6: note: declared here
+   22 | void modbus_r_position(float r_pos);
+      |      ^~~~~~~~~~~~~~~~~
+../Core/Src/main.c:143:13: warning: unused variable 'lastTick' [-Wunused-variable]
+  143 |         int lastTick = 0;
+      |             ^~~~~~~~
+make: *** [Core/Src/subdir.mk:46: Core/Src/main.o] Error 1
+"make -j16 all" terminated with exit code 2. Build might be incomplete.
+12:19:37 **** Incremental Build of configuration Debug for project STU3_Test ****
+make -j16 all 
+arm-none-eabi-gcc "../Core/Src/Based_System_Communication.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Based_System_Communication.d" -MT"Core/Src/Based_System_Communication.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Based_System_Communication.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:143:13: warning: unused variable 'lastTick' [-Wunused-variable]
+  143 |         int lastTick = 0;
+      |             ^~~~~~~~
+arm-none-eabi-gcc -o "STU3_Test.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\Fibo\Year2\Term2\STU\STU_3_Programming\STU3_Programming\STU3_Test\STM32G474RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STU3_Test.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: STU3_Test.elf
+ 
+arm-none-eabi-size  STU3_Test.elf 
+arm-none-eabi-objdump -h -S STU3_Test.elf  > "STU3_Test.list"
+   text	   data	    bss	    dec	    hex	filename
+  39056	    524	   5108	  44688	   ae90	STU3_Test.elf
+Finished building: default.size.stdout
+ 
+Finished building: STU3_Test.list
+ 
+12:19:45 **** Incremental Build of configuration Debug for project STU3_Test ****
 make -j16 all 
 arm-none-eabi-size  STU3_Test.elf 
    text	   data	    bss	    dec	    hex	filename
-  39024	    524	   5108	  44656	   ae70	STU3_Test.elf
+  39056	    524	   5108	  44688	   ae90	STU3_Test.elf
 Finished building: default.size.stdout
+ 
+12:20:22 **** Incremental Build of configuration Debug for project STU3_Test ****
+make -j16 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:143:13: warning: unused variable 'lastTick' [-Wunused-variable]
+  143 |         int lastTick = 0;
+      |             ^~~~~~~~
+arm-none-eabi-gcc -o "STU3_Test.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\Fibo\Year2\Term2\STU\STU_3_Programming\STU3_Programming\STU3_Test\STM32G474RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STU3_Test.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: STU3_Test.elf
+ 
+arm-none-eabi-size  STU3_Test.elf 
+arm-none-eabi-objdump -h -S STU3_Test.elf  > "STU3_Test.list"
+   text	   data	    bss	    dec	    hex	filename
+  39068	    524	   5108	  44700	   ae9c	STU3_Test.elf
+Finished building: default.size.stdout
+ 
+Finished building: STU3_Test.list
+ 
+12:23:02 **** Incremental Build of configuration Debug for project STU3_Test ****
+make -j16 all 
+arm-none-eabi-gcc "../Core/Src/Based_System_Communication.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Based_System_Communication.d" -MT"Core/Src/Based_System_Communication.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Based_System_Communication.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+In file included from ../Core/Src/Based_System_Communication.c:8:
+../Core/Inc/Based_System_Communication.h:28:53: error: expected declaration specifiers or '...' before ',' token
+   28 | void modbus_Update_All(ModbusHandleTypedef* hmodbus,,float r_pos, float theta_pos, float r_Velo,
+      |                                                     ^
+../Core/Src/Based_System_Communication.c:25:9: error: conflicting types for 'R_Theta_moving_Status'; have 'uint8_t(ModbusHandleTypedef *, uint8_t)' {aka 'unsigned char(struct _ModbusHandleTypedef *, unsigned char)'}
+   25 | uint8_t R_Theta_moving_Status(ModbusHandleTypedef* hmodbus,uint8_t Moving_Status) {
+      |         ^~~~~~~~~~~~~~~~~~~~~
+../Core/Inc/Based_System_Communication.h:21:9: note: previous declaration of 'R_Theta_moving_Status' with type 'uint8_t(uint8_t)' {aka 'unsigned char(unsigned char)'}
+   21 | uint8_t R_Theta_moving_Status(uint8_t Moving_Status);
+      |         ^~~~~~~~~~~~~~~~~~~~~
+In file included from ../Core/Src/main.c:27:
+../Core/Inc/Based_System_Communication.h:28:53: error: expected declaration specifiers or '...' before ',' token
+   28 | void modbus_Update_All(ModbusHandleTypedef* hmodbus,,float r_pos, float theta_pos, float r_Velo,
+      |                                                     ^
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:143:13: warning: unused variable 'lastTick' [-Wunused-variable]
+  143 |         int lastTick = 0;
+      |             ^~~~~~~~
+make: *** [Core/Src/subdir.mk:46: Core/Src/Based_System_Communication.o] Error 1
+make: *** Waiting for unfinished jobs....
+make: *** [Core/Src/subdir.mk:46: Core/Src/main.o] Error 1
+"make -j16 all" terminated with exit code 2. Build might be incomplete.
+12:23:31 **** Incremental Build of configuration Debug for project STU3_Test ****
+make -j16 all 
+arm-none-eabi-gcc "../Core/Src/Based_System_Communication.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Based_System_Communication.d" -MT"Core/Src/Based_System_Communication.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Based_System_Communication.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:143:13: warning: unused variable 'lastTick' [-Wunused-variable]
+  143 |         int lastTick = 0;
+      |             ^~~~~~~~
+arm-none-eabi-gcc -o "STU3_Test.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\Fibo\Year2\Term2\STU\STU_3_Programming\STU3_Programming\STU3_Test\STM32G474RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STU3_Test.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: STU3_Test.elf
+ 
+arm-none-eabi-size  STU3_Test.elf 
+arm-none-eabi-objdump -h -S STU3_Test.elf  > "STU3_Test.list"
+   text	   data	    bss	    dec	    hex	filename
+  39068	    524	   5108	  44700	   ae9c	STU3_Test.elf
+Finished building: default.size.stdout
+ 
+Finished building: STU3_Test.list
+ 
+12:24:00 **** Incremental Build of configuration Debug for project STU3_Test ****
+make -j16 all 
+arm-none-eabi-gcc "../Core/Src/Based_System_Communication.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Based_System_Communication.d" -MT"Core/Src/Based_System_Communication.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Based_System_Communication.o"
+arm-none-eabi-gcc -o "STU3_Test.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\Fibo\Year2\Term2\STU\STU_3_Programming\STU3_Programming\STU3_Test\STM32G474RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STU3_Test.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: STU3_Test.elf
+ 
+arm-none-eabi-size  STU3_Test.elf 
+arm-none-eabi-objdump -h -S STU3_Test.elf  > "STU3_Test.list"
+   text	   data	    bss	    dec	    hex	filename
+  39068	    524	   5108	  44700	   ae9c	STU3_Test.elf
+Finished building: default.size.stdout
+ 
+Finished building: STU3_Test.list
  

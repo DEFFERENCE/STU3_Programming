@@ -159,8 +159,9 @@ int main(void)
 
     /* USER CODE BEGIN 3 */
 		Modbus_Protocal_Worker();
+		modbus_r_position(&hmodbus,7);
 		hmodbus.RegisterAddress[0x00].U16 = 22881;
-		hmodbus.RegisterAddress[0x15].U16 = 100;
+		//hmodbus.RegisterAddress[0x15].U16 = 100;
 		  //registerFrame[0x15].U16 = 100;
 //		for (int i = 0;i<31;i++)
 //		{

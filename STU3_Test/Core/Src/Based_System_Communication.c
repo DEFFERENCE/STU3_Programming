@@ -6,42 +6,61 @@
  */
 
 #include "Based_System_Communication.h"
+void modbus_heartbeat(ModbusHandleTypedef* hmodbus) {
+}
+uint8_t modbus_Base_System_Status(ModbusHandleTypedef* hmodbus) {
+	return 0;
+}
 
-void modbus_heartbeat() {
+uint8_t modbus_servo_Status(ModbusHandleTypedef* hmodbus,uint8_t Pen_status) {
+	return 0;
 }
-uint8_t modbus_Base_System_Status() {
-}
-
-uint8_t modbus_servo_Status(uint8_t Pen_status) {
-}
-void modbus_write_servo_up(uint8_t Servo_PWM) //Optional
+void modbus_write_servo_up(ModbusHandleTypedef* hmodbus,uint8_t Servo_PWM) //Optional
 {
 }
-void modbus_write_servo_down(uint8_t Servo_PWM) //Optional
+void modbus_write_servo_down(ModbusHandleTypedef* hmodbus,uint8_t Servo_PWM) //Optional
 {
 }
 
-uint8_t R_Theta_moving_Status(uint8_t Moving_Status) {
+uint8_t R_Theta_moving_Status(ModbusHandleTypedef* hmodbus,uint8_t Moving_Status) {
+	return 0;
 }
-void modbus_r_position(float r_pos) {
+
+void modbus_r_position(ModbusHandleTypedef* hmodbus,float r_pos) {
+	hmodbus->RegisterAddress[0x11].U16 = r_pos;
 }
-void modbus_theta_position(float theta_pos) {
+
+void modbus_theta_position(ModbusHandleTypedef* hmodbus,float theta_pos) {
+	hmodbus->RegisterAddress[0x12].U16 = theta_pos;
 }
-void modbus_r_velocity(float r_Velo) {
+void modbus_r_velocity(ModbusHandleTypedef* hmodbus,float r_Velo) {
+	hmodbus->RegisterAddress[0x13].U16 = r_Velo;
 }
-void modbus_theta_velocity(float theta_Velo) {
+void modbus_theta_velocity(ModbusHandleTypedef* hmodbus,float theta_Velo) {
+	hmodbus->RegisterAddress[0x14].U16 = theta_Velo;
 }
-void modbus_r_acceleration(float r_accel) {
+void modbus_r_acceleration(ModbusHandleTypedef* hmodbus,float r_accel) {
+	hmodbus->RegisterAddress[0x15].U16 = r_accel;
 }
-void modbus_theta_acceleration(float theta_accel) {
+void modbus_theta_acceleration(ModbusHandleTypedef* hmodbus,float theta_accel) {
+	hmodbus->RegisterAddress[0x16].U16 = theta_accel;
 }
-void modbus_Update_All(float r_pos, float theta_pos, float r_Velo,
+void modbus_Update_All(ModbusHandleTypedef* hmodbus,float r_pos, float theta_pos, float r_Velo,
 		float theta_Velo, float r_accel, float theta_accel) {
+	hmodbus->RegisterAddress[0x11].U16 = r_pos;
+	hmodbus->RegisterAddress[0x12].U16 = theta_pos;
+	hmodbus->RegisterAddress[0x13].U16 = r_Velo;
+	hmodbus->RegisterAddress[0x14].U16 = theta_Velo;
+	hmodbus->RegisterAddress[0x15].U16 = r_accel;
+	hmodbus->RegisterAddress[0x16].U16 = theta_accel;
 }
 
-void set_Target_Position_ten_points(uint8_t point) {
+void set_Target_Position_ten_points(ModbusHandleTypedef* hmodbus,uint8_t point) {
 }
-float modbus_set_goal_r_position() {
+float modbus_set_goal_r_position(ModbusHandleTypedef* hmodbus) {
+	return 0;
 }
-float modbus_set_goal_theta_position() {
+float modbus_set_goal_theta_position(ModbusHandleTypedef* hmodbus) {
+	return 0;
 }
+
