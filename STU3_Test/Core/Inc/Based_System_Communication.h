@@ -28,8 +28,9 @@ void modbus_theta_acceleration(ModbusHandleTypedef* hmodbus,float theta_accel);
 void modbus_Update_All(ModbusHandleTypedef* hmodbus,float r_pos, float theta_pos, float r_Velo,
 		float theta_Velo, float r_accel, float theta_accel);
 
-void set_Target_Position_ten_points(ModbusHandleTypedef* hmodbus,uint8_t point);
-float modbus_set_goal_r_position(ModbusHandleTypedef* hmodbus);
-float modbus_set_goal_theta_position(ModbusHandleTypedef* hmodbus);
+void set_Target_Position_ten_points(ModbusHandleTypedef *hmodbus, float point,
+		uint8_t index);
+uint16_t modbus_set_goal_r_position(ModbusHandleTypedef* hmodbus);
+uint16_t modbus_set_goal_theta_position(ModbusHandleTypedef* hmodbus);
 
 #endif /* INC_BASED_SYSTEM_COMMUNICATION_H_ */

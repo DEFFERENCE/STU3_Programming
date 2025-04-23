@@ -1,17 +1,10 @@
-12:24:00 **** Incremental Build of configuration Debug for project STU3_Test ****
+22:10:58 **** Incremental Build of configuration Debug for project STU3_Test ****
 make -j16 all 
-arm-none-eabi-gcc "../Core/Src/Based_System_Communication.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Based_System_Communication.d" -MT"Core/Src/Based_System_Communication.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Based_System_Communication.o"
-arm-none-eabi-gcc -o "STU3_Test.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\Fibo\Year2\Term2\STU\STU_3_Programming\STU3_Programming\STU3_Test\STM32G474RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STU3_Test.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: STU3_Test.elf
- 
 arm-none-eabi-size  STU3_Test.elf 
-arm-none-eabi-objdump -h -S STU3_Test.elf  > "STU3_Test.list"
    text	   data	    bss	    dec	    hex	filename
-  39068	    524	   5108	  44700	   ae9c	STU3_Test.elf
+  39480	    532	   5108	  45120	   b040	STU3_Test.elf
 Finished building: default.size.stdout
  
-Finished building: STU3_Test.list
- 
 
-12:24:01 Build Finished. 0 errors, 0 warnings. (took 1s.240ms)
+22:10:58 Build Finished. 0 errors, 0 warnings. (took 372ms)
 
