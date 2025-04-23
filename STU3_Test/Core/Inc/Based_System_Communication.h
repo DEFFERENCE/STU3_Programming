@@ -11,6 +11,7 @@
 #include "stm32g4xx_hal.h"
 #include "ModBusRTU.h"
 
+void modbus_heartbeat_init(ModbusHandleTypedef* hmodbus);
 void modbus_heartbeat(ModbusHandleTypedef* hmodbus);
 uint8_t modbus_Base_System_Status(ModbusHandleTypedef* hmodbus);
 
