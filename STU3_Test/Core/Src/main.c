@@ -62,6 +62,9 @@ Encoder encoder2;
 uint32_t QEIReadRaw;
 float pos;
 float vel;
+TrajectorySegment segments[MAX_SEGMENTS];
+int current_segment = 0;
+float t_global = 0;
 float acc;
 float p1 = 0;
 float v1 = 0;
@@ -139,6 +142,11 @@ int main(void) {
 	/* USER CODE BEGIN 2 */
 	Encoder_Init(&encoder1, &htim4);
 	Encoder_Init(&encoder2, &htim3);
+
+	InitTrajectorySegment(&segments[0], 0.0f, 100.0f, 50.0f, 100.0f, 0.0f);
+	InitTrajectorySegment(&segments[1], 100.0f, 50.0f, 40.0f, 80.0f, segments[0].t_start + segments[0].t_total);
+	InitTrajectorySegment(&segments[2], 50.0f, 200.0f, 60.0f, 120.0f, segments[1].t_start + segments[1].t_total);
+
 	int lastTick = 0;
 	HAL_TIM_Encoder_Start(&htim3, TIM_CHANNEL_ALL);
 	HAL_TIM_Encoder_Start(&htim4, TIM_CHANNEL_ALL);
@@ -212,6 +220,16 @@ int main(void) {
 
 // Now use p1,v1,a1 and p2,v2,a2 as needed
 		//}
+
+		t_global = HAL_GetTick() / 1000.0f;
+		pos = GetTrajectoryPosition(&segments[current_segment], t_global);
+		vel = GetTrajectoryVelocity(&segments[current_segment], t_global);
+		// ถ้าจบ segment ปัจจุบันให้ข้ามไปอันถัดไป
+		if (t_global > segments[current_segment].t_start + segments[current_segment].t_total) {
+			if (current_segment < MAX_SEGMENTS - 1) {
+				current_segment++;
+			}
+		}
 	}
 	/* USER CODE END 3 */
 }
