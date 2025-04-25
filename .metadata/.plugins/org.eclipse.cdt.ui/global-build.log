@@ -98,3 +98,24 @@ arm-none-eabi-size  STU3_Test.elf
   39480	    532	   5108	  45120	   b040	STU3_Test.elf
 Finished building: default.size.stdout
  
+22:33:10 **** Incremental Build of configuration Debug for project STU3_Test ****
+make -j16 all 
+arm-none-eabi-size  STU3_Test.elf 
+   text	   data	    bss	    dec	    hex	filename
+  39480	    532	   5108	  45120	   b040	STU3_Test.elf
+Finished building: default.size.stdout
+ 
+22:35:03 **** Incremental Build of configuration Debug for project STU3_Test ****
+make -j16 all 
+arm-none-eabi-size  STU3_Test.elf 
+   text	   data	    bss	    dec	    hex	filename
+  39480	    532	   5108	  45120	   b040	STU3_Test.elf
+Finished building: default.size.stdout
+ 
+12:44:16 **** Incremental Build of configuration Debug for project STU3_Test ****
+make -j16 all 
+arm-none-eabi-size  STU3_Test.elf 
+   text	   data	    bss	    dec	    hex	filename
+  39480	    532	   5108	  45120	   b040	STU3_Test.elf
+Finished building: default.size.stdout
+ 

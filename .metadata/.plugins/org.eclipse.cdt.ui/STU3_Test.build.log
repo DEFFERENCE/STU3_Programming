@@ -1,4 +1,4 @@
-22:10:58 **** Incremental Build of configuration Debug for project STU3_Test ****
+12:44:16 **** Incremental Build of configuration Debug for project STU3_Test ****
 make -j16 all 
 arm-none-eabi-size  STU3_Test.elf 
    text	   data	    bss	    dec	    hex	filename
@@ -6,5 +6,5 @@ arm-none-eabi-size  STU3_Test.elf
 Finished building: default.size.stdout
  
 
-22:10:58 Build Finished. 0 errors, 0 warnings. (took 372ms)
+12:44:17 Build Finished. 0 errors, 0 warnings. (took 511ms)
 
