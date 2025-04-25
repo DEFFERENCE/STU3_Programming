@@ -6,15 +6,26 @@
  */
 
 #include "Based_System_Communication.h"
-void modbus_heartbeat(ModbusHandleTypedef *hmodbus) {
+void modbus_heartbeat_init(ModbusHandleTypedef* hmodbus) {
+	hmodbus->RegisterAddress[0x00].U16 = 22881;
 }
+
+void modbus_heartbeat(ModbusHandleTypedef *hmodbus) {
+	if (hmodbus->RegisterAddress[0x00].U16 == 18537) {
+		hmodbus->RegisterAddress[0x00].U16 = 22881;
+	}
+}
+
 uint8_t modbus_Base_System_Status(ModbusHandleTypedef *hmodbus) {
-	return 0;
+	uint16_t status = hmodbus->RegisterAddress[0x01].U16;
+	return status;
 }
 
 uint8_t modbus_servo_Status(ModbusHandleTypedef *hmodbus, uint8_t Pen_status) {
-	return 0;
+	hmodbus->RegisterAddress[0x03].U16 = Pen_status;
+	return Pen_status;
 }
+
 void modbus_write_servo_up(ModbusHandleTypedef *hmodbus, uint8_t Servo_PWM) //Optional
 {
 }
@@ -22,9 +33,9 @@ void modbus_write_servo_down(ModbusHandleTypedef *hmodbus, uint8_t Servo_PWM) //
 {
 }
 
-uint8_t R_Theta_moving_Status(ModbusHandleTypedef *hmodbus,
-		uint8_t Moving_Status) {
-	return 0;
+uint8_t R_Theta_moving_Status(ModbusHandleTypedef *hmodbus, uint8_t Moving_Status) {
+	hmodbus->RegisterAddress[0x10].U16 = Moving_Status;
+	return Moving_Status;
 }
 
 void modbus_r_position(ModbusHandleTypedef *hmodbus, float r_pos) {
