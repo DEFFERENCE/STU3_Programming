@@ -157,12 +157,12 @@ int main(void) {
 		/* USER CODE END WHILE */
 
 		/* USER CODE BEGIN 3 */
-		float r_pos = 5;
-		float theta_pos = 6;
-		float r_Velo = 7;
-		float theta_Velo = 8;
-		float r_accel = 9;
-		float theta_accel = 10;
+//		float r_pos = p2;
+//		float theta_pos = p2;
+//		float r_Velo = v2;
+//		float theta_Velo = v2;
+//		float r_accel = a2;
+//		float theta_accel = a2;
 		Modbus_Protocal_Worker();
 		//modbus_r_position(&hmodbus,7);
 		hmodbus.RegisterAddress[0x00].U16 = 22881;
@@ -172,8 +172,8 @@ int main(void) {
 //		modbus_theta_velocity(&hmodbus,5);
 //		modbus_r_acceleration(&hmodbus,5);
 //		modbus_theta_acceleration(&hmodbus,5);
-		modbus_Update_All(&hmodbus, r_pos, theta_pos, r_Velo, theta_Velo,
-				r_accel, theta_accel);
+//		modbus_Update_All(&hmodbus, r_pos, theta_pos, r_Velo, theta_Velo,
+//				r_accel, theta_accel);
 		for (int i = 0; i < 10; i++) {
 			set_Target_Position_ten_points(&hmodbus, i, i);
 		}
@@ -194,24 +194,31 @@ int main(void) {
 //		registerFrame[0x08].U16 = 9;
 		//registerFrame[0x15].U16 = 10;
 		//}
-//		uint32_t currentTick = HAL_GetTick();
-//		float dt = (currentTick - lastTick) / 1000.0f;
-//		QEIReadRaw = __HAL_TIM_GET_COUNTER(&htim4);
-//		if (dt >= 0.01f) {
-//			Encoder_Update(&encoder1, dt);
-//			Encoder_Update(&encoder2, dt);
-//			lastTick = currentTick;
-//
-//			p1 = Encoder_GetPosition(&encoder1);
-//			v1 = Encoder_GetVelocity(&encoder1);
-//			a1 = Encoder_GetAcceleration(&encoder1);
-//
-//			p2 = Encoder_GetPosition(&encoder2);
-//			v2 = Encoder_GetVelocity(&encoder2);
-//			a2 = Encoder_GetAcceleration(&encoder2);
+		uint32_t currentTick = HAL_GetTick();
+		float dt = (currentTick - lastTick) / 1000.0f;
+		//QEIReadRaw = __HAL_TIM_GET_COUNTER(&htim3);
+		if (dt >= 0.01f) {
+			Encoder_Update(&encoder1, dt);
+			Encoder_Update(&encoder2, dt);
+			lastTick = currentTick;
 
+			p1 = Encoder_GetPosition(&encoder1);
+			v1 = Encoder_GetVelocity(&encoder1);
+			a1 = Encoder_GetAcceleration(&encoder1);
+
+			p2 = Encoder_GetPosition(&encoder2);
+			v2 = Encoder_GetVelocity(&encoder2);
+			a2 = Encoder_GetAcceleration(&encoder2);
+			float r_pos = p2*10;
+			float theta_pos = p2*10;
+			float r_Velo = v2*10;
+			float theta_Velo = v2*10;
+			float r_accel = a2*10;
+			float theta_accel = a2*10;
+			modbus_Update_All(&hmodbus, r_pos, theta_pos, r_Velo, theta_Velo,
+						r_accel, theta_accel);
 // Now use p1,v1,a1 and p2,v2,a2 as needed
-		//}
+		}
 	}
 	/* USER CODE END 3 */
 }
@@ -479,7 +486,7 @@ static void MX_TIM4_Init(void) {
 	htim4.Init.Period = 59999;
 	htim4.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
 	htim4.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
-	sConfig.EncoderMode = TIM_ENCODERMODE_TI1;
+	sConfig.EncoderMode = TIM_ENCODERMODE_TI12;
 	sConfig.IC1Polarity = TIM_ICPOLARITY_RISING;
 	sConfig.IC1Selection = TIM_ICSELECTION_DIRECTTI;
 	sConfig.IC1Prescaler = TIM_ICPSC_DIV1;

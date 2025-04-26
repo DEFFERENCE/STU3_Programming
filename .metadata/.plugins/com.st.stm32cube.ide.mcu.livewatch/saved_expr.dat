@@ -16,3 +16,4 @@ hmodbus->RegisterAddress[0x30].U16
 hmodbus->RegisterAddress[0x31].U16
 Goal_r_position
 Goal_theta_position
+r_pos
