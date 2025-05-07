@@ -6,6 +6,7 @@
  */
 
 #include "Based_System_Communication.h"
+
 void modbus_heartbeat_init(ModbusHandleTypedef* hmodbus) {
 	hmodbus->RegisterAddress[0x00].U16 = 22881;
 }
@@ -28,9 +29,11 @@ uint8_t modbus_servo_Status(ModbusHandleTypedef *hmodbus, uint8_t Pen_status) {
 
 void modbus_write_servo_up(ModbusHandleTypedef *hmodbus, uint8_t Servo_PWM) //Optional
 {
+
 }
 void modbus_write_servo_down(ModbusHandleTypedef *hmodbus, uint8_t Servo_PWM) //Optional
 {
+
 }
 
 uint8_t R_Theta_moving_Status(ModbusHandleTypedef *hmodbus, uint8_t Moving_Status) {
