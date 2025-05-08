@@ -10,4 +10,13 @@ extern uint8_t SPIRx[PS2_DATA_LENGTH];
 
 void PS2_ReadData();
 
+uint8_t PS2_ButtonCircle();
+uint8_t PS2_ButtonSquare();
+uint8_t PS2_ButtonTriangle();
+uint8_t PS2_ButtonCross();
+uint8_t PS2_ButtonR1();
+uint8_t PS2_ButtonR2();
+uint8_t PS2_ButtonSelect();
+uint8_t PS2_ButtonStart();
+
 #endif /* INC_JOYSTICK_H_ */
