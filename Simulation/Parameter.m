@@ -1,24 +1,24 @@
 %% Revolute Motor
 
 Rev_kt = 5.37E-02;
-Rev_ke = 5.54E-02;
-Rev_Eff = 9.70E-01;
+Rev_ke = 1.63E+00;
+Rev_Eff = 7.36E-01;
 Rev_Km = Rev_Eff* Rev_ke;
-Rev_Lm = 3.05E-03;
-Rev_R = 4.00E+00;
-Rev_b = 1.06E-04;
-Rev_J = 1.77E-05;
+Rev_Lm = 3.37E-04;
+Rev_R = 5.13E-01;
+Rev_b = 6.91E-03;
+Rev_J = 1.88E-01;
 
 %% Prismatic Motor
 
 Pris_kt = 5.37E-02;
-Pris_ke = 5.54E-02;
-Pris_Eff = 9.70E-01;
+Pris_ke = 1.77E-01;
+Pris_Eff = 8.75E-01;
 Pris_Km = Pris_Eff* Pris_ke;
-Pris_Lm = 3.05E-03;
-Pris_R = 4.00E+00;
-Pris_b = 1.06E-04;
-Pris_J = 1.77E-05;
+Pris_Lm = 0.0016;
+Pris_R = 3.8719;
+Pris_b = 4.82E-04;
+Pris_J = 2.29E-04;
 
 %% Prismatic Axis
 

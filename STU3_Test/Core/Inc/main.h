@@ -80,8 +80,6 @@ void Error_Handler(void);
 #define Limit_Switch_pen_2_Pin GPIO_PIN_10
 #define Limit_Switch_pen_2_GPIO_Port GPIOB
 #define Limit_Switch_pen_2_EXTI_IRQn EXTI15_10_IRQn
-#define DIR_MD20A_18V_Pin GPIO_PIN_12
-#define DIR_MD20A_18V_GPIO_Port GPIOB
 #define Proximity_Sensor_Pin GPIO_PIN_13
 #define Proximity_Sensor_GPIO_Port GPIOB
 #define Proximity_Sensor_EXTI_IRQn EXTI15_10_IRQn
@@ -91,6 +89,8 @@ void Error_Handler(void);
 #define Limit_Switch_Prismatic2_Pin GPIO_PIN_15
 #define Limit_Switch_Prismatic2_GPIO_Port GPIOB
 #define Limit_Switch_Prismatic2_EXTI_IRQn EXTI15_10_IRQn
+#define DIR_MD20A_18V_Pin GPIO_PIN_6
+#define DIR_MD20A_18V_GPIO_Port GPIOC
 #define Encoder_1C7_Pin GPIO_PIN_7
 #define Encoder_1C7_GPIO_Port GPIOC
 #define PWM_MD20A_18V_Pin GPIO_PIN_8

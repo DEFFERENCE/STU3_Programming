@@ -6,7 +6,7 @@
  */
 
 #include "Based_System_Communication.h"
-void modbus_heartbeat_init(ModbusHandleTypedef* hmodbus) {
+void modbus_heartbeat_init(ModbusHandleTypedef *hmodbus) {
 	hmodbus->RegisterAddress[0x00].U16 = 22881;
 }
 
@@ -33,7 +33,8 @@ void modbus_write_servo_down(ModbusHandleTypedef *hmodbus, uint8_t Servo_PWM) //
 {
 }
 
-uint8_t R_Theta_moving_Status(ModbusHandleTypedef *hmodbus, uint8_t Moving_Status) {
+uint8_t R_Theta_moving_Status(ModbusHandleTypedef *hmodbus,
+		uint8_t Moving_Status) {
 	hmodbus->RegisterAddress[0x10].U16 = Moving_Status;
 	return Moving_Status;
 }
@@ -68,16 +69,20 @@ void modbus_Update_All(ModbusHandleTypedef *hmodbus, float r_pos,
 	hmodbus->RegisterAddress[0x16].U16 = theta_accel;
 }
 
-void set_Target_Position_ten_points(ModbusHandleTypedef *hmodbus, float point,
-		uint8_t index) {
-	hmodbus->RegisterAddress[0x20 + index].U16 = point;
+void set_Target_Position_ten_points(ModbusHandleTypedef *hmodbus, float r_pos,
+		float theta_pos, uint8_t index) // 9 >= Index >= 0
+{
+	if (index >=0 && index <= 9) {
+		hmodbus->RegisterAddress[0x20 + index * 2].U16 = r_pos;
+		hmodbus->RegisterAddress[0x20 + (index * 2) + 1].U16 = theta_pos;
+	}
 }
 uint16_t modbus_set_goal_r_position(ModbusHandleTypedef *hmodbus) {
-	uint16_t goal_r_position = hmodbus->RegisterAddress[0x30].U16;
+	uint16_t goal_r_position = hmodbus->RegisterAddress[0x40].U16;
 	return goal_r_position;
 }
 uint16_t modbus_set_goal_theta_position(ModbusHandleTypedef *hmodbus) {
-	uint16_t goal_theta_position = hmodbus->RegisterAddress[0x31].U16;
+	uint16_t goal_theta_position = hmodbus->RegisterAddress[0x41].U16;
 	return goal_theta_position;
 }
 

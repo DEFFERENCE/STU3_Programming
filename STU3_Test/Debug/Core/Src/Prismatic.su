@@ -1,0 +1,3 @@
+../Core/Src/Prismatic.c:10:16:create_prismatic_motor	136	static
+../Core/Src/Prismatic.c:16:7:disturbance_feedforward_pri	32	static
+../Core/Src/Prismatic.c:22:7:reference_feedforward_pri	32	static

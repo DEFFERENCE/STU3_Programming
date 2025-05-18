@@ -17,3 +17,6 @@ hmodbus->RegisterAddress[0x31].U16
 Goal_r_position
 Goal_theta_position
 r_pos
+QEIReadRaw3
+QEIReadRaw4
+check
