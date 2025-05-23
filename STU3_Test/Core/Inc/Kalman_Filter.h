@@ -7,7 +7,7 @@
 #define KALMAN_MEAS_DIM  4
 
 typedef struct {
-    arm_matrix_instance_f32 A, B, H, Q, R, P, K;
+    arm_matrix_instance_f32 A, B, H, Q, R, P, K, Input;
     arm_matrix_instance_f32 x, u, z;
     arm_matrix_instance_f32 temp1, temp2, temp3;
 
@@ -18,6 +18,7 @@ typedef struct {
     float32_t R_data[KALMAN_MEAS_DIM * KALMAN_MEAS_DIM];
     float32_t P_data[KALMAN_STATE_DIM * KALMAN_STATE_DIM];
     float32_t K_data[KALMAN_STATE_DIM * KALMAN_MEAS_DIM];
+    float32_t Input_data[1*1];
 
     float32_t x_data[KALMAN_STATE_DIM];
     float32_t u_data[KALMAN_MEAS_DIM];

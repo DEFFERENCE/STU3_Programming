@@ -87,6 +87,8 @@ float Goal_r_position = 999;
 float Goal_theta_position = 999;
 uint16_t status;
 int DIR_18V ;
+
+KalmanFilter kf;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -171,6 +173,45 @@ int main(void)
 	hmodbus.RegisterSize = 200;
 	Modbus_init(&hmodbus, registerFrame);
 
+	Kalman_Init(&kf);
+
+	kf.A_data[0] = 1;
+	kf.A_data[1] = 0.0009998;
+	kf.A_data[2] = -2.659e-06;
+	kf.A_data[3] = 8.108e-08;
+	kf.A_data[4] = 0;
+	kf.A_data[5] = 0.9996;
+	kf.A_data[6] = -0.005318;
+	kf.A_data[7] = 0.0001622;
+	kf.A_data[8] = 0;
+	kf.A_data[9] = 0;
+	kf.A_data[10] = 1;
+	kf.A_data[11] = 0;
+	kf.A_data[12] = 0;
+	kf.A_data[13] = -2.746;
+	kf.A_data[14] = 0.007303;
+	kf.A_data[15] = 0.1354;
+
+	kf.B_data[0] = 1.203e-07;
+	kf.B_data[1] = 0.0002406;
+	kf.B_data[2] = 0;
+	kf.B_data[3] = 1.685;
+
+	// Identity H
+	for (int i = 0; i < KALMAN_MEAS_DIM; i++) {
+	    for (int j = 0; j < KALMAN_STATE_DIM; j++) {
+	        kf.H_data[i * KALMAN_STATE_DIM + j] = (i == j) ? 1.0f : 0.0f;
+	    }
+	}
+
+	// Prismatic
+	kf.x_data[0] = 0;
+	kf.x_data[1] = 0;
+	kf.x_data[2] = 0;
+	kf.x_data[3] = 0;
+
+	Kalman_SetMeasurementNoise(&kf, 0.01f);
+	Kalman_SetProcessNoise(&kf, 0.1f);
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -255,6 +296,10 @@ int main(void)
 //				current_segment++;
 //			}
 //		}
+
+		float measurement[4] = {1.0f, 0.2f, 0.5f, 0.1f};
+		Kalman_Predict(&kf);
+		Kalman_Update(&kf, measurement);
 	}
   /* USER CODE END 3 */
 }
