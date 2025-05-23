@@ -19,4 +19,8 @@ uint8_t PS2_ButtonR2();
 uint8_t PS2_ButtonSelect();
 uint8_t PS2_ButtonStart();
 
+void PS2_Move();
+void Select_ten_points();
+void Auto_Mode();
+
 #endif /* INC_JOYSTICK_H_ */

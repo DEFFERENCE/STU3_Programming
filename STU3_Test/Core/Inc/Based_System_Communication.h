@@ -15,7 +15,7 @@ void modbus_heartbeat_init(ModbusHandleTypedef* hmodbus);
 void modbus_heartbeat(ModbusHandleTypedef* hmodbus);
 uint8_t modbus_Base_System_Status(ModbusHandleTypedef* hmodbus);
 
-uint8_t modbus_servo_Status(ModbusHandleTypedef* hmodbus,uint8_t Pen_status);
+void modbus_servo_Status(ModbusHandleTypedef *hmodbus);
 void modbus_write_servo_up(ModbusHandleTypedef* hmodbus,uint8_t Servo_PWM); //Optional
 void modbus_write_servo_down(ModbusHandleTypedef* hmodbus,uint8_t Servo_PWM); //Optional
 

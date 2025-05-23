@@ -19,22 +19,33 @@ void modbus_heartbeat(ModbusHandleTypedef *hmodbus) {
 
 uint8_t modbus_Base_System_Status(ModbusHandleTypedef *hmodbus) {
 	uint16_t status = hmodbus->RegisterAddress[0x01].U16;
+	if (status == 1) {
+
+	}
 	return status;
 }
 
-uint8_t modbus_servo_Status(ModbusHandleTypedef *hmodbus, uint8_t Pen_status) {
-	hmodbus->RegisterAddress[0x03].U16 = Pen_status;
-	return Pen_status;
-}
-
-void modbus_write_servo_up(ModbusHandleTypedef *hmodbus, uint8_t Servo_PWM) //Optional
-{
-
-}
-void modbus_write_servo_down(ModbusHandleTypedef *hmodbus, uint8_t Servo_PWM) //Optional
-{
-
-}
+//void modbus_servo_Status(ModbusHandleTypedef *hmodbus) {
+//	if () { // servo has reached its lowest position
+//		hmodbus.RegisterAddress[0x03].U16 = 1;
+//	} else if (){ // servo has reached its highest position
+//		hmodbus.RegisterAddress[0x03].U16 = 2;
+//	} else { // servo still moving
+//		hmodbus.RegisterAddress[0x03].U16 = 0;
+//	}
+//}
+//
+//void modbus_write_servo_up(ModbusHandleTypedef *hmodbus, uint8_t Servo_PWM) {
+//	if (hmodbus->RegisterAddress[0x04].U16 == 1) {
+//		// Activates servo upward motion
+//	}
+//}
+//
+//void modbus_write_servo_down(ModbusHandleTypedef *hmodbus, uint8_t Servo_PWM) {
+//	if (hmodbus->RegisterAddress[0x05].U16 == 1) {
+//		// Activates servo downward motion
+//	}
+//}
 
 uint8_t R_Theta_moving_Status(ModbusHandleTypedef *hmodbus, uint8_t Moving_Status) {
 	hmodbus->RegisterAddress[0x10].U16 = Moving_Status;
@@ -76,11 +87,11 @@ void set_Target_Position_ten_points(ModbusHandleTypedef *hmodbus, float point,
 	hmodbus->RegisterAddress[0x20 + index].U16 = point;
 }
 uint16_t modbus_set_goal_r_position(ModbusHandleTypedef *hmodbus) {
-	uint16_t goal_r_position = hmodbus->RegisterAddress[0x30].U16;
+	uint16_t goal_r_position = hmodbus->RegisterAddress[0x40].U16;
 	return goal_r_position;
 }
 uint16_t modbus_set_goal_theta_position(ModbusHandleTypedef *hmodbus) {
-	uint16_t goal_theta_position = hmodbus->RegisterAddress[0x31].U16;
+	uint16_t goal_theta_position = hmodbus->RegisterAddress[0x41].U16;
 	return goal_theta_position;
 }
 

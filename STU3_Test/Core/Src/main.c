@@ -81,6 +81,15 @@ ModbusHandleTypedef hmodbus;
 u16u8_t registerFrame[200];
 float Goal_r_position = 999;
 float Goal_theta_position = 999;
+
+int Circle;
+int Square;
+int Triangle;
+int Cross;
+int R1;
+int R2;
+int Select;
+int Start;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -163,6 +172,7 @@ int main(void)
 	hmodbus.RegisterSize = 200;
 	Modbus_init(&hmodbus, registerFrame);
 
+	modbus_heartbeat_init(&hmodbus);
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -178,8 +188,9 @@ int main(void)
 		float r_accel = 9;
 		float theta_accel = 10;
 		Modbus_Protocal_Worker();
+		modbus_heartbeat(&hmodbus);
 		//modbus_r_position(&hmodbus,7);
-		hmodbus.RegisterAddress[0x00].U16 = 22881;
+//		hmodbus.RegisterAddress[0x00].U16 = 22881;
 //		modbus_r_position(&hmodbus,5);
 //		modbus_theta_position(&hmodbus,5);
 //		modbus_r_velocity(&hmodbus,5);
@@ -188,7 +199,7 @@ int main(void)
 //		modbus_theta_acceleration(&hmodbus,5);
 		modbus_Update_All(&hmodbus, r_pos, theta_pos, r_Velo, theta_Velo,
 				r_accel, theta_accel);
-		for (int i = 0; i < 10; i++) {
+		for (int i = 0; i < 20; i++) {
 			set_Target_Position_ten_points(&hmodbus, i, i);
 		}
 		Goal_r_position = modbus_set_goal_r_position(&hmodbus);
@@ -238,6 +249,14 @@ int main(void)
 		}
 
 		PS2_ReadData();
+		Circle = PS2_ButtonCircle();
+		Square = PS2_ButtonSquare();
+		Triangle = PS2_ButtonTriangle();
+		Cross = PS2_ButtonCross();
+		R1 = PS2_ButtonR1();
+		R2 = PS2_ButtonR2();
+		Select = PS2_ButtonSelect();
+		Start = PS2_ButtonStart();
 	}
   /* USER CODE END 3 */
 }
