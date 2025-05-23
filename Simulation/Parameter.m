@@ -38,6 +38,7 @@ End_Effector_Mass = 0.5; % kg
 %% Ball_Screw
 
  Lead = 10 ; %mm
+ l = Lead*0.001;
 
 %% Other
 

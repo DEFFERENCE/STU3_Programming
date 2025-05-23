@@ -84,6 +84,8 @@ void HAL_MspInit(void)
   /* USER CODE END MspInit 1 */
 }
 
+static uint32_t HAL_RCC_ADC12_CLK_ENABLED=0;
+
 /**
   * @brief ADC MSP Initialization
   * This function configures the hardware resources used in this example
@@ -110,7 +112,10 @@ void HAL_ADC_MspInit(ADC_HandleTypeDef* hadc)
     }
 
     /* Peripheral clock enable */
-    __HAL_RCC_ADC12_CLK_ENABLE();
+    HAL_RCC_ADC12_CLK_ENABLED++;
+    if(HAL_RCC_ADC12_CLK_ENABLED==1){
+      __HAL_RCC_ADC12_CLK_ENABLE();
+    }
 
     __HAL_RCC_GPIOA_CLK_ENABLE();
     /**ADC1 GPIO Configuration
@@ -125,7 +130,40 @@ void HAL_ADC_MspInit(ADC_HandleTypeDef* hadc)
     /* USER CODE BEGIN ADC1_MspInit 1 */
 
     /* USER CODE END ADC1_MspInit 1 */
+  }
+  else if(hadc->Instance==ADC2)
+  {
+    /* USER CODE BEGIN ADC2_MspInit 0 */
 
+    /* USER CODE END ADC2_MspInit 0 */
+
+  /** Initializes the peripherals clocks
+  */
+    PeriphClkInit.PeriphClockSelection = RCC_PERIPHCLK_ADC12;
+    PeriphClkInit.Adc12ClockSelection = RCC_ADC12CLKSOURCE_SYSCLK;
+    if (HAL_RCCEx_PeriphCLKConfig(&PeriphClkInit) != HAL_OK)
+    {
+      Error_Handler();
+    }
+
+    /* Peripheral clock enable */
+    HAL_RCC_ADC12_CLK_ENABLED++;
+    if(HAL_RCC_ADC12_CLK_ENABLED==1){
+      __HAL_RCC_ADC12_CLK_ENABLE();
+    }
+
+    __HAL_RCC_GPIOA_CLK_ENABLE();
+    /**ADC2 GPIO Configuration
+    PA1     ------> ADC2_IN2
+    */
+    GPIO_InitStruct.Pin = Current_SensorA1_Pin;
+    GPIO_InitStruct.Mode = GPIO_MODE_ANALOG;
+    GPIO_InitStruct.Pull = GPIO_NOPULL;
+    HAL_GPIO_Init(Current_SensorA1_GPIO_Port, &GPIO_InitStruct);
+
+    /* USER CODE BEGIN ADC2_MspInit 1 */
+
+    /* USER CODE END ADC2_MspInit 1 */
   }
 
 }
@@ -144,7 +182,10 @@ void HAL_ADC_MspDeInit(ADC_HandleTypeDef* hadc)
 
     /* USER CODE END ADC1_MspDeInit 0 */
     /* Peripheral clock disable */
-    __HAL_RCC_ADC12_CLK_DISABLE();
+    HAL_RCC_ADC12_CLK_ENABLED--;
+    if(HAL_RCC_ADC12_CLK_ENABLED==0){
+      __HAL_RCC_ADC12_CLK_DISABLE();
+    }
 
     /**ADC1 GPIO Configuration
     PA0     ------> ADC1_IN1
@@ -155,6 +196,26 @@ void HAL_ADC_MspDeInit(ADC_HandleTypeDef* hadc)
     /* USER CODE BEGIN ADC1_MspDeInit 1 */
 
     /* USER CODE END ADC1_MspDeInit 1 */
+  }
+  else if(hadc->Instance==ADC2)
+  {
+    /* USER CODE BEGIN ADC2_MspDeInit 0 */
+
+    /* USER CODE END ADC2_MspDeInit 0 */
+    /* Peripheral clock disable */
+    HAL_RCC_ADC12_CLK_ENABLED--;
+    if(HAL_RCC_ADC12_CLK_ENABLED==0){
+      __HAL_RCC_ADC12_CLK_DISABLE();
+    }
+
+    /**ADC2 GPIO Configuration
+    PA1     ------> ADC2_IN2
+    */
+    HAL_GPIO_DeInit(Current_SensorA1_GPIO_Port, Current_SensorA1_Pin);
+
+    /* USER CODE BEGIN ADC2_MspDeInit 1 */
+
+    /* USER CODE END ADC2_MspDeInit 1 */
   }
 
 }
@@ -251,24 +312,16 @@ void HAL_TIM_Encoder_MspInit(TIM_HandleTypeDef* htim_encoder)
     __HAL_RCC_TIM3_CLK_ENABLE();
 
     __HAL_RCC_GPIOA_CLK_ENABLE();
-    __HAL_RCC_GPIOC_CLK_ENABLE();
     /**TIM3 GPIO Configuration
     PA6     ------> TIM3_CH1
-    PC7     ------> TIM3_CH2
+    PA7     ------> TIM3_CH2
     */
-    GPIO_InitStruct.Pin = Encoder_1_Pin;
+    GPIO_InitStruct.Pin = Encoder_1_Pin|Encoder_1A7_Pin;
     GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
     GPIO_InitStruct.Pull = GPIO_NOPULL;
     GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
     GPIO_InitStruct.Alternate = GPIO_AF2_TIM3;
-    HAL_GPIO_Init(Encoder_1_GPIO_Port, &GPIO_InitStruct);
-
-    GPIO_InitStruct.Pin = Encoder_1C7_Pin;
-    GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
-    GPIO_InitStruct.Pull = GPIO_NOPULL;
-    GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-    GPIO_InitStruct.Alternate = GPIO_AF2_TIM3;
-    HAL_GPIO_Init(Encoder_1C7_GPIO_Port, &GPIO_InitStruct);
+    HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
     /* USER CODE BEGIN TIM3_MspInit 1 */
 
@@ -283,24 +336,16 @@ void HAL_TIM_Encoder_MspInit(TIM_HandleTypeDef* htim_encoder)
     __HAL_RCC_TIM4_CLK_ENABLE();
 
     __HAL_RCC_GPIOA_CLK_ENABLE();
-    __HAL_RCC_GPIOB_CLK_ENABLE();
     /**TIM4 GPIO Configuration
     PA11     ------> TIM4_CH1
-    PB7     ------> TIM4_CH2
+    PA12     ------> TIM4_CH2
     */
-    GPIO_InitStruct.Pin = Encoder_2_Pin;
+    GPIO_InitStruct.Pin = Encoder_2_Pin|Encoder_2A12_Pin;
     GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
     GPIO_InitStruct.Pull = GPIO_NOPULL;
     GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
     GPIO_InitStruct.Alternate = GPIO_AF10_TIM4;
-    HAL_GPIO_Init(Encoder_2_GPIO_Port, &GPIO_InitStruct);
-
-    GPIO_InitStruct.Pin = Encoder_2B7_Pin;
-    GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
-    GPIO_InitStruct.Pull = GPIO_NOPULL;
-    GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-    GPIO_InitStruct.Alternate = GPIO_AF2_TIM4;
-    HAL_GPIO_Init(Encoder_2B7_GPIO_Port, &GPIO_InitStruct);
+    HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
     /* USER CODE BEGIN TIM4_MspInit 1 */
 
@@ -469,11 +514,9 @@ void HAL_TIM_Encoder_MspDeInit(TIM_HandleTypeDef* htim_encoder)
 
     /**TIM3 GPIO Configuration
     PA6     ------> TIM3_CH1
-    PC7     ------> TIM3_CH2
+    PA7     ------> TIM3_CH2
     */
-    HAL_GPIO_DeInit(Encoder_1_GPIO_Port, Encoder_1_Pin);
-
-    HAL_GPIO_DeInit(Encoder_1C7_GPIO_Port, Encoder_1C7_Pin);
+    HAL_GPIO_DeInit(GPIOA, Encoder_1_Pin|Encoder_1A7_Pin);
 
     /* USER CODE BEGIN TIM3_MspDeInit 1 */
 
@@ -489,11 +532,9 @@ void HAL_TIM_Encoder_MspDeInit(TIM_HandleTypeDef* htim_encoder)
 
     /**TIM4 GPIO Configuration
     PA11     ------> TIM4_CH1
-    PB7     ------> TIM4_CH2
+    PA12     ------> TIM4_CH2
     */
-    HAL_GPIO_DeInit(Encoder_2_GPIO_Port, Encoder_2_Pin);
-
-    HAL_GPIO_DeInit(Encoder_2B7_GPIO_Port, Encoder_2B7_Pin);
+    HAL_GPIO_DeInit(GPIOA, Encoder_2_Pin|Encoder_2A12_Pin);
 
     /* USER CODE BEGIN TIM4_MspDeInit 1 */
 

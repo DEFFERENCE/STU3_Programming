@@ -26,6 +26,7 @@
 #include "Trajectory.h"
 //#include "ModBusRTU.h"
 #include "Based_System_Communication.h"
+#include "Kalman_Filter.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -45,6 +46,7 @@
 
 /* Private variables ---------------------------------------------------------*/
 ADC_HandleTypeDef hadc1;
+ADC_HandleTypeDef hadc2;
 
 TIM_HandleTypeDef htim1;
 TIM_HandleTypeDef htim2;
@@ -75,11 +77,16 @@ float p2 = 0;
 float v2 = 0;
 float a2 = 0;
 int check = 0;
+int State = 0;
+uint16_t adc_1 = 0;
+uint16_t adc_2 = 0;
 
 ModbusHandleTypedef hmodbus;
 u16u8_t registerFrame[200];
 float Goal_r_position = 999;
 float Goal_theta_position = 999;
+uint16_t status;
+int DIR_18V ;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -95,8 +102,9 @@ static void MX_TIM20_Init(void);
 static void MX_TIM8_Init(void);
 static void MX_TIM16_Init(void);
 static void MX_USART2_UART_Init(void);
+static void MX_ADC2_Init(void);
 /* USER CODE BEGIN PFP */
-
+void setPWM(uint16_t volt, TIM_HandleTypeDef *htim);
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -142,15 +150,16 @@ int main(void)
   MX_TIM8_Init();
   MX_TIM16_Init();
   MX_USART2_UART_Init();
+  MX_ADC2_Init();
   /* USER CODE BEGIN 2 */
+	HAL_TIM_Base_Start(&htim20);
+	HAL_TIM_Base_Start(&htim8);
+	HAL_TIM_PWM_Start(&htim8, TIM_CHANNEL_4);
+	HAL_TIM_PWM_Start(&htim20, TIM_CHANNEL_1);
+	HAL_TIM_PWM_Start(&htim20, TIM_CHANNEL_3);
 	Encoder_Init(&encoder1, &htim4);
 	Encoder_Init(&encoder2, &htim3);
-
-	InitTrajectorySegment(&segments[0], 0.0f, 100.0f, 50.0f, 100.0f, 0.0f);
-	InitTrajectorySegment(&segments[1], 100.0f, 50.0f, 40.0f, 80.0f,
-			segments[0].t_start + segments[0].t_total);
-	InitTrajectorySegment(&segments[2], 50.0f, 200.0f, 60.0f, 120.0f,
-			segments[1].t_start + segments[1].t_total);
+	HAL_ADC_Start(&hadc1);
 
 	int lastTick = 0;
 	HAL_TIM_Encoder_Start(&htim3, TIM_CHANNEL_ALL);
@@ -170,14 +179,19 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
+
+		HAL_GPIO_WritePin(GPIOC, GPIO_PIN_6, DIR_18V);
+
+		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_1, 1);
+		//HAL_GPIO_WritePin(GPIOB, GPIO_PIN_2, 1);
+		//__HAL_TIM_SET_COMPARE(&htim20,TIM_CHANNEL_1,500);
+		__HAL_TIM_SET_COMPARE(&htim20,TIM_CHANNEL_3,status);
+		HAL_ADC_Start(&hadc1);
+		HAL_ADC_Start(&hadc2);
+		adc_1 = HAL_ADC_GetValue(&hadc1);
+		adc_2 = HAL_ADC_GetValue(&hadc2);
 		QEIReadRaw3 = __HAL_TIM_GET_COUNTER(&htim3);
 		QEIReadRaw4 = __HAL_TIM_GET_COUNTER(&htim4);
-		float r_pos = 5;
-		float theta_pos = 6;
-		float r_Velo = 7;
-		float theta_Velo = 8;
-		float r_accel = 9;
-		float theta_accel = 10;
 		Modbus_Protocal_Worker();
 		//modbus_r_position(&hmodbus,7);
 		hmodbus.RegisterAddress[0x00].U16 = 22881;
@@ -188,13 +202,13 @@ int main(void)
 //		modbus_theta_velocity(&hmodbus,5);
 //		modbus_r_acceleration(&hmodbus,5);
 //		modbus_theta_acceleration(&hmodbus,5);
-		modbus_Update_All(&hmodbus, r_pos, theta_pos, r_Velo, theta_Velo,
-				r_accel, theta_accel);
-		for (int i = 0; i < 10; i++) {
-			set_Target_Position_ten_points(&hmodbus, i, i + 10, i);
-		}
-		Goal_r_position = modbus_set_goal_r_position(&hmodbus);
-		Goal_theta_position = modbus_set_goal_theta_position(&hmodbus);
+//		modbus_Update_All(&hmodbus, r_pos, theta_pos, r_Velo, theta_Velo,
+//				r_accel, theta_accel);
+//		for (int i = 0; i < 10; i++) {
+//			set_Target_Position_ten_points(&hmodbus, i, i + 10, i);
+//		}
+//		Goal_r_position = modbus_set_goal_r_position(&hmodbus);
+//		Goal_theta_position = modbus_set_goal_theta_position(&hmodbus);
 		//float a = a + 1;
 		//hmodbus.RegisterAddress[0x15].U16 = 100;
 		//registerFrame[0x15].U16 = 100;
@@ -229,18 +243,18 @@ int main(void)
 
 // Now use p1,v1,a1 and p2,v2,a2 as needed
 		}
-
-		t_global = HAL_GetTick() / 1000.0f;
-		pos = GetTrajectoryPosition(&segments[current_segment], t_global);
-		vel = GetTrajectoryVelocity(&segments[current_segment], t_global);
-		// ถ้าจบ segment ปัจจุบันให้ข้ามไปอันถัดไป
-		if (t_global
-				> segments[current_segment].t_start
-						+ segments[current_segment].t_total) {
-			if (current_segment < MAX_SEGMENTS - 1) {
-				current_segment++;
-			}
-		}
+//
+//		t_global = HAL_GetTick() / 1000.0f;
+//		pos = GetTrajectoryPosition(&segments[current_segment], t_global);
+//		vel = GetTrajectoryVelocity(&segments[current_segment], t_global);
+//		// ถ้าจบ segment ปัจจุบันให้ข้ามไปอันถัดไป
+//		if (t_global
+//				> segments[current_segment].t_start
+//						+ segments[current_segment].t_total) {
+//			if (current_segment < MAX_SEGMENTS - 1) {
+//				current_segment++;
+//			}
+//		}
 	}
   /* USER CODE END 3 */
 }
@@ -346,7 +360,7 @@ static void MX_ADC1_Init(void)
   sConfig.Channel = ADC_CHANNEL_1;
   sConfig.Rank = ADC_REGULAR_RANK_1;
   sConfig.SamplingTime = ADC_SAMPLETIME_2CYCLES_5;
-  sConfig.SingleDiff = ADC_DIFFERENTIAL_ENDED;
+  sConfig.SingleDiff = ADC_SINGLE_ENDED;
   sConfig.OffsetNumber = ADC_OFFSET_NONE;
   sConfig.Offset = 0;
   if (HAL_ADC_ConfigChannel(&hadc1, &sConfig) != HAL_OK)
@@ -356,6 +370,65 @@ static void MX_ADC1_Init(void)
   /* USER CODE BEGIN ADC1_Init 2 */
 
   /* USER CODE END ADC1_Init 2 */
+
+}
+
+/**
+  * @brief ADC2 Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_ADC2_Init(void)
+{
+
+  /* USER CODE BEGIN ADC2_Init 0 */
+
+  /* USER CODE END ADC2_Init 0 */
+
+  ADC_ChannelConfTypeDef sConfig = {0};
+
+  /* USER CODE BEGIN ADC2_Init 1 */
+
+  /* USER CODE END ADC2_Init 1 */
+
+  /** Common config
+  */
+  hadc2.Instance = ADC2;
+  hadc2.Init.ClockPrescaler = ADC_CLOCK_SYNC_PCLK_DIV4;
+  hadc2.Init.Resolution = ADC_RESOLUTION_12B;
+  hadc2.Init.DataAlign = ADC_DATAALIGN_RIGHT;
+  hadc2.Init.GainCompensation = 0;
+  hadc2.Init.ScanConvMode = ADC_SCAN_DISABLE;
+  hadc2.Init.EOCSelection = ADC_EOC_SINGLE_CONV;
+  hadc2.Init.LowPowerAutoWait = DISABLE;
+  hadc2.Init.ContinuousConvMode = DISABLE;
+  hadc2.Init.NbrOfConversion = 1;
+  hadc2.Init.DiscontinuousConvMode = DISABLE;
+  hadc2.Init.ExternalTrigConv = ADC_SOFTWARE_START;
+  hadc2.Init.ExternalTrigConvEdge = ADC_EXTERNALTRIGCONVEDGE_NONE;
+  hadc2.Init.DMAContinuousRequests = DISABLE;
+  hadc2.Init.Overrun = ADC_OVR_DATA_PRESERVED;
+  hadc2.Init.OversamplingMode = DISABLE;
+  if (HAL_ADC_Init(&hadc2) != HAL_OK)
+  {
+    Error_Handler();
+  }
+
+  /** Configure Regular Channel
+  */
+  sConfig.Channel = ADC_CHANNEL_2;
+  sConfig.Rank = ADC_REGULAR_RANK_1;
+  sConfig.SamplingTime = ADC_SAMPLETIME_2CYCLES_5;
+  sConfig.SingleDiff = ADC_SINGLE_ENDED;
+  sConfig.OffsetNumber = ADC_OFFSET_NONE;
+  sConfig.Offset = 0;
+  if (HAL_ADC_ConfigChannel(&hadc2, &sConfig) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN ADC2_Init 2 */
+
+  /* USER CODE END ADC2_Init 2 */
 
 }
 
@@ -901,12 +974,6 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(DIR_MD20A_18V_GPIO_Port, &GPIO_InitStruct);
 
-  /*Configure GPIO pin : Proximity_sensor_Pin */
-  GPIO_InitStruct.Pin = Proximity_sensor_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_IT_FALLING;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
-  HAL_GPIO_Init(Proximity_sensor_GPIO_Port, &GPIO_InitStruct);
-
   /*Configure GPIO pin : PS2_Joy_stick_Attention_Pin */
   GPIO_InitStruct.Pin = PS2_Joy_stick_Attention_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
@@ -918,6 +985,12 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Mode = GPIO_MODE_IT_RISING;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   HAL_GPIO_Init(Emergency_GPIO_Port, &GPIO_InitStruct);
+
+  /*Configure GPIO pin : Proximity_sensor_Pin */
+  GPIO_InitStruct.Pin = Proximity_sensor_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_IT_FALLING;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  HAL_GPIO_Init(Proximity_sensor_GPIO_Port, &GPIO_InitStruct);
 
   /*Configure GPIO pins : PB4 PB5 */
   GPIO_InitStruct.Pin = GPIO_PIN_4|GPIO_PIN_5;
@@ -940,11 +1013,23 @@ static void MX_GPIO_Init(void)
 
 /* USER CODE BEGIN 4 */
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
-//	if (GPIO_Pin == GPIO_PIN_13) {
-//		Encoder_setLimit(&encoder1, 180);
-//		Encoder_setLimit(&encoder2, 180);
-//		check += 1;
-//	}
+	if (GPIO_Pin == GPIO_PIN_9) {
+		State = 9;
+	} else if (GPIO_Pin == GPIO_PIN_10) {
+		State = 10;
+	} else if (GPIO_Pin == GPIO_PIN_11) {
+		State = 11;
+	} else if (GPIO_Pin == GPIO_PIN_12) {
+		State = 12;
+	} else if (GPIO_Pin == GPIO_PIN_13) {
+		State = 13;
+	} else if (GPIO_Pin == GPIO_PIN_14) {
+		State = 14;
+	} else if (GPIO_Pin == GPIO_PIN_15) {
+		State = 15;
+	}
+}
+void setPWM(uint16_t volt, TIM_HandleTypeDef *htim) {
 }
 /* USER CODE END 4 */
 

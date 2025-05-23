@@ -1,6 +1,7 @@
 "./Core/.metadata/.plugins/org.eclipse.cdt.make.core/specs.o"
 "./Core/Src/Based_System_Communication.o"
 "./Core/Src/Encoder.o"
+"./Core/Src/Kalman_Filter.o"
 "./Core/Src/ModBusRTU.o"
 "./Core/Src/Prismatic.o"
 "./Core/Src/Revolute.o"
