@@ -14,9 +14,8 @@ typedef struct {
 // Constructor
 RevoluteMotor create_motor(double J, double B, double Eff, double Ke, double Kt, double R, double L);
 
-
 // Feedforward Control
-float disturbance_feedforward(const RevoluteMotor* motor, double load_torque);
-float reference_feedforward(const RevoluteMotor* motor, double angular_velocity);
+float disturbance_feedforward(const RevoluteMotor* motor, float load_torque);
+float reference_feedforward(const RevoluteMotor* motor, float angular_velocity);
 
 #endif // REVOLUTE_H

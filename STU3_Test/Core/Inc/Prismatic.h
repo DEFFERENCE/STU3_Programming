@@ -22,8 +22,7 @@ typedef struct {
 PrismaticMotor create_prismatic_motor(double J, double B, double Eff, double Ke, double Kt, double R, double L);
 
 // Feedforward
-float disturbance_feedforward_pri(const PrismaticMotor* motor, double load_force);
-float reference_feedforward_pri(const PrismaticMotor* motor, double linear_velocity);
+float disturbance_feedforward_pri(const PrismaticMotor* motor, float load_force);
+float reference_feedforward_pri(const PrismaticMotor* motor, float linear_velocity);
 
 #endif // PRISMATIC_H
-
