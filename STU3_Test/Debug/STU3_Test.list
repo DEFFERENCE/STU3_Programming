@@ -656,8 +656,8 @@ void PS2_ReadData() {
  8000728:	b580      	push	{r7, lr}
  800072a:	b084      	sub	sp, #16
  800072c:	af02      	add	r7, sp, #8
-	HAL_Delay(100);
- 800072e:	2064      	movs	r0, #100	@ 0x64
+	HAL_Delay(1);
+ 800072e:	2001      	movs	r0, #1
  8000730:	f002 f988 	bl	8002a44 <HAL_Delay>
 	HAL_GPIO_WritePin(PS2_CS_PORT, PS2_CS_PIN, GPIO_PIN_RESET);
  8000734:	2200      	movs	r2, #0
@@ -681,8 +681,8 @@ void PS2_ReadData() {
  8000758:	2301      	movs	r3, #1
  800075a:	480f      	ldr	r0, [pc, #60]	@ (8000798 <PS2_ReadData+0x70>)
  800075c:	f005 f96f 	bl	8005a3e <HAL_SPI_TransmitReceive>
-		HAL_Delay(100);
- 8000760:	2064      	movs	r0, #100	@ 0x64
+		HAL_Delay(1);
+ 8000760:	2001      	movs	r0, #1
  8000762:	f002 f96f 	bl	8002a44 <HAL_Delay>
 	for (int i = 0; i < PS2_DATA_LENGTH; i++) {
  8000766:	687b      	ldr	r3, [r7, #4]
@@ -698,8 +698,8 @@ void PS2_ReadData() {
  8000774:	f44f 6180 	mov.w	r1, #1024	@ 0x400
  8000778:	4804      	ldr	r0, [pc, #16]	@ (800078c <PS2_ReadData+0x64>)
  800077a:	f004 f855 	bl	8004828 <HAL_GPIO_WritePin>
-	HAL_Delay(100);
- 800077e:	2064      	movs	r0, #100	@ 0x64
+	HAL_Delay(1);
+ 800077e:	2001      	movs	r0, #1
  8000780:	f002 f960 	bl	8002a44 <HAL_Delay>
 }
  8000784:	bf00      	nop

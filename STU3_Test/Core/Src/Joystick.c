@@ -9,16 +9,16 @@ uint8_t Position_Revolute[10];
 #define PS2_CS_PIN  GPIO_PIN_10
 
 void PS2_ReadData() {
-	HAL_Delay(100);
+	HAL_Delay(1);
 	HAL_GPIO_WritePin(PS2_CS_PORT, PS2_CS_PIN, GPIO_PIN_RESET);
 
 	for (int i = 0; i < PS2_DATA_LENGTH; i++) {
 		HAL_SPI_TransmitReceive(&hspi1, &SPITx[i], &SPIRx[i], 1, HAL_MAX_DELAY);
-		HAL_Delay(100);
+		HAL_Delay(1);
 	}
 
 	HAL_GPIO_WritePin(PS2_CS_PORT, PS2_CS_PIN, GPIO_PIN_SET);
-	HAL_Delay(100);
+	HAL_Delay(1);
 }
 
 uint8_t PS2_ButtonCircle() {
