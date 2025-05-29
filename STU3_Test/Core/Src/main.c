@@ -155,24 +155,24 @@ int main(void)
   MX_USART2_UART_Init();
   MX_SPI1_Init();
   /* USER CODE BEGIN 2 */
-	Encoder_Init(&encoder1, &htim4);
-	Encoder_Init(&encoder2, &htim3);
-
-	InitTrajectorySegment(&segments[0], 0.0f, 100.0f, 50.0f, 100.0f, 0.0f);
-	InitTrajectorySegment(&segments[1], 100.0f, 50.0f, 40.0f, 80.0f, segments[0].t_start + segments[0].t_total);
-	InitTrajectorySegment(&segments[2], 50.0f, 200.0f, 60.0f, 120.0f, segments[1].t_start + segments[1].t_total);
-
-	int lastTick = 0;
-	HAL_TIM_Encoder_Start(&htim3, TIM_CHANNEL_ALL);
-	HAL_TIM_Encoder_Start(&htim4, TIM_CHANNEL_ALL);
-
-	hmodbus.huart = &huart2;
-	hmodbus.htim = &htim16;
-	hmodbus.slaveAddress = 0x15;
-	hmodbus.RegisterSize = 200;
-	Modbus_init(&hmodbus, registerFrame);
-
-	modbus_heartbeat_init(&hmodbus);
+//	Encoder_Init(&encoder1, &htim4);
+//	Encoder_Init(&encoder2, &htim3);
+//
+//	InitTrajectorySegment(&segments[0], 0.0f, 100.0f, 50.0f, 100.0f, 0.0f);
+//	InitTrajectorySegment(&segments[1], 100.0f, 50.0f, 40.0f, 80.0f, segments[0].t_start + segments[0].t_total);
+//	InitTrajectorySegment(&segments[2], 50.0f, 200.0f, 60.0f, 120.0f, segments[1].t_start + segments[1].t_total);
+//
+//	int lastTick = 0;
+//	HAL_TIM_Encoder_Start(&htim3, TIM_CHANNEL_ALL);
+//	HAL_TIM_Encoder_Start(&htim4, TIM_CHANNEL_ALL);
+//
+//	hmodbus.huart = &huart2;
+//	hmodbus.htim = &htim16;
+//	hmodbus.slaveAddress = 0x15;
+//	hmodbus.RegisterSize = 200;
+//	Modbus_init(&hmodbus, registerFrame);
+//
+//	modbus_heartbeat_init(&hmodbus);
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -181,14 +181,14 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-		float r_pos = 5;
-		float theta_pos = 6;
-		float r_Velo = 7;
-		float theta_Velo = 8;
-		float r_accel = 9;
-		float theta_accel = 10;
-		Modbus_Protocal_Worker();
-		modbus_heartbeat(&hmodbus);
+//		float r_pos = 5;
+//		float theta_pos = 6;
+//		float r_Velo = 7;
+//		float theta_Velo = 8;
+//		float r_accel = 9;
+//		float theta_accel = 10;
+//		Modbus_Protocal_Worker();
+//		modbus_heartbeat(&hmodbus);
 		//modbus_r_position(&hmodbus,7);
 //		hmodbus.RegisterAddress[0x00].U16 = 22881;
 //		modbus_r_position(&hmodbus,5);
@@ -197,13 +197,13 @@ int main(void)
 //		modbus_theta_velocity(&hmodbus,5);
 //		modbus_r_acceleration(&hmodbus,5);
 //		modbus_theta_acceleration(&hmodbus,5);
-		modbus_Update_All(&hmodbus, r_pos, theta_pos, r_Velo, theta_Velo,
-				r_accel, theta_accel);
-		for (int i = 0; i < 20; i++) {
-			set_Target_Position_ten_points(&hmodbus, i, i);
-		}
-		Goal_r_position = modbus_set_goal_r_position(&hmodbus);
-		Goal_theta_position = modbus_set_goal_theta_position(&hmodbus);
+//		modbus_Update_All(&hmodbus, r_pos, theta_pos, r_Velo, theta_Velo,
+//				r_accel, theta_accel);
+//		for (int i = 0; i < 20; i++) {
+//			set_Target_Position_ten_points(&hmodbus, i, i);
+//		}
+//		Goal_r_position = modbus_set_goal_r_position(&hmodbus);
+//		Goal_theta_position = modbus_set_goal_theta_position(&hmodbus);
 		//hmodbus.RegisterAddress[0x15].U16 = 100;
 		//registerFrame[0x15].U16 = 100;
 //		for (int i = 0;i<31;i++)
@@ -238,15 +238,15 @@ int main(void)
 // Now use p1,v1,a1 and p2,v2,a2 as needed
 		//}
 
-		t_global = HAL_GetTick() / 1000.0f;
-		pos = GetTrajectoryPosition(&segments[current_segment], t_global);
-		vel = GetTrajectoryVelocity(&segments[current_segment], t_global);
-		// ถ้าจบ segment ปัจจุบันให้ข้ามไปอันถัดไป
-		if (t_global > segments[current_segment].t_start + segments[current_segment].t_total) {
-			if (current_segment < MAX_SEGMENTS - 1) {
-				current_segment++;
-			}
-		}
+//		t_global = HAL_GetTick() / 1000.0f;
+//		pos = GetTrajectoryPosition(&segments[current_segment], t_global);
+//		vel = GetTrajectoryVelocity(&segments[current_segment], t_global);
+//		// ถ้าจบ segment ปัจจุบันให้ข้ามไปอันถัดไป
+//		if (t_global > segments[current_segment].t_start + segments[current_segment].t_total) {
+//			if (current_segment < MAX_SEGMENTS - 1) {
+//				current_segment++;
+//			}
+//		}
 
 		PS2_ReadData();
 		Circle = PS2_ButtonCircle();
@@ -977,13 +977,13 @@ static void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
-void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
-	if (GPIO_Pin == GPIO_PIN_10) {
-		Encoder_setLimit(&encoder1, 180);
-		Encoder_setLimit(&encoder2, 180);
-		check += 1;
-	}
-}
+//void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
+//	if (GPIO_Pin == GPIO_PIN_10) {
+//		Encoder_setLimit(&encoder1, 180);
+//		Encoder_setLimit(&encoder2, 180);
+//		check += 1;
+//	}
+//}
 /* USER CODE END 4 */
 
 /**
