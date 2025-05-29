@@ -53,23 +53,23 @@ uint8_t PS2_ButtonStart() {
 	return !(SPIRx[3] & 0x08);
 }
 
-//uint8_t PS2_ButtonL1() {
-//	return !(SPIRx[4] & 0x04);
-//}
-//
-//uint8_t PS2_ButtonL2() {
-//	return !(SPIRx[4] & 0x01);
-//}
-
 //void PS2_Move() {
 //	if (PS2_ButtonCircle()) {
 //		// Move Right (Revolute)
+//		HAL_GPIO_WritePin(GPIOC, GPIO_PIN_6, 1); // 0 or 1
+//		__HAL_TIM_SET_COMPARE(&htim20,TIM_CHANNEL_3,30000);
 //	} else if (PS2_ButtonSquare()) {
 //		// Move Left (Revolute)
+//		HAL_GPIO_WritePin(GPIOC, GPIO_PIN_6, 0); // 0 or 1
+//		__HAL_TIM_SET_COMPARE(&htim20,TIM_CHANNEL_3,30000);
 //	} else if (PS2_ButtonTriangle()) {
 //		// Move Up (Prismatic)
+//		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_1, 1); // 0 or 1
+//		__HAL_TIM_SET_COMPARE(&htim20,TIM_CHANNEL_1,30000);
 //	} else if (PS2_ButtonCross()) {
 //		// Move Down (Prismatic)
+//		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_1, 0); // 0 or 1
+//		__HAL_TIM_SET_COMPARE(&htim20,TIM_CHANNEL_1,30000);
 //	} else if (PS2_ButtonR1()) {
 //		// Servo/Pen Move up
 //	} else if (PS2_ButtonR2()) {
