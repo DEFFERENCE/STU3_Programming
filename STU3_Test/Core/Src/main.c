@@ -27,6 +27,8 @@
 //#include "ModBusRTU.h"
 #include "Based_System_Communication.h"
 #include "Kalman_Filter.h"
+#include "Prismatic.h"
+#include "Revolute.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -85,10 +87,55 @@ ModbusHandleTypedef hmodbus;
 u16u8_t registerFrame[200];
 float Goal_r_position = 999;
 float Goal_theta_position = 999;
+
 uint16_t status;
 int DIR_18V ;
+int DIR_24V;
+float gain_disturbance;
+float voltage_dis;
+float pwm;
+float voltage;
+int count_Tim2;
+
+// position control prismatic
+arm_pid_instance_f32 Pris_posi_PID = {0};
+float position_pris = 0;
+float setposition_pris = 0;
+float V_pris_posi_PID = 0;
+float V_absoulte = 0;
+float pwm_pris_posi;
+float error_posi_pris[2];
+float delta_posi_pris;
+
+// velocity control prismatic
+arm_pid_instance_f32 Pris_velo_PID = {0};
+float velocity_pris = 0;
+float setvelocity_pris = 0;
+float V_pris_velo_PID = 0;
+float pwm_pris_velo;
+float error_velo_pris[2];
+float delta_velo_pris;
+
+// position control revolute
+arm_pid_instance_f32 Rev_posi_PID = {0};
+float position_rev = 0;
+float setposition_rev = 0;
+float V_rev_posi_PID = 0;
+float pwm_rev_posi;
+float error_posi_rev[2];
+float delta_posi_rev;
+
+// velocity control revolute
+arm_pid_instance_f32 Rev_velo_PID = {0};
+float velocity_rev = 0;
+float setvelocity_rev = 0;
+float V_rev_velo_PID = 0;
+float pwm_rev_velo;
+float error_velo_rev[2];
+float delta_velo_rev;
 
 KalmanFilter kf;
+PrismaticMotor motor;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -106,7 +153,12 @@ static void MX_TIM16_Init(void);
 static void MX_USART2_UART_Init(void);
 static void MX_ADC2_Init(void);
 /* USER CODE BEGIN PFP */
-void setPWM(uint16_t volt, TIM_HandleTypeDef *htim);
+float Prismatic_position_control(float delta_posi);
+float Prismatic_velocity_control(float delta_velo);
+float Revolute_position_control(float delta_posi);
+float Revolute_velocity_control(float delta_velo);
+float voltage_to_pwm(float voltage);
+float Prismatic_dis();
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -162,8 +214,10 @@ int main(void)
 	Encoder_Init(&encoder1, &htim4);
 	Encoder_Init(&encoder2, &htim3);
 	HAL_ADC_Start(&hadc1);
+	HAL_TIM_Base_Start_IT(&htim2);
 
 	int lastTick = 0;
+	int pre_tick = 0;
 	HAL_TIM_Encoder_Start(&htim3, TIM_CHANNEL_ALL);
 	HAL_TIM_Encoder_Start(&htim4, TIM_CHANNEL_ALL);
 
@@ -212,6 +266,31 @@ int main(void)
 
 	Kalman_SetMeasurementNoise(&kf, 0.01f);
 	Kalman_SetProcessNoise(&kf, 0.1f);
+	motor = create_prismatic_motor(2.29e-04, 4.82e-04, 8.75e-01, 1.77e-01, 1.77e-01, 3.8719, 0.0016);
+
+	// Prismatic Position
+	Pris_posi_PID.Kp = 1;
+	Pris_posi_PID.Ki = 0.05;
+	Pris_posi_PID.Kd = 0.1;
+	arm_pid_init_f32(&Pris_posi_PID, 0);
+
+	// Prismatic Velocity
+	Pris_velo_PID.Kp = 1;
+	Pris_velo_PID.Ki = 0.00001;
+	Pris_velo_PID.Kd = 0;
+	arm_pid_init_f32(&Pris_velo_PID, 0);
+
+	// Revolute Position
+	Rev_posi_PID.Kp = 1;
+	Rev_posi_PID.Ki = 0.00001;
+	Rev_posi_PID.Kd = 0.1;
+	arm_pid_init_f32(&Rev_posi_PID, 0);
+
+	// Revolute Velocity
+	Rev_velo_PID.Kp = 1;
+	Rev_velo_PID.Ki = 0.00001;
+	Rev_velo_PID.Kd = 0;
+	arm_pid_init_f32(&Rev_velo_PID, 0);
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -223,10 +302,10 @@ int main(void)
 
 		HAL_GPIO_WritePin(GPIOC, GPIO_PIN_6, DIR_18V);
 
-		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_1, 1);
+		//HAL_GPIO_WritePin(GPIOB, GPIO_PIN_1, 1);
 		//HAL_GPIO_WritePin(GPIOB, GPIO_PIN_2, 1);
 		//__HAL_TIM_SET_COMPARE(&htim20,TIM_CHANNEL_1,500);
-		__HAL_TIM_SET_COMPARE(&htim20,TIM_CHANNEL_3,status);
+		//__HAL_TIM_SET_COMPARE(&htim20,TIM_CHANNEL_3,status);
 		HAL_ADC_Start(&hadc1);
 		HAL_ADC_Start(&hadc2);
 		adc_1 = HAL_ADC_GetValue(&hadc1);
@@ -235,7 +314,7 @@ int main(void)
 		QEIReadRaw4 = __HAL_TIM_GET_COUNTER(&htim4);
 		Modbus_Protocal_Worker();
 		//modbus_r_position(&hmodbus,7);
-		hmodbus.RegisterAddress[0x00].U16 = 22881;
+//		hmodbus.RegisterAddress[0x00].U16 = 22881;
 		//hmodbus.RegisterAddress[0x10].U16 = 4;
 //		modbus_r_position(&hmodbus,5);
 //		modbus_theta_position(&hmodbus,5);
@@ -289,17 +368,38 @@ int main(void)
 //		pos = GetTrajectoryPosition(&segments[current_segment], t_global);
 //		vel = GetTrajectoryVelocity(&segments[current_segment], t_global);
 //		// ถ้าจบ segment ปัจจุบันให้ข้ามไปอันถัดไป
-//		if (t_global
-//				> segments[current_segment].t_start
-//						+ segments[current_segment].t_total) {
+//		if (t_global > segments[current_segment].t_start + segments[current_segment].t_total) {
 //			if (current_segment < MAX_SEGMENTS - 1) {
 //				current_segment++;
 //			}
 //		}
 
-		float measurement[4] = {1.0f, 0.2f, 0.5f, 0.1f};
-		Kalman_Predict(&kf);
-		Kalman_Update(&kf, measurement);
+//		float measurement[4] = {1.0f, 0.2f, 0.5f, 0.1f};
+//		Kalman_Predict(&kf);
+//		Kalman_Update(&kf, measurement);
+
+//		pwm = voltage_to_pwm(voltage + Prismatic_dis() + V_pris_posi_PID);
+		if (V_pris_posi_PID < 0) {
+			DIR_24V = 0;
+			V_absoulte = fabsf(V_pris_posi_PID);
+		} else if (V_pris_posi_PID > 0) {
+			DIR_24V = 1;
+			V_absoulte = V_pris_posi_PID;
+		}
+		pwm_pris_posi = voltage_to_pwm(V_absoulte);
+		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_1, DIR_24V);
+		__HAL_TIM_SET_COMPARE(&htim20,TIM_CHANNEL_1,pwm_pris_posi);
+
+//		if (V_pris_velo_PID < 0) {
+//			DIR_24V = 0;
+//			V_absoulte = fabsf(V_pris_velo_PID);
+//		} else if (V_pris_velo_PID > 0) {
+//			DIR_24V = 1;
+//			V_absoulte = V_pris_velo_PID;
+//		}
+//		pwm_pris_velo = voltage_to_pwm(V_absoulte);
+//		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_1, DIR_24V);
+//		__HAL_TIM_SET_COMPARE(&htim20,TIM_CHANNEL_1,pwm_pris_velo);
 	}
   /* USER CODE END 3 */
 }
@@ -543,9 +643,9 @@ static void MX_TIM2_Init(void)
 
   /* USER CODE END TIM2_Init 1 */
   htim2.Instance = TIM2;
-  htim2.Init.Prescaler = 0;
+  htim2.Init.Prescaler = 169;
   htim2.Init.CounterMode = TIM_COUNTERMODE_UP;
-  htim2.Init.Period = 4294967295;
+  htim2.Init.Period = 1000;
   htim2.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
   htim2.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
   if (HAL_TIM_Base_Init(&htim2) != HAL_OK)
@@ -1074,7 +1174,148 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
 		State = 15;
 	}
 }
-void setPWM(uint16_t volt, TIM_HandleTypeDef *htim) {
+
+void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) {
+	if (htim == &htim2) {
+		count_Tim2 += 1;
+		// Velocity Control
+//		velocity_pris = Encoder_GetVelocity_mm(&encoder1);
+//		setvelocity_pris = V_pris_posi_PID;
+//		delta_velo_pris = setvelocity_pris - velocity_pris;
+//		V_pris_velo_PID = Prismatic_velocity_control(delta_velo_pris);
+		if (count_Tim2 >= 10) {
+			// Position Control
+			position_pris = Encoder_GetPosition_mm(&encoder1);
+			delta_posi_pris = setposition_pris - position_pris;
+			V_pris_posi_PID = Prismatic_position_control(delta_posi_pris);
+			count_Tim2 = 0;
+		}
+	}
+}
+
+float Prismatic_position_control(float delta_posi) {
+	int anti_windup;
+	error_posi_pris[0] = delta_posi;
+	Pris_posi_PID.Kp = 1;
+	Pris_posi_PID.Kd = 1;
+
+	if (error_posi_pris[0] < 0 && error_posi_pris[1] > 0) {
+		anti_windup = 0;
+	} else if (error_posi_pris[0] > 0 && error_posi_pris[1] < 0) {
+		anti_windup = 0;
+	} else {
+		anti_windup = 1;
+	}
+
+	if (V_pris_posi_PID >= 24 && anti_windup == 0) {
+		Pris_posi_PID.Ki = 0;
+	} else {
+		Pris_posi_PID.Ki = 1;
+	}
+
+	V_pris_posi_PID = arm_pid_f32(&Pris_posi_PID, delta_posi);
+
+	if (V_pris_posi_PID > 24) {
+		V_pris_posi_PID = 24;
+	}
+
+	error_posi_pris[1] = error_posi_pris[0];
+	return V_pris_posi_PID;
+}
+
+float Prismatic_velocity_control(float delta_velo) {
+	int anti_windup;
+	error_velo_pris[0] =  delta_velo;
+	Pris_velo_PID.Kp = 0.01;
+
+	if (error_velo_pris[0] < 0 && error_velo_pris[1] > 0) {
+		anti_windup = 0;
+	} else if (error_velo_pris[0] > 0 && error_velo_pris[1] < 0) {
+		anti_windup = 0;
+	} else {
+		anti_windup = 1;
+	}
+
+	if (V_pris_velo_PID >= 24 && anti_windup == 0) {
+		Pris_velo_PID.Ki = 0;
+	} else {
+		Pris_velo_PID.Ki = 0.001;
+	}
+
+	V_pris_velo_PID = arm_pid_f32(&Pris_velo_PID, delta_velo);
+	error_velo_pris[1] = error_velo_pris[0];
+	return V_pris_velo_PID;
+}
+
+float Revolute_position_control(float delta_posi) {
+	int anti_windup;
+	error_posi_rev[0] = delta_posi;
+	Rev_posi_PID.Kp = 1;
+	Rev_posi_PID.Kd = 1;
+
+	if (error_posi_rev[0] < 0 && error_posi_rev[1] > 0) {
+		anti_windup = 0;
+	} else if (error_posi_rev[0] > 0 && error_posi_rev[1] < 0) {
+		anti_windup = 0;
+	} else {
+		anti_windup = 1;
+	}
+
+	if (V_rev_posi_PID >= 24 && anti_windup == 0) {
+		Rev_posi_PID.Ki = 0;
+	} else {
+		Rev_posi_PID.Ki = 1;
+	}
+
+	V_rev_posi_PID = arm_pid_f32(&Rev_posi_PID, delta_posi);
+
+	if (V_rev_posi_PID > 24) {
+		V_rev_posi_PID = 24;
+	}
+
+	error_posi_rev[1] = error_posi_rev[0];
+	return V_rev_posi_PID;
+}
+
+float Revolute_velocity_control(float delta_velo) {
+	int anti_windup;
+	error_velo_rev[0] =  delta_velo;
+	Rev_velo_PID.Kp = 0.01;
+
+	if (error_velo_rev[0] < 0 && error_velo_rev[1] > 0) {
+		anti_windup = 0;
+	} else if (error_velo_rev[0] > 0 && error_velo_rev[1] < 0) {
+		anti_windup = 0;
+	} else {
+		anti_windup = 1;
+	}
+
+	if (V_rev_velo_PID >= 24 && anti_windup == 0) {
+		Rev_velo_PID.Ki = 0;
+	} else {
+		Rev_velo_PID.Ki = 0.001;
+	}
+
+	V_rev_velo_PID = arm_pid_f32(&Rev_velo_PID, delta_velo);
+	error_velo_rev[1] = error_velo_rev[0];
+	return V_rev_velo_PID;
+}
+
+float voltage_to_pwm(float voltage) {
+	float pwm = (voltage * 65535) / 24;
+	return pwm;
+}
+
+float Prismatic_dis() {
+//	float sample_time = (HAL_GetTick() - pre_tick) / 1000.0f;
+//	if (sample_time >= 0.001f) {
+//		float load = 0.01 / (2.0 * (22.0/7.0) * 4.0 * motor.Kt_Pri);
+//		voltage_dis = (disturbance_feedforward_pri(&motor, load)) * (0.3*9.81) * gain_disturbance; // อย่าลืมคูณ sin(theta)
+//		pre_tick = currentTick;
+//	}
+	float load = 0.01 / (2.0 * (22.0/7.0) * 4.0 * motor.Kt_Pri);
+	voltage_dis = (disturbance_feedforward_pri(&motor, load)) * (0.3*9.81) * gain_disturbance; // อย่าลืมคูณ sin(theta)
+	return voltage_dis;
 }
 /* USER CODE END 4 */
 
