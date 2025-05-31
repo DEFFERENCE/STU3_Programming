@@ -276,7 +276,7 @@ int main(void)
 
 	// Prismatic Velocity
 	Pris_velo_PID.Kp = 1;
-	Pris_velo_PID.Ki = 0.00001;
+	Pris_velo_PID.Ki = 0.1;
 	Pris_velo_PID.Kd = 0;
 	arm_pid_init_f32(&Pris_velo_PID, 0);
 
@@ -291,6 +291,10 @@ int main(void)
 	Rev_velo_PID.Ki = 0.00001;
 	Rev_velo_PID.Kd = 0;
 	arm_pid_init_f32(&Rev_velo_PID, 0);
+
+	InitTrajectorySegment(&segments[0], 0.0f, 500.0f, 500.0f, 250.0f, 0.0f);
+//	InitTrajectorySegment(&segments[1], 100.0f, 50.0f, 40.0f, 80.0f, segments[0].t_start + segments[0].t_total);
+//	InitTrajectorySegment(&segments[2], 50.0f, 200.0f, 60.0f, 120.0f, segments[1].t_start + segments[1].t_total);
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -364,9 +368,9 @@ int main(void)
 // Now use p1,v1,a1 and p2,v2,a2 as needed
 		}
 //
-//		t_global = HAL_GetTick() / 1000.0f;
-//		pos = GetTrajectoryPosition(&segments[current_segment], t_global);
-//		vel = GetTrajectoryVelocity(&segments[current_segment], t_global);
+		t_global = HAL_GetTick() / 1000.0f;
+		pos = GetTrajectoryPosition(&segments[0], t_global);
+		vel = GetTrajectoryVelocity(&segments[0], t_global);
 //		// ถ้าจบ segment ปัจจุบันให้ข้ามไปอันถัดไป
 //		if (t_global > segments[current_segment].t_start + segments[current_segment].t_total) {
 //			if (current_segment < MAX_SEGMENTS - 1) {
@@ -379,27 +383,27 @@ int main(void)
 //		Kalman_Update(&kf, measurement);
 
 //		pwm = voltage_to_pwm(voltage + Prismatic_dis() + V_pris_posi_PID);
-		if (V_pris_posi_PID < 0) {
-			DIR_24V = 0;
-			V_absoulte = fabsf(V_pris_posi_PID);
-		} else if (V_pris_posi_PID > 0) {
-			DIR_24V = 1;
-			V_absoulte = V_pris_posi_PID;
-		}
-		pwm_pris_posi = voltage_to_pwm(V_absoulte);
-		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_1, DIR_24V);
-		__HAL_TIM_SET_COMPARE(&htim20,TIM_CHANNEL_1,pwm_pris_posi);
-
-//		if (V_pris_velo_PID < 0) {
+//		if (V_pris_posi_PID < 0) {
 //			DIR_24V = 0;
-//			V_absoulte = fabsf(V_pris_velo_PID);
-//		} else if (V_pris_velo_PID > 0) {
+//			V_absoulte = fabsf(V_pris_posi_PID);
+//		} else if (V_pris_posi_PID > 0) {
 //			DIR_24V = 1;
-//			V_absoulte = V_pris_velo_PID;
+//			V_absoulte = V_pris_posi_PID;
 //		}
-//		pwm_pris_velo = voltage_to_pwm(V_absoulte);
+//		pwm_pris_posi = voltage_to_pwm(V_absoulte);
 //		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_1, DIR_24V);
-//		__HAL_TIM_SET_COMPARE(&htim20,TIM_CHANNEL_1,pwm_pris_velo);
+//		__HAL_TIM_SET_COMPARE(&htim20,TIM_CHANNEL_1,pwm_pris_posi);
+
+		if (V_pris_velo_PID < 0) {
+			DIR_24V = 0;
+			V_absoulte = fabsf(V_pris_velo_PID);
+		} else if (V_pris_velo_PID > 0) {
+			DIR_24V = 1;
+			V_absoulte = V_pris_velo_PID;
+		}
+		pwm_pris_velo = voltage_to_pwm(V_absoulte);
+		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_1, DIR_24V);
+		__HAL_TIM_SET_COMPARE(&htim20,TIM_CHANNEL_1,pwm_pris_velo);
 	}
   /* USER CODE END 3 */
 }
@@ -1179,13 +1183,14 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) {
 	if (htim == &htim2) {
 		count_Tim2 += 1;
 		// Velocity Control
-//		velocity_pris = Encoder_GetVelocity_mm(&encoder1);
-//		setvelocity_pris = V_pris_posi_PID;
-//		delta_velo_pris = setvelocity_pris - velocity_pris;
-//		V_pris_velo_PID = Prismatic_velocity_control(delta_velo_pris);
+		velocity_pris = Encoder_GetVelocity_mm(&encoder1);
+		setvelocity_pris = GetTrajectoryVelocity(&segments[0], t_global) + V_pris_posi_PID;
+		delta_velo_pris = setvelocity_pris - velocity_pris;
+		V_pris_velo_PID = Prismatic_velocity_control(delta_velo_pris);
 		if (count_Tim2 >= 10) {
 			// Position Control
 			position_pris = Encoder_GetPosition_mm(&encoder1);
+			setposition_pris = GetTrajectoryPosition(&segments[0], t_global);
 			delta_posi_pris = setposition_pris - position_pris;
 			V_pris_posi_PID = Prismatic_position_control(delta_posi_pris);
 			count_Tim2 = 0;
@@ -1196,8 +1201,8 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) {
 float Prismatic_position_control(float delta_posi) {
 	int anti_windup;
 	error_posi_pris[0] = delta_posi;
-	Pris_posi_PID.Kp = 1;
-	Pris_posi_PID.Kd = 1;
+//	Pris_posi_PID.Kp = 1;
+//	Pris_posi_PID.Kd = 1;
 
 	if (error_posi_pris[0] < 0 && error_posi_pris[1] > 0) {
 		anti_windup = 0;
@@ -1207,17 +1212,17 @@ float Prismatic_position_control(float delta_posi) {
 		anti_windup = 1;
 	}
 
-	if (V_pris_posi_PID >= 24 && anti_windup == 0) {
-		Pris_posi_PID.Ki = 0;
-	} else {
-		Pris_posi_PID.Ki = 1;
-	}
+//	if (V_pris_posi_PID >= 24 && anti_windup == 0) {
+//		Pris_posi_PID.Ki = 0;
+//	} else {
+//		Pris_posi_PID.Ki = 1;
+//	}
 
 	V_pris_posi_PID = arm_pid_f32(&Pris_posi_PID, delta_posi);
 
-	if (V_pris_posi_PID > 24) {
-		V_pris_posi_PID = 24;
-	}
+//	if (V_pris_posi_PID > 24) {
+//		V_pris_posi_PID = 24;
+//	}
 
 	error_posi_pris[1] = error_posi_pris[0];
 	return V_pris_posi_PID;
@@ -1226,7 +1231,7 @@ float Prismatic_position_control(float delta_posi) {
 float Prismatic_velocity_control(float delta_velo) {
 	int anti_windup;
 	error_velo_pris[0] =  delta_velo;
-	Pris_velo_PID.Kp = 0.01;
+//	Pris_velo_PID.Kp = 0.01;
 
 	if (error_velo_pris[0] < 0 && error_velo_pris[1] > 0) {
 		anti_windup = 0;
@@ -1243,6 +1248,11 @@ float Prismatic_velocity_control(float delta_velo) {
 	}
 
 	V_pris_velo_PID = arm_pid_f32(&Pris_velo_PID, delta_velo);
+
+	if (V_pris_velo_PID > 24) {
+		V_pris_velo_PID = 24;
+	}
+
 	error_velo_pris[1] = error_velo_pris[0];
 	return V_pris_velo_PID;
 }

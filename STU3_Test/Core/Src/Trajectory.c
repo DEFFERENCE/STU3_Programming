@@ -14,16 +14,18 @@ void InitTrajectorySegment(TrajectorySegment *seg, float start, float end, float
         t_accel = sqrtf(D / a_max);
         seg->t_const = 0;
         seg->t_total = 2 * t_accel;
+        seg->v_max = a_max * t_accel * dir;
     } else {
         // Trapezoidal profile
         float d_const = D - 2 * d_accel;
         seg->t_const = d_const / v_max;
         seg->t_total = 2 * t_accel + seg->t_const;
+        seg->v_max = v_max * dir;
     }
 
     seg->start_pos = start;
     seg->end_pos = end;
-    seg->v_max = v_max * dir;
+//    seg->v_max = v_max * dir;
     seg->a_max = a_max * dir;
     seg->t_accel = t_accel;
     seg->t_decel = t_accel;
