@@ -49,8 +49,6 @@ extern "C" {
 
 /* USER CODE END EM */
 
-void HAL_TIM_MspPostInit(TIM_HandleTypeDef *htim);
-
 /* Exported functions prototypes ---------------------------------------------*/
 void Error_Handler(void);
 
@@ -73,6 +71,8 @@ void Error_Handler(void);
 #define Current_SensorA1_GPIO_Port GPIOA
 #define Encoder_1_Pin GPIO_PIN_6
 #define Encoder_1_GPIO_Port GPIOA
+#define Encoder_1A7_Pin GPIO_PIN_7
+#define Encoder_1A7_GPIO_Port GPIOA
 #define DIR_MD20A_24V_Pin GPIO_PIN_1
 #define DIR_MD20A_24V_GPIO_Port GPIOB
 #define PWM_MD20A_24V_Pin GPIO_PIN_2
@@ -80,8 +80,6 @@ void Error_Handler(void);
 #define Limit_Switch_pen_2_Pin GPIO_PIN_10
 #define Limit_Switch_pen_2_GPIO_Port GPIOB
 #define Limit_Switch_pen_2_EXTI_IRQn EXTI15_10_IRQn
-#define DIR_MD20A_18V_Pin GPIO_PIN_12
-#define DIR_MD20A_18V_GPIO_Port GPIOB
 #define Proximity_Sensor_Pin GPIO_PIN_13
 #define Proximity_Sensor_GPIO_Port GPIOB
 #define Proximity_Sensor_EXTI_IRQn EXTI15_10_IRQn
@@ -91,24 +89,24 @@ void Error_Handler(void);
 #define Limit_Switch_Prismatic2_Pin GPIO_PIN_15
 #define Limit_Switch_Prismatic2_GPIO_Port GPIOB
 #define Limit_Switch_Prismatic2_EXTI_IRQn EXTI15_10_IRQn
-#define Encoder_1C7_Pin GPIO_PIN_7
-#define Encoder_1C7_GPIO_Port GPIOC
+#define DIR_MD20A_18V_Pin GPIO_PIN_6
+#define DIR_MD20A_18V_GPIO_Port GPIOC
 #define PWM_MD20A_18V_Pin GPIO_PIN_8
 #define PWM_MD20A_18V_GPIO_Port GPIOC
 #define PWM_Servo_Pin GPIO_PIN_9
 #define PWM_Servo_GPIO_Port GPIOC
 #define Encoder_2_Pin GPIO_PIN_11
 #define Encoder_2_GPIO_Port GPIOA
-#define Proximity_sensor_Pin GPIO_PIN_12
-#define Proximity_sensor_GPIO_Port GPIOA
-#define Proximity_sensor_EXTI_IRQn EXTI15_10_IRQn
-#define PS2_Attention_Pin GPIO_PIN_10
-#define PS2_Attention_GPIO_Port GPIOC
+#define Encoder_2A12_Pin GPIO_PIN_12
+#define Encoder_2A12_GPIO_Port GPIOA
+#define PS2_Joy_stick_Attention_Pin GPIO_PIN_10
+#define PS2_Joy_stick_Attention_GPIO_Port GPIOC
 #define Emergency_Pin GPIO_PIN_11
 #define Emergency_GPIO_Port GPIOC
 #define Emergency_EXTI_IRQn EXTI15_10_IRQn
-#define Encoder_2B7_Pin GPIO_PIN_7
-#define Encoder_2B7_GPIO_Port GPIOB
+#define Proximity_sensor_Pin GPIO_PIN_12
+#define Proximity_sensor_GPIO_Port GPIOC
+#define Proximity_sensor_EXTI_IRQn EXTI15_10_IRQn
 #define Limit_Switch_pen_1_Pin GPIO_PIN_9
 #define Limit_Switch_pen_1_GPIO_Port GPIOB
 #define Limit_Switch_pen_1_EXTI_IRQn EXTI9_5_IRQn
