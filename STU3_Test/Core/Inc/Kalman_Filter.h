@@ -34,5 +34,6 @@ void Kalman_Predict(KalmanFilter *kf);
 void Kalman_Update(KalmanFilter *kf, float32_t *measurement);
 void Kalman_SetProcessNoise(KalmanFilter *kf, float value);
 void Kalman_SetMeasurementNoise(KalmanFilter *kf, float value);
+void Kalman_SetInput(KalmanFilter *kf, float value);
 
 #endif

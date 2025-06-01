@@ -40,6 +40,11 @@ void Kalman_SetMeasurementNoise(KalmanFilter *kf, float value) {
     }
 }
 
+void Kalman_SetInput(KalmanFilter *kf, float value)
+{
+	kf->Input_data[0] = value;
+	}
+
 void Kalman_Predict(KalmanFilter *kf) {
 	// x = A * x + B * u
 	arm_mat_mult_f32(&kf->A, &kf->x, &kf->temp1);   // temp1 = A * x

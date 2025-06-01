@@ -1,5 +1,6 @@
 ../Core/Src/Kalman_Filter.c:3:6:Kalman_Init	2
 ../Core/Src/Kalman_Filter.c:27:6:Kalman_SetProcessNoise	4
 ../Core/Src/Kalman_Filter.c:35:6:Kalman_SetMeasurementNoise	4
-../Core/Src/Kalman_Filter.c:43:6:Kalman_Predict	1
-../Core/Src/Kalman_Filter.c:56:6:Kalman_Update	6
+../Core/Src/Kalman_Filter.c:43:6:Kalman_SetInput	1
+../Core/Src/Kalman_Filter.c:48:6:Kalman_Predict	1
+../Core/Src/Kalman_Filter.c:61:6:Kalman_Update	6
