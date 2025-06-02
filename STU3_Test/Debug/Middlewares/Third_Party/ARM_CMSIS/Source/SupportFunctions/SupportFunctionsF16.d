@@ -1,6 +1,6 @@
 Middlewares/Third_Party/ARM_CMSIS/Source/SupportFunctions/SupportFunctionsF16.o: \
  ../Middlewares/Third_Party/ARM_CMSIS/Source/SupportFunctions/SupportFunctionsF16.c \
- D:/Fibo/Year2/Term2/STU/STU3_Programming/STU3_Test/Source/SupportFunctions/arm_copy_f16.c \
+ C:/FIBO_Work/FRA262\ -\ Studio3/STU3_Programming/STU3_Test/Source/SupportFunctions/arm_copy_f16.c \
  ../Middlewares/Third_Party/ARM_CMSIS/Include/dsp/support_functions_f16.h \
  ../Middlewares/Third_Party/ARM_CMSIS/Include/arm_math_types_f16.h \
  ../Middlewares/Third_Party/ARM_CMSIS/Include/arm_math_types.h \
@@ -10,16 +10,16 @@ Middlewares/Third_Party/ARM_CMSIS/Source/SupportFunctions/SupportFunctionsF16.o:
  ../Middlewares/Third_Party/ARM_CMSIS/Include/dsp/none.h \
  ../Middlewares/Third_Party/ARM_CMSIS/Include/arm_math_types.h \
  ../Middlewares/Third_Party/ARM_CMSIS/Include/dsp/utils.h \
- D:/Fibo/Year2/Term2/STU/STU3_Programming/STU3_Test/Source/SupportFunctions/arm_fill_f16.c \
- D:/Fibo/Year2/Term2/STU/STU3_Programming/STU3_Test/Source/SupportFunctions/arm_f16_to_q15.c \
- D:/Fibo/Year2/Term2/STU/STU3_Programming/STU3_Test/Source/SupportFunctions/arm_f16_to_float.c \
- D:/Fibo/Year2/Term2/STU/STU3_Programming/STU3_Test/Source/SupportFunctions/arm_f16_to_f64.c \
- D:/Fibo/Year2/Term2/STU/STU3_Programming/STU3_Test/Source/SupportFunctions/arm_f64_to_f16.c \
- D:/Fibo/Year2/Term2/STU/STU3_Programming/STU3_Test/Source/SupportFunctions/arm_q15_to_f16.c \
- D:/Fibo/Year2/Term2/STU/STU3_Programming/STU3_Test/Source/SupportFunctions/arm_float_to_f16.c \
- D:/Fibo/Year2/Term2/STU/STU3_Programming/STU3_Test/Source/SupportFunctions/arm_weighted_sum_f16.c \
- D:/Fibo/Year2/Term2/STU/STU3_Programming/STU3_Test/Source/SupportFunctions/arm_barycenter_f16.c
-D:/Fibo/Year2/Term2/STU/STU3_Programming/STU3_Test/Source/SupportFunctions/arm_copy_f16.c:
+ C:/FIBO_Work/FRA262\ -\ Studio3/STU3_Programming/STU3_Test/Source/SupportFunctions/arm_fill_f16.c \
+ C:/FIBO_Work/FRA262\ -\ Studio3/STU3_Programming/STU3_Test/Source/SupportFunctions/arm_f16_to_q15.c \
+ C:/FIBO_Work/FRA262\ -\ Studio3/STU3_Programming/STU3_Test/Source/SupportFunctions/arm_f16_to_float.c \
+ C:/FIBO_Work/FRA262\ -\ Studio3/STU3_Programming/STU3_Test/Source/SupportFunctions/arm_f16_to_f64.c \
+ C:/FIBO_Work/FRA262\ -\ Studio3/STU3_Programming/STU3_Test/Source/SupportFunctions/arm_f64_to_f16.c \
+ C:/FIBO_Work/FRA262\ -\ Studio3/STU3_Programming/STU3_Test/Source/SupportFunctions/arm_q15_to_f16.c \
+ C:/FIBO_Work/FRA262\ -\ Studio3/STU3_Programming/STU3_Test/Source/SupportFunctions/arm_float_to_f16.c \
+ C:/FIBO_Work/FRA262\ -\ Studio3/STU3_Programming/STU3_Test/Source/SupportFunctions/arm_weighted_sum_f16.c \
+ C:/FIBO_Work/FRA262\ -\ Studio3/STU3_Programming/STU3_Test/Source/SupportFunctions/arm_barycenter_f16.c
+C:/FIBO_Work/FRA262\ -\ Studio3/STU3_Programming/STU3_Test/Source/SupportFunctions/arm_copy_f16.c:
 ../Middlewares/Third_Party/ARM_CMSIS/Include/dsp/support_functions_f16.h:
 ../Middlewares/Third_Party/ARM_CMSIS/Include/arm_math_types_f16.h:
 ../Middlewares/Third_Party/ARM_CMSIS/Include/arm_math_types.h:
@@ -29,12 +29,12 @@ D:/Fibo/Year2/Term2/STU/STU3_Programming/STU3_Test/Source/SupportFunctions/arm_c
 ../Middlewares/Third_Party/ARM_CMSIS/Include/dsp/none.h:
 ../Middlewares/Third_Party/ARM_CMSIS/Include/arm_math_types.h:
 ../Middlewares/Third_Party/ARM_CMSIS/Include/dsp/utils.h:
-D:/Fibo/Year2/Term2/STU/STU3_Programming/STU3_Test/Source/SupportFunctions/arm_fill_f16.c:
-D:/Fibo/Year2/Term2/STU/STU3_Programming/STU3_Test/Source/SupportFunctions/arm_f16_to_q15.c:
-D:/Fibo/Year2/Term2/STU/STU3_Programming/STU3_Test/Source/SupportFunctions/arm_f16_to_float.c:
-D:/Fibo/Year2/Term2/STU/STU3_Programming/STU3_Test/Source/SupportFunctions/arm_f16_to_f64.c:
-D:/Fibo/Year2/Term2/STU/STU3_Programming/STU3_Test/Source/SupportFunctions/arm_f64_to_f16.c:
-D:/Fibo/Year2/Term2/STU/STU3_Programming/STU3_Test/Source/SupportFunctions/arm_q15_to_f16.c:
-D:/Fibo/Year2/Term2/STU/STU3_Programming/STU3_Test/Source/SupportFunctions/arm_float_to_f16.c:
-D:/Fibo/Year2/Term2/STU/STU3_Programming/STU3_Test/Source/SupportFunctions/arm_weighted_sum_f16.c:
-D:/Fibo/Year2/Term2/STU/STU3_Programming/STU3_Test/Source/SupportFunctions/arm_barycenter_f16.c:
+C:/FIBO_Work/FRA262\ -\ Studio3/STU3_Programming/STU3_Test/Source/SupportFunctions/arm_fill_f16.c:
+C:/FIBO_Work/FRA262\ -\ Studio3/STU3_Programming/STU3_Test/Source/SupportFunctions/arm_f16_to_q15.c:
+C:/FIBO_Work/FRA262\ -\ Studio3/STU3_Programming/STU3_Test/Source/SupportFunctions/arm_f16_to_float.c:
+C:/FIBO_Work/FRA262\ -\ Studio3/STU3_Programming/STU3_Test/Source/SupportFunctions/arm_f16_to_f64.c:
+C:/FIBO_Work/FRA262\ -\ Studio3/STU3_Programming/STU3_Test/Source/SupportFunctions/arm_f64_to_f16.c:
+C:/FIBO_Work/FRA262\ -\ Studio3/STU3_Programming/STU3_Test/Source/SupportFunctions/arm_q15_to_f16.c:
+C:/FIBO_Work/FRA262\ -\ Studio3/STU3_Programming/STU3_Test/Source/SupportFunctions/arm_float_to_f16.c:
+C:/FIBO_Work/FRA262\ -\ Studio3/STU3_Programming/STU3_Test/Source/SupportFunctions/arm_weighted_sum_f16.c:
+C:/FIBO_Work/FRA262\ -\ Studio3/STU3_Programming/STU3_Test/Source/SupportFunctions/arm_barycenter_f16.c:

@@ -27,7 +27,7 @@ float disturbance_feedforward(const RevoluteMotor* motor, float load_torque) {
 
 // Calculates voltage needed to maintain a certain angular velocity
 float reference_feedforward(const RevoluteMotor* motor, float angular_velocity) {
-	float num = 33.86 - (38.43 * v_rev_ref[1]) + (4.597 * v_rev_ref[2]);
+	float num = 4.678 - (5.295 * v_rev_ref[1]) + (0.6394 * v_rev_ref[2]);
 	float den = 1 - (1.81 * v_rev_ref[1]) + (0.8186 * v_rev_ref[2]);
 	v_rev_ref[0] = (num/den) * angular_velocity;
 	v_rev_ref[2] = v_rev_ref[1];

@@ -8,7 +8,7 @@ void Kalman_Init(KalmanFilter *kf) {
     arm_mat_init_f32(&kf->R, KALMAN_MEAS_DIM, KALMAN_MEAS_DIM, kf->R_data);
     arm_mat_init_f32(&kf->P, KALMAN_STATE_DIM, KALMAN_STATE_DIM, kf->P_data);
     arm_mat_init_f32(&kf->K, KALMAN_STATE_DIM, KALMAN_MEAS_DIM, kf->K_data);
-    arm_mat_init_f32(&kf->Input, KALMAN_STATE_DIM, KALMAN_MEAS_DIM, kf->Input_data);
+    arm_mat_init_f32(&kf->Input, KALMAN_STATE_DIM, 1, kf->Input_data);
 
     arm_mat_init_f32(&kf->x, KALMAN_STATE_DIM, 1, kf->x_data);
     arm_mat_init_f32(&kf->u, KALMAN_MEAS_DIM, 1, kf->u_data);
@@ -43,8 +43,7 @@ void Kalman_SetMeasurementNoise(KalmanFilter *kf, float value) {
 void Kalman_SetInput(KalmanFilter *kf, float value)
 {
 	kf->Input_data[0] = value;
-	}
-
+}
 void Kalman_Predict(KalmanFilter *kf) {
 	// x = A * x + B * u
 	arm_mat_mult_f32(&kf->A, &kf->x, &kf->temp1);   // temp1 = A * x

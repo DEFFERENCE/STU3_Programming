@@ -2,5 +2,5 @@
 ../Core/Src/Kalman_Filter.c:27:6:Kalman_SetProcessNoise	24	static
 ../Core/Src/Kalman_Filter.c:35:6:Kalman_SetMeasurementNoise	24	static
 ../Core/Src/Kalman_Filter.c:43:6:Kalman_SetInput	16	static
-../Core/Src/Kalman_Filter.c:48:6:Kalman_Predict	16	static
-../Core/Src/Kalman_Filter.c:61:6:Kalman_Update	40	static
+../Core/Src/Kalman_Filter.c:47:6:Kalman_Predict	16	static
+../Core/Src/Kalman_Filter.c:60:6:Kalman_Update	40	static

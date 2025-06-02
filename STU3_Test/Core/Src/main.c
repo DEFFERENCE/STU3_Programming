@@ -83,9 +83,7 @@ float Goal_theta_position = 999;
 uint16_t status;
 int DIR_18V ;
 int DIR_24V;
-float Gain_disturbance_pris;
-float Gain_disturbance_rev;
-float voltage_dis_pris;
+float gain_disturbance_rev;
 float voltage_dis_rev;
 float pwm;
 float voltage;
@@ -127,6 +125,8 @@ float V_rev_velo_PID = 0;
 float pwm_rev_velo;
 float error_velo_rev[2];
 float delta_velo_rev;
+float V_absolute_rev;
+float V_plant;
 
 KalmanFilter kf_pris;
 KalmanFilter kf_rev;
@@ -134,6 +134,10 @@ PrismaticMotor Pris_motor;
 RevoluteMotor Rev_motor;
 float Measurement_Pris[4] = {0};
 float Measurement_Rev[4]= {0};
+
+float load;
+float sine;
+float encoder;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -204,7 +208,6 @@ int main(void)
 	HAL_TIM_Base_Start_IT(&htim2);
 
 	int lastTick = 0;
-	int pre_tick = 0;
 
 	HAL_TIM_Encoder_Start(&htim3, TIM_CHANNEL_ALL);
 	HAL_TIM_Encoder_Start(&htim4, TIM_CHANNEL_ALL);
@@ -218,31 +221,31 @@ int main(void)
 	Kalman_Init(&kf_pris);
 
 	kf_pris.A_data[0] = 1;
-	kf_pris.A_data[1] = 0.0009998;
-	kf_pris.A_data[2] = -2.659e-06;
-	kf_pris.A_data[3] = 8.108e-08;
+	kf_pris.A_data[1] = 0.0008395;
+	kf_pris.A_data[2] = -4.198e-07;
+	kf_pris.A_data[3] = 1.282e-05;
 	kf_pris.A_data[4] = 0;
-	kf_pris.A_data[5] = 0.9996;
-	kf_pris.A_data[6] = -0.005318;
-	kf_pris.A_data[7] = 0.0001622;
+	kf_pris.A_data[5] = 0.6791;
+	kf_pris.A_data[6] = -0.0008395;
+	kf_pris.A_data[7] = 0.02564;
 	kf_pris.A_data[8] = 0;
 	kf_pris.A_data[9] = 0;
 	kf_pris.A_data[10] = 1;
 	kf_pris.A_data[11] = 0;
 	kf_pris.A_data[12] = 0;
-	kf_pris.A_data[13] = -2.746;
-	kf_pris.A_data[14] = 0.007303;
-	kf_pris.A_data[15] = 0.1354;
+	kf_pris.A_data[13] = -0.04203;
+	kf_pris.A_data[14] = 2.101e-05;
+	kf_pris.A_data[15] = -0.09565;
 
-	kf_pris.B_data[0] = 1.203e-07;
-	kf_pris.B_data[1] = 0.0002406;
+	kf_pris.B_data[0] = 4.006e-06;
+	kf_pris.B_data[1] = 0.008011;
 	kf_pris.B_data[2] = 0;
-	kf_pris.B_data[3] = 1.685;
+	kf_pris.B_data[3] = 0.2826;
 
 	// Identity H
 	for (int i = 0; i < KALMAN_MEAS_DIM; i++) {
 	    for (int j = 0; j < KALMAN_STATE_DIM; j++) {
-	    	kf_pris.H_data[i * KALMAN_STATE_DIM + j] = (i == j) ? 1.0f : 0.0f;
+	        kf_pris.H_data[i * KALMAN_STATE_DIM + j] = (i == j) ? 1.0f : 0.0f;
 	    }
 	}
 
@@ -253,37 +256,85 @@ int main(void)
 	kf_pris.x_data[3] = 0;
 
 	Kalman_SetMeasurementNoise(&kf_pris, 0.01f);
-	Kalman_SetProcessNoise(&kf_pris, 0.1f);
+	Kalman_SetProcessNoise(&kf_pris, 0.9f);
+
+	Kalman_Init(&kf_rev);
+
+	kf_rev.A_data[0] = 1;
+	kf_rev.A_data[1] = 0.0009998;
+	kf_rev.A_data[2] = -2.659e-06;
+	kf_rev.A_data[3] = 8.108e-08;
+	kf_rev.A_data[4] = 0;
+	kf_rev.A_data[5] = 0.9996;
+	kf_rev.A_data[6] = -0.005318;
+	kf_rev.A_data[7] = 0.0001622;
+	kf_rev.A_data[8] = 0;
+	kf_rev.A_data[9] = 0;
+	kf_rev.A_data[10] = 1;
+	kf_rev.A_data[11] = 0;
+	kf_rev.A_data[12] = 0;
+	kf_rev.A_data[13] = -2.746;
+	kf_rev.A_data[14] = 0.007303;
+	kf_rev.A_data[15] = 0.1354;
+
+	kf_rev.B_data[0] = 1.203e-07;
+	kf_rev.B_data[1] = 0.0002406;
+	kf_rev.B_data[2] = 0;
+	kf_rev.B_data[3] = 1.685;
+
+	// Identity H
+	for (int i = 0; i < 2; i++) {
+	    for (int j = 0; j < 4; j++) {
+	        if (i == j) {
+	            kf_rev.H_data[i * 4 + j] = 1.0f;
+	        } else {
+	            kf_rev.H_data[i * 4 + j] = 0.0f;
+	        }
+	    }
+	}
+
+	// Revolute
+	kf_rev.x_data[0] = 0;
+	kf_rev.x_data[1] = 0;
+	kf_rev.x_data[2] = 0;
+	kf_rev.x_data[3] = 0;
+
+	Kalman_SetMeasurementNoise(&kf_rev, 0.08f);
+	Kalman_SetProcessNoise(&kf_rev, 0.12f);
 
 	Pris_motor = create_prismatic_motor(2.29e-04, 4.82e-04, 8.75e-01, 1.77e-01, 1.77e-01, 3.8719, 0.0016);
-	Rev_motor =  create_motor(1.88E-01,6.91E-03,7.36E-01,1.63E+00,1.63E+00*7.36E-01,5.13E-01,3.37E-04);
+	Rev_motor = create_motor(1.88E-01, 6.91E-03, 7.36E-01, 1.63E+00, 1.63E+00 * 7.36E-01, 5.13E-01, 3.37E-04);
 
 	// Prismatic Position
-	Pris_posi_PID.Kp = 1;
-	Pris_posi_PID.Ki = 0.05;
-	Pris_posi_PID.Kd = 0.1;
+	Pris_posi_PID.Kp = 0.3;
+	Pris_posi_PID.Ki = 0.01;
+	Pris_posi_PID.Kd = 0.3;
 	arm_pid_init_f32(&Pris_posi_PID, 0);
 
 	// Prismatic Velocity
-	Pris_velo_PID.Kp = 1;
-	Pris_velo_PID.Ki = 0.1;
+	Pris_velo_PID.Kp = 0.08;
+	Pris_velo_PID.Ki = 0.01;
 	Pris_velo_PID.Kd = 0;
 	arm_pid_init_f32(&Pris_velo_PID, 0);
 
 	// Revolute Position
-	Rev_posi_PID.Kp = 1;
-	Rev_posi_PID.Ki = 0.00001;
-	Rev_posi_PID.Kd = 0.1;
+	Rev_posi_PID.Kp = 100.0;
+	Rev_posi_PID.Ki = 40.0;
+	Rev_posi_PID.Kd = 4.0;
 	arm_pid_init_f32(&Rev_posi_PID, 0);
 
 	// Revolute Velocity
-	Rev_velo_PID.Kp = 1;
-	Rev_velo_PID.Ki = 0.00001;
+	Rev_velo_PID.Kp = 3.0;
+	Rev_velo_PID.Ki = 0.1;
 	Rev_velo_PID.Kd = 0;
 	arm_pid_init_f32(&Rev_velo_PID, 0);
 
-	InitTrajectorySegment(&segments[0], 0.0f, 500.0f, 500.0f, 250.0f, 0.0f);
+//	encoder2.position = 1.57;
 
+	InitTrajectorySegment(&segments[0], 0.0f, 200.0f, 500.0f, 250.0f, 0.0f);
+//	InitTrajectorySegment(&segments[0], 0.0f,  0.785f, 1.0f, 0.4f, 0.0f);
+//	InitTrajectorySegment(&segments[1], 100.0f, 50.0f, 40.0f, 80.0f, segments[0].t_start + segments[0].t_total);
+//	InitTrajectorySegment(&segments[2], 50.0f, 200.0f, 60.0f, 120.0f, segments[1].t_start + segments[1].t_total);
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -292,6 +343,8 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
+
+//		HAL_GPIO_WritePin(GPIOC, GPIO_PIN_6, DIR_18V);
 
 		//HAL_GPIO_WritePin(GPIOB, GPIO_PIN_1, 1);
 		//HAL_GPIO_WritePin(GPIOB, GPIO_PIN_2, 1);
@@ -339,7 +392,7 @@ int main(void)
 		uint32_t currentTick = HAL_GetTick();
 		float dt = (currentTick - lastTick) / 1000.0f;
 //		QEIReadRaw = __HAL_TIM_GET_COUNTER(&htim4);
-		if (dt >= 0.01f) {
+		if (dt >= 0.001f) {
 			Encoder_Update(&encoder1, dt);
 			Encoder_Update(&encoder2, dt);
 			lastTick = currentTick;
@@ -352,32 +405,97 @@ int main(void)
 			v2 = Encoder_GetVelocity(&encoder2);
 			a2 = Encoder_GetAcceleration(&encoder2);
 
-// Now use p1,v1,a1 and p2,v2,a2 as needed
+			Measurement_Pris[0] = Encoder_GetPosition_mm(&encoder1);
+			Measurement_Pris[1] = Encoder_GetVelocity_mm(&encoder1);
+			Measurement_Pris[2] = 0;
+			Measurement_Pris[3] = 0;
+			Kalman_SetInput(&kf_pris, V_pris_velo_PID);
+			Kalman_Predict(&kf_pris);
+			Kalman_Update(&kf_pris,Measurement_Pris);
+
+//			Measurement_Rev[0] = Encoder_GetPosition(&encoder2) / (100/30);
+//			Measurement_Rev[1] = Encoder_GetVelocity(&encoder2) / (100/30);
+//			Measurement_Rev[2] = 0;
+//			Measurement_Rev[3] = 0;
+//			Kalman_SetInput(&kf_rev, V_rev_velo_PID);
+//			Kalman_Predict(&kf_rev);
+//			Kalman_Update(&kf_rev, Measurement_Rev);
+
+			count_Tim2 += 1;
+			// Velocity Control
+			velocity_pris = Encoder_GetVelocity_mm(&encoder1);
+			setvelocity_pris = GetTrajectoryVelocity(&segments[0], t_global) + V_pris_posi_PID;
+			delta_velo_pris = setvelocity_pris - velocity_pris;
+//			delta_velo_pris = setvelocity_pris - kf_pris.x_data[1];
+			V_pris_velo_PID = Prismatic_velocity_control(delta_velo_pris);
+			if (count_Tim2 >= 10) {
+				// Position Control
+				position_pris = Encoder_GetPosition_mm(&encoder1);
+				setposition_pris = GetTrajectoryPosition(&segments[0], t_global);
+				delta_posi_pris = setposition_pris - position_pris;
+				if (delta_posi_pris <= 0.1 && delta_posi_pris >= -0.1) {
+					V_pris_posi_PID = 0;
+					V_pris_velo_PID = 0;
+				} else {
+					V_pris_posi_PID = Prismatic_position_control(delta_posi_pris);
+				}
+//				V_pris_posi_PID = Prismatic_position_control(delta_posi_pris);
+				count_Tim2 = 0;
+			}
+
+//			Revolute_dis();
+//			count_Tim2 += 1;
+//			// Velocity Control
+//			velocity_rev = Encoder_GetVelocity(&encoder2) / (100.0/30.0);
+//			setvelocity_rev = GetTrajectoryVelocity(&segments[0], t_global) + V_rev_posi_PID;
+////			delta_velo_rev = setvelocity_rev - velocity_rev;
+//			delta_velo_rev = setvelocity_rev - kf_rev.x_data[1];
+//			V_rev_velo_PID = Revolute_velocity_control(delta_velo_rev);
+//			if (count_Tim2 >= 10) {
+//				// Position Control
+//				position_rev = Encoder_GetPosition(&encoder2) / (100.0/30.0);
+//				setposition_rev = GetTrajectoryPosition(&segments[0], t_global);
+//				delta_posi_rev = setposition_rev - position_rev;
+//				if (delta_posi_rev <= 0.1 && delta_posi_rev >= -0.1) {
+//					V_rev_posi_PID = 0;
+//					V_rev_velo_PID = 0;
+//				} else {
+//					V_rev_posi_PID = Revolute_position_control(delta_posi_rev);
+//				}
+////				V_pris_posi_PID = Prismatic_position_control(delta_posi_pris);
+//				count_Tim2 = 0;
+//			}
 		}
-//
+
 		t_global = HAL_GetTick() / 1000.0f;
 		pos = GetTrajectoryPosition(&segments[0], t_global);
 		vel = GetTrajectoryVelocity(&segments[0], t_global);
 
-
 		if (V_pris_velo_PID < 0) {
 			DIR_24V = 0;
-			V_absoulte_pris  = fabsf(V_pris_velo_PID);
+			V_absoulte_pris = fabsf(V_pris_velo_PID);
 		} else if (V_pris_velo_PID > 0) {
 			DIR_24V = 1;
-			V_absoulte_pris  = V_pris_velo_PID;
+			V_absoulte_pris = V_pris_velo_PID;
 		}
-		pwm_pris_velo = voltage_to_pwm(V_absoulte_pris );
+		pwm_pris_velo = voltage_to_pwm(V_absoulte_pris);
 		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_1, DIR_24V);
 		__HAL_TIM_SET_COMPARE(&htim20,TIM_CHANNEL_1,pwm_pris_velo);
 
-		Measurement_Pris[0] = Encoder_GetPosition_mm(&encoder1);
-		Measurement_Pris[1] = Encoder_GetVelocity_mm(&encoder1);
-		Measurement_Pris[2] = 0;
-		Measurement_Pris[3] = 0;
-		Kalman_SetInput(&kf_pris,V_absoulte_pris);
-		Kalman_Predict(&kf_pris);
-		Kalman_Update(&kf_pris,Measurement_Pris);
+//		if (V_rev_velo_PID < 0) {
+//			DIR_18V = 0;
+//			V_absolute_rev = fabsf(V_rev_velo_PID);
+//		} else if (V_rev_velo_PID > 0) {
+//			DIR_18V = 1;
+//			V_absolute_rev = V_rev_velo_PID;
+//		}
+//		V_plant = V_absolute_rev + voltage_dis_rev;
+//		if (V_plant > 18) {
+//			V_plant = 18;
+//		}
+//		pwm_rev_velo = (V_plant / 18) * 65535;
+//		HAL_GPIO_WritePin(GPIOC, GPIO_PIN_6, DIR_18V);
+//		__HAL_TIM_SET_COMPARE(&htim20,TIM_CHANNEL_3,pwm_rev_velo);
 	}
   /* USER CODE END 3 */
 }
@@ -448,22 +566,29 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
 }
 
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) {
-	if (htim == &htim2) {
-		count_Tim2 += 1;
-		// Velocity Control
-		velocity_pris = Encoder_GetVelocity_mm(&encoder1);
-		setvelocity_pris = GetTrajectoryVelocity(&segments[0], t_global) + V_pris_posi_PID;
-		delta_velo_pris = setvelocity_pris - velocity_pris;
-		V_pris_velo_PID = Prismatic_velocity_control(delta_velo_pris);
-		if (count_Tim2 >= 10) {
-			// Position Control
-			position_pris = Encoder_GetPosition_mm(&encoder1);
-			setposition_pris = GetTrajectoryPosition(&segments[0], t_global);
-			delta_posi_pris = setposition_pris - position_pris;
-			V_pris_posi_PID = Prismatic_position_control(delta_posi_pris);
-			count_Tim2 = 0;
-		}
-	}
+//	if (htim == &htim2) {
+//		count_Tim2 += 1;
+//		// Velocity Control
+//		velocity_pris = Encoder_GetVelocity_mm(&encoder1);
+//		setvelocity_pris = GetTrajectoryVelocity(&segments[0], t_global) + V_pris_posi_PID;
+////		delta_velo_pris = setvelocity_pris - velocity_pris;
+//		delta_velo_pris = B;
+//		V_pris_velo_PID = Prismatic_velocity_control(delta_velo_pris);
+//		if (count_Tim2 >= 10) {
+//			// Position Control
+//			position_pris = Encoder_GetPosition_mm(&encoder1);
+//			setposition_pris = GetTrajectoryPosition(&segments[0], t_global);
+//			delta_posi_pris = setposition_pris - position_pris;
+//			if (delta_posi_pris <= 0.05 && delta_posi_pris >= -0.05) {
+//				V_pris_posi_PID = 0;
+//				V_pris_velo_PID = 0;
+//			} else {
+//				V_pris_posi_PID = Prismatic_position_control(delta_posi_pris);
+//			}
+////			V_pris_posi_PID = Prismatic_position_control(delta_posi_pris);
+//			count_Tim2 = 0;
+//		}
+//	}
 }
 
 float Prismatic_position_control(float delta_posi) {
@@ -519,6 +644,8 @@ float Prismatic_velocity_control(float delta_velo) {
 
 	if (V_pris_velo_PID > 24) {
 		V_pris_velo_PID = 24;
+	} else if (V_pris_velo_PID < -24) {
+		V_pris_velo_PID = -24;
 	}
 
 	error_velo_pris[1] = error_velo_pris[0];
@@ -528,8 +655,8 @@ float Prismatic_velocity_control(float delta_velo) {
 float Revolute_position_control(float delta_posi) {
 	int anti_windup;
 	error_posi_rev[0] = delta_posi;
-	Rev_posi_PID.Kp = 1;
-	Rev_posi_PID.Kd = 1;
+//	Rev_posi_PID.Kp = 1;
+//	Rev_posi_PID.Kd = 1;
 
 	if (error_posi_rev[0] < 0 && error_posi_rev[1] > 0) {
 		anti_windup = 0;
@@ -539,17 +666,17 @@ float Revolute_position_control(float delta_posi) {
 		anti_windup = 1;
 	}
 
-	if (V_rev_posi_PID >= 24 && anti_windup == 0) {
-		Rev_posi_PID.Ki = 0;
-	} else {
-		Rev_posi_PID.Ki = 1;
-	}
+//	if (V_rev_posi_PID >= 24 && anti_windup == 0) {
+//		Rev_posi_PID.Ki = 0;
+//	} else {
+//		Rev_posi_PID.Ki = 1;
+//	}
 
 	V_rev_posi_PID = arm_pid_f32(&Rev_posi_PID, delta_posi);
 
-	if (V_rev_posi_PID > 24) {
-		V_rev_posi_PID = 24;
-	}
+//	if (V_rev_posi_PID > 24) {
+//		V_rev_posi_PID = 24;
+//	}
 
 	error_posi_rev[1] = error_posi_rev[0];
 	return V_rev_posi_PID;
@@ -558,7 +685,7 @@ float Revolute_position_control(float delta_posi) {
 float Revolute_velocity_control(float delta_velo) {
 	int anti_windup;
 	error_velo_rev[0] =  delta_velo;
-	Rev_velo_PID.Kp = 0.01;
+//	Rev_velo_PID.Kp = 0.01;
 
 	if (error_velo_rev[0] < 0 && error_velo_rev[1] > 0) {
 		anti_windup = 0;
@@ -568,10 +695,14 @@ float Revolute_velocity_control(float delta_velo) {
 		anti_windup = 1;
 	}
 
-	if (V_rev_velo_PID >= 24 && anti_windup == 0) {
+	if (V_rev_velo_PID >= 18 && anti_windup == 0) {
 		Rev_velo_PID.Ki = 0;
 	} else {
 		Rev_velo_PID.Ki = 0.001;
+	}
+
+	if (V_rev_velo_PID > 18) {
+		V_rev_velo_PID = 18;
 	}
 
 	V_rev_velo_PID = arm_pid_f32(&Rev_velo_PID, delta_velo);
@@ -584,15 +715,20 @@ float voltage_to_pwm(float voltage) {
 	return pwm;
 }
 
-float Prismatic_dis() {
-	float load = 0.01 / (2.0 * (22.0/7.0) * 4.0 * Pris_motor.Kt_Pri);
-	voltage_dis_pris = (disturbance_feedforward_pri(&Pris_motor, load)) * (0.3*9.81) * Gain_disturbance_pris;; // อย่าลืมคูณ sin(theta)
-	return voltage_dis_pris;
-}
+//float Prismatic_dis() {
+//	float load = 0.01 / (2.0 * (22.0/7.0) * 4.0 * motor.Kt_Pri);
+//	voltage_dis = (disturbance_feedforward_pri(&motor, load)) * (0.3*9.81) * gain_disturbance; // อย่าลืมคูณ sin(theta)
+//	return voltage_dis;
+//}
 
 float Revolute_dis() {
-	float load = 0.01 / (2.0 * (22.0/7.0) * 4.0 * Pris_motor.Kt_Pri);
-	voltage_dis_rev = (disturbance_feedforward(&Rev_motor, load)) * (0.3*9.81) * Gain_disturbance_rev;; // อย่าลืมคูณ sin(theta)
+	load = (8.2 * 9.81 * 0.45 * sinf(Encoder_GetPosition(&encoder2) / (100.0/30.0))) +
+			(0.3 * 9.81 * sinf(Encoder_GetPosition(&encoder2) / (100.0/30.0)) * 0.4);
+	sine = sinf(Encoder_GetPosition(&encoder2) / (100.0/30.0));
+	encoder = Encoder_GetPosition(&encoder2) / (100.0/30.0);
+//	load = (8.2 * 9.81 * 0.45 * cosf(1.57)) + (0.3 * 9.81 * cosf(1.57) * 0.4);
+//	voltage_dis_rev = (disturbance_feedforward(&Rev_motor, load)) * gain_disturbance_rev;
+	voltage_dis_rev = (Rev_motor.R_Rev / Rev_motor.Ke_Rev) * kf_rev.x_data[2] * 1.0 / 3.3;
 	return voltage_dis_rev;
 }
 /* USER CODE END 4 */

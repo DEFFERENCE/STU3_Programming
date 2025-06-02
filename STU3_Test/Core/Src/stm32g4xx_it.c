@@ -298,7 +298,6 @@ void EXTI15_10_IRQHandler(void)
   HAL_GPIO_EXTI_IRQHandler(Limit_Switch_pen_2_Pin);
   HAL_GPIO_EXTI_IRQHandler(Emergency_Pin);
   HAL_GPIO_EXTI_IRQHandler(Proximity_sensor_Pin);
-  HAL_GPIO_EXTI_IRQHandler(Proximity_Sensor_Pin);
   HAL_GPIO_EXTI_IRQHandler(Limit_Switch_Prismatic1_Pin);
   HAL_GPIO_EXTI_IRQHandler(Limit_Switch_Prismatic2_Pin);
   /* USER CODE BEGIN EXTI15_10_IRQn 1 */
