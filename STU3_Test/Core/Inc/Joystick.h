@@ -18,6 +18,7 @@ uint8_t PS2_ButtonR1();
 uint8_t PS2_ButtonR2();
 uint8_t PS2_ButtonSelect();
 uint8_t PS2_ButtonStart();
+uint8_t PS2_ButtonL1();
 
 void PS2_Move();
 void Select_ten_points();

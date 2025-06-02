@@ -14,11 +14,11 @@ void PS2_ReadData() {
 
 	for (int i = 0; i < PS2_DATA_LENGTH; i++) {
 		HAL_SPI_TransmitReceive(&hspi1, &SPITx[i], &SPIRx[i], 1, HAL_MAX_DELAY);
-		HAL_Delay(1);
+		HAL_Delay(5);
 	}
 
 	HAL_GPIO_WritePin(PS2_CS_PORT, PS2_CS_PIN, GPIO_PIN_SET);
-	HAL_Delay(1);
+	HAL_Delay(5);
 }
 
 uint8_t PS2_ButtonCircle() {
@@ -51,6 +51,10 @@ uint8_t PS2_ButtonSelect() {
 
 uint8_t PS2_ButtonStart() {
 	return !(SPIRx[3] & 0x08);
+}
+
+uint8_t PS2_ButtonL1() {
+	 return !(SPIRx[4] & 0x01);
 }
 
 //void PS2_Move() {

@@ -90,6 +90,7 @@ int R1;
 int R2;
 int Select;
 int Start;
+int L1;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -257,6 +258,8 @@ int main(void)
 		R2 = PS2_ButtonR2();
 		Select = PS2_ButtonSelect();
 		Start = PS2_ButtonStart();
+		L1 = PS2_ButtonL1();
+		HAL_Delay(100);
 	}
   /* USER CODE END 3 */
 }
@@ -977,13 +980,7 @@ static void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
-//void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
-//	if (GPIO_Pin == GPIO_PIN_10) {
-//		Encoder_setLimit(&encoder1, 180);
-//		Encoder_setLimit(&encoder2, 180);
-//		check += 1;
-//	}
-//}
+
 /* USER CODE END 4 */
 
 /**
