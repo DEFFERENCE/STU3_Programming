@@ -38,9 +38,6 @@
         * Output
         * EVENT_OUT
         * EXTI
-     PA5   ------> SPI1_SCK
-     PB4   ------> SPI1_MISO
-     PB5   ------> SPI1_MOSI
 */
 void MX_GPIO_Init(void)
 {
@@ -59,13 +56,8 @@ void MX_GPIO_Init(void)
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(DIR_MD20A_18V_GPIO_Port, DIR_MD20A_18V_Pin, GPIO_PIN_RESET);
 
-  /*Configure GPIO pin : PA5 */
-  GPIO_InitStruct.Pin = GPIO_PIN_5;
-  GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
-  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-  GPIO_InitStruct.Alternate = GPIO_AF5_SPI1;
-  HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+  /*Configure GPIO pin Output Level */
+  HAL_GPIO_WritePin(PS2_Attention_GPIO_Port, PS2_Attention_Pin, GPIO_PIN_SET);
 
   /*Configure GPIO pin : DIR_MD20A_24V_Pin */
   GPIO_InitStruct.Pin = DIR_MD20A_24V_Pin;
@@ -80,18 +72,12 @@ void MX_GPIO_Init(void)
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
 
-  /*Configure GPIO pin : DIR_MD20A_18V_Pin */
-  GPIO_InitStruct.Pin = DIR_MD20A_18V_Pin;
+  /*Configure GPIO pins : DIR_MD20A_18V_Pin PS2_Attention_Pin */
+  GPIO_InitStruct.Pin = DIR_MD20A_18V_Pin|PS2_Attention_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-  HAL_GPIO_Init(DIR_MD20A_18V_GPIO_Port, &GPIO_InitStruct);
-
-  /*Configure GPIO pin : PS2_Joy_stick_Attention_Pin */
-  GPIO_InitStruct.Pin = PS2_Joy_stick_Attention_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
-  HAL_GPIO_Init(PS2_Joy_stick_Attention_GPIO_Port, &GPIO_InitStruct);
+  HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
 
   /*Configure GPIO pin : Emergency_Pin */
   GPIO_InitStruct.Pin = Emergency_Pin;
@@ -104,14 +90,6 @@ void MX_GPIO_Init(void)
   GPIO_InitStruct.Mode = GPIO_MODE_IT_FALLING;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   HAL_GPIO_Init(Proximity_sensor_GPIO_Port, &GPIO_InitStruct);
-
-  /*Configure GPIO pins : PB4 PB5 */
-  GPIO_InitStruct.Pin = GPIO_PIN_4|GPIO_PIN_5;
-  GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
-  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-  GPIO_InitStruct.Alternate = GPIO_AF5_SPI1;
-  HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
 
   /* EXTI interrupt init*/
   HAL_NVIC_SetPriority(EXTI9_5_IRQn, 0, 0);

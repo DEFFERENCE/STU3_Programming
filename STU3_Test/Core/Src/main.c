@@ -20,6 +20,7 @@
 #include "main.h"
 #include "adc.h"
 #include "dma.h"
+#include "spi.h"
 #include "tim.h"
 #include "usart.h"
 #include "gpio.h"
@@ -34,6 +35,7 @@
 #include "Kalman_Filter.h"
 #include "Prismatic.h"
 #include "Revolute.h"
+#include "Joystick.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -58,11 +60,20 @@ Encoder encoder1;
 Encoder encoder2;
 uint32_t QEIReadRaw3;
 uint32_t QEIReadRaw4;
+
+//Trajectory
 float pos;
 float vel;
 TrajectorySegment segments[MAX_SEGMENTS];
 int current_segment = 0;
+TrajectorySegment Prismatic[MAX_SEGMENTS];
+#define v_max_pris 500.0f
+#define a_max_pris 250.0f
+TrajectorySegment Revolute[MAX_SEGMENTS];
+#define v_max_rev 1.0f
+#define a_max_rev 0.4f
 float t_global = 0;
+
 float acc;
 float p1 = 0;
 float v1 = 0;
@@ -138,6 +149,19 @@ float Measurement_Rev[4]= {0};
 float load;
 float sine;
 float encoder;
+
+int Circle;
+int Square;
+int Triangle;
+int Cross;
+int R1;
+int R2;
+int Select;
+int Start;
+int L1;
+float PrismaticTenPoints[10];
+float RevoluteTenPoints[10];
+int count = 0;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -196,6 +220,7 @@ int main(void)
   MX_TIM16_Init();
   MX_USART2_UART_Init();
   MX_ADC2_Init();
+  MX_SPI1_Init();
   /* USER CODE BEGIN 2 */
 	HAL_TIM_Base_Start(&htim20);
 	HAL_TIM_Base_Start(&htim8);
@@ -329,10 +354,8 @@ int main(void)
 	Rev_velo_PID.Kd = 0;
 	arm_pid_init_f32(&Rev_velo_PID, 0);
 
-//	encoder2.position = 1.57;
-
-	InitTrajectorySegment(&segments[0], 0.0f, 200.0f, 500.0f, 250.0f, 0.0f);
-//	InitTrajectorySegment(&segments[0], 0.0f,  0.785f, 1.0f, 0.4f, 0.0f);
+//	InitTrajectorySegment(&segments[0], 0.0f, 200.0f, 500.0f, 250.0f, 0.0f);
+	InitTrajectorySegment(&segments[0], 0.0f,  0.785f, 1.0f, 0.4f, 0.0f);
 //	InitTrajectorySegment(&segments[1], 100.0f, 50.0f, 40.0f, 80.0f, segments[0].t_start + segments[0].t_total);
 //	InitTrajectorySegment(&segments[2], 50.0f, 200.0f, 60.0f, 120.0f, segments[1].t_start + segments[1].t_total);
   /* USER CODE END 2 */
@@ -413,35 +436,35 @@ int main(void)
 			Kalman_Predict(&kf_pris);
 			Kalman_Update(&kf_pris,Measurement_Pris);
 
-//			Measurement_Rev[0] = Encoder_GetPosition(&encoder2) / (100/30);
-//			Measurement_Rev[1] = Encoder_GetVelocity(&encoder2) / (100/30);
-//			Measurement_Rev[2] = 0;
-//			Measurement_Rev[3] = 0;
-//			Kalman_SetInput(&kf_rev, V_rev_velo_PID);
-//			Kalman_Predict(&kf_rev);
-//			Kalman_Update(&kf_rev, Measurement_Rev);
+			Measurement_Rev[0] = Encoder_GetPosition(&encoder2) / (100/30);
+			Measurement_Rev[1] = Encoder_GetVelocity(&encoder2) / (100/30);
+			Measurement_Rev[2] = 0;
+			Measurement_Rev[3] = 0;
+			Kalman_SetInput(&kf_rev, V_rev_velo_PID);
+			Kalman_Predict(&kf_rev);
+			Kalman_Update(&kf_rev, Measurement_Rev);
 
-			count_Tim2 += 1;
-			// Velocity Control
-			velocity_pris = Encoder_GetVelocity_mm(&encoder1);
-			setvelocity_pris = GetTrajectoryVelocity(&segments[0], t_global) + V_pris_posi_PID;
-			delta_velo_pris = setvelocity_pris - velocity_pris;
-//			delta_velo_pris = setvelocity_pris - kf_pris.x_data[1];
-			V_pris_velo_PID = Prismatic_velocity_control(delta_velo_pris);
-			if (count_Tim2 >= 10) {
-				// Position Control
-				position_pris = Encoder_GetPosition_mm(&encoder1);
-				setposition_pris = GetTrajectoryPosition(&segments[0], t_global);
-				delta_posi_pris = setposition_pris - position_pris;
-				if (delta_posi_pris <= 0.1 && delta_posi_pris >= -0.1) {
-					V_pris_posi_PID = 0;
-					V_pris_velo_PID = 0;
-				} else {
-					V_pris_posi_PID = Prismatic_position_control(delta_posi_pris);
-				}
-//				V_pris_posi_PID = Prismatic_position_control(delta_posi_pris);
-				count_Tim2 = 0;
-			}
+//			count_Tim2 += 1;
+//			// Velocity Control
+//			velocity_pris = Encoder_GetVelocity_mm(&encoder1);
+//			setvelocity_pris = GetTrajectoryVelocity(&segments[0], t_global) + V_pris_posi_PID;
+//			delta_velo_pris = setvelocity_pris - velocity_pris;
+////			delta_velo_pris = setvelocity_pris - kf_pris.x_data[1];
+//			V_pris_velo_PID = Prismatic_velocity_control(delta_velo_pris);
+//			if (count_Tim2 >= 10) {
+//				// Position Control
+//				position_pris = Encoder_GetPosition_mm(&encoder1);
+//				setposition_pris = GetTrajectoryPosition(&segments[0], t_global);
+//				delta_posi_pris = setposition_pris - position_pris;
+//				if (delta_posi_pris <= 0.1 && delta_posi_pris >= -0.1) {
+//					V_pris_posi_PID = 0;
+//					V_pris_velo_PID = 0;
+//				} else {
+//					V_pris_posi_PID = Prismatic_position_control(delta_posi_pris);
+//				}
+////				V_pris_posi_PID = Prismatic_position_control(delta_posi_pris);
+//				count_Tim2 = 0;
+//			}
 
 //			Revolute_dis();
 //			count_Tim2 += 1;
@@ -467,20 +490,20 @@ int main(void)
 //			}
 		}
 
-		t_global = HAL_GetTick() / 1000.0f;
-		pos = GetTrajectoryPosition(&segments[0], t_global);
-		vel = GetTrajectoryVelocity(&segments[0], t_global);
+//		t_global = HAL_GetTick() / 1000.0f;
+//		pos = GetTrajectoryPosition(&segments[0], t_global);
+//		vel = GetTrajectoryVelocity(&segments[0], t_global);
 
-		if (V_pris_velo_PID < 0) {
-			DIR_24V = 0;
-			V_absoulte_pris = fabsf(V_pris_velo_PID);
-		} else if (V_pris_velo_PID > 0) {
-			DIR_24V = 1;
-			V_absoulte_pris = V_pris_velo_PID;
-		}
-		pwm_pris_velo = voltage_to_pwm(V_absoulte_pris);
-		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_1, DIR_24V);
-		__HAL_TIM_SET_COMPARE(&htim20,TIM_CHANNEL_1,pwm_pris_velo);
+//		if (V_pris_velo_PID < 0) {
+//			DIR_24V = 0;
+//			V_absoulte_pris = fabsf(V_pris_velo_PID);
+//		} else if (V_pris_velo_PID > 0) {
+//			DIR_24V = 1;
+//			V_absoulte_pris = V_pris_velo_PID;
+//		}
+//		pwm_pris_velo = voltage_to_pwm(V_absoulte_pris);
+//		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_1, DIR_24V);
+//		__HAL_TIM_SET_COMPARE(&htim20,TIM_CHANNEL_1,pwm_pris_velo);
 
 //		if (V_rev_velo_PID < 0) {
 //			DIR_18V = 0;
@@ -496,6 +519,46 @@ int main(void)
 //		pwm_rev_velo = (V_plant / 18) * 65535;
 //		HAL_GPIO_WritePin(GPIOC, GPIO_PIN_6, DIR_18V);
 //		__HAL_TIM_SET_COMPARE(&htim20,TIM_CHANNEL_3,pwm_rev_velo);
+
+		PS2_ReadData();
+		Circle = PS2_ButtonCircle();
+		Square = PS2_ButtonSquare();
+		Triangle = PS2_ButtonTriangle();
+		Cross = PS2_ButtonCross();
+		R1 = PS2_ButtonR1();
+		R2 = PS2_ButtonR2();
+		Select = PS2_ButtonSelect();
+		Start = PS2_ButtonStart();
+		HAL_Delay(100);
+
+		if (PS2_ButtonCircle()) {
+			// Move Right (Revolute)
+			HAL_GPIO_WritePin(GPIOC, GPIO_PIN_6, 1); // 0 or 1
+			__HAL_TIM_SET_COMPARE(&htim20, TIM_CHANNEL_3, 10000);
+		} else if (PS2_ButtonSquare()) {
+			// Move Left (Revolute)
+			HAL_GPIO_WritePin(GPIOC, GPIO_PIN_6, 0); // 0 or 1
+			__HAL_TIM_SET_COMPARE(&htim20, TIM_CHANNEL_3, 10000);
+		} else if (PS2_ButtonTriangle()) {
+			// Move Up (Prismatic)
+			HAL_GPIO_WritePin(GPIOB, GPIO_PIN_1, 1); // 0 or 1
+			__HAL_TIM_SET_COMPARE(&htim20, TIM_CHANNEL_1, 10000);
+		} else if (PS2_ButtonCross()) {
+			// Move Down (Prismatic)
+			HAL_GPIO_WritePin(GPIOB, GPIO_PIN_1, 0); // 0 or 1
+			__HAL_TIM_SET_COMPARE(&htim20, TIM_CHANNEL_1, 10000);
+		}
+		uint8_t selectPressed = PS2_ButtonSelect();
+		static uint8_t prevSelect = 0;
+		if (selectPressed && !prevSelect) {
+			if (count < 10) {
+				PrismaticTenPoints[count] = ((int) (Encoder_GetPosition_mm(&encoder1)) * 10) / 10.0f;
+				RevoluteTenPoints[count] = ((int) Encoder_GetDegree(&encoder2) * 10) / 10.0f;
+				count += 1;
+			}
+		}
+		prevSelect = selectPressed;
+		HAL_Delay(50);
 	}
   /* USER CODE END 3 */
 }
