@@ -66,9 +66,9 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
  ../Middlewares/Third_Party/ARM_CMSIS/Include/dsp/quaternion_math_functions.h \
  ../Middlewares/Third_Party/ARM_CMSIS/Include/dsp/window_functions.h \
  ../Core/Inc/Encoder.h ../Core/Inc/Trajectory.h \
- ../Core/Inc/Based_System_Communication.h ../Core/Inc/ModBusRTU.h \
- ../Core/Inc/Kalman_Filter.h ../Core/Inc/Prismatic.h \
- ../Core/Inc/Revolute.h
+ ../Core/Inc/Anti_backlash.h ../Core/Inc/Based_System_Communication.h \
+ ../Core/Inc/ModBusRTU.h ../Core/Inc/Kalman_Filter.h \
+ ../Core/Inc/Prismatic.h ../Core/Inc/Revolute.h
 ../Core/Inc/main.h:
 ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal.h:
 ../Core/Inc/stm32g4xx_hal_conf.h:
@@ -142,6 +142,7 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
 ../Middlewares/Third_Party/ARM_CMSIS/Include/dsp/window_functions.h:
 ../Core/Inc/Encoder.h:
 ../Core/Inc/Trajectory.h:
+../Core/Inc/Anti_backlash.h:
 ../Core/Inc/Based_System_Communication.h:
 ../Core/Inc/ModBusRTU.h:
 ../Core/Inc/Kalman_Filter.h:

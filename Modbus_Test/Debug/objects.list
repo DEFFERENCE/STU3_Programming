@@ -1,3 +1,4 @@
+"./Core/Src/Based_System_Communication.o"
 "./Core/Src/ModBusRTU.o"
 "./Core/Src/main.o"
 "./Core/Src/stm32g4xx_hal_msp.o"

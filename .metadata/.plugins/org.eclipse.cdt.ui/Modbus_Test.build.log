@@ -1,10 +1,30 @@
-20:00:03 **** Incremental Build of configuration Debug for project Modbus_Test ****
+22:25:00 **** Incremental Build of configuration Debug for project Modbus_Test ****
 make -j16 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:124:19: warning: implicit declaration of function 'modbus_set_goal_r_position' [-Wimplicit-function-declaration]
+  124 |           R_goal =modbus_set_goal_r_position(&hmodbus);
+      |                   ^~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:125:23: warning: implicit declaration of function 'modbus_set_goal_theta_position' [-Wimplicit-function-declaration]
+  125 |           theta_goal =modbus_set_goal_theta_position(&hmodbus);
+      |                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:126:25: warning: implicit declaration of function 'modbus_Base_System_Status' [-Wimplicit-function-declaration]
+  126 |           status_Base = modbus_Base_System_Status(&hmodbus);
+      |                         ^~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:127:26: warning: implicit declaration of function 'R_Theta_moving_Status' [-Wimplicit-function-declaration]
+  127 |           status_moving =R_Theta_moving_Status(&hmodbus,A);
+      |                          ^~~~~~~~~~~~~~~~~~~~~
+arm-none-eabi-gcc -o "Modbus_Test.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\Fibo\Year2\Term2\STU\Programming\STU3_Programming\Modbus_Test\STM32G474RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Modbus_Test.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: Modbus_Test.elf
+ 
 arm-none-eabi-size  Modbus_Test.elf 
+arm-none-eabi-objdump -h -S Modbus_Test.elf  > "Modbus_Test.list"
    text	   data	    bss	    dec	    hex	filename
-  28612	    524	   3716	  32852	   8054	Modbus_Test.elf
+  33212	    524	   3932	  37668	   9324	Modbus_Test.elf
 Finished building: default.size.stdout
  
+Finished building: Modbus_Test.list
+ 
 
-20:00:03 Build Finished. 0 errors, 0 warnings. (took 336ms)
+22:25:02 Build Finished. 0 errors, 4 warnings. (took 1s.744ms)
 

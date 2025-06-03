@@ -1,0 +1,48 @@
+/*
+ * Based_System_Communication.h
+ *
+ *  Created on: Apr 21, 2025
+ *      Author: User
+ */
+
+#ifndef INC_BASED_SYSTEM_COMMUNICATION_H_
+#define INC_BASED_SYSTEM_COMMUNICATION_H_
+
+#include "stm32g4xx_hal.h"
+#include "ModBusRTU.h"
+
+enum Base_System_status
+{
+	Home,
+	Run_Jog_mode,
+	Run_Point_mode,
+	Go_to_Target,
+	Stop
+	};
+
+void modbus_heartbeat_init(ModbusHandleTypedef *hmodbus);
+void modbus_heartbeat(ModbusHandleTypedef *hmodbus);
+uint8_t modbus_Base_System_Status(ModbusHandleTypedef *hmodbus, uint8_t status);
+
+uint8_t modbus_servo_Status(ModbusHandleTypedef *hmodbus, uint8_t Pen_status);
+void modbus_write_servo_up(ModbusHandleTypedef *hmodbus, uint8_t Servo_PWM); //Optional
+void modbus_write_servo_down(ModbusHandleTypedef *hmodbus, uint8_t Servo_PWM); //Optional
+
+uint8_t R_Theta_moving_Status(ModbusHandleTypedef *hmodbus,
+		uint8_t Moving_Status);
+void modbus_r_position(ModbusHandleTypedef *hmodbus, float r_pos);
+void modbus_theta_position(ModbusHandleTypedef *hmodbus, float theta_pos);
+void modbus_r_velocity(ModbusHandleTypedef *hmodbus, float r_Velo);
+void modbus_theta_velocity(ModbusHandleTypedef *hmodbus, float theta_Velo);
+void modbus_r_acceleration(ModbusHandleTypedef *hmodbus, float r_accel);
+void modbus_theta_acceleration(ModbusHandleTypedef *hmodbus, float theta_accel);
+void modbus_Update_All(ModbusHandleTypedef *hmodbus, float r_pos,
+		float theta_pos, float r_Velo, float theta_Velo, float r_accel,
+		float theta_accel);
+
+void set_Target_Position_ten_points(ModbusHandleTypedef *hmodbus, float r_pos,
+		float theta_pos, uint8_t index);
+uint16_t modbus_set_goal_r_position(ModbusHandleTypedef *hmodbus);
+uint16_t modbus_set_goal_theta_position(ModbusHandleTypedef *hmodbus);
+
+#endif /* INC_BASED_SYSTEM_COMMUNICATION_H_ */

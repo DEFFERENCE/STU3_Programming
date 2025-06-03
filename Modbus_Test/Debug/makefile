@@ -60,8 +60,8 @@ all: main-build
 main-build: Modbus_Test.elf secondary-outputs
 
 # Tool invocations
-Modbus_Test.elf Modbus_Test.map: $(OBJS) $(USER_OBJS) D:\Fibo\Year2\Term2\STU\STU_3_Programming\STU3_Programming\Modbus_Test\STM32G474RETX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "Modbus_Test.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"D:\Fibo\Year2\Term2\STU\STU_3_Programming\STU3_Programming\Modbus_Test\STM32G474RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Modbus_Test.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Modbus_Test.elf Modbus_Test.map: $(OBJS) $(USER_OBJS) D:\Fibo\Year2\Term2\STU\Programming\STU3_Programming\Modbus_Test\STM32G474RETX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "Modbus_Test.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"D:\Fibo\Year2\Term2\STU\Programming\STU3_Programming\Modbus_Test\STM32G474RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Modbus_Test.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 

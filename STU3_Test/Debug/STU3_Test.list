@@ -35,17 +35,17 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY, DEBUGGING, OCTETS
  15 .debug_rnglists 000013ea  00000000  00000000  00037f48  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 16 .debug_macro  00004e6b  00000000  00000000  00039332  2**0
+ 16 .debug_macro  00004778  00000000  00000000  00039332  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 17 .debug_line   000231d6  00000000  00000000  0003e19d  2**0
+ 17 .debug_line   00023201  00000000  00000000  0003daaa  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 18 .debug_str    0011818b  00000000  00000000  00061373  2**0
+ 18 .debug_str    001181a9  00000000  00000000  00060cab  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 19 .comment      00000043  00000000  00000000  001794fe  2**0
+ 19 .comment      00000043  00000000  00000000  00178e54  2**0
                   CONTENTS, READONLY
- 20 .debug_frame  00006f48  00000000  00000000  00179544  2**2
+ 20 .debug_frame  00006f48  00000000  00000000  00178e98  2**2
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 21 .debug_line_str 00000061  00000000  00000000  0018048c  2**0
+ 21 .debug_line_str 0000006d  00000000  00000000  0017fde0  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
 
 Disassembly of section .text:
@@ -7116,9 +7116,9 @@ void MX_USART2_UART_Init(void)
  800332c:	4b23      	ldr	r3, [pc, #140]	@ (80033bc <MX_USART2_UART_Init+0x94>)
  800332e:	4a24      	ldr	r2, [pc, #144]	@ (80033c0 <MX_USART2_UART_Init+0x98>)
  8003330:	601a      	str	r2, [r3, #0]
-  huart2.Init.BaudRate = 19200;
+  huart2.Init.BaudRate = 115200;
  8003332:	4b22      	ldr	r3, [pc, #136]	@ (80033bc <MX_USART2_UART_Init+0x94>)
- 8003334:	f44f 4296 	mov.w	r2, #19200	@ 0x4b00
+ 8003334:	f44f 32e1 	mov.w	r2, #115200	@ 0x1c200
  8003338:	605a      	str	r2, [r3, #4]
   huart2.Init.WordLength = UART_WORDLENGTH_9B;
  800333a:	4b20      	ldr	r3, [pc, #128]	@ (80033bc <MX_USART2_UART_Init+0x94>)

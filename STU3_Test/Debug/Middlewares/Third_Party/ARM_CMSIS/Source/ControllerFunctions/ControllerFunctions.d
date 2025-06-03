@@ -1,6 +1,6 @@
 Middlewares/Third_Party/ARM_CMSIS/Source/ControllerFunctions/ControllerFunctions.o: \
  ../Middlewares/Third_Party/ARM_CMSIS/Source/ControllerFunctions/ControllerFunctions.c \
- D:/Fibo/Year2/Term2/STU/STU3_Programming/STU3_Test/Source/ControllerFunctions/arm_pid_init_f32.c \
+ D:/Fibo/Year2/Term2/STU/Programming/STU3_Programming/STU3_Test/Source/ControllerFunctions/arm_pid_init_f32.c \
  ../Middlewares/Third_Party/ARM_CMSIS/Include/dsp/controller_functions.h \
  ../Middlewares/Third_Party/ARM_CMSIS/Include/arm_math_types.h \
  ../Drivers/CMSIS/Include/cmsis_compiler.h \
@@ -9,17 +9,17 @@ Middlewares/Third_Party/ARM_CMSIS/Source/ControllerFunctions/ControllerFunctions
  ../Middlewares/Third_Party/ARM_CMSIS/Include/arm_math_types.h \
  ../Middlewares/Third_Party/ARM_CMSIS/Include/dsp/none.h \
  ../Middlewares/Third_Party/ARM_CMSIS/Include/dsp/utils.h \
- D:/Fibo/Year2/Term2/STU/STU3_Programming/STU3_Test/Source/ControllerFunctions/arm_pid_init_q15.c \
- D:/Fibo/Year2/Term2/STU/STU3_Programming/STU3_Test/Source/ControllerFunctions/arm_pid_init_q31.c \
- D:/Fibo/Year2/Term2/STU/STU3_Programming/STU3_Test/Source/ControllerFunctions/arm_pid_reset_f32.c \
- D:/Fibo/Year2/Term2/STU/STU3_Programming/STU3_Test/Source/ControllerFunctions/arm_pid_reset_q15.c \
- D:/Fibo/Year2/Term2/STU/STU3_Programming/STU3_Test/Source/ControllerFunctions/arm_pid_reset_q31.c \
- D:/Fibo/Year2/Term2/STU/STU3_Programming/STU3_Test/Source/ControllerFunctions/arm_sin_cos_f32.c \
+ D:/Fibo/Year2/Term2/STU/Programming/STU3_Programming/STU3_Test/Source/ControllerFunctions/arm_pid_init_q15.c \
+ D:/Fibo/Year2/Term2/STU/Programming/STU3_Programming/STU3_Test/Source/ControllerFunctions/arm_pid_init_q31.c \
+ D:/Fibo/Year2/Term2/STU/Programming/STU3_Programming/STU3_Test/Source/ControllerFunctions/arm_pid_reset_f32.c \
+ D:/Fibo/Year2/Term2/STU/Programming/STU3_Programming/STU3_Test/Source/ControllerFunctions/arm_pid_reset_q15.c \
+ D:/Fibo/Year2/Term2/STU/Programming/STU3_Programming/STU3_Test/Source/ControllerFunctions/arm_pid_reset_q31.c \
+ D:/Fibo/Year2/Term2/STU/Programming/STU3_Programming/STU3_Test/Source/ControllerFunctions/arm_sin_cos_f32.c \
  ../Middlewares/Third_Party/ARM_CMSIS/Include/arm_common_tables.h \
  ../Middlewares/Third_Party/ARM_CMSIS/Include/dsp/fast_math_functions.h \
  ../Middlewares/Third_Party/ARM_CMSIS/Include/dsp/basic_math_functions.h \
- D:/Fibo/Year2/Term2/STU/STU3_Programming/STU3_Test/Source/ControllerFunctions/arm_sin_cos_q31.c
-D:/Fibo/Year2/Term2/STU/STU3_Programming/STU3_Test/Source/ControllerFunctions/arm_pid_init_f32.c:
+ D:/Fibo/Year2/Term2/STU/Programming/STU3_Programming/STU3_Test/Source/ControllerFunctions/arm_sin_cos_q31.c
+D:/Fibo/Year2/Term2/STU/Programming/STU3_Programming/STU3_Test/Source/ControllerFunctions/arm_pid_init_f32.c:
 ../Middlewares/Third_Party/ARM_CMSIS/Include/dsp/controller_functions.h:
 ../Middlewares/Third_Party/ARM_CMSIS/Include/arm_math_types.h:
 ../Drivers/CMSIS/Include/cmsis_compiler.h:
@@ -28,13 +28,13 @@ D:/Fibo/Year2/Term2/STU/STU3_Programming/STU3_Test/Source/ControllerFunctions/ar
 ../Middlewares/Third_Party/ARM_CMSIS/Include/arm_math_types.h:
 ../Middlewares/Third_Party/ARM_CMSIS/Include/dsp/none.h:
 ../Middlewares/Third_Party/ARM_CMSIS/Include/dsp/utils.h:
-D:/Fibo/Year2/Term2/STU/STU3_Programming/STU3_Test/Source/ControllerFunctions/arm_pid_init_q15.c:
-D:/Fibo/Year2/Term2/STU/STU3_Programming/STU3_Test/Source/ControllerFunctions/arm_pid_init_q31.c:
-D:/Fibo/Year2/Term2/STU/STU3_Programming/STU3_Test/Source/ControllerFunctions/arm_pid_reset_f32.c:
-D:/Fibo/Year2/Term2/STU/STU3_Programming/STU3_Test/Source/ControllerFunctions/arm_pid_reset_q15.c:
-D:/Fibo/Year2/Term2/STU/STU3_Programming/STU3_Test/Source/ControllerFunctions/arm_pid_reset_q31.c:
-D:/Fibo/Year2/Term2/STU/STU3_Programming/STU3_Test/Source/ControllerFunctions/arm_sin_cos_f32.c:
+D:/Fibo/Year2/Term2/STU/Programming/STU3_Programming/STU3_Test/Source/ControllerFunctions/arm_pid_init_q15.c:
+D:/Fibo/Year2/Term2/STU/Programming/STU3_Programming/STU3_Test/Source/ControllerFunctions/arm_pid_init_q31.c:
+D:/Fibo/Year2/Term2/STU/Programming/STU3_Programming/STU3_Test/Source/ControllerFunctions/arm_pid_reset_f32.c:
+D:/Fibo/Year2/Term2/STU/Programming/STU3_Programming/STU3_Test/Source/ControllerFunctions/arm_pid_reset_q15.c:
+D:/Fibo/Year2/Term2/STU/Programming/STU3_Programming/STU3_Test/Source/ControllerFunctions/arm_pid_reset_q31.c:
+D:/Fibo/Year2/Term2/STU/Programming/STU3_Programming/STU3_Test/Source/ControllerFunctions/arm_sin_cos_f32.c:
 ../Middlewares/Third_Party/ARM_CMSIS/Include/arm_common_tables.h:
 ../Middlewares/Third_Party/ARM_CMSIS/Include/dsp/fast_math_functions.h:
 ../Middlewares/Third_Party/ARM_CMSIS/Include/dsp/basic_math_functions.h:
-D:/Fibo/Year2/Term2/STU/STU3_Programming/STU3_Test/Source/ControllerFunctions/arm_sin_cos_q31.c:
+D:/Fibo/Year2/Term2/STU/Programming/STU3_Programming/STU3_Test/Source/ControllerFunctions/arm_sin_cos_q31.c:
