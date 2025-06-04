@@ -20,3 +20,7 @@ r_pos
 QEIReadRaw3
 QEIReadRaw4
 check
+R_goal
+theta_goal
+status_Base
+A

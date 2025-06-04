@@ -1,0 +1,18 @@
+#ifndef ENCODERC_H
+#define ENCODERC_H
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+void Encoder_Init();
+void Encoder_Update(float new_position, float dt);
+float Encoder_GetPosition();
+float Encoder_GetVelocity();
+float Encoder_GetAcceleration();
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif

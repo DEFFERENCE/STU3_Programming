@@ -1,0 +1,108 @@
+/*
+ * Based_System_Communication.c
+ *
+ *  Created on: Apr 21, 2025
+ *      Author: User
+ */
+
+#include "Based_System_Communication.h"
+void modbus_heartbeat_init(ModbusHandleTypedef *hmodbus) {
+	hmodbus->RegisterAddress[0x00].U16 = 22881;
+}
+
+void modbus_heartbeat(ModbusHandleTypedef *hmodbus) {
+	//if (hmodbus->RegisterAddress[0x00].U16 == 18537) {
+		hmodbus->RegisterAddress[0x00].U16 = 22881;
+	//}
+}
+
+uint8_t modbus_Base_System_Status(ModbusHandleTypedef *hmodbus) {
+	uint8_t status = hmodbus->RegisterAddress[0x01].U16;
+	return status;
+}
+
+void modbus_servo_Status(ModbusHandleTypedef *hmodbus, uint8_t Pen_status) {
+	hmodbus->RegisterAddress[0x03].U16 = Pen_status;
+}
+
+uint8_t modbus_write_servo_up(ModbusHandleTypedef *hmodbus)
+{
+	hmodbus->RegisterAddress[0x05].U16 = 0;
+	uint8_t status = hmodbus->RegisterAddress[0x04].U16;
+//	if (status == 1) {
+//		if (hmodbus->RegisterAddress[0x05].U16 == 1) {
+//			hmodbus->RegisterAddress[0x05].U16 = 0;
+//		}
+//	}
+	return status;
+
+}
+uint8_t modbus_write_servo_down(ModbusHandleTypedef *hmodbus)
+{
+	hmodbus->RegisterAddress[0x04].U16 = 0;
+	uint8_t status = hmodbus->RegisterAddress[0x05].U16;
+//	if (status == 1) {
+//		if (hmodbus->RegisterAddress[0x04].U16 == 1) {
+//			hmodbus->RegisterAddress[0x04].U16 = 0;
+//		}
+//
+//	}
+	return status;
+}
+
+void R_Theta_moving_Status(ModbusHandleTypedef *hmodbus, uint8_t Moving_Status) {
+	hmodbus->RegisterAddress[0x10].U16 = Moving_Status;
+}
+
+void modbus_r_position(ModbusHandleTypedef *hmodbus, float r_pos) {
+	hmodbus->RegisterAddress[0x11].U16 = r_pos * 10.0;
+}
+
+void modbus_theta_position(ModbusHandleTypedef *hmodbus, float theta_pos) {
+	hmodbus->RegisterAddress[0x12].U16 = theta_pos * 10.0;
+}
+void modbus_r_velocity(ModbusHandleTypedef *hmodbus, float r_Velo) {
+	hmodbus->RegisterAddress[0x13].U16 = r_Velo * 10.0;
+}
+void modbus_theta_velocity(ModbusHandleTypedef *hmodbus, float theta_Velo) {
+	hmodbus->RegisterAddress[0x14].U16 = theta_Velo * 10.0;
+}
+void modbus_r_acceleration(ModbusHandleTypedef *hmodbus, float r_accel) {
+	hmodbus->RegisterAddress[0x15].U16 = r_accel * 10.0;
+}
+void modbus_theta_acceleration(ModbusHandleTypedef *hmodbus, float theta_accel) {
+	hmodbus->RegisterAddress[0x16].U16 = theta_accel * 10.0;
+}
+void modbus_Update_All(ModbusHandleTypedef *hmodbus, float r_pos,
+		float theta_pos, float r_Velo, float theta_Velo, float r_accel,
+		float theta_accel) {
+	hmodbus->RegisterAddress[0x11].U16 = r_pos;
+	hmodbus->RegisterAddress[0x12].U16 = theta_pos;
+	hmodbus->RegisterAddress[0x13].U16 = r_Velo;
+	hmodbus->RegisterAddress[0x14].U16 = theta_Velo;
+	hmodbus->RegisterAddress[0x15].U16 = r_accel;
+	hmodbus->RegisterAddress[0x16].U16 = theta_accel;
+}
+
+void set_Target_Position_ten_points(ModbusHandleTypedef *hmodbus, float r_pos,
+		float theta_pos, uint8_t index) //
+{
+	if (index >= 0 && index <= 9) {
+		hmodbus->RegisterAddress[0x20 + index * 2].U16 = r_pos;
+		hmodbus->RegisterAddress[0x20 + (index * 2) + 1].U16 = theta_pos;
+	}
+}
+uint16_t modbus_set_goal_r_position(ModbusHandleTypedef *hmodbus) {
+	uint16_t goal_r_position = hmodbus->RegisterAddress[0x40].U16;
+	return goal_r_position/10.0;
+}
+uint16_t modbus_set_goal_theta_position(ModbusHandleTypedef *hmodbus) {
+	uint16_t goal_theta_position = hmodbus->RegisterAddress[0x41].U16;
+	return goal_theta_position/10.0;
+}
+
+float Coordinate_transformation(float r_position, float theta_position)
+{
+
+}
+

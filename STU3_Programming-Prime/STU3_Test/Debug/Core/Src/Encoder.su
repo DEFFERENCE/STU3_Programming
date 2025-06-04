@@ -1,0 +1,10 @@
+../Core/Src/Encoder.c:8:6:Encoder_Init	16	static
+../Core/Src/Encoder.c:20:6:Encoder_Update	24	static
+../Core/Src/Encoder.c:48:6:Encoder_setLimit	16	static
+../Core/Src/Encoder.c:52:7:Encoder_GetPosition	16	static
+../Core/Src/Encoder.c:56:7:Encoder_GetVelocity	16	static
+../Core/Src/Encoder.c:60:7:Encoder_GetAcceleration	16	static
+../Core/Src/Encoder.c:64:7:Encoder_GetDegree	16	static
+../Core/Src/Encoder.c:68:7:Encoder_GetPosition_mm	16	static
+../Core/Src/Encoder.c:72:7:Encoder_GetVelocity_mm	16	static
+../Core/Src/Encoder.c:76:7:Encoder_GetAcceleration_mm	16	static

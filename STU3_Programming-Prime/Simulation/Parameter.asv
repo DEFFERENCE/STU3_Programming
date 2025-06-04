@@ -1,0 +1,27 @@
+%% Revolute Motor
+
+
+
+
+
+
+
+
+%% Prismatic Motor
+
+
+
+%% Prismatic Axis
+
+Prismatic_Intertia = 1; % kg*m^2
+Prismatic_mass = 1; % kg
+Prismatic_Length = 1; % m
+
+%% Revolute Axis
+
+
+%% End Effector
+End_Effector_Inertia = 0.1; % kg*m^2
+
+%% Ball_Screw
+ Lead = 10 *0.001; %m

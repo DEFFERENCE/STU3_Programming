@@ -1,0 +1,10 @@
+../Core/Src/Joystick.c:12:6:PS2_ReadData	2
+../Core/Src/Joystick.c:25:9:PS2_ButtonCircle	1
+../Core/Src/Joystick.c:29:9:PS2_ButtonSquare	1
+../Core/Src/Joystick.c:33:9:PS2_ButtonTriangle	1
+../Core/Src/Joystick.c:37:9:PS2_ButtonCross	1
+../Core/Src/Joystick.c:41:9:PS2_ButtonR1	1
+../Core/Src/Joystick.c:45:9:PS2_ButtonR2	1
+../Core/Src/Joystick.c:49:9:PS2_ButtonSelect	1
+../Core/Src/Joystick.c:53:9:PS2_ButtonStart	1
+../Core/Src/Joystick.c:57:9:PS2_ButtonL1	1

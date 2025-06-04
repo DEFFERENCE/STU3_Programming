@@ -1,0 +1,241 @@
+/*
+ * Based_System_Communication.c
+ *
+ *  Created on: Apr 21, 2025
+ *      Author: User
+ */
+
+#include "Based_System_Communication.h"
+
+#define Offet 480.0f
+
+void modbus_heartbeat_init(ModbusHandleTypedef *hmodbus) {
+	hmodbus->RegisterAddress[0x00].U16 = 22881;
+}
+
+void modbus_heartbeat(ModbusHandleTypedef *hmodbus) {
+	//if (hmodbus->RegisterAddress[0x00].U16 == 18537) {
+	hmodbus->RegisterAddress[0x00].U16 = 22881;
+	//}
+}
+
+uint8_t modbus_Base_System_Status(ModbusHandleTypedef *hmodbus) {
+	uint8_t status = hmodbus->RegisterAddress[0x01].U16;
+	return status;
+}
+
+void modbus_servo_Status(ModbusHandleTypedef *hmodbus, uint8_t Pen_status) {
+	hmodbus->RegisterAddress[0x03].U16 = Pen_status;
+}
+
+uint8_t modbus_write_servo_up(ModbusHandleTypedef *hmodbus) {
+	hmodbus->RegisterAddress[0x05].U16 = 0;
+	uint8_t status = hmodbus->RegisterAddress[0x04].U16;
+//	if (status == 1) {
+//		if (hmodbus->RegisterAddress[0x05].U16 == 1) {
+//			hmodbus->RegisterAddress[0x05].U16 = 0;
+//		}
+//	}
+	return status;
+
+}
+uint8_t modbus_write_servo_down(ModbusHandleTypedef *hmodbus) {
+	hmodbus->RegisterAddress[0x04].U16 = 0;
+	uint8_t status = hmodbus->RegisterAddress[0x05].U16;
+//	if (status == 1) {
+//		if (hmodbus->RegisterAddress[0x04].U16 == 1) {
+//			hmodbus->RegisterAddress[0x04].U16 = 0;
+//		}
+//
+//	}
+	return status;
+}
+
+void R_Theta_moving_Status(ModbusHandleTypedef *hmodbus, uint8_t Moving_Status) {
+	hmodbus->RegisterAddress[0x10].U16 = Moving_Status;
+}
+
+void modbus_r_position(ModbusHandleTypedef *hmodbus, float r_pos) {
+	hmodbus->RegisterAddress[0x11].U16 = r_pos * 10.0;
+}
+
+void modbus_theta_position(ModbusHandleTypedef *hmodbus, float theta_pos) {
+	hmodbus->RegisterAddress[0x12].U16 = theta_pos * 10.0;
+}
+void modbus_r_velocity(ModbusHandleTypedef *hmodbus, float r_Velo) {
+	hmodbus->RegisterAddress[0x13].U16 = r_Velo * 10.0;
+}
+void modbus_theta_velocity(ModbusHandleTypedef *hmodbus, float theta_Velo) {
+	hmodbus->RegisterAddress[0x14].U16 = theta_Velo * 10.0;
+}
+void modbus_r_acceleration(ModbusHandleTypedef *hmodbus, float r_accel) {
+	hmodbus->RegisterAddress[0x15].U16 = r_accel * 10.0;
+}
+void modbus_theta_acceleration(ModbusHandleTypedef *hmodbus, float theta_accel) {
+	hmodbus->RegisterAddress[0x16].U16 = theta_accel * 10.0;
+}
+void modbus_Update_All(ModbusHandleTypedef *hmodbus, float r_pos,
+		float theta_pos, float r_Velo, float theta_Velo, float r_accel,
+		float theta_accel) {
+	hmodbus->RegisterAddress[0x11].U16 = r_pos;
+	hmodbus->RegisterAddress[0x12].U16 = theta_pos;
+	hmodbus->RegisterAddress[0x13].U16 = r_Velo;
+	hmodbus->RegisterAddress[0x14].U16 = theta_Velo;
+	hmodbus->RegisterAddress[0x15].U16 = r_accel;
+	hmodbus->RegisterAddress[0x16].U16 = theta_accel;
+}
+
+void set_Target_Position_ten_points(ModbusHandleTypedef *hmodbus, float r_pos,
+		float theta_pos, uint8_t index) //
+{
+	if (index >= 0 && index <= 9) {
+		hmodbus->RegisterAddress[0x20 + index * 2].U16 = r_pos;
+		hmodbus->RegisterAddress[0x20 + (index * 2) + 1].U16 = theta_pos;
+	}
+}
+uint16_t modbus_set_goal_r_position(ModbusHandleTypedef *hmodbus) {
+	uint16_t goal_r_position = hmodbus->RegisterAddress[0x40].U16;
+	return goal_r_position / 10.0;
+}
+uint16_t modbus_set_goal_theta_position(ModbusHandleTypedef *hmodbus) {
+	uint16_t goal_theta_position = hmodbus->RegisterAddress[0x41].U16;
+	return goal_theta_position / 10.0;
+}
+
+Robot_goal_point Coordinate_Base_to_Robot(Robot_goal_point *Goal_point,
+		float r_position, float theta_position) {
+
+	Goal_point->r_goal_position = 0;
+	Goal_point->theta_goal_position = 0;
+
+	float prismatic_pos;
+	float beta = pow(r_position, 2) + pow(Offet, 2);
+	float gamma = -2 * r_position * Offet;
+
+	if (theta_position >= 0 && theta_position <= 90) // quadrant 1
+			{
+		//Goal_point->theta_goal_position = degree_to_rad(90 - alpha);
+		prismatic_pos = sqrt(beta - gamma * cosf(theta_position + 90));
+//		Goal_point->r_goal_position = sqrt(
+//				beta - gamma * cosf(theta_position + 90));
+	} else if (theta_position >= 90 && theta_position <= 180) // quadrant 2
+			{
+		//Goal_point->theta_goal_position = degree_to_rad(alpha + 90);
+		prismatic_pos = sqrt(beta - gamma * cosf(180 - theta_position));
+//		Goal_point->r_goal_position = sqrt(
+//				beta - gamma * cosf(180 - theta_position));
+	} else if (theta_position <= 0 && theta_position >= -90) // quadrant 3
+			{
+		//Goal_point->theta_goal_position = degree_to_rad(alpha + 90);
+		prismatic_pos = sqrt(beta - gamma * cosf(theta_position - 90));
+//		Goal_point->r_goal_position = sqrt(
+//				beta - gamma * cosf(theta_position - 90));
+	} else if (theta_position <= -90 && theta_position >= -180) // quadrant 4
+			{
+//		Goal_point->theta_goal_position = degree_to_rad(90 - alpha);
+//		Goal_point->r_goal_position = sqrt(
+//				beta - gamma * cosf(90 - theta_position));
+		prismatic_pos = sqrt(beta - gamma * cosf(90 - theta_position));
+	}
+
+	float alpha = acos(
+			pow(r_position, 2) - pow(prismatic_pos, 2)
+					- pow(Offet, 2) / (-2 * prismatic_pos * Offet));
+
+	if (theta_position >= 0 && theta_position <= 90) // quadrant 1
+			{
+		Goal_point->theta_goal_position = degree_to_rad(90 - alpha);
+		prismatic_pos = sqrt(beta - gamma * cosf(theta_position + 90));
+	} else if (theta_position >= 90 && theta_position <= 180) // quadrant 2
+			{
+		Goal_point->theta_goal_position = degree_to_rad(alpha + 90);
+		prismatic_pos = sqrt(beta - gamma * cosf(180 - theta_position));
+	} else if (theta_position <= 0 && theta_position >= -90) // quadrant 3
+			{
+		Goal_point->theta_goal_position = degree_to_rad(alpha + 90);
+		prismatic_pos = sqrt(beta - gamma * cosf(theta_position - 90));
+	} else if (theta_position <= -90 && theta_position >= -180) // quadrant 4
+			{
+		Goal_point->theta_goal_position = degree_to_rad(90 - alpha);
+		prismatic_pos = sqrt(beta - gamma * cosf(90 - theta_position));
+	}
+
+	Goal_point->r_goal_position = prismatic_pos;
+
+	return *Goal_point;
+}
+
+Robot_goal_point Coordinate_Robot_to_Base(Robot_goal_point *Goal_point,
+		float r_position, float theta_position) {
+
+	float theta_position_deg = rad_to_degree(theta_position);
+	Goal_point->r_goal_position = 0;
+	Goal_point->theta_goal_position = 0;
+
+	int quadrant = 0;
+	if (theta_position_deg >= 0 && theta_position_deg <= 90) {
+		if (sinf(theta_position) * r_position >= Offet) {
+			quadrant = 1;
+		} else {
+			quadrant = 4;
+		}
+	} else {
+		if (cosf(theta_position - degree_to_rad(90.0)) * r_position >= Offet) {
+			quadrant = 2;
+		} else {
+			quadrant = 3;
+		}
+	}
+	float beta = pow(r_position, 2) + pow(Offet, 2);
+	float gamma = -2 * r_position * Offet;
+	float Prismatic_pos;
+	float theta;
+	if (quadrant == 1) // quadrant 1
+			{
+		Prismatic_pos = sqrt(
+				beta + gamma * cosf(degree_to_rad(90.0) - theta_position));
+
+	} else if (quadrant == 2) // quadrant 2
+			{
+		Prismatic_pos = sqrt(
+				beta + gamma * cosf(theta_position - degree_to_rad(90.0)));
+
+	} else if (quadrant == 3) // quadrant 3
+			{
+		Prismatic_pos = sqrt(
+				beta + gamma * cosf(theta_position - degree_to_rad(90.0)));
+	} else  // quadrant 4
+	{
+		Prismatic_pos = sqrt(
+				beta + gamma * cosf(degree_to_rad(90.0) - theta_position));
+	}
+	float alpha = acos(
+			pow(r_position, 2) - pow(prismatic_pos, 2)
+					- pow(Offet, 2) / (-2 * prismatic_pos * Offet));
+
+	if (quadrant == 1) // quadrant 1
+			{
+		theta = rad_to_degree(alpha) - 90.0;
+
+	} else if (quadrant == 2) // quadrant 2
+			{
+		theta = 270 - rad_to_degree(alpha);
+
+	} else if (quadrant == 3) // quadrant 3
+			{
+		theta = -90 - rad_to_degree(alpha);
+	} else  // quadrant 4
+	{
+		theta = -1 * (90 - rad_to_degree(alpha));
+	}
+	Goal_point->r_goal_position = Prismatic_pos;
+	Goal_point->theta_goal_position = theta;
+	return *Goal_point;
+}
+
+float rad_to_degree(float rad) {
+	return (rad * 180.0) / 3.142;
+}
+float degree_to_rad(float degree) {
+	return (degree * 3.142) / 180.0;
+}
