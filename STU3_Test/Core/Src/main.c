@@ -159,9 +159,9 @@ int main(void)
 //	Encoder_Init(&encoder1, &htim4);
 //	Encoder_Init(&encoder2, &htim3);
 //
-//	InitTrajectorySegment(&segments[0], 0.0f, 100.0f, 50.0f, 100.0f, 0.0f);
-//	InitTrajectorySegment(&segments[1], 100.0f, 50.0f, 40.0f, 80.0f, segments[0].t_start + segments[0].t_total);
-//	InitTrajectorySegment(&segments[2], 50.0f, 200.0f, 60.0f, 120.0f, segments[1].t_start + segments[1].t_total);
+	InitTrajectorySegment(&segments[0], 0.0f, 100.0f, 50.0f, 100.0f, 0.0f);
+	InitTrajectorySegment(&segments[1], 100.0f, 50.0f, 40.0f, 80.0f, segments[0].t_start + segments[0].t_total);
+	InitTrajectorySegment(&segments[2], 50.0f, 200.0f, 60.0f, 120.0f, segments[1].t_start + segments[1].t_total);
 //
 //	int lastTick = 0;
 //	HAL_TIM_Encoder_Start(&htim3, TIM_CHANNEL_ALL);
@@ -239,27 +239,27 @@ int main(void)
 // Now use p1,v1,a1 and p2,v2,a2 as needed
 		//}
 
-//		t_global = HAL_GetTick() / 1000.0f;
-//		pos = GetTrajectoryPosition(&segments[current_segment], t_global);
-//		vel = GetTrajectoryVelocity(&segments[current_segment], t_global);
-//		// ถ้าจบ segment ปัจจุบันให้ข้ามไปอันถัดไป
-//		if (t_global > segments[current_segment].t_start + segments[current_segment].t_total) {
-//			if (current_segment < MAX_SEGMENTS - 1) {
-//				current_segment++;
-//			}
-//		}
+		t_global = HAL_GetTick() / 1000.0f;
+		pos = GetTrajectoryPosition(&segments[current_segment], t_global);
+		vel = GetTrajectoryVelocity(&segments[current_segment], t_global);
+		// ถ้าจบ segment ปัจจุบันให้ข้ามไปอันถัดไป
+		if (t_global > segments[current_segment].t_start + segments[current_segment].t_total) {
+			if (current_segment < MAX_SEGMENTS - 1) {
+				current_segment++;
+			}
+		}
 
-		PS2_ReadData();
-		Circle = PS2_ButtonCircle();
-		Square = PS2_ButtonSquare();
-		Triangle = PS2_ButtonTriangle();
-		Cross = PS2_ButtonCross();
-		R1 = PS2_ButtonR1();
-		R2 = PS2_ButtonR2();
-		Select = PS2_ButtonSelect();
-		Start = PS2_ButtonStart();
-		L1 = PS2_ButtonL1();
-		HAL_Delay(100);
+//		PS2_ReadData();
+//		Circle = PS2_ButtonCircle();
+//		Square = PS2_ButtonSquare();
+//		Triangle = PS2_ButtonTriangle();
+//		Cross = PS2_ButtonCross();
+//		R1 = PS2_ButtonR1();
+//		R2 = PS2_ButtonR2();
+//		Select = PS2_ButtonSelect();
+//		Start = PS2_ButtonStart();
+//		L1 = PS2_ButtonL1();
+//		HAL_Delay(100);
 	}
   /* USER CODE END 3 */
 }
