@@ -14,9 +14,9 @@ void modbus_heartbeat_init(ModbusHandleTypedef *hmodbus) {
 }
 
 void modbus_heartbeat(ModbusHandleTypedef *hmodbus) {
-	if (hmodbus->RegisterAddress[0x00].U16 == 18537) {
-		hmodbus->RegisterAddress[0x00].U16 = 22881;
-	}
+	//if (hmodbus->RegisterAddress[0x00].U16 == 18537) {
+	hmodbus->RegisterAddress[0x00].U16 = 22881;
+	//}
 }
 
 uint8_t modbus_Base_System_Status(ModbusHandleTypedef *hmodbus) {

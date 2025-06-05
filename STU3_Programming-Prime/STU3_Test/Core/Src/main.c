@@ -372,7 +372,6 @@ int main(void)
 	arm_pid_init_f32(&Rev_velo_PID, 0);
 
 	Backlash_Init(&Rev_backlash, 0.0349066);
-	modbus_heartbeat_init(&hmodbus);
 
 //	InitTrajectorySegment(&segments[0], 0.0f, 200.0f, 500.0f, 250.0f, 0.0f);
 //	InitTrajectorySegment(&segments[0], 0.0f, 0.785f, 1.0f, 0.4f, 0.0f);
