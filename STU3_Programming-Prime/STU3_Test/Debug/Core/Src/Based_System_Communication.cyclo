@@ -1,5 +1,5 @@
 ../Core/Src/Based_System_Communication.c:12:6:modbus_heartbeat_init	1
-../Core/Src/Based_System_Communication.c:16:6:modbus_heartbeat	2
+../Core/Src/Based_System_Communication.c:16:6:modbus_heartbeat	1
 ../Core/Src/Based_System_Communication.c:22:9:modbus_Base_System_Status	1
 ../Core/Src/Based_System_Communication.c:27:6:modbus_servo_Status	1
 ../Core/Src/Based_System_Communication.c:31:9:modbus_write_servo_up	1
