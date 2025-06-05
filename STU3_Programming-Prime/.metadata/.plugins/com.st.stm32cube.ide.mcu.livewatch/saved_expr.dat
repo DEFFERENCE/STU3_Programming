@@ -20,3 +20,6 @@ r_pos
 QEIReadRaw3
 QEIReadRaw4
 check
+status
+AAA
+State

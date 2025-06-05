@@ -21,3 +21,66 @@ Finished building: default.size.stdout
  
 Finished building: STU3_Test.list
  
+14:28:10 **** Incremental Build of configuration Debug for project Modbus_Test ****
+make -j16 all 
+arm-none-eabi-size  Modbus_Test.elf 
+   text	   data	    bss	    dec	    hex	filename
+  31632	    524	   3924	  36080	   8cf0	Modbus_Test.elf
+Finished building: default.size.stdout
+ 
+14:28:18 **** Incremental Build of configuration Debug for project Modbus_Test ****
+make -j16 all 
+arm-none-eabi-size  Modbus_Test.elf 
+   text	   data	    bss	    dec	    hex	filename
+  31632	    524	   3924	  36080	   8cf0	Modbus_Test.elf
+Finished building: default.size.stdout
+ 
+14:55:15 **** Incremental Build of configuration Debug for project Modbus_Test ****
+make -j16 all 
+arm-none-eabi-size  Modbus_Test.elf 
+   text	   data	    bss	    dec	    hex	filename
+  31632	    524	   3924	  36080	   8cf0	Modbus_Test.elf
+Finished building: default.size.stdout
+ 
+15:03:53 **** Incremental Build of configuration Debug for project Modbus_Test ****
+make -j16 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "Modbus_Test.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\Fibo\Year2\Term2\STU\Programming\STU3_Programming\STU3_Programming-Prime\Modbus_Test\STM32G474RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Modbus_Test.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: Modbus_Test.elf
+ 
+arm-none-eabi-size  Modbus_Test.elf 
+arm-none-eabi-objdump -h -S Modbus_Test.elf  > "Modbus_Test.list"
+   text	   data	    bss	    dec	    hex	filename
+  31632	    524	   3924	  36080	   8cf0	Modbus_Test.elf
+Finished building: default.size.stdout
+ 
+Finished building: Modbus_Test.list
+ 
+15:05:09 **** Incremental Build of configuration Debug for project Modbus_Test ****
+make -j16 all 
+arm-none-eabi-size  Modbus_Test.elf 
+   text	   data	    bss	    dec	    hex	filename
+  31632	    524	   3924	  36080	   8cf0	Modbus_Test.elf
+Finished building: default.size.stdout
+ 
+15:06:39 **** Incremental Build of configuration Debug for project Modbus_Test ****
+make -j16 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "Modbus_Test.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\Fibo\Year2\Term2\STU\Programming\STU3_Programming\STU3_Programming-Prime\Modbus_Test\STM32G474RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Modbus_Test.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: Modbus_Test.elf
+ 
+arm-none-eabi-size  Modbus_Test.elf 
+arm-none-eabi-objdump -h -S Modbus_Test.elf  > "Modbus_Test.list"
+   text	   data	    bss	    dec	    hex	filename
+  31632	    524	   3924	  36080	   8cf0	Modbus_Test.elf
+Finished building: default.size.stdout
+ 
+Finished building: Modbus_Test.list
+ 
+15:11:10 **** Incremental Build of configuration Debug for project Modbus_Test ****
+make -j16 all 
+arm-none-eabi-size  Modbus_Test.elf 
+   text	   data	    bss	    dec	    hex	filename
+  31632	    524	   3924	  36080	   8cf0	Modbus_Test.elf
+Finished building: default.size.stdout
+ 

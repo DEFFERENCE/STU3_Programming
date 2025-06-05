@@ -385,114 +385,114 @@ int main(void)
 
 
 
-//		uint64_t currentTick = HAL_GetTick();
-//		float dt = (currentTick - lastTick) / 1000.0f;
-//		Modbus_Protocal_Worker();
-//		modbus_heartbeat(&hmodbus);
-//		Base_Sysytem_status = modbus_Base_System_Status(&hmodbus);
-//
-//		if (dt >= 0.001f) {
-//
-//			HAL_ADC_Start(&hadc1);
-//			HAL_ADC_Start(&hadc2);
-//			adc_1 = HAL_ADC_GetValue(&hadc1);
-//			adc_2 = HAL_ADC_GetValue(&hadc2);
-//
-//			Encoder_Update(&encoder1, dt);
-//			Encoder_Update(&encoder2, dt);
-//			QEIReadRaw3 = __HAL_TIM_GET_COUNTER(&htim3);
-//			QEIReadRaw4 = __HAL_TIM_GET_COUNTER(&htim4);
-//
-//			p1 = Encoder_GetPosition(&encoder1);
-//			v1 = Encoder_GetVelocity(&encoder1);
-//			a1 = Encoder_GetAcceleration(&encoder1);
-//
-//			p2 = Encoder_GetPosition(&encoder2);
-//			v2 = Encoder_GetVelocity(&encoder2);
-//			a2 = Encoder_GetAcceleration(&encoder2);
-//
-//			if (Base_Sysytem_status == Base_Home) {
-//
-//				R_Theta_moving_Status(&hmodbus, Home);
-//
-//			} else if (Base_Sysytem_status == Base_Run_Jog_mode) {
-//
-//				R_Theta_moving_Status(&hmodbus, Run_Jog_mode);
-//
-//				if (modbus_write_servo_up(&hmodbus) == 1) // Pen_Up
-//						{
-//
-//					modbus_servo_Status(&hmodbus, Limit_Up);
-//
-//				} else if (modbus_write_servo_down(&hmodbus) == 1) // Pen_Down
-//						{
-//					modbus_servo_Status(&hmodbus, Limit_Down);
-//				}
-//				if (1 == 1) {  /// Set_Target 10 points
-//					set_Target_Position_ten_points(&hmodbus,
-//							Encoder_GetPosition_mm(&encoder1),
-//							Encoder_GetDegree(&encoder2), Num_point);
-//					Num_point += 1;
-//				}
-//				if (1 == 1) {   /// Go_Target 10 points
-//
-//					if (1 == 1) // At target
-//							{
-//						modbus_servo_Status(&hmodbus, Limit_Down);
-//					} else // not target
-//					{
-//						modbus_servo_Status(&hmodbus, Limit_Up);
-//					}
-//				}
-//
-//			} else if (Base_Sysytem_status == Base_Run_Point_mode) {
-//
-//				Goal_r_position = modbus_set_goal_r_position(&hmodbus);
-//				Goal_theta_position = modbus_set_goal_theta_position(&hmodbus);
-//				R_Theta_moving_Status(&hmodbus, Run_Point_mode);
-//
-//			}
-//
-//			else if (Base_Sysytem_status == Base_Go_to_Target) {
-//
-//				R_Theta_moving_Status(&hmodbus, Go_to_Target);
-//				if (1 == 1) // At set pint
-//						{
-//					modbus_servo_Status(&hmodbus, Limit_Down);
-//
-//				} else // not set point
-//				{
-//					modbus_servo_Status(&hmodbus, Limit_Up);
-//				}
-//			}
-//
-//			Measurement_Pris[0] = Encoder_GetPosition_mm(&encoder1);
-//			Measurement_Pris[1] = Encoder_GetVelocity_mm(&encoder1);
-//			Measurement_Pris[2] = 0;
-//			Measurement_Pris[3] = 0;
-//
-//			Kalman_SetInput(&kf_pris, V_pris_velo_PID);
-//			Kalman_Predict(&kf_pris);
-//			Kalman_Update(&kf_pris, Measurement_Pris);
-//
-//			Measurement_Rev[0] = Encoder_GetPosition(&encoder2)
-//					/ (100.0 / 30.0);
-//			Measurement_Rev[1] = Encoder_GetVelocity(&encoder2)
-//					/ (100.0 / 30.0);
-//			Measurement_Rev[2] = 0;
-//			Measurement_Rev[3] = 0;
-//
-//			Kalman_SetInput(&kf_rev, V_rev_velo_PID);
-//			Kalman_Predict(&kf_rev);
-//			Kalman_Update(&kf_rev, Measurement_Rev);
-//
-//			modbus_Update_All(&hmodbus, Encoder_GetPosition_mm(&encoder1), // r_pos
-//			Encoder_GetDegree(&encoder2), // theta_pos
-//			Encoder_GetVelocity_mm(&encoder1), // r_velo
-//			Encoder_GetVelocity(&encoder2) * 180.0 / 3.142, // theta_velo
-//			Encoder_GetAcceleration_mm(&encoder1), // r_accel
-//			Encoder_GetAcceleration(&encoder2) * 180.0 / 3.142); // theta_accel
-//		}
+		uint64_t currentTick = HAL_GetTick();
+		float dt = (currentTick - lastTick) / 1000.0f;
+		Modbus_Protocal_Worker();
+		modbus_heartbeat(&hmodbus);
+		Base_Sysytem_status = modbus_Base_System_Status(&hmodbus);
+
+		if (dt >= 0.001f) {
+
+			HAL_ADC_Start(&hadc1);
+			HAL_ADC_Start(&hadc2);
+			adc_1 = HAL_ADC_GetValue(&hadc1);
+			adc_2 = HAL_ADC_GetValue(&hadc2);
+
+			Encoder_Update(&encoder1, dt);
+			Encoder_Update(&encoder2, dt);
+			QEIReadRaw3 = __HAL_TIM_GET_COUNTER(&htim3);
+			QEIReadRaw4 = __HAL_TIM_GET_COUNTER(&htim4);
+
+			p1 = Encoder_GetPosition(&encoder1);
+			v1 = Encoder_GetVelocity(&encoder1);
+			a1 = Encoder_GetAcceleration(&encoder1);
+
+			p2 = Encoder_GetPosition(&encoder2);
+			v2 = Encoder_GetVelocity(&encoder2);
+			a2 = Encoder_GetAcceleration(&encoder2);
+
+			if (Base_Sysytem_status == Base_Home) {
+
+				R_Theta_moving_Status(&hmodbus, Home);
+
+			} else if (Base_Sysytem_status == Base_Run_Jog_mode) {
+
+				R_Theta_moving_Status(&hmodbus, Run_Jog_mode);
+
+				if (modbus_write_servo_up(&hmodbus) == 1) // Pen_Up
+						{
+
+					modbus_servo_Status(&hmodbus, Limit_Up);
+
+				} else if (modbus_write_servo_down(&hmodbus) == 1) // Pen_Down
+						{
+					modbus_servo_Status(&hmodbus, Limit_Down);
+				}
+				if (1 == 1) {  /// Set_Target 10 points
+					set_Target_Position_ten_points(&hmodbus,
+							Encoder_GetPosition_mm(&encoder1),
+							Encoder_GetDegree(&encoder2), Num_point);
+					Num_point += 1;
+				}
+				if (1 == 1) {   /// Go_Target 10 points
+
+					if (1 == 1) // At target
+							{
+						modbus_servo_Status(&hmodbus, Limit_Down);
+					} else // not target
+					{
+						modbus_servo_Status(&hmodbus, Limit_Up);
+					}
+				}
+
+			} else if (Base_Sysytem_status == Base_Run_Point_mode) {
+
+				Goal_r_position = modbus_set_goal_r_position(&hmodbus);
+				Goal_theta_position = modbus_set_goal_theta_position(&hmodbus);
+				R_Theta_moving_Status(&hmodbus, Run_Point_mode);
+
+			}
+
+			else if (Base_Sysytem_status == Base_Go_to_Target) {
+
+				R_Theta_moving_Status(&hmodbus, Go_to_Target);
+				if (1 == 1) // At set pint
+						{
+					modbus_servo_Status(&hmodbus, Limit_Down);
+
+				} else // not set point
+				{
+					modbus_servo_Status(&hmodbus, Limit_Up);
+				}
+			}
+
+			Measurement_Pris[0] = Encoder_GetPosition_mm(&encoder1);
+			Measurement_Pris[1] = Encoder_GetVelocity_mm(&encoder1);
+			Measurement_Pris[2] = 0;
+			Measurement_Pris[3] = 0;
+
+			Kalman_SetInput(&kf_pris, V_pris_velo_PID);
+			Kalman_Predict(&kf_pris);
+			Kalman_Update(&kf_pris, Measurement_Pris);
+
+			Measurement_Rev[0] = Encoder_GetPosition(&encoder2)
+					/ (100.0 / 30.0);
+			Measurement_Rev[1] = Encoder_GetVelocity(&encoder2)
+					/ (100.0 / 30.0);
+			Measurement_Rev[2] = 0;
+			Measurement_Rev[3] = 0;
+
+			Kalman_SetInput(&kf_rev, V_rev_velo_PID);
+			Kalman_Predict(&kf_rev);
+			Kalman_Update(&kf_rev, Measurement_Rev);
+
+			modbus_Update_All(&hmodbus, Encoder_GetPosition_mm(&encoder1), // r_pos
+			Encoder_GetDegree(&encoder2), // theta_pos
+			Encoder_GetVelocity_mm(&encoder1), // r_velo
+			Encoder_GetVelocity(&encoder2) * 180.0 / 3.142, // theta_velo
+			Encoder_GetAcceleration_mm(&encoder1), // r_accel
+			Encoder_GetAcceleration(&encoder2) * 180.0 / 3.142); // theta_accel
+		}
 
 
 
