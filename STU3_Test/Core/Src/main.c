@@ -608,7 +608,7 @@ int main(void)
 //			}
 //		}
 //		prevSelect = selectPressed;
-//
+
 		t_global = HAL_GetTick() / 1000.0f;
 		if (PS2_ButtonStart()) {
 			for (int i = 0; i < 10; i++) {
