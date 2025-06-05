@@ -388,7 +388,7 @@ int main(void)
 		uint64_t currentTick = HAL_GetTick();
 		float dt = (currentTick - lastTick) / 1000.0f;
 		Modbus_Protocal_Worker();
-		hmodbus.RegisterAddress[0x00].U16 = 22881;
+		modbus_heartbeat(&hmodbus);
 		Base_Sysytem_status = modbus_Base_System_Status(&hmodbus);
 
 		if (dt >= 0.001f) {

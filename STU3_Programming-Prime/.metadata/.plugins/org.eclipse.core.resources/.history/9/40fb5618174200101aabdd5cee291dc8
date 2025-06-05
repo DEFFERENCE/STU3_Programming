@@ -117,7 +117,7 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-//	  __HAL_TIM_SET_COMPARE(&htim8,TIM_CHANNEL_4,AAA);
+	  __HAL_TIM_SET_COMPARE(&htim8,TIM_CHANNEL_4,AAA);
 	  Modbus_Protocal_Worker();
 	  registerFrame[0x00].U16 = 22881;
 	  registerFrame[0x15].U16 = 100;
