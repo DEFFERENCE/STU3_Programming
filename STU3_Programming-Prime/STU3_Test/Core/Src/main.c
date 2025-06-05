@@ -169,7 +169,7 @@ int Select;
 int Start;
 int L2;
 float PrismaticTenPoints[11] = {0.0f, 200.0f, 500.0f, 390.0f, 240.0f, 120.0f, 280.0f, 400.0f, 600.0f, 0.0f, 600.0f};
-float RevoluteTenPoints[11] = {0.0f, 100.0f, 200.0f, 300.0f, 400.0f, 500.0f, 400.0f, 300.0f, 200.0f, 100.0f, 0.0f};
+float RevoluteTenPoints[11] = {0.0f, 0.5f, 0.25f, 1.0f, -1.0f, -0.5f, 0.5f, -0.25f, 0.75f, -0.75f, 0.0f};
 int count = 1;
 float delay_pris[10];
 float delay_rev[10];
@@ -390,6 +390,7 @@ int main(void)
 		Modbus_Protocal_Worker();
 		modbus_heartbeat(&hmodbus);
 		Base_Sysytem_status = modbus_Base_System_Status(&hmodbus);
+		PS2_ReadData();
 
 		t_global = HAL_GetTick() / 1000.0f;
 
@@ -417,6 +418,14 @@ int main(void)
 
 				R_Theta_moving_Status(&hmodbus, Home);
 
+				if (State != 15) {
+					HAL_GPIO_WritePin(GPIOB, GPIO_PIN_1, 0);
+					__HAL_TIM_SET_COMPARE(&htim20, TIM_CHANNEL_1, 40000);
+				} else {
+					HAL_GPIO_WritePin(GPIOB, GPIO_PIN_1, 0);
+					__HAL_TIM_SET_COMPARE(&htim20, TIM_CHANNEL_1, 0);
+				}
+
 			} else if (Base_Sysytem_status == Base_Run_Jog_mode) {
 
 				R_Theta_moving_Status(&hmodbus, Run_Jog_mode);
@@ -442,7 +451,7 @@ int main(void)
 //				} else {
 //					float v_set = (Revolute_dis() / 18.0) * 65535.0;
 //					// HAL_GPIO_WritePin(GPIOC, GPIO_PIN_6, 0); // 0 or 1
-//					__HAL_TIM_SET_COMPARE(&htim20, TIM_CHANNEL_3, 0);
+//					__HAL_TIM_SET_COMPARE(&htim20, TIM_CHANNEL_3, v_set);
 //				}
 
 //				if (PS2_ButtonTriangle()) {
@@ -481,18 +490,16 @@ int main(void)
 
 				if (PS2_ButtonStart()) { // Auto Mode
 					for (int i = 0; i < 10; i++) {
-						float start_pris = PrismaticTenPoints[i];
-						float end_pris = PrismaticTenPoints[i + 1];
-						float start_rev = RevoluteTenPoints[i];
-						float end_rev = RevoluteTenPoints[i + 1];
+						float start_pris = PrismaticTenPoints[i] / 10.0f;
+						float end_pris = PrismaticTenPoints[i + 1] / 10.0f;
+						float start_rev = RevoluteTenPoints[i] / 10.0f;
+						float end_rev = RevoluteTenPoints[i + 1] / 10.0f;
 						// กำหนดเวลาเริ่มต้นของ segment นี้
-						float t_start_pris = (i == 0) ? t_global : Prismatic[i - 1].t_start +
-								Prismatic[i - 1].t_total + delay_pris[i - 1];
+						float t_start_pris = (i == 0) ? t_global : Prismatic[i - 1].t_start + Prismatic[i - 1].t_total + delay_pris[i - 1];
 						InitTrajectorySegment(&Prismatic[i], start_pris, end_pris, v_max_pris, a_max_pris, t_start_pris);
 						delay_pris[i] = 5.5f - Prismatic[i].t_total;
-						float t_start_rev = (i == 0) ? t_global : Revolute[i - 1].t_start +
-								Revolute[i - 1].t_total + delay_rev[i - 1];
-						InitTrajectorySegment(&Revolute[i], start_rev, end_rev, v_max_rev, a_max_rev, t_start_rev);
+						float t_start_rev = (i == 0) ? t_global : Revolute[i - 1].t_start + Revolute[i - 1].t_total + delay_rev[i - 1];
+						InitTrajectorySegment(&Revolute[i], start_rev, end_rev, 500.0f, 250.0f, t_start_rev);
 						delay_rev[i] = 5.5f - Revolute[i].t_total;
 						// ป้องกันกรณีเคลื่อนที่ช้ามากจน delay < 0
 						if (delay_pris[i] < 0.0f) {
@@ -534,7 +541,7 @@ int main(void)
 //					modbus_servo_Status(&hmodbus, Limit_Down);
 //				}
 
-				if (count == 10) {  /// Set_Target 10 points
+				if (count == 11 && Num_point <= 9) {  // Set_Target 10 points
 					Coordinate_Robot_to_Base(&Goal_point[Num_point], PrismaticTenPoints[Num_point + 1],
 							RevoluteTenPoints[Num_point + 1]);
 					set_Target_Position_ten_points(&hmodbus, Goal_point[Num_point].r_goal_position,
@@ -542,8 +549,8 @@ int main(void)
 					Num_point += 1;
 				}
 
-//				if (t_global > Revolute[current_segment].t_total + 2.0f
-//						&& t_global < Revolute[current_segment].t_total + 3.0f) { // check setpoint
+//				float t_end = Revolute[current_segment].t_start + Revolute[current_segment].t_total;
+//				if (t_global > t_end && t_global < t_end + 1.5f) { // check setpoint
 //					__HAL_TIM_SET_COMPARE(&htim8, TIM_CHANNEL_4, 0);
 //					modbus_servo_Status(&hmodbus, Limit_Down);
 //				} else {
@@ -584,6 +591,15 @@ int main(void)
 //					__HAL_TIM_SET_COMPARE(&htim8, TIM_CHANNEL_4, 0);
 //					modbus_servo_Status(&hmodbus, Limit_Down);
 //				}
+
+//				float t_end = Revolute[0].t_start + Revolute[0].t_total;
+//				if (t_global > t_end && t_global < t_end + 1.5f) { // check setpoint
+//					__HAL_TIM_SET_COMPARE(&htim8, TIM_CHANNEL_4, 0);
+//					modbus_servo_Status(&hmodbus, Limit_Down);
+//				} else {
+//					__HAL_TIM_SET_COMPARE(&htim8, TIM_CHANNEL_4, 2000);
+//					modbus_servo_Status(&hmodbus, Limit_Up);
+//				}
 			}
 
 			Measurement_Pris[0] = Encoder_GetPosition_mm(&encoder1);
@@ -614,16 +630,16 @@ int main(void)
 			count_Tim2 += 1;
 			// Velocity Control
 			velocity_pris = Encoder_GetVelocity_mm(&encoder1);
-			setvelocity_pris = GetTrajectoryVelocity(&Prismatic[current_segment], t_global) + V_pris_posi_PID;
-//			setvelocity_pris = vel_pris + V_pris_posi_PID;
+//			setvelocity_pris = GetTrajectoryVelocity(&Prismatic[current_segment], t_global) + V_pris_posi_PID;
+			setvelocity_pris = vel_pris + V_pris_posi_PID;
 			delta_velo_pris = setvelocity_pris - velocity_pris;
 //			delta_velo_pris = setvelocity_pris - kf_pris.x_data[1];
 			V_pris_velo_PID = Prismatic_velocity_control(delta_velo_pris);
 			if (count_Tim2 >= 10) {
 				// Position Control
 				position_pris = Encoder_GetPosition_mm(&encoder1);
-				setposition_pris = GetTrajectoryPosition(&Prismatic[current_segment], t_global);
-//				setposition_pris = pos_pris;
+//				setposition_pris = GetTrajectoryPosition(&Prismatic[current_segment], t_global);
+				setposition_pris = pos_pris;
 				delta_posi_pris = setposition_pris - position_pris;
 				if (delta_posi_pris <= 0.1 && delta_posi_pris >= -0.1) {
 					V_pris_posi_PID = 0;
@@ -640,16 +656,16 @@ int main(void)
 			count_Tim2 += 1;
 			// Velocity Control
 			velocity_rev = Encoder_GetVelocity(&encoder2) / (100.0 / 30.0);
-			setvelocity_rev = GetTrajectoryVelocity(&Revolute[current_segment], t_global) + V_rev_posi_PID;
-//			setvelocity_rev = vel_rev + V_rev_posi_PID;
+//			setvelocity_rev = GetTrajectoryVelocity(&Revolute[current_segment], t_global) + V_rev_posi_PID;
+			setvelocity_rev = vel_rev + V_rev_posi_PID;
 //			delta_velo_rev = setvelocity_rev - velocity_rev;
 			delta_velo_rev = setvelocity_rev - kf_rev.x_data[1];
 			V_rev_velo_PID = Revolute_velocity_control(delta_velo_rev);
 			if (count_Tim2 >= 10) {
 				// Position Control
 				position_rev = Encoder_GetPosition(&encoder2) / (100.0 / 30.0);
-				setposition_rev = GetTrajectoryPosition(&Revolute[current_segment], t_global) + Rev_backlash.backlash_offset;
-//				setposition_rev = pos_rev;
+//				setposition_rev = GetTrajectoryPosition(&Revolute[current_segment], t_global) + Rev_backlash.backlash_offset;
+				setposition_rev = pos_rev + Rev_backlash.backlash_offset;
 				Backlash_Update(&Rev_backlash, pos_rev, p2, v2);
 				delta_posi_rev = setposition_rev - position_rev;
 				if (delta_posi_rev <= 0.1 && delta_posi_rev >= -0.1) {
@@ -758,9 +774,9 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
 }
 
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) {
-	if (htim == &htim2) {
-		PS2_ReadData();
-	}
+//	if (htim == &htim2) {
+//		PS2_ReadData();
+//	}
 }
 
 float Prismatic_position_control(float delta_posi) {
