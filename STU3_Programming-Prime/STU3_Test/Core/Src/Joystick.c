@@ -2,24 +2,21 @@
 
 uint8_t SPITx[PS2_DATA_LENGTH] = {0x01, 0x42, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
 uint8_t SPIRx[PS2_DATA_LENGTH];
-//float PrismaticTenPoints[10];
-//float RevoluteTenPoints[10];
-//int count = 0;
 
 #define PS2_CS_PORT GPIOC
 #define PS2_CS_PIN  GPIO_PIN_10
 
 void PS2_ReadData() {
-	HAL_Delay(1);
+//	HAL_Delay(1);
 	HAL_GPIO_WritePin(PS2_CS_PORT, PS2_CS_PIN, GPIO_PIN_RESET);
 
 	for (int i = 0; i < PS2_DATA_LENGTH; i++) {
 		HAL_SPI_TransmitReceive(&hspi1, &SPITx[i], &SPIRx[i], 1, HAL_MAX_DELAY);
-		HAL_Delay(5);
+//		HAL_Delay(5);
 	}
 
 	HAL_GPIO_WritePin(PS2_CS_PORT, PS2_CS_PIN, GPIO_PIN_SET);
-	HAL_Delay(5);
+//	HAL_Delay(5);
 }
 
 uint8_t PS2_ButtonCircle() {
@@ -54,7 +51,7 @@ uint8_t PS2_ButtonStart() {
 	return !(SPIRx[3] & 0x08);
 }
 
-uint8_t PS2_ButtonL1() {
+uint8_t PS2_ButtonL2() {
 	 return !(SPIRx[4] & 0x01);
 }
 

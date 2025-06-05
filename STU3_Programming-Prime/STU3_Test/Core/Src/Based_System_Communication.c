@@ -14,9 +14,9 @@ void modbus_heartbeat_init(ModbusHandleTypedef *hmodbus) {
 }
 
 void modbus_heartbeat(ModbusHandleTypedef *hmodbus) {
-	//if (hmodbus->RegisterAddress[0x00].U16 == 18537) {
-	hmodbus->RegisterAddress[0x00].U16 = 22881;
-	//}
+	if (hmodbus->RegisterAddress[0x00].U16 == 18537) {
+		hmodbus->RegisterAddress[0x00].U16 = 22881;
+	}
 }
 
 uint8_t modbus_Base_System_Status(ModbusHandleTypedef *hmodbus) {
@@ -210,8 +210,8 @@ Robot_goal_point Coordinate_Robot_to_Base(Robot_goal_point *Goal_point,
 				beta + gamma * cosf(degree_to_rad(90.0) - theta_position));
 	}
 	float alpha = acos(
-			pow(r_position, 2) - pow(prismatic_pos, 2)
-					- pow(Offet, 2) / (-2 * prismatic_pos * Offet));
+			pow(r_position, 2) - pow(Prismatic_pos, 2)
+					- pow(Offet, 2) / (-2 * Prismatic_pos * Offet));
 
 	if (quadrant == 1) // quadrant 1
 			{

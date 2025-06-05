@@ -76,8 +76,8 @@ all: main-build
 main-build: STU3_Test.elf secondary-outputs
 
 # Tool invocations
-STU3_Test.elf STU3_Test.map: $(OBJS) $(USER_OBJS) D:\Fibo\Year2\Term2\STU\Programming\STU3_Programming\STU3_Programming-Prime\STU3_Test\STM32G474RETX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "STU3_Test.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"D:\Fibo\Year2\Term2\STU\Programming\STU3_Programming\STU3_Programming-Prime\STU3_Test\STM32G474RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STU3_Test.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+STU3_Test.elf STU3_Test.map: $(OBJS) $(USER_OBJS) C:\FIBO_Work\FRA262\ -\ Studio3\STU3_Programming\STU3_Programming-Prime\STU3_Test\STM32G474RETX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "STU3_Test.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\FIBO_Work\FRA262 - Studio3\STU3_Programming\STU3_Programming-Prime\STU3_Test\STM32G474RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STU3_Test.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
