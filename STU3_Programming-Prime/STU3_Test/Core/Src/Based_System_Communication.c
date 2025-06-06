@@ -29,7 +29,6 @@ void modbus_servo_Status(ModbusHandleTypedef *hmodbus, uint8_t Pen_status) {
 }
 
 uint8_t modbus_write_servo_up(ModbusHandleTypedef *hmodbus) {
-	hmodbus->RegisterAddress[0x05].U16 = 0;
 	uint8_t status = hmodbus->RegisterAddress[0x04].U16;
 //	if (status == 1) {
 //		if (hmodbus->RegisterAddress[0x05].U16 == 1) {
@@ -40,7 +39,6 @@ uint8_t modbus_write_servo_up(ModbusHandleTypedef *hmodbus) {
 
 }
 uint8_t modbus_write_servo_down(ModbusHandleTypedef *hmodbus) {
-	hmodbus->RegisterAddress[0x04].U16 = 0;
 	uint8_t status = hmodbus->RegisterAddress[0x05].U16;
 //	if (status == 1) {
 //		if (hmodbus->RegisterAddress[0x04].U16 == 1) {
@@ -56,50 +54,52 @@ void R_Theta_moving_Status(ModbusHandleTypedef *hmodbus, uint8_t Moving_Status) 
 }
 
 void modbus_r_position(ModbusHandleTypedef *hmodbus, float r_pos) {
-	hmodbus->RegisterAddress[0x11].U16 = r_pos * 10.0;
+	hmodbus->RegisterAddress[0x11].U16 = format_robot_to_base(r_pos);
 }
 
 void modbus_theta_position(ModbusHandleTypedef *hmodbus, float theta_pos) {
-	hmodbus->RegisterAddress[0x12].U16 = theta_pos * 10.0;
+	hmodbus->RegisterAddress[0x12].U16 = format_robot_to_base(theta_pos);
 }
 void modbus_r_velocity(ModbusHandleTypedef *hmodbus, float r_Velo) {
-	hmodbus->RegisterAddress[0x13].U16 = r_Velo * 10.0;
+	hmodbus->RegisterAddress[0x13].U16 = format_robot_to_base(r_Velo);
 }
 void modbus_theta_velocity(ModbusHandleTypedef *hmodbus, float theta_Velo) {
-	hmodbus->RegisterAddress[0x14].U16 = theta_Velo * 10.0;
+	hmodbus->RegisterAddress[0x14].U16 = format_robot_to_base(theta_Velo);
 }
 void modbus_r_acceleration(ModbusHandleTypedef *hmodbus, float r_accel) {
-	hmodbus->RegisterAddress[0x15].U16 = r_accel * 10.0;
+	hmodbus->RegisterAddress[0x15].U16 = format_robot_to_base(r_accel);
 }
 void modbus_theta_acceleration(ModbusHandleTypedef *hmodbus, float theta_accel) {
-	hmodbus->RegisterAddress[0x16].U16 = theta_accel * 10.0;
+	hmodbus->RegisterAddress[0x16].U16 = format_robot_to_base(theta_accel);
 }
 void modbus_Update_All(ModbusHandleTypedef *hmodbus, float r_pos,
 		float theta_pos, float r_Velo, float theta_Velo, float r_accel,
 		float theta_accel) {
-	hmodbus->RegisterAddress[0x11].U16 = r_pos;
-	hmodbus->RegisterAddress[0x12].U16 = theta_pos;
-	hmodbus->RegisterAddress[0x13].U16 = r_Velo;
-	hmodbus->RegisterAddress[0x14].U16 = theta_Velo;
-	hmodbus->RegisterAddress[0x15].U16 = r_accel;
-	hmodbus->RegisterAddress[0x16].U16 = theta_accel;
+	hmodbus->RegisterAddress[0x11].U16 = format_robot_to_base(r_pos);
+	hmodbus->RegisterAddress[0x12].U16 = format_robot_to_base(theta_pos);
+	hmodbus->RegisterAddress[0x13].U16 = format_robot_to_base(r_Velo);
+	hmodbus->RegisterAddress[0x14].U16 = format_robot_to_base(theta_Velo);
+	hmodbus->RegisterAddress[0x15].U16 = format_robot_to_base(r_accel);
+	hmodbus->RegisterAddress[0x16].U16 = format_robot_to_base(theta_accel);
 }
 
 void set_Target_Position_ten_points(ModbusHandleTypedef *hmodbus, float r_pos,
 		float theta_pos, uint8_t index) //
 {
 	if (index >= 0 && index <= 9) {
-		hmodbus->RegisterAddress[0x20 + index * 2].U16 = r_pos;
-		hmodbus->RegisterAddress[0x20 + (index * 2) + 1].U16 = theta_pos;
+		hmodbus->RegisterAddress[0x20 + index * 2].U16 = format_robot_to_base(
+				r_pos);
+		hmodbus->RegisterAddress[0x20 + (index * 2) + 1].U16 =
+				format_robot_to_base(theta_pos);
 	}
 }
 uint16_t modbus_set_goal_r_position(ModbusHandleTypedef *hmodbus) {
 	uint16_t goal_r_position = hmodbus->RegisterAddress[0x40].U16;
-	return goal_r_position / 10.0;
+	return format_base_to_robot(goal_r_position);
 }
 uint16_t modbus_set_goal_theta_position(ModbusHandleTypedef *hmodbus) {
 	uint16_t goal_theta_position = hmodbus->RegisterAddress[0x41].U16;
-	return goal_theta_position / 10.0;
+	return format_base_to_robot(goal_theta_position);
 }
 
 Robot_goal_point Coordinate_Base_to_Robot(Robot_goal_point *Goal_point,
@@ -110,24 +110,24 @@ Robot_goal_point Coordinate_Base_to_Robot(Robot_goal_point *Goal_point,
 
 	float prismatic_pos;
 	float beta = pow(r_position, 2) + pow(Offet, 2);
-	float gamma = -2 * r_position * Offet;
+	float gamma = 2 * r_position * Offet;
 
 	if (theta_position >= 0 && theta_position <= 90) // quadrant 1
 			{
 		//Goal_point->theta_goal_position = degree_to_rad(90 - alpha);
-		prismatic_pos = sqrt(beta - gamma * cosf(theta_position + 90));
+		prismatic_pos = sqrt(beta - gamma * cosf(degree_to_rad(theta_position + 90)));
 //		Goal_point->r_goal_position = sqrt(
 //				beta - gamma * cosf(theta_position + 90));
 	} else if (theta_position >= 90 && theta_position <= 180) // quadrant 2
 			{
 		//Goal_point->theta_goal_position = degree_to_rad(alpha + 90);
-		prismatic_pos = sqrt(beta - gamma * cosf(180 - theta_position));
+		prismatic_pos = sqrt(beta - gamma * cosf(degree_to_rad(180 - theta_position)));
 //		Goal_point->r_goal_position = sqrt(
 //				beta - gamma * cosf(180 - theta_position));
 	} else if (theta_position <= 0 && theta_position >= -90) // quadrant 3
 			{
 		//Goal_point->theta_goal_position = degree_to_rad(alpha + 90);
-		prismatic_pos = sqrt(beta - gamma * cosf(theta_position - 90));
+		prismatic_pos = sqrt(beta - gamma * cosf(degree_to_rad(theta_position - 90)));
 //		Goal_point->r_goal_position = sqrt(
 //				beta - gamma * cosf(theta_position - 90));
 	} else if (theta_position <= -90 && theta_position >= -180) // quadrant 4
@@ -135,31 +135,33 @@ Robot_goal_point Coordinate_Base_to_Robot(Robot_goal_point *Goal_point,
 //		Goal_point->theta_goal_position = degree_to_rad(90 - alpha);
 //		Goal_point->r_goal_position = sqrt(
 //				beta - gamma * cosf(90 - theta_position));
-		prismatic_pos = sqrt(beta - gamma * cosf(90 - theta_position));
+		prismatic_pos = sqrt(beta - gamma * cosf(degree_to_rad(90 - theta_position)));
 	}
 
-	float alpha = acos(
-			pow(r_position, 2) - pow(prismatic_pos, 2)
-					- pow(Offet, 2) / (-2 * prismatic_pos * Offet));
+	float up = pow(r_position, 2) - pow(prismatic_pos, 2) - pow(Offet, 2);
+	float down = -2 * prismatic_pos * Offet;
+	float arc = acosf(up/down);
+	float alpha = rad_to_degree(arc);
 
 	if (theta_position >= 0 && theta_position <= 90) // quadrant 1
 			{
 		Goal_point->theta_goal_position = degree_to_rad(90 - alpha);
-		prismatic_pos = sqrt(beta - gamma * cosf(theta_position + 90));
+//		prismatic_pos = format_base_to_robot(sqrt(beta - gamma * cosf(degree_to_rad(theta_position + 90))));
 	} else if (theta_position >= 90 && theta_position <= 180) // quadrant 2
 			{
 		Goal_point->theta_goal_position = degree_to_rad(alpha + 90);
-		prismatic_pos = sqrt(beta - gamma * cosf(180 - theta_position));
+//		prismatic_pos = format_base_to_robot(sqrt(beta - gamma * cosf(degree_to_rad(180 - theta_position))));
 	} else if (theta_position <= 0 && theta_position >= -90) // quadrant 3
 			{
 		Goal_point->theta_goal_position = degree_to_rad(alpha + 90);
-		prismatic_pos = sqrt(beta - gamma * cosf(theta_position - 90));
+//		prismatic_pos = format_base_to_robot(sqrt(beta - gamma * cosf(degree_to_rad(theta_position - 90))));
 	} else if (theta_position <= -90 && theta_position >= -180) // quadrant 4
 			{
 		Goal_point->theta_goal_position = degree_to_rad(90 - alpha);
-		prismatic_pos = sqrt(beta - gamma * cosf(90 - theta_position));
+//		prismatic_pos = format_base_to_robot(sqrt(beta - gamma * cosf(degree_to_rad(90 - theta_position))));
 	}
 
+//	Goal_point->r_goal_position = format_base_to_robot(prismatic_pos);
 	Goal_point->r_goal_position = prismatic_pos;
 
 	return *Goal_point;
@@ -209,9 +211,10 @@ Robot_goal_point Coordinate_Robot_to_Base(Robot_goal_point *Goal_point,
 		Prismatic_pos = sqrt(
 				beta + gamma * cosf(degree_to_rad(90.0) - theta_position));
 	}
-	float alpha = acos(
-			pow(r_position, 2) - pow(Prismatic_pos, 2)
-					- pow(Offet, 2) / (-2 * Prismatic_pos * Offet));
+
+	float up = pow(r_position, 2) - pow(Prismatic_pos, 2) - pow(Offet, 2);
+	float down = (-2 * Prismatic_pos * Offet);
+	float alpha = acosf(up/down);
 
 	if (quadrant == 1) // quadrant 1
 			{
@@ -228,6 +231,8 @@ Robot_goal_point Coordinate_Robot_to_Base(Robot_goal_point *Goal_point,
 	{
 		theta = -1 * (90 - rad_to_degree(alpha));
 	}
+//	Goal_point->r_goal_position = format_robot_to_base(Prismatic_pos);
+//	Goal_point->theta_goal_position = format_robot_to_base(theta);
 	Goal_point->r_goal_position = Prismatic_pos;
 	Goal_point->theta_goal_position = theta;
 	return *Goal_point;
@@ -238,4 +243,10 @@ float rad_to_degree(float rad) {
 }
 float degree_to_rad(float degree) {
 	return (degree * 3.142) / 180.0;
+}
+uint16_t format_robot_to_base(float degree) {
+	return (uint16_t) (roundf(degree) * 10.0);
+}
+float format_base_to_robot(uint16_t degree) {
+	return (float) (degree / 10.0);
 }

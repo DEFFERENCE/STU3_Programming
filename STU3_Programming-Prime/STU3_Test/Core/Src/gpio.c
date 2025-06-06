@@ -66,17 +66,17 @@ void MX_GPIO_Init(void)
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(DIR_MD20A_24V_GPIO_Port, &GPIO_InitStruct);
 
-  /*Configure GPIO pins : Limit_Switch_pen_2_Pin Limit_Switch_Prismatic1_Pin Limit_Switch_Prismatic2_Pin Limit_Switch_pen_1_Pin */
-  GPIO_InitStruct.Pin = Limit_Switch_pen_2_Pin|Limit_Switch_Prismatic1_Pin|Limit_Switch_Prismatic2_Pin|Limit_Switch_pen_1_Pin;
+  /*Configure GPIO pins : Limit_Switch_pen_2_Pin Limit_Switch_Prismatic1_Pin Limit_Switch_pen_1_Pin */
+  GPIO_InitStruct.Pin = Limit_Switch_pen_2_Pin|Limit_Switch_Prismatic1_Pin|Limit_Switch_pen_1_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_IT_FALLING;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
 
-  /*Configure GPIO pin : Proximity_Left_Pin */
-  GPIO_InitStruct.Pin = Proximity_Left_Pin;
+  /*Configure GPIO pins : Proximity_Left_Pin Limit_Switch_Prismatic2_Pin */
+  GPIO_InitStruct.Pin = Proximity_Left_Pin|Limit_Switch_Prismatic2_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_IT_RISING;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
-  HAL_GPIO_Init(Proximity_Left_GPIO_Port, &GPIO_InitStruct);
+  HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
 
   /*Configure GPIO pins : DIR_MD20A_18V_Pin PS2_Attention_Pin */
   GPIO_InitStruct.Pin = DIR_MD20A_18V_Pin|PS2_Attention_Pin;

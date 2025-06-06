@@ -68,5 +68,7 @@ Robot_goal_point Coordinate_Base_to_Robot(Robot_goal_point *Goal_point, float r_
 Robot_goal_point Coordinate_Robot_to_Base(Robot_goal_point *Goal_point, float r_position, float theta_position);
 float rad_to_degree (float rad);
 float degree_to_rad (float degree);
+uint16_t format_robot_to_base(float degree);
+float format_base_to_robot(uint16_t  degree);
 
 #endif /* INC_BASED_SYSTEM_COMMUNICATION_H_ */
