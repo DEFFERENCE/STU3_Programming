@@ -10,28 +10,65 @@
 
 #include "stm32g4xx_hal.h"
 #include "ModBusRTU.h"
+#include <math.h>
 
-void modbus_heartbeat_init(ModbusHandleTypedef* hmodbus);
-void modbus_heartbeat(ModbusHandleTypedef* hmodbus);
-uint8_t modbus_Base_System_Status(ModbusHandleTypedef* hmodbus);
+enum Base_System_status {
+    Base_Home = 1,
+    Base_Run_Jog_mode = 2,
+    Base_Run_Point_mode = 4,
+    Base_Go_to_Target = 8,
+};
 
-uint8_t modbus_servo_Status(ModbusHandleTypedef* hmodbus,uint8_t Pen_status);
-void modbus_write_servo_up(ModbusHandleTypedef* hmodbus,uint8_t Servo_PWM); //Optional
-void modbus_write_servo_down(ModbusHandleTypedef* hmodbus,uint8_t Servo_PWM); //Optional
+enum Pen_status
+{
+	Limit_Down = 1,
+	Limit_Up = 2
+};
 
-uint8_t R_Theta_moving_Status(ModbusHandleTypedef* hmodbus,uint8_t Moving_Status);
-void modbus_r_position(ModbusHandleTypedef* hmodbus,float r_pos);
-void modbus_theta_position(ModbusHandleTypedef* hmodbus,float theta_pos);
-void modbus_r_velocity(ModbusHandleTypedef* hmodbus,float r_Velo);
-void modbus_theta_velocity(ModbusHandleTypedef* hmodbus,float theta_Velo);
-void modbus_r_acceleration(ModbusHandleTypedef* hmodbus,float r_accel);
-void modbus_theta_acceleration(ModbusHandleTypedef* hmodbus,float theta_accel);
-void modbus_Update_All(ModbusHandleTypedef* hmodbus,float r_pos, float theta_pos, float r_Velo,
-		float theta_Velo, float r_accel, float theta_accel);
+enum R_Theta_Moving_status {
+    Home = 1,
+    Run_Jog_mode = 2,
+    Run_Point_mode = 4,
+    Go_to_Target = 8,
+    Stop = 16
+};
 
-void set_Target_Position_ten_points(ModbusHandleTypedef *hmodbus, float r_pos, float theta_pos,
-		uint8_t index);
-uint16_t modbus_set_goal_r_position(ModbusHandleTypedef* hmodbus);
-uint16_t modbus_set_goal_theta_position(ModbusHandleTypedef* hmodbus);
+typedef struct
+{
+	float r_goal_position;
+	float theta_goal_position;
+} Robot_goal_point;
+
+
+void modbus_heartbeat_init(ModbusHandleTypedef *hmodbus);
+void modbus_heartbeat(ModbusHandleTypedef *hmodbus);
+uint8_t modbus_Base_System_Status(ModbusHandleTypedef *hmodbus);
+
+void modbus_servo_Status(ModbusHandleTypedef *hmodbus, uint8_t Pen_status);
+uint8_t modbus_write_servo_up(ModbusHandleTypedef *hmodbus); //Optional
+uint8_t  modbus_write_servo_down(ModbusHandleTypedef *hmodbus); //Optional
+
+void R_Theta_moving_Status(ModbusHandleTypedef *hmodbus,
+		uint8_t Moving_Status);
+void modbus_r_position(ModbusHandleTypedef *hmodbus, float r_pos);
+void modbus_theta_position(ModbusHandleTypedef *hmodbus, float theta_pos);
+void modbus_r_velocity(ModbusHandleTypedef *hmodbus, float r_Velo);
+void modbus_theta_velocity(ModbusHandleTypedef *hmodbus, float theta_Velo);
+void modbus_r_acceleration(ModbusHandleTypedef *hmodbus, float r_accel);
+void modbus_theta_acceleration(ModbusHandleTypedef *hmodbus, float theta_accel);
+void modbus_Update_All(ModbusHandleTypedef *hmodbus, float r_pos,
+		float theta_pos, float r_Velo, float theta_Velo, float r_accel,
+		float theta_accel);
+
+void set_Target_Position_ten_points(ModbusHandleTypedef *hmodbus, float r_pos,
+		float theta_pos, uint8_t index);
+uint16_t modbus_set_goal_r_position(ModbusHandleTypedef *hmodbus);
+uint16_t modbus_set_goal_theta_position(ModbusHandleTypedef *hmodbus);
+Robot_goal_point Coordinate_Base_to_Robot(Robot_goal_point *Goal_point, float r_position, float theta_position);
+Robot_goal_point Coordinate_Robot_to_Base(Robot_goal_point *Goal_point, float r_position, float theta_position);
+float rad_to_degree (float rad);
+float degree_to_rad (float degree);
+uint16_t format_robot_to_base(float degree);
+float format_base_to_robot(uint16_t  degree);
 
 #endif /* INC_BASED_SYSTEM_COMMUNICATION_H_ */
