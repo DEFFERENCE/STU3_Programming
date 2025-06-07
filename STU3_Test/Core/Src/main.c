@@ -978,10 +978,32 @@ static void MX_GPIO_Init(void)
 
 /* USER CODE BEGIN 4 */
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
+<<<<<<< Updated upstream
 	if (GPIO_Pin == GPIO_PIN_10) {
 		Encoder_setLimit(&encoder1, 180);
 		Encoder_setLimit(&encoder2, 180);
 		check += 1;
+=======
+	if (GPIO_Pin == GPIO_PIN_9) {
+		State = 9;
+	} else if (GPIO_Pin == GPIO_PIN_10) {
+		State = 10;
+	} else if (GPIO_Pin == GPIO_PIN_11) {
+		while(1)
+		{
+			__HAL_TIM_SET_COMPARE(&htim20,TIM_CHANNEL_1,0);
+			__HAL_TIM_SET_COMPARE(&htim20,TIM_CHANNEL_3,0);
+		}
+		State = 11;
+	} else if (GPIO_Pin == GPIO_PIN_12) {
+		State = 12;
+	} else if (GPIO_Pin == GPIO_PIN_13) {
+		State = 13;
+	} else if (GPIO_Pin == GPIO_PIN_14) {
+		State = 14;
+	} else if (GPIO_Pin == GPIO_PIN_15) {
+		State = 15;
+>>>>>>> Stashed changes
 	}
 }
 /* USER CODE END 4 */
