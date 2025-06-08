@@ -7,6 +7,7 @@
 C_SRCS += \
 ../Core/Src/Based_System_Communication.c \
 ../Core/Src/Encoder.c \
+../Core/Src/FIBO_path.c \
 ../Core/Src/Joystick.c \
 ../Core/Src/Kalman_Filter.c \
 ../Core/Src/ModBusRTU.c \
@@ -29,6 +30,7 @@ C_SRCS += \
 OBJS += \
 ./Core/Src/Based_System_Communication.o \
 ./Core/Src/Encoder.o \
+./Core/Src/FIBO_path.o \
 ./Core/Src/Joystick.o \
 ./Core/Src/Kalman_Filter.o \
 ./Core/Src/ModBusRTU.o \
@@ -51,6 +53,7 @@ OBJS += \
 C_DEPS += \
 ./Core/Src/Based_System_Communication.d \
 ./Core/Src/Encoder.d \
+./Core/Src/FIBO_path.d \
 ./Core/Src/Joystick.d \
 ./Core/Src/Kalman_Filter.d \
 ./Core/Src/ModBusRTU.d \
@@ -78,7 +81,7 @@ Core/Src/%.o Core/Src/%.su Core/Src/%.cyclo: ../Core/Src/%.c Core/Src/subdir.mk
 clean: clean-Core-2f-Src
 
 clean-Core-2f-Src:
-	-$(RM) ./Core/Src/Based_System_Communication.cyclo ./Core/Src/Based_System_Communication.d ./Core/Src/Based_System_Communication.o ./Core/Src/Based_System_Communication.su ./Core/Src/Encoder.cyclo ./Core/Src/Encoder.d ./Core/Src/Encoder.o ./Core/Src/Encoder.su ./Core/Src/Joystick.cyclo ./Core/Src/Joystick.d ./Core/Src/Joystick.o ./Core/Src/Joystick.su ./Core/Src/Kalman_Filter.cyclo ./Core/Src/Kalman_Filter.d ./Core/Src/Kalman_Filter.o ./Core/Src/Kalman_Filter.su ./Core/Src/ModBusRTU.cyclo ./Core/Src/ModBusRTU.d ./Core/Src/ModBusRTU.o ./Core/Src/ModBusRTU.su ./Core/Src/Prismatic.cyclo ./Core/Src/Prismatic.d ./Core/Src/Prismatic.o ./Core/Src/Prismatic.su ./Core/Src/Revolute.cyclo ./Core/Src/Revolute.d ./Core/Src/Revolute.o ./Core/Src/Revolute.su ./Core/Src/Trajectory.cyclo ./Core/Src/Trajectory.d ./Core/Src/Trajectory.o ./Core/Src/Trajectory.su ./Core/Src/adc.cyclo ./Core/Src/adc.d ./Core/Src/adc.o ./Core/Src/adc.su ./Core/Src/dma.cyclo ./Core/Src/dma.d ./Core/Src/dma.o ./Core/Src/dma.su ./Core/Src/gpio.cyclo ./Core/Src/gpio.d ./Core/Src/gpio.o ./Core/Src/gpio.su ./Core/Src/main.cyclo ./Core/Src/main.d ./Core/Src/main.o ./Core/Src/main.su ./Core/Src/spi.cyclo ./Core/Src/spi.d ./Core/Src/spi.o ./Core/Src/spi.su ./Core/Src/stm32g4xx_hal_msp.cyclo ./Core/Src/stm32g4xx_hal_msp.d ./Core/Src/stm32g4xx_hal_msp.o ./Core/Src/stm32g4xx_hal_msp.su ./Core/Src/stm32g4xx_it.cyclo ./Core/Src/stm32g4xx_it.d ./Core/Src/stm32g4xx_it.o ./Core/Src/stm32g4xx_it.su ./Core/Src/syscalls.cyclo ./Core/Src/syscalls.d ./Core/Src/syscalls.o ./Core/Src/syscalls.su ./Core/Src/sysmem.cyclo ./Core/Src/sysmem.d ./Core/Src/sysmem.o ./Core/Src/sysmem.su ./Core/Src/system_stm32g4xx.cyclo ./Core/Src/system_stm32g4xx.d ./Core/Src/system_stm32g4xx.o ./Core/Src/system_stm32g4xx.su ./Core/Src/tim.cyclo ./Core/Src/tim.d ./Core/Src/tim.o ./Core/Src/tim.su ./Core/Src/usart.cyclo ./Core/Src/usart.d ./Core/Src/usart.o ./Core/Src/usart.su
+	-$(RM) ./Core/Src/Based_System_Communication.cyclo ./Core/Src/Based_System_Communication.d ./Core/Src/Based_System_Communication.o ./Core/Src/Based_System_Communication.su ./Core/Src/Encoder.cyclo ./Core/Src/Encoder.d ./Core/Src/Encoder.o ./Core/Src/Encoder.su ./Core/Src/FIBO_path.cyclo ./Core/Src/FIBO_path.d ./Core/Src/FIBO_path.o ./Core/Src/FIBO_path.su ./Core/Src/Joystick.cyclo ./Core/Src/Joystick.d ./Core/Src/Joystick.o ./Core/Src/Joystick.su ./Core/Src/Kalman_Filter.cyclo ./Core/Src/Kalman_Filter.d ./Core/Src/Kalman_Filter.o ./Core/Src/Kalman_Filter.su ./Core/Src/ModBusRTU.cyclo ./Core/Src/ModBusRTU.d ./Core/Src/ModBusRTU.o ./Core/Src/ModBusRTU.su ./Core/Src/Prismatic.cyclo ./Core/Src/Prismatic.d ./Core/Src/Prismatic.o ./Core/Src/Prismatic.su ./Core/Src/Revolute.cyclo ./Core/Src/Revolute.d ./Core/Src/Revolute.o ./Core/Src/Revolute.su ./Core/Src/Trajectory.cyclo ./Core/Src/Trajectory.d ./Core/Src/Trajectory.o ./Core/Src/Trajectory.su ./Core/Src/adc.cyclo ./Core/Src/adc.d ./Core/Src/adc.o ./Core/Src/adc.su ./Core/Src/dma.cyclo ./Core/Src/dma.d ./Core/Src/dma.o ./Core/Src/dma.su ./Core/Src/gpio.cyclo ./Core/Src/gpio.d ./Core/Src/gpio.o ./Core/Src/gpio.su ./Core/Src/main.cyclo ./Core/Src/main.d ./Core/Src/main.o ./Core/Src/main.su ./Core/Src/spi.cyclo ./Core/Src/spi.d ./Core/Src/spi.o ./Core/Src/spi.su ./Core/Src/stm32g4xx_hal_msp.cyclo ./Core/Src/stm32g4xx_hal_msp.d ./Core/Src/stm32g4xx_hal_msp.o ./Core/Src/stm32g4xx_hal_msp.su ./Core/Src/stm32g4xx_it.cyclo ./Core/Src/stm32g4xx_it.d ./Core/Src/stm32g4xx_it.o ./Core/Src/stm32g4xx_it.su ./Core/Src/syscalls.cyclo ./Core/Src/syscalls.d ./Core/Src/syscalls.o ./Core/Src/syscalls.su ./Core/Src/sysmem.cyclo ./Core/Src/sysmem.d ./Core/Src/sysmem.o ./Core/Src/sysmem.su ./Core/Src/system_stm32g4xx.cyclo ./Core/Src/system_stm32g4xx.d ./Core/Src/system_stm32g4xx.o ./Core/Src/system_stm32g4xx.su ./Core/Src/tim.cyclo ./Core/Src/tim.d ./Core/Src/tim.o ./Core/Src/tim.su ./Core/Src/usart.cyclo ./Core/Src/usart.d ./Core/Src/usart.o ./Core/Src/usart.su
 
 .PHONY: clean-Core-2f-Src
 

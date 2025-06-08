@@ -70,7 +70,8 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
  ../Core/Inc/Encoder.h ../Core/Inc/Trajectory.h \
  ../Core/Inc/Based_System_Communication.h ../Core/Inc/ModBusRTU.h \
  ../Core/Inc/Kalman_Filter.h ../Core/Inc/Prismatic.h \
- ../Core/Inc/Revolute.h ../Core/Inc/Joystick.h ../Core/Inc/Encoder.h
+ ../Core/Inc/Revolute.h ../Core/Inc/Joystick.h ../Core/Inc/Encoder.h \
+ ../Core/Inc/FIBO_path.h
 ../Core/Inc/main.h:
 ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal.h:
 ../Core/Inc/stm32g4xx_hal_conf.h:
@@ -154,3 +155,4 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
 ../Core/Inc/Revolute.h:
 ../Core/Inc/Joystick.h:
 ../Core/Inc/Encoder.h:
+../Core/Inc/FIBO_path.h:
