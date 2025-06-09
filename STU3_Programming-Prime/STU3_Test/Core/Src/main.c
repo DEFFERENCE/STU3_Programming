@@ -391,9 +391,9 @@ int main(void) {
 	arm_pid_init_f32(&Pris_velo_PID, 0);
 
 	// Revolute Position
-	Rev_posi_PID.Kp = 100.0;
-	Rev_posi_PID.Ki = 40.0;
-	Rev_posi_PID.Kd = 4.0;
+	Rev_posi_PID.Kp = 1.5;
+	Rev_posi_PID.Ki = 0.8;
+	Rev_posi_PID.Kd = 0.4;
 	arm_pid_init_f32(&Rev_posi_PID, 0);
 
 	// Revolute Velocity
@@ -734,7 +734,7 @@ int main(void) {
 					has_initialized_target_traj = 1;
 
 					start_p = Go_to_point.r_goal_position;
-					start_r = Go_to_point.theta_goal_position - 0.436332f;
+					start_r = Go_to_point.theta_goal_position - 0.436332f + 0.02;
 					InitTrajectorySegment(&Prismatic[0], 0.0f, start_p,
 					v_max_pris, a_max_pris, 0.0f);
 					InitTrajectorySegment(&Revolute[0], 0.0f, start_r,

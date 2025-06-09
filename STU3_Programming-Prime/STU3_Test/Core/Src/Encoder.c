@@ -3,7 +3,7 @@
 #define Count_PER_REV 12000.0f
 #define TWO_PI 6.283185f
 #define PI 3.14286f
-#define Lead 11.0f
+#define Lead 10.0f
 
 void Encoder_Init(Encoder *enc, TIM_HandleTypeDef *htim) {
     enc->htim = htim;

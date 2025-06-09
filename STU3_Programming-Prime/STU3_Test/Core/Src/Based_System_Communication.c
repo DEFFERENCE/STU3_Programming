@@ -7,7 +7,7 @@
 
 #include "Based_System_Communication.h"
 
-#define Offet 480.0f
+#define Offet 420.0f
 
 void modbus_heartbeat_init(ModbusHandleTypedef *hmodbus) {
 	hmodbus->RegisterAddress[0x00].U16 = 22881;
