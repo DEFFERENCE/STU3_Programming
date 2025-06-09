@@ -598,6 +598,8 @@ int main(void) {
 				if (nowStart && !prevStart) {
 					state_start = 1;
 					traj_start_time = t_global;
+					encoder1.position_mm = 0;
+					encoder2.position = 0;
 					for (int i = 0; i < 10; i++) {
 						float start_pris = PrismaticTenPoints_real[i];
 						float end_pris = PrismaticTenPoints_real[i + 1];
@@ -782,7 +784,8 @@ int main(void) {
 				has_initialized_target_traj = 0;
 				state_go_to = 0;
 			}
-
+//			if (state_start == 1 || state_go_to == 1)
+//			{
 			Measurement_Pris[0] = Encoder_GetPosition_mm(&encoder1);
 			Measurement_Pris[1] = Encoder_GetVelocity_mm(&encoder1);
 			Measurement_Pris[2] = 0;
@@ -800,7 +803,7 @@ int main(void) {
 			Kalman_SetInput(&kf_rev, V_rev_velo_PID);
 			Kalman_Predict(&kf_rev);
 			Kalman_Update(&kf_rev, Measurement_Rev);
-
+//			}
 			modbus_Update_All(&hmodbus, Encoder_GetPosition_mm(&encoder1), // r_pos
 			Encoder_GetDegree(&encoder2), // theta_pos
 			Encoder_GetVelocity_mm(&encoder1), // r_velo
