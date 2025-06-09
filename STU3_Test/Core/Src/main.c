@@ -72,8 +72,8 @@ TrajectorySegment Prismatic[10];
 #define v_max_pris 500.0f
 #define a_max_pris 250.0f
 TrajectorySegment Revolute[10];
-#define v_max_rev 0.5f
-#define a_max_rev 0.1f
+#define v_max_rev 0.3f
+#define a_max_rev 0.05f
 float t_global = 0;
 float start_pris;
 float end_pris;
@@ -362,7 +362,7 @@ int main(void)
 	// Revolute Position
 	Rev_posi_PID.Kp = 2.5;
 	Rev_posi_PID.Ki = 0.2;
-	Rev_posi_PID.Kd = 0.6;
+	Rev_posi_PID.Kd = 1.0;
 	arm_pid_init_f32(&Rev_posi_PID, 0);
 
 	// Revolute Velocity
