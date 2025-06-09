@@ -1,3 +1,4 @@
 ../Core/Src/Trajectory.c:4:6:InitTrajectorySegment	56	static
 ../Core/Src/Trajectory.c:35:7:GetTrajectoryPosition	64	static
 ../Core/Src/Trajectory.c:60:7:GetTrajectoryVelocity	32	static
+../Core/Src/Trajectory.c:78:6:InitHoldTrajectorySegment	24	static

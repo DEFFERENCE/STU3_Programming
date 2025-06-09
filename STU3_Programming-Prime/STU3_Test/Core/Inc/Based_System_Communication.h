@@ -26,6 +26,7 @@ enum Pen_status
 };
 
 enum R_Theta_Moving_status {
+	Idle = 0,
     Home = 1,
     Run_Jog_mode = 2,
     Run_Point_mode = 4,

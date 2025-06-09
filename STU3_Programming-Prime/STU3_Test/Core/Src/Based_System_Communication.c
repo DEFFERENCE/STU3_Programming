@@ -121,13 +121,13 @@ Robot_goal_point Coordinate_Base_to_Robot(Robot_goal_point *Goal_point,
 	} else if (theta_position >= 90 && theta_position <= 180) // quadrant 2
 			{
 		//Goal_point->theta_goal_position = degree_to_rad(alpha + 90);
-		prismatic_pos = sqrt(beta - gamma * cosf(degree_to_rad(180 - theta_position)));
+		prismatic_pos = sqrt(beta - gamma * cosf(degree_to_rad(270 - theta_position)));
 //		Goal_point->r_goal_position = sqrt(
 //				beta - gamma * cosf(180 - theta_position));
 	} else if (theta_position <= 0 && theta_position >= -90) // quadrant 3
 			{
 		//Goal_point->theta_goal_position = degree_to_rad(alpha + 90);
-		prismatic_pos = sqrt(beta - gamma * cosf(degree_to_rad(theta_position - 90)));
+		prismatic_pos = sqrt(beta - gamma * cosf(degree_to_rad(270 - theta_position)));
 //		Goal_point->r_goal_position = sqrt(
 //				beta - gamma * cosf(theta_position - 90));
 	} else if (theta_position <= -90 && theta_position >= -180) // quadrant 4
@@ -135,7 +135,7 @@ Robot_goal_point Coordinate_Base_to_Robot(Robot_goal_point *Goal_point,
 //		Goal_point->theta_goal_position = degree_to_rad(90 - alpha);
 //		Goal_point->r_goal_position = sqrt(
 //				beta - gamma * cosf(90 - theta_position));
-		prismatic_pos = sqrt(beta - gamma * cosf(degree_to_rad(90 - theta_position)));
+		prismatic_pos = sqrt(beta - gamma * cosf(degree_to_rad(270 - theta_position)));
 	}
 
 	float up = pow(r_position, 2) - pow(prismatic_pos, 2) - pow(Offet, 2);
@@ -151,11 +151,11 @@ Robot_goal_point Coordinate_Base_to_Robot(Robot_goal_point *Goal_point,
 			{
 		Goal_point->theta_goal_position = degree_to_rad(alpha + 90);
 //		prismatic_pos = format_base_to_robot(sqrt(beta - gamma * cosf(degree_to_rad(180 - theta_position))));
-	} else if (theta_position <= 0 && theta_position >= -90) // quadrant 3
+	} else if (theta_position <= 180 && theta_position >= 270) // quadrant 3
 			{
 		Goal_point->theta_goal_position = degree_to_rad(alpha + 90);
 //		prismatic_pos = format_base_to_robot(sqrt(beta - gamma * cosf(degree_to_rad(theta_position - 90))));
-	} else if (theta_position <= -90 && theta_position >= -180) // quadrant 4
+	} else if (theta_position <= 270 && theta_position >= 360) // quadrant 4
 			{
 		Goal_point->theta_goal_position = degree_to_rad(90 - alpha);
 //		prismatic_pos = format_base_to_robot(sqrt(beta - gamma * cosf(degree_to_rad(90 - theta_position))));

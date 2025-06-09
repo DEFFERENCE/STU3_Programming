@@ -22,5 +22,6 @@ typedef struct {
 void InitTrajectorySegment(TrajectorySegment *seg, float start, float end, float v_max, float a_max, float t_start);
 float GetTrajectoryPosition(const TrajectorySegment *seg, float t_global);
 float GetTrajectoryVelocity(const TrajectorySegment *seg, float t_global);
+void InitHoldTrajectorySegment(TrajectorySegment *seg, float pos, float duration, float t_start);
 
 #endif /* INC_TRAJECTORY_H_ */

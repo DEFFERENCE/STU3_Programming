@@ -74,3 +74,15 @@ float GetTrajectoryVelocity(const TrajectorySegment *seg, float t_global) {
         return v - a * td;
     }
 }
+
+void InitHoldTrajectorySegment(TrajectorySegment *seg, float pos, float duration, float t_start) {
+	seg->start_pos = pos;
+	seg->end_pos = pos;
+	seg->v_max = 0.0f;
+	seg->a_max = 0.0f;
+	seg->t_accel = 0.0f;
+	seg->t_decel = 0.0f;
+	seg->t_const = duration;
+	seg->t_total = duration;
+	seg->t_start = t_start;
+}
