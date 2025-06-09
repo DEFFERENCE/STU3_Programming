@@ -728,14 +728,14 @@ float Revolute_dis() {
 }
 
 void updateTrajectoryIfNeeded(float t_global) {
-    if (current_index >= 460 - 1) return;
+    if (current_index >= 53 - 1) return;
 
     if (t_global >= next_start_time) {
-        float start_pris = smooth_path_polar[current_index][1];
-        float end_pris = smooth_path_polar[current_index + 1][1];
+        float start_pris = smooth_path_polar[current_index][0];
+        float end_pris = smooth_path_polar[current_index + 1][0];
 
-        float start_rev = smooth_path_polar[current_index][0];
-        float end_rev = smooth_path_polar[current_index + 1][0];
+        float start_rev = smooth_path_polar[current_index][1];
+        float end_rev = smooth_path_polar[current_index + 1][1];
 
         InitTrajectorySegment(&currentPrismatic, start_pris, end_pris, v_max_pris, a_max_pris, t_global);
         InitTrajectorySegment(&currentRevolute,  start_rev,  end_rev,  v_max_rev,  a_max_rev,  t_global);
