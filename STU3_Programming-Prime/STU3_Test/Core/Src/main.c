@@ -498,7 +498,7 @@ int main(void) {
 
 			if (Base_Sysytem_status == Base_Home) {
 
-//				R_Theta_moving_Status(&hmodbus, Home);
+				R_Theta_moving_Status(&hmodbus, Home);
 //
 //				if (Home_Pris == 0) {
 //					set_home_Pris();
@@ -1145,8 +1145,8 @@ float Revolute_dis() {
 //void set_home_Pris() {
 //	HAL_GPIO_WritePin(GPIOB, GPIO_PIN_1, 0);
 //	__HAL_TIM_SET_COMPARE(&htim20, TIM_CHANNEL_1, 30000);
-
 //}
+
 //void set_home_Rev() {
 //	HAL_GPIO_WritePin(GPIOC, GPIO_PIN_6, 0);
 //	__HAL_TIM_SET_COMPARE(&htim20, TIM_CHANNEL_3, 25000);
