@@ -1,0 +1,8 @@
+../Core/Src/emergency_switch.c:25:6:emergency_switch_init	24	static
+../Core/Src/emergency_switch.c:51:9:emergency_switch_update	24	static
+../Core/Src/emergency_switch.c:97:9:emergency_switch_get_state	16	static
+../Core/Src/emergency_switch.c:105:6:emergency_switch_is_pressed	16	static
+../Core/Src/emergency_switch.c:113:7:emergency_switch_get_signal_level	16	static
+../Core/Src/emergency_switch.c:121:6:emergency_switch_reset	16	static
+../Core/Src/emergency_switch.c:135:14:calculate_filter_coefficient	32	static
+../Core/Src/emergency_switch.c:148:14:clamp_float	24	static

@@ -101,9 +101,6 @@ void Error_Handler(void);
 #define Encoder_2A12_GPIO_Port GPIOA
 #define PS2_Attention_Pin GPIO_PIN_10
 #define PS2_Attention_GPIO_Port GPIOC
-#define Emergency_Pin GPIO_PIN_11
-#define Emergency_GPIO_Port GPIOC
-#define Emergency_EXTI_IRQn EXTI15_10_IRQn
 #define Proximity_sensor_Pin GPIO_PIN_12
 #define Proximity_sensor_GPIO_Port GPIOC
 #define Proximity_sensor_EXTI_IRQn EXTI15_10_IRQn

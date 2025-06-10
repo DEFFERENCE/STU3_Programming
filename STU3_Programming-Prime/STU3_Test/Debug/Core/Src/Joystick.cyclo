@@ -7,4 +7,9 @@
 ../Core/Src/Joystick.c:42:9:PS2_ButtonR2	1
 ../Core/Src/Joystick.c:46:9:PS2_ButtonSelect	1
 ../Core/Src/Joystick.c:50:9:PS2_ButtonStart	1
-../Core/Src/Joystick.c:54:9:PS2_ButtonL2	1
+../Core/Src/Joystick.c:54:9:PS2_ButtonL1	1
+../Core/Src/Joystick.c:58:9:PS2_ButtonL2	1
+../Core/Src/Joystick.c:62:9:PS2_ButtonUp	1
+../Core/Src/Joystick.c:66:9:PS2_ButtonRight	1
+../Core/Src/Joystick.c:70:9:PS2_ButtonDown	1
+../Core/Src/Joystick.c:74:9:PS2_ButtonLeft	1

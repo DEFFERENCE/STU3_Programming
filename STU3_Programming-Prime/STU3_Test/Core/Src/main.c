@@ -37,6 +37,7 @@
 #include "Prismatic.h"
 #include "Revolute.h"
 #include "Joystick.h"
+#include "emergency_switch.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -173,7 +174,12 @@ int R1;
 int R2;
 int Select;
 int Start;
+int L1;
 int L2;
+int Up;
+int Down;
+int Right;
+int Left;
 //float PrismaticTenPoints[11] = { 0.0f, 200.0f, 500.0f, 390.0f, 240.0f, 120.0f, 280.0f, 400.0f, 600.0f, 0.0f, 600.0f };
 //float RevoluteTenPoints[11] = { 0.0f, 0.5f, 0.25f, 1.0f, 0.25f, 0.5f, 0.75f, 1.0f, 0.75f, 0.5f, 0.0f };
 float PrismaticTenPoints[11];
@@ -207,6 +213,14 @@ uint32_t Emer_trick = 0;
 uint32_t Emer_last_trick = 0;
 uint8_t Emer_state = 0;
 uint32_t Emer_count = 0;
+
+// Emergency Switch
+#define EMERGENCY_SWITCH_PORT    GPIOC
+#define EMERGENCY_SWITCH_PIN     GPIO_PIN_11
+static emergency_switch_t emergency_filter;
+static uint8_t emergency_active = 0;
+uint8_t state_Emer = 0;
+uint8_t Before_Emer = 0;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -221,6 +235,8 @@ float Prismatic_dis();
 float Revolute_dis();
 void set_home_Pris();
 void set_home_Rev();
+void emergency_system_setup();
+void emergency_process_sample();
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -229,45 +245,47 @@ void set_home_Rev();
 /* USER CODE END 0 */
 
 /**
- * @brief  The application entry point.
- * @retval int
- */
-int main(void) {
+  * @brief  The application entry point.
+  * @retval int
+  */
+int main(void)
+{
 
-	/* USER CODE BEGIN 1 */
+  /* USER CODE BEGIN 1 */
 
-	/* USER CODE END 1 */
+  /* USER CODE END 1 */
 
-	/* MCU Configuration--------------------------------------------------------*/
+  /* MCU Configuration--------------------------------------------------------*/
 
-	/* Reset of all peripherals, Initializes the Flash interface and the Systick. */
-	HAL_Init();
+  /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
+  HAL_Init();
 
-	/* USER CODE BEGIN Init */
-	/* USER CODE END Init */
+  /* USER CODE BEGIN Init */
+  /* USER CODE END Init */
 
-	/* Configure the system clock */
-	SystemClock_Config();
+  /* Configure the system clock */
+  SystemClock_Config();
 
-	/* USER CODE BEGIN SysInit */
+  /* USER CODE BEGIN SysInit */
 
-	/* USER CODE END SysInit */
+  /* USER CODE END SysInit */
 
-	/* Initialize all configured peripherals */
-	MX_GPIO_Init();
-	MX_DMA_Init();
-	MX_TIM3_Init();
-	MX_ADC1_Init();
-	MX_TIM1_Init();
-	MX_TIM2_Init();
-	MX_TIM4_Init();
-	MX_TIM20_Init();
-	MX_TIM8_Init();
-	MX_TIM16_Init();
-	MX_USART2_UART_Init();
-	MX_ADC2_Init();
-	MX_SPI1_Init();
-	/* USER CODE BEGIN 2 */
+  /* Initialize all configured peripherals */
+  MX_GPIO_Init();
+  MX_DMA_Init();
+  MX_TIM3_Init();
+  MX_ADC1_Init();
+  MX_TIM1_Init();
+  MX_TIM2_Init();
+  MX_TIM4_Init();
+  MX_TIM20_Init();
+  MX_TIM8_Init();
+  MX_TIM16_Init();
+  MX_USART2_UART_Init();
+  MX_ADC2_Init();
+  MX_SPI1_Init();
+  MX_TIM6_Init();
+  /* USER CODE BEGIN 2 */
 	HAL_TIM_Base_Start(&htim20);
 	HAL_TIM_Base_Start(&htim8);
 	HAL_TIM_PWM_Start(&htim8, TIM_CHANNEL_4);
@@ -277,6 +295,7 @@ int main(void) {
 	Encoder_Init(&encoder2, &htim3);
 	HAL_ADC_Start(&hadc1);
 	HAL_TIM_Base_Start_IT(&htim2);
+	HAL_TIM_Base_Start_IT(&htim6);
 
 	uint64_t lastTick = 0;
 
@@ -402,6 +421,8 @@ int main(void) {
 	Rev_velo_PID.Kd = 0;
 	arm_pid_init_f32(&Rev_velo_PID, 0);
 
+	EMERGENCY_SWITCH_INIT_STANDARD(&emergency_filter);
+
 	//Backlash_Init(&Rev_backlash, 0.0349066);
 	//Encoder_setLimit(&encoder2,0.436332);
 	//encoder2.position = 0.436332; // offset
@@ -410,15 +431,20 @@ int main(void) {
 //	InitTrajectorySegment(&segments[0], 0.0f, 0.785f, 1.0f, 0.4f, 0.0f);
 //	InitTrajectorySegment(&segments[1], 100.0f, 50.0f, 40.0f, 80.0f, segments[0].t_start + segments[0].t_total);
 //	InitTrajectorySegment(&segments[2], 50.0f, 200.0f, 60.0f, 120.0f, segments[1].t_start + segments[1].t_total);
-	/* USER CODE END 2 */
+  /* USER CODE END 2 */
 
-	/* Infinite loop */
-	/* USER CODE BEGIN WHILE */
+  /* Infinite loop */
+  /* USER CODE BEGIN WHILE */
 	while (1) {
-		/* USER CODE END WHILE */
+    /* USER CODE END WHILE */
 
-		/* USER CODE BEGIN 3 */
-		Emer_trick = HAL_GetTick();
+    /* USER CODE BEGIN 3 */
+		if (emergency_active == 1) {
+			state_Emer = 1;
+		} else {
+			state_Emer = 0;
+		}
+
 		uint64_t currentTick = HAL_GetTick();
 		float dt = (currentTick - lastTick) / 1000.0f;
 		Modbus_Protocal_Worker();
@@ -467,36 +493,34 @@ int main(void) {
 			v2 = Encoder_GetVelocity(&encoder2);
 			a2 = Encoder_GetAcceleration(&encoder2);
 
-//			if (Emer_state == 1) {
-//				if (Emer_count % 2 == 1) {
-//					__HAL_TIM_SET_COMPARE(&htim20, TIM_CHANNEL_1, 0);
-//					__HAL_TIM_SET_COMPARE(&htim20, TIM_CHANNEL_3, 0);
-//				} else if (Emer_count % 2 == 0) {
-//					Emer_state = 9;
-//					//Base_Sysytem_status = Base_Home;
-//				}
-//
-//			} else if (Emer_state == 9) {
-//				if (Home_Pris == 0) {
-//					set_home_Pris();
-//				} else {
-//					__HAL_TIM_SET_COMPARE(&htim20, TIM_CHANNEL_1, 0);
-//				}
-//				if (Home_Rev == 0) {
-//					set_home_Rev();
-//
-//				} else {
-//					__HAL_TIM_SET_COMPARE(&htim20, TIM_CHANNEL_3, 0);
-//				}
-//				if (Home_Rev == 1 && Home_Pris == 1) {
-//					Home_two_dof = 1;
-//					__HAL_TIM_SET_COMPARE(&htim20, TIM_CHANNEL_1, 0);
-//					__HAL_TIM_SET_COMPARE(&htim20, TIM_CHANNEL_3, 0);
-//					NVIC_SystemReset();
-//				}
-//			}
+			if (state_Emer == 1) {
+				//if (Emer_count % 2 == 1) {
+				__HAL_TIM_SET_COMPARE(&htim20, TIM_CHANNEL_1, 0);
+				__HAL_TIM_SET_COMPARE(&htim20, TIM_CHANNEL_3, 0);
+				Before_Emer = state_Emer;
+				//    } else if (Emer_count % 2 == 0) {
+				//     Emer_state = 9;
+				//    }
+			} else if (state_Emer == 0 && Before_Emer == 1) {
+				//    if (Home_Pris == 0) {
+				//     //set_home_Pris();
+				//    } else {
+				//     __HAL_TIM_SET_COMPARE(&htim20, TIM_CHANNEL_1, 0);
+				//    }
+				//    if (Home_Rev == 0) {
+				//     //set_home_Rev();
+				//
+				//    } else {
+				//     __HAL_TIM_SET_COMPARE(&htim20, TIM_CHANNEL_3, 0);
+				//    }
+				//    if (Home_Rev == 1 && Home_Pris == 1) {
+				//     Home_two_dof = 1;
+				//     __HAL_TIM_SET_COMPARE(&htim20, TIM_CHANNEL_1, 0);
+				//     __HAL_TIM_SET_COMPARE(&htim20, TIM_CHANNEL_3, 0);
+				NVIC_SystemReset();
+			}
 
-			if (Base_Sysytem_status == Base_Home) {
+			else if (Base_Sysytem_status == Base_Home) {
 
 				R_Theta_moving_Status(&hmodbus, Home);
 //
@@ -530,180 +554,185 @@ int main(void) {
 				R2 = PS2_ButtonR2();
 				Select = PS2_ButtonSelect();
 				Start = PS2_ButtonStart();
+				L1 = PS2_ButtonL1();
 				L2 = PS2_ButtonL2();
+				Up = PS2_ButtonUp();
+				Down = PS2_ButtonDown();
+				Right = PS2_ButtonRight();
+				Left = PS2_ButtonLeft();
 
-				if (PS2_ButtonSquare()) {
-					// Move Right (Revolute)
-					HAL_GPIO_WritePin(GPIOC, GPIO_PIN_6, 1); // 0 or 1
-					__HAL_TIM_SET_COMPARE(&htim20, TIM_CHANNEL_3, 30000);
-				} else if (PS2_ButtonCircle()) {
-					// Move Left (Revolute)
-					HAL_GPIO_WritePin(GPIOC, GPIO_PIN_6, 0); // 0 or 1
-					__HAL_TIM_SET_COMPARE(&htim20, TIM_CHANNEL_3, 30000);
-				} else {
-					//float v_set = (Revolute_dis() / 18.0) * 65535.0;
-					// HAL_GPIO_WritePin(GPIOC, GPIO_PIN_6, 0); // 0 or 1
-					//__HAL_TIM_SET_COMPARE(&htim20, TIM_CHANNEL_3, v_set);
-					HAL_GPIO_WritePin(GPIOC, GPIO_PIN_6, 0); // 0 or 1
-					__HAL_TIM_SET_COMPARE(&htim20, TIM_CHANNEL_3, 0);
-				}
-
-				if (PS2_ButtonTriangle()) {
-					// Move Up (Prismatic)
-					HAL_GPIO_WritePin(GPIOB, GPIO_PIN_1, 1); // 0 or 1
-					__HAL_TIM_SET_COMPARE(&htim20, TIM_CHANNEL_1, 40000);
-				} else if (PS2_ButtonCross()) {
-					// Move Down (Prismatic)
-					HAL_GPIO_WritePin(GPIOB, GPIO_PIN_1, 0); // 0 or 1
-					__HAL_TIM_SET_COMPARE(&htim20, TIM_CHANNEL_1, 40000);
-				} else {
-					HAL_GPIO_WritePin(GPIOB, GPIO_PIN_1, 0); // 0 or 1
-					__HAL_TIM_SET_COMPARE(&htim20, TIM_CHANNEL_1, 0);
-				}
-
-				if (PS2_ButtonR1()) {
-					// Servo/Pen Move up
-					__HAL_TIM_SET_COMPARE(&htim8, TIM_CHANNEL_4, 500);
-				} else if (PS2_ButtonR2()) {
-					// Servo/Pen Move Down
-					__HAL_TIM_SET_COMPARE(&htim8, TIM_CHANNEL_4, 2000);
-				} else {
-					__HAL_TIM_SET_COMPARE(&htim8, TIM_CHANNEL_4, 0);
-				}
-
-				uint8_t selectPressed = PS2_ButtonL2();
-				static uint8_t prevSelect = 0;
-				if (selectPressed && !prevSelect) {
-					if (count < 11) {
-//						float test[11] = { 0.0f, 25.0f, 50.0f, 75.0f, 75.0f,
-//								0.0f, 95.0f, 0.0f, 0.0f, 100.0f };
-						PrismaticTenPoints[count] = roundf(
-								Encoder_GetPosition_mm(&encoder1) * 10.0f);
-						RevoluteTenPoints_Degree[count] = roundf(
-								(Encoder_GetDegree(&encoder2) / (100.0 / 30.0))
-										* 10.0f);
-						PrismaticTenPoints_real[count] = Encoder_GetPosition_mm(
-								&encoder1);
-						RevoluteTenPoints_real[count] = Encoder_GetPosition(
-								&encoder2) / (100.0 / 30.0);
-//						PrismaticTenPoints_real[count] = test[count];
-//						RevoluteTenPoints_real[count] = test[count] / 10.0f;
-						count += 1;
-					}
-				}
-				prevSelect = selectPressed;
-
-				static uint8_t prevStart = 0;
-				uint8_t nowStart = PS2_ButtonStart();
-				if (nowStart && !prevStart) {
-					state_start = 1;
-					traj_start_time = t_global;
-					encoder1.position_mm = 0;
-					encoder2.position = 0;
-					for (int i = 0; i < 10; i++) {
-						float start_pris = PrismaticTenPoints_real[i];
-						float end_pris = PrismaticTenPoints_real[i + 1];
-						float start_rev = RevoluteTenPoints_real[i];
-						float end_rev = (RevoluteTenPoints_real[i + 1]);
-
-						float t_start_pris =
-								(i == 0) ?
-										0.0f :
-										Prismatic[i - 1].t_start
-												+ Prismatic[i - 1].t_total
-												+ delay_pris[i - 1];
-						float t_start_rev =
-								(i == 0) ?
-										0.0f :
-										Revolute[i - 1].t_start
-												+ Revolute[i - 1].t_total
-												+ delay_rev[i - 1];
-
-						if (fabsf(end_pris - start_pris) < 0.001f) {
-							InitHoldTrajectorySegment(&Prismatic[i], start_pris,
-									5.5f, t_start_pris);
-							delay_pris[i] = 0.0f;
-						} else {
-							InitTrajectorySegment(&Prismatic[i], start_pris,
-									end_pris, v_max_pris, a_max_pris,
-									t_start_pris);
-							delay_pris[i] = 5.5f - Prismatic[i].t_total;
-							if (delay_pris[i] < 0.0f)
-								delay_pris[i] = 0.0f;
-						}
-
-						if (fabsf(end_rev - start_rev) < 0.001f) {
-							InitHoldTrajectorySegment(&Revolute[i], start_rev,
-									5.5f, t_start_rev);
-							delay_rev[i] = 0.0f;
-						} else {
-							InitTrajectorySegment(&Revolute[i], start_rev,
-									end_rev, v_max_rev, a_max_rev, t_start_rev);
-							delay_rev[i] = 5.5f - Revolute[i].t_total;
-							if (delay_rev[i] < 0.0f)
-								delay_rev[i] = 0.0f;
-						}
-					}
-					current_segment = 0;
-				}
-				prevStart = nowStart;
-
-				float t_relative = t_global - traj_start_time;
-
-				if (current_segment < 10) {
-					pos_pris = GetTrajectoryPosition(
-							&Prismatic[current_segment], t_relative);
-					vel_pris = GetTrajectoryVelocity(
-							&Prismatic[current_segment], t_relative);
-					pos_rev = GetTrajectoryPosition(&Revolute[current_segment],
-							t_relative);
-					vel_rev = GetTrajectoryVelocity(&Revolute[current_segment],
-							t_relative);
-				} else {
-					pos_pris = Prismatic[9].end_pos;
-					vel_pris = 0.0f;
-					pos_rev = Revolute[9].end_pos;
-					vel_rev = 0.0f;
-					state_start = 0;
-				}
-
-				if (t_relative
-						> Prismatic[current_segment].t_start
-								+ Prismatic[current_segment].t_total
-						&& t_relative
-								> Revolute[current_segment].t_start
-										+ Revolute[current_segment].t_total) {
-					if (current_segment < 9)
-						current_segment++;
-				}
-
-				if (plotter == 1) // Pen_Up
-				{
-					__HAL_TIM_SET_COMPARE(&htim8, TIM_CHANNEL_4, 500);
-					modbus_servo_Status(&hmodbus, Limit_Up);
-				} else if (plotter == 2) // Pen_Down
-				{
-//					if (status < 2000) {
-//						status += 1;
-//					} else {
-//						status += 0;
+//				if (PS2_ButtonSquare()) {
+//					// Move Right (Revolute)
+//					HAL_GPIO_WritePin(GPIOC, GPIO_PIN_6, 1); // 0 or 1
+//					__HAL_TIM_SET_COMPARE(&htim20, TIM_CHANNEL_3, 30000);
+//				} else if (PS2_ButtonCircle()) {
+//					// Move Left (Revolute)
+//					HAL_GPIO_WritePin(GPIOC, GPIO_PIN_6, 0); // 0 or 1
+//					__HAL_TIM_SET_COMPARE(&htim20, TIM_CHANNEL_3, 30000);
+//				} else {
+//					//float v_set = (Revolute_dis() / 18.0) * 65535.0;
+//					// HAL_GPIO_WritePin(GPIOC, GPIO_PIN_6, 0); // 0 or 1
+//					//__HAL_TIM_SET_COMPARE(&htim20, TIM_CHANNEL_3, v_set);
+//					HAL_GPIO_WritePin(GPIOC, GPIO_PIN_6, 0); // 0 or 1
+//					__HAL_TIM_SET_COMPARE(&htim20, TIM_CHANNEL_3, 0);
+//				}
+//
+//				if (PS2_ButtonTriangle()) {
+//					// Move Up (Prismatic)
+//					HAL_GPIO_WritePin(GPIOB, GPIO_PIN_1, 1); // 0 or 1
+//					__HAL_TIM_SET_COMPARE(&htim20, TIM_CHANNEL_1, 40000);
+//				} else if (PS2_ButtonCross()) {
+//					// Move Down (Prismatic)
+//					HAL_GPIO_WritePin(GPIOB, GPIO_PIN_1, 0); // 0 or 1
+//					__HAL_TIM_SET_COMPARE(&htim20, TIM_CHANNEL_1, 40000);
+//				} else {
+//					HAL_GPIO_WritePin(GPIOB, GPIO_PIN_1, 0); // 0 or 1
+//					__HAL_TIM_SET_COMPARE(&htim20, TIM_CHANNEL_1, 0);
+//				}
+//
+//				if (PS2_ButtonR1()) {
+//					// Servo/Pen Move up
+//					__HAL_TIM_SET_COMPARE(&htim8, TIM_CHANNEL_4, 500);
+//				} else if (PS2_ButtonR2()) {
+//					// Servo/Pen Move Down
+//					__HAL_TIM_SET_COMPARE(&htim8, TIM_CHANNEL_4, 2000);
+//				} else {
+//					__HAL_TIM_SET_COMPARE(&htim8, TIM_CHANNEL_4, 0);
+//				}
+//
+//				uint8_t selectPressed = PS2_ButtonL2();
+//				static uint8_t prevSelect = 0;
+//				if (selectPressed && !prevSelect) {
+//					if (count < 11) {
+////						float test[11] = { 0.0f, 25.0f, 50.0f, 75.0f, 75.0f,
+////								0.0f, 95.0f, 0.0f, 0.0f, 100.0f };
+//						PrismaticTenPoints[count] = roundf(
+//								Encoder_GetPosition_mm(&encoder1) * 10.0f);
+//						RevoluteTenPoints_Degree[count] = roundf(
+//								(Encoder_GetDegree(&encoder2) / (100.0 / 30.0))
+//										* 10.0f);
+//						PrismaticTenPoints_real[count] = Encoder_GetPosition_mm(
+//								&encoder1);
+//						RevoluteTenPoints_real[count] = Encoder_GetPosition(
+//								&encoder2) / (100.0 / 30.0);
+////						PrismaticTenPoints_real[count] = test[count];
+////						RevoluteTenPoints_real[count] = test[count] / 10.0f;
+//						count += 1;
 //					}
-					__HAL_TIM_SET_COMPARE(&htim8, TIM_CHANNEL_4, 2000);
-					modbus_servo_Status(&hmodbus, Limit_Down);
-				} else {
-					__HAL_TIM_SET_COMPARE(&htim8, TIM_CHANNEL_4, 0);
-				}
-
-				if (count == 11 && Num_point <= 9) {  // Set_Target 10 points
-					Coordinate_Robot_to_Base(&Goal_point[Num_point],
-							PrismaticTenPoints[Num_point + 1],
-							RevoluteTenPoints_Degree[Num_point + 1]);
-					set_Target_Position_ten_points(&hmodbus,
-							Goal_point[Num_point].r_goal_position,
-							Goal_point[Num_point].theta_goal_position,
-							Num_point);
-					Num_point += 1;
-				}
+//				}
+//				prevSelect = selectPressed;
+//
+//				static uint8_t prevStart = 0;
+//				uint8_t nowStart = PS2_ButtonStart();
+//				if (nowStart && !prevStart) {
+//					state_start = 1;
+//					traj_start_time = t_global;
+//					encoder1.position_mm = 0;
+//					encoder2.position = 0;
+//					for (int i = 0; i < 10; i++) {
+//						float start_pris = PrismaticTenPoints_real[i];
+//						float end_pris = PrismaticTenPoints_real[i + 1];
+//						float start_rev = RevoluteTenPoints_real[i];
+//						float end_rev = (RevoluteTenPoints_real[i + 1]);
+//
+//						float t_start_pris =
+//								(i == 0) ?
+//										0.0f :
+//										Prismatic[i - 1].t_start
+//												+ Prismatic[i - 1].t_total
+//												+ delay_pris[i - 1];
+//						float t_start_rev =
+//								(i == 0) ?
+//										0.0f :
+//										Revolute[i - 1].t_start
+//												+ Revolute[i - 1].t_total
+//												+ delay_rev[i - 1];
+//
+//						if (fabsf(end_pris - start_pris) < 0.001f) {
+//							InitHoldTrajectorySegment(&Prismatic[i], start_pris,
+//									5.5f, t_start_pris);
+//							delay_pris[i] = 0.0f;
+//						} else {
+//							InitTrajectorySegment(&Prismatic[i], start_pris,
+//									end_pris, v_max_pris, a_max_pris,
+//									t_start_pris);
+//							delay_pris[i] = 5.5f - Prismatic[i].t_total;
+//							if (delay_pris[i] < 0.0f)
+//								delay_pris[i] = 0.0f;
+//						}
+//
+//						if (fabsf(end_rev - start_rev) < 0.001f) {
+//							InitHoldTrajectorySegment(&Revolute[i], start_rev,
+//									5.5f, t_start_rev);
+//							delay_rev[i] = 0.0f;
+//						} else {
+//							InitTrajectorySegment(&Revolute[i], start_rev,
+//									end_rev, v_max_rev, a_max_rev, t_start_rev);
+//							delay_rev[i] = 5.5f - Revolute[i].t_total;
+//							if (delay_rev[i] < 0.0f)
+//								delay_rev[i] = 0.0f;
+//						}
+//					}
+//					current_segment = 0;
+//				}
+//				prevStart = nowStart;
+//
+//				float t_relative = t_global - traj_start_time;
+//
+//				if (current_segment < 10) {
+//					pos_pris = GetTrajectoryPosition(
+//							&Prismatic[current_segment], t_relative);
+//					vel_pris = GetTrajectoryVelocity(
+//							&Prismatic[current_segment], t_relative);
+//					pos_rev = GetTrajectoryPosition(&Revolute[current_segment],
+//							t_relative);
+//					vel_rev = GetTrajectoryVelocity(&Revolute[current_segment],
+//							t_relative);
+//				} else {
+//					pos_pris = Prismatic[9].end_pos;
+//					vel_pris = 0.0f;
+//					pos_rev = Revolute[9].end_pos;
+//					vel_rev = 0.0f;
+//					state_start = 0;
+//				}
+//
+//				if (t_relative
+//						> Prismatic[current_segment].t_start
+//								+ Prismatic[current_segment].t_total
+//						&& t_relative
+//								> Revolute[current_segment].t_start
+//										+ Revolute[current_segment].t_total) {
+//					if (current_segment < 9)
+//						current_segment++;
+//				}
+//
+//				if (plotter == 1) // Pen_Up
+//				{
+//					__HAL_TIM_SET_COMPARE(&htim8, TIM_CHANNEL_4, 500);
+//					modbus_servo_Status(&hmodbus, Limit_Up);
+//				} else if (plotter == 2) // Pen_Down
+//				{
+////					if (status < 2000) {
+////						status += 1;
+////					} else {
+////						status += 0;
+////					}
+//					__HAL_TIM_SET_COMPARE(&htim8, TIM_CHANNEL_4, 2000);
+//					modbus_servo_Status(&hmodbus, Limit_Down);
+//				} else {
+//					__HAL_TIM_SET_COMPARE(&htim8, TIM_CHANNEL_4, 0);
+//				}
+//
+//				if (count == 11 && Num_point <= 9) {  // Set_Target 10 points
+//					Coordinate_Robot_to_Base(&Goal_point[Num_point],
+//							PrismaticTenPoints[Num_point + 1],
+//							RevoluteTenPoints_Degree[Num_point + 1]);
+//					set_Target_Position_ten_points(&hmodbus,
+//							Goal_point[Num_point].r_goal_position,
+//							Goal_point[Num_point].theta_goal_position,
+//							Num_point);
+//					Num_point += 1;
+//				}
 
 //				float t_end = Revolute[current_segment].t_start + Revolute[current_segment].t_total;
 //				if (t_relative > t_end && t_relative < t_end + 1.5f) { // check setpoint
@@ -736,7 +765,7 @@ int main(void) {
 					has_initialized_target_traj = 1;
 
 					start_p = Go_to_point.r_goal_position;
-					start_r = Go_to_point.theta_goal_position - 0.436332f + 0.02;
+					start_r = Go_to_point.theta_goal_position - 0.429351f + 0.02;
 					InitTrajectorySegment(&Prismatic[0], 0.0f, start_p,
 					v_max_pris, a_max_pris, 0.0f);
 					InitTrajectorySegment(&Revolute[0], 0.0f, start_r,
@@ -811,7 +840,7 @@ int main(void) {
 			Encoder_GetAcceleration_mm(&encoder1), // r_accel
 			Encoder_GetAcceleration(&encoder2) * 180.0 / 3.142); // theta_accel
 
-			if (state_start == 1 || state_go_to == 1) {
+			if ((state_start == 1 || state_go_to == 1) && state_Emer ==0) {
 				Revolute_dis();
 				count_Tim2 += 1;
 				// Velocity Control Prismatic
@@ -864,7 +893,7 @@ int main(void) {
 			}
 		}
 
-		if (state_start == 1 || state_go_to == 1) {
+		if ((state_start == 1 || state_go_to == 1) && state_Emer ==0) {
 			if (V_pris_velo_PID < 0) {
 				DIR_24V = 0;
 				V_absoulte_pris = fabsf(V_pris_velo_PID);
@@ -873,8 +902,8 @@ int main(void) {
 				V_absoulte_pris = V_pris_velo_PID;
 			}
 			pwm_pris_velo = voltage_to_pwm(V_absoulte_pris);
-			HAL_GPIO_WritePin(GPIOB, GPIO_PIN_1, DIR_24V);
-			__HAL_TIM_SET_COMPARE(&htim20, TIM_CHANNEL_1, pwm_pris_velo);
+//			HAL_GPIO_WritePin(GPIOB, GPIO_PIN_1, DIR_24V);
+//			__HAL_TIM_SET_COMPARE(&htim20, TIM_CHANNEL_1, pwm_pris_velo);
 
 			if (V_rev_velo_PID < 0) {
 				DIR_18V = 0;
@@ -918,50 +947,53 @@ int main(void) {
 //		HAL_GPIO_WritePin(GPIOC, GPIO_PIN_6, DIR_18V);
 //		__HAL_TIM_SET_COMPARE(&htim20, TIM_CHANNEL_3, pwm_rev_velo);
 	}
-	/* USER CODE END 3 */
+  /* USER CODE END 3 */
 }
 
 /**
- * @brief System Clock Configuration
- * @retval None
- */
-void SystemClock_Config(void) {
-	RCC_OscInitTypeDef RCC_OscInitStruct = { 0 };
-	RCC_ClkInitTypeDef RCC_ClkInitStruct = { 0 };
+  * @brief System Clock Configuration
+  * @retval None
+  */
+void SystemClock_Config(void)
+{
+  RCC_OscInitTypeDef RCC_OscInitStruct = {0};
+  RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
 
-	/** Configure the main internal regulator output voltage
-	 */
-	HAL_PWREx_ControlVoltageScaling(PWR_REGULATOR_VOLTAGE_SCALE1_BOOST);
+  /** Configure the main internal regulator output voltage
+  */
+  HAL_PWREx_ControlVoltageScaling(PWR_REGULATOR_VOLTAGE_SCALE1_BOOST);
 
-	/** Initializes the RCC Oscillators according to the specified parameters
-	 * in the RCC_OscInitTypeDef structure.
-	 */
-	RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI;
-	RCC_OscInitStruct.HSIState = RCC_HSI_ON;
-	RCC_OscInitStruct.HSICalibrationValue = RCC_HSICALIBRATION_DEFAULT;
-	RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
-	RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSI;
-	RCC_OscInitStruct.PLL.PLLM = RCC_PLLM_DIV4;
-	RCC_OscInitStruct.PLL.PLLN = 85;
-	RCC_OscInitStruct.PLL.PLLP = RCC_PLLP_DIV2;
-	RCC_OscInitStruct.PLL.PLLQ = RCC_PLLQ_DIV2;
-	RCC_OscInitStruct.PLL.PLLR = RCC_PLLR_DIV2;
-	if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK) {
-		Error_Handler();
-	}
+  /** Initializes the RCC Oscillators according to the specified parameters
+  * in the RCC_OscInitTypeDef structure.
+  */
+  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI;
+  RCC_OscInitStruct.HSIState = RCC_HSI_ON;
+  RCC_OscInitStruct.HSICalibrationValue = RCC_HSICALIBRATION_DEFAULT;
+  RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
+  RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSI;
+  RCC_OscInitStruct.PLL.PLLM = RCC_PLLM_DIV4;
+  RCC_OscInitStruct.PLL.PLLN = 85;
+  RCC_OscInitStruct.PLL.PLLP = RCC_PLLP_DIV2;
+  RCC_OscInitStruct.PLL.PLLQ = RCC_PLLQ_DIV2;
+  RCC_OscInitStruct.PLL.PLLR = RCC_PLLR_DIV2;
+  if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
+  {
+    Error_Handler();
+  }
 
-	/** Initializes the CPU, AHB and APB buses clocks
-	 */
-	RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK | RCC_CLOCKTYPE_SYSCLK
-			| RCC_CLOCKTYPE_PCLK1 | RCC_CLOCKTYPE_PCLK2;
-	RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
-	RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
-	RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV1;
-	RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
+  /** Initializes the CPU, AHB and APB buses clocks
+  */
+  RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
+                              |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
+  RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
+  RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
+  RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV1;
+  RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
 
-	if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_4) != HAL_OK) {
-		Error_Handler();
-	}
+  if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_4) != HAL_OK)
+  {
+    Error_Handler();
+  }
 }
 
 /* USER CODE BEGIN 4 */
@@ -996,9 +1028,27 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
 }
 
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) {
-//	if (htim == &htim2) {
-//		PS2_ReadData();
-//	}
+	if (htim->Instance == TIM6) {
+		emergency_process_sample();
+	}
+}
+
+void emergency_process_sample() {
+	/* Read raw switch state (0 or 1) */
+	uint8_t raw_switch = HAL_GPIO_ReadPin(EMERGENCY_SWITCH_PORT, EMERGENCY_SWITCH_PIN);
+
+	/* Process through digital filter */
+	uint8_t state_changed = emergency_switch_update(&emergency_filter, raw_switch);
+
+	/* Check if state changed */
+	if (state_changed) {
+		if (emergency_switch_is_pressed(&emergency_filter)) {
+			emergency_active = 1;
+		} else {
+			emergency_active = 0;
+		}
+	}
+
 }
 
 float Prismatic_position_control(float delta_posi) {
@@ -1161,16 +1211,17 @@ float Revolute_dis() {
 /* USER CODE END 4 */
 
 /**
- * @brief  This function is executed in case of error occurrence.
- * @retval None
- */
-void Error_Handler(void) {
-	/* USER CODE BEGIN Error_Handler_Debug */
+  * @brief  This function is executed in case of error occurrence.
+  * @retval None
+  */
+void Error_Handler(void)
+{
+  /* USER CODE BEGIN Error_Handler_Debug */
 	/* User can add his own implementation to report the HAL error return state */
 	__disable_irq();
 	while (1) {
 	}
-	/* USER CODE END Error_Handler_Debug */
+  /* USER CODE END Error_Handler_Debug */
 }
 
 #ifdef  USE_FULL_ASSERT
