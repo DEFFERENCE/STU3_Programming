@@ -424,6 +424,8 @@ int main(void)
 			Kalman_Update(&kf_rev, Measurement_Rev);
 
 			Revolute_dis();
+			position_pris = Encoder_GetPosition_mm(&encoder1);
+			position_rev = Encoder_GetPosition(&encoder2) / (100.0 / 30.0);
 			count_Tim2 += 1;
 			// Velocity Control Prismatic
 			velocity_pris = Encoder_GetVelocity_mm(&encoder1);
@@ -442,7 +444,7 @@ int main(void)
 			V_rev_velo_PID = Revolute_velocity_control(delta_velo_rev);
 			if (count_Tim2 >= 10) {
 				// Position Control Prismatic
-				position_pris = Encoder_GetPosition_mm(&encoder1);
+//				position_pris = Encoder_GetPosition_mm(&encoder1);
 //				setposition_pris = GetTrajectoryPosition(&Prismatic[current_segment], t_global);
 				setposition_pris = pos_pris;
 				delta_posi_pris = setposition_pris - position_pris;
@@ -455,7 +457,7 @@ int main(void)
 //				V_pris_posi_PID = Prismatic_position_control(delta_posi_pris);
 
 				// Position Control Revolute
-				position_rev = Encoder_GetPosition(&encoder2) / (100.0 / 30.0);
+//				position_rev = Encoder_GetPosition(&encoder2) / (100.0 / 30.0);
 //				setposition_rev = GetTrajectoryPosition(&Revolute[current_segment], t_global) + Rev_backlash.backlash_offset;
 				setposition_rev = pos_rev;
 //				Backlash_Update(&Rev_backlash, pos_rev, p2, v2);
