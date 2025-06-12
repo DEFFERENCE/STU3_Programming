@@ -361,8 +361,8 @@ int main(void)
 
 	// Revolute Position
 	Rev_posi_PID.Kp = 2.5;
-	Rev_posi_PID.Ki = 0.2;
-	Rev_posi_PID.Kd = 1.0;
+	Rev_posi_PID.Ki = 0.1;
+	Rev_posi_PID.Kd = 0.8;
 	arm_pid_init_f32(&Rev_posi_PID, 0);
 
 	// Revolute Velocity
@@ -479,7 +479,7 @@ int main(void)
 		pos_rev = GetTrajectoryPosition(&currentRevolute, t_global);
 		vel_rev = GetTrajectoryVelocity(&currentRevolute, t_global);
 
-		if (current_index >= 59 - 1) {
+		if (current_index >= 46 - 1) {
 		    pos_pris = currentPrismatic.end_pos;
 		    vel_pris = 0;
 		    pos_rev = currentRevolute.end_pos;
@@ -728,7 +728,7 @@ float Revolute_dis() {
 }
 
 void updateTrajectoryIfNeeded(float t_global) {
-    if (current_index >= 59 - 1) return;
+    if (current_index >= 46 - 1) return;
 
     if (t_global >= next_start_time) {
         float start_pris = smooth_path_polar[current_index][0];

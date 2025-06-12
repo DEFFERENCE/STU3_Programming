@@ -7,23 +7,23 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, ALLOC, LOAD, READONLY, DATA
   1 .text         0000dd5c  080001d8  080001d8  000011d8  2**3
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  2 .rodata       000005e8  0800df34  0800df34  0000ef34  2**2
+  2 .rodata       00000580  0800df34  0800df34  0000ef34  2**2
                   CONTENTS, ALLOC, LOAD, READONLY, DATA
-  3 .ARM.extab    00000000  0800e51c  0800e51c  0001025c  2**0
+  3 .ARM.extab    00000000  0800e4b4  0800e4b4  0001025c  2**0
                   CONTENTS, READONLY
-  4 .ARM          00000008  0800e51c  0800e51c  0000f51c  2**2
+  4 .ARM          00000008  0800e4b4  0800e4b4  0000f4b4  2**2
                   CONTENTS, ALLOC, LOAD, READONLY, DATA
-  5 .preinit_array 00000000  0800e524  0800e524  0001025c  2**0
+  5 .preinit_array 00000000  0800e4bc  0800e4bc  0001025c  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  6 .init_array   00000004  0800e524  0800e524  0000f524  2**2
+  6 .init_array   00000004  0800e4bc  0800e4bc  0000f4bc  2**2
                   CONTENTS, ALLOC, LOAD, READONLY, DATA
-  7 .fini_array   00000004  0800e528  0800e528  0000f528  2**2
+  7 .fini_array   00000004  0800e4c0  0800e4c0  0000f4c0  2**2
                   CONTENTS, ALLOC, LOAD, READONLY, DATA
-  8 .data         0000025c  20000000  0800e52c  00010000  2**2
+  8 .data         0000025c  20000000  0800e4c4  00010000  2**2
                   CONTENTS, ALLOC, LOAD, DATA
-  9 .bss          000018b4  20000260  0800e788  00010260  2**3
+  9 .bss          000018b4  20000260  0800e720  00010260  2**3
                   ALLOC
- 10 ._user_heap_stack 00000604  20001b14  0800e788  00010b14  2**0
+ 10 ._user_heap_stack 00000604  20001b14  0800e720  00010b14  2**0
                   ALLOC
  11 .ARM.attributes 00000030  00000000  00000000  0001025c  2**0
                   CONTENTS, READONLY
@@ -5011,185 +5011,186 @@ int main(void)
  8002a78:	4b85      	ldr	r3, [pc, #532]	@ (8002c90 <main+0x698>)
  8002a7a:	4a86      	ldr	r2, [pc, #536]	@ (8002c94 <main+0x69c>)
  8002a7c:	619a      	str	r2, [r3, #24]
-	Rev_posi_PID.Ki = 0.2;
+	Rev_posi_PID.Ki = 0.1;
  8002a7e:	4b84      	ldr	r3, [pc, #528]	@ (8002c90 <main+0x698>)
  8002a80:	4a85      	ldr	r2, [pc, #532]	@ (8002c98 <main+0x6a0>)
  8002a82:	61da      	str	r2, [r3, #28]
-	Rev_posi_PID.Kd = 1.0;
+	Rev_posi_PID.Kd = 0.8;
  8002a84:	4b82      	ldr	r3, [pc, #520]	@ (8002c90 <main+0x698>)
- 8002a86:	f04f 527e 	mov.w	r2, #1065353216	@ 0x3f800000
- 8002a8a:	621a      	str	r2, [r3, #32]
+ 8002a86:	4a85      	ldr	r2, [pc, #532]	@ (8002c9c <main+0x6a4>)
+ 8002a88:	621a      	str	r2, [r3, #32]
 	arm_pid_init_f32(&Rev_posi_PID, 0);
- 8002a8c:	2100      	movs	r1, #0
- 8002a8e:	4880      	ldr	r0, [pc, #512]	@ (8002c90 <main+0x698>)
- 8002a90:	f009 ff82 	bl	800c998 <arm_pid_init_f32>
+ 8002a8a:	2100      	movs	r1, #0
+ 8002a8c:	4880      	ldr	r0, [pc, #512]	@ (8002c90 <main+0x698>)
+ 8002a8e:	f009 ff83 	bl	800c998 <arm_pid_init_f32>
 
 	// Revolute Velocity
 	Rev_velo_PID.Kp = 2.0;
- 8002a94:	4b81      	ldr	r3, [pc, #516]	@ (8002c9c <main+0x6a4>)
- 8002a96:	f04f 4280 	mov.w	r2, #1073741824	@ 0x40000000
- 8002a9a:	619a      	str	r2, [r3, #24]
+ 8002a92:	4b83      	ldr	r3, [pc, #524]	@ (8002ca0 <main+0x6a8>)
+ 8002a94:	f04f 4280 	mov.w	r2, #1073741824	@ 0x40000000
+ 8002a98:	619a      	str	r2, [r3, #24]
 	Rev_velo_PID.Ki = 0.1;
- 8002a9c:	4b7f      	ldr	r3, [pc, #508]	@ (8002c9c <main+0x6a4>)
- 8002a9e:	4a80      	ldr	r2, [pc, #512]	@ (8002ca0 <main+0x6a8>)
- 8002aa0:	61da      	str	r2, [r3, #28]
+ 8002a9a:	4b81      	ldr	r3, [pc, #516]	@ (8002ca0 <main+0x6a8>)
+ 8002a9c:	4a7e      	ldr	r2, [pc, #504]	@ (8002c98 <main+0x6a0>)
+ 8002a9e:	61da      	str	r2, [r3, #28]
 	Rev_velo_PID.Kd = 0;
- 8002aa2:	4b7e      	ldr	r3, [pc, #504]	@ (8002c9c <main+0x6a4>)
- 8002aa4:	f04f 0200 	mov.w	r2, #0
- 8002aa8:	621a      	str	r2, [r3, #32]
+ 8002aa0:	4b7f      	ldr	r3, [pc, #508]	@ (8002ca0 <main+0x6a8>)
+ 8002aa2:	f04f 0200 	mov.w	r2, #0
+ 8002aa6:	621a      	str	r2, [r3, #32]
 	arm_pid_init_f32(&Rev_velo_PID, 0);
- 8002aaa:	2100      	movs	r1, #0
- 8002aac:	487b      	ldr	r0, [pc, #492]	@ (8002c9c <main+0x6a4>)
- 8002aae:	f009 ff73 	bl	800c998 <arm_pid_init_f32>
+ 8002aa8:	2100      	movs	r1, #0
+ 8002aaa:	487d      	ldr	r0, [pc, #500]	@ (8002ca0 <main+0x6a8>)
+ 8002aac:	f009 ff74 	bl	800c998 <arm_pid_init_f32>
   /* USER CODE BEGIN WHILE */
 	while (1) {
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
 		HAL_ADC_Start(&hadc1);
- 8002ab2:	487c      	ldr	r0, [pc, #496]	@ (8002ca4 <main+0x6ac>)
- 8002ab4:	f002 fb6e 	bl	8005194 <HAL_ADC_Start>
+ 8002ab0:	487c      	ldr	r0, [pc, #496]	@ (8002ca4 <main+0x6ac>)
+ 8002ab2:	f002 fb6f 	bl	8005194 <HAL_ADC_Start>
 		HAL_ADC_Start(&hadc2);
- 8002ab8:	487b      	ldr	r0, [pc, #492]	@ (8002ca8 <main+0x6b0>)
- 8002aba:	f002 fb6b 	bl	8005194 <HAL_ADC_Start>
+ 8002ab6:	487c      	ldr	r0, [pc, #496]	@ (8002ca8 <main+0x6b0>)
+ 8002ab8:	f002 fb6c 	bl	8005194 <HAL_ADC_Start>
 		adc_1 = HAL_ADC_GetValue(&hadc1);
- 8002abe:	4879      	ldr	r0, [pc, #484]	@ (8002ca4 <main+0x6ac>)
- 8002ac0:	f002 fc4c 	bl	800535c <HAL_ADC_GetValue>
- 8002ac4:	4603      	mov	r3, r0
- 8002ac6:	b29a      	uxth	r2, r3
- 8002ac8:	4b78      	ldr	r3, [pc, #480]	@ (8002cac <main+0x6b4>)
- 8002aca:	801a      	strh	r2, [r3, #0]
+ 8002abc:	4879      	ldr	r0, [pc, #484]	@ (8002ca4 <main+0x6ac>)
+ 8002abe:	f002 fc4d 	bl	800535c <HAL_ADC_GetValue>
+ 8002ac2:	4603      	mov	r3, r0
+ 8002ac4:	b29a      	uxth	r2, r3
+ 8002ac6:	4b79      	ldr	r3, [pc, #484]	@ (8002cac <main+0x6b4>)
+ 8002ac8:	801a      	strh	r2, [r3, #0]
 		adc_2 = HAL_ADC_GetValue(&hadc2);
- 8002acc:	4876      	ldr	r0, [pc, #472]	@ (8002ca8 <main+0x6b0>)
- 8002ace:	f002 fc45 	bl	800535c <HAL_ADC_GetValue>
- 8002ad2:	4603      	mov	r3, r0
- 8002ad4:	b29a      	uxth	r2, r3
- 8002ad6:	4b76      	ldr	r3, [pc, #472]	@ (8002cb0 <main+0x6b8>)
- 8002ad8:	801a      	strh	r2, [r3, #0]
+ 8002aca:	4877      	ldr	r0, [pc, #476]	@ (8002ca8 <main+0x6b0>)
+ 8002acc:	f002 fc46 	bl	800535c <HAL_ADC_GetValue>
+ 8002ad0:	4603      	mov	r3, r0
+ 8002ad2:	b29a      	uxth	r2, r3
+ 8002ad4:	4b76      	ldr	r3, [pc, #472]	@ (8002cb0 <main+0x6b8>)
+ 8002ad6:	801a      	strh	r2, [r3, #0]
 		QEIReadRaw3 = __HAL_TIM_GET_COUNTER(&htim3);
- 8002ada:	4b76      	ldr	r3, [pc, #472]	@ (8002cb4 <main+0x6bc>)
- 8002adc:	681b      	ldr	r3, [r3, #0]
- 8002ade:	6a5b      	ldr	r3, [r3, #36]	@ 0x24
- 8002ae0:	4a75      	ldr	r2, [pc, #468]	@ (8002cb8 <main+0x6c0>)
- 8002ae2:	6013      	str	r3, [r2, #0]
+ 8002ad8:	4b76      	ldr	r3, [pc, #472]	@ (8002cb4 <main+0x6bc>)
+ 8002ada:	681b      	ldr	r3, [r3, #0]
+ 8002adc:	6a5b      	ldr	r3, [r3, #36]	@ 0x24
+ 8002ade:	4a76      	ldr	r2, [pc, #472]	@ (8002cb8 <main+0x6c0>)
+ 8002ae0:	6013      	str	r3, [r2, #0]
 		QEIReadRaw4 = __HAL_TIM_GET_COUNTER(&htim4);
- 8002ae4:	4b75      	ldr	r3, [pc, #468]	@ (8002cbc <main+0x6c4>)
- 8002ae6:	681b      	ldr	r3, [r3, #0]
- 8002ae8:	6a5b      	ldr	r3, [r3, #36]	@ 0x24
- 8002aea:	4a75      	ldr	r2, [pc, #468]	@ (8002cc0 <main+0x6c8>)
- 8002aec:	6013      	str	r3, [r2, #0]
+ 8002ae2:	4b76      	ldr	r3, [pc, #472]	@ (8002cbc <main+0x6c4>)
+ 8002ae4:	681b      	ldr	r3, [r3, #0]
+ 8002ae6:	6a5b      	ldr	r3, [r3, #36]	@ 0x24
+ 8002ae8:	4a75      	ldr	r2, [pc, #468]	@ (8002cc0 <main+0x6c8>)
+ 8002aea:	6013      	str	r3, [r2, #0]
 
 		Modbus_Protocal_Worker();
- 8002aee:	f7fe fe39 	bl	8001764 <Modbus_Protocal_Worker>
+ 8002aec:	f7fe fe3a 	bl	8001764 <Modbus_Protocal_Worker>
 
 		uint32_t currentTick = HAL_GetTick();
- 8002af2:	f001 ff7b 	bl	80049ec <HAL_GetTick>
- 8002af6:	6438      	str	r0, [r7, #64]	@ 0x40
+ 8002af0:	f001 ff7c 	bl	80049ec <HAL_GetTick>
+ 8002af4:	6438      	str	r0, [r7, #64]	@ 0x40
 		float dt = (currentTick - lastTick) / 1000.0f;
- 8002af8:	6d7b      	ldr	r3, [r7, #84]	@ 0x54
- 8002afa:	6c3a      	ldr	r2, [r7, #64]	@ 0x40
- 8002afc:	1ad3      	subs	r3, r2, r3
- 8002afe:	ee07 3a90 	vmov	s15, r3
- 8002b02:	eeb8 7a67 	vcvt.f32.u32	s14, s15
- 8002b06:	eddf 6a6f 	vldr	s13, [pc, #444]	@ 8002cc4 <main+0x6cc>
- 8002b0a:	eec7 7a26 	vdiv.f32	s15, s14, s13
- 8002b0e:	edc7 7a0f 	vstr	s15, [r7, #60]	@ 0x3c
+ 8002af6:	6d7b      	ldr	r3, [r7, #84]	@ 0x54
+ 8002af8:	6c3a      	ldr	r2, [r7, #64]	@ 0x40
+ 8002afa:	1ad3      	subs	r3, r2, r3
+ 8002afc:	ee07 3a90 	vmov	s15, r3
+ 8002b00:	eeb8 7a67 	vcvt.f32.u32	s14, s15
+ 8002b04:	eddf 6a6f 	vldr	s13, [pc, #444]	@ 8002cc4 <main+0x6cc>
+ 8002b08:	eec7 7a26 	vdiv.f32	s15, s14, s13
+ 8002b0c:	edc7 7a0f 	vstr	s15, [r7, #60]	@ 0x3c
 		if (dt >= 0.001f) {
- 8002b12:	edd7 7a0f 	vldr	s15, [r7, #60]	@ 0x3c
- 8002b16:	ed9f 7a6c 	vldr	s14, [pc, #432]	@ 8002cc8 <main+0x6d0>
- 8002b1a:	eef4 7ac7 	vcmpe.f32	s15, s14
- 8002b1e:	eef1 fa10 	vmrs	APSR_nzcv, fpscr
- 8002b22:	f2c0 825a 	blt.w	8002fda <main+0x9e2>
+ 8002b10:	edd7 7a0f 	vldr	s15, [r7, #60]	@ 0x3c
+ 8002b14:	ed9f 7a6c 	vldr	s14, [pc, #432]	@ 8002cc8 <main+0x6d0>
+ 8002b18:	eef4 7ac7 	vcmpe.f32	s15, s14
+ 8002b1c:	eef1 fa10 	vmrs	APSR_nzcv, fpscr
+ 8002b20:	f2c0 825b 	blt.w	8002fda <main+0x9e2>
 			Encoder_Update(&encoder1, dt);
- 8002b26:	ed97 0a0f 	vldr	s0, [r7, #60]	@ 0x3c
- 8002b2a:	4868      	ldr	r0, [pc, #416]	@ (8002ccc <main+0x6d4>)
- 8002b2c:	f7fe f9da 	bl	8000ee4 <Encoder_Update>
+ 8002b24:	ed97 0a0f 	vldr	s0, [r7, #60]	@ 0x3c
+ 8002b28:	4868      	ldr	r0, [pc, #416]	@ (8002ccc <main+0x6d4>)
+ 8002b2a:	f7fe f9db 	bl	8000ee4 <Encoder_Update>
 			Encoder_Update(&encoder2, dt);
- 8002b30:	ed97 0a0f 	vldr	s0, [r7, #60]	@ 0x3c
- 8002b34:	4866      	ldr	r0, [pc, #408]	@ (8002cd0 <main+0x6d8>)
- 8002b36:	f7fe f9d5 	bl	8000ee4 <Encoder_Update>
+ 8002b2e:	ed97 0a0f 	vldr	s0, [r7, #60]	@ 0x3c
+ 8002b32:	4867      	ldr	r0, [pc, #412]	@ (8002cd0 <main+0x6d8>)
+ 8002b34:	f7fe f9d6 	bl	8000ee4 <Encoder_Update>
 			lastTick = currentTick;
- 8002b3a:	6c3b      	ldr	r3, [r7, #64]	@ 0x40
- 8002b3c:	657b      	str	r3, [r7, #84]	@ 0x54
+ 8002b38:	6c3b      	ldr	r3, [r7, #64]	@ 0x40
+ 8002b3a:	657b      	str	r3, [r7, #84]	@ 0x54
 
 			p1 = Encoder_GetPosition_mm(&encoder1);
- 8002b3e:	4863      	ldr	r0, [pc, #396]	@ (8002ccc <main+0x6d4>)
- 8002b40:	f7fe fab3 	bl	80010aa <Encoder_GetPosition_mm>
- 8002b44:	eef0 7a40 	vmov.f32	s15, s0
- 8002b48:	4b62      	ldr	r3, [pc, #392]	@ (8002cd4 <main+0x6dc>)
- 8002b4a:	edc3 7a00 	vstr	s15, [r3]
+ 8002b3c:	4863      	ldr	r0, [pc, #396]	@ (8002ccc <main+0x6d4>)
+ 8002b3e:	f7fe fab4 	bl	80010aa <Encoder_GetPosition_mm>
+ 8002b42:	eef0 7a40 	vmov.f32	s15, s0
+ 8002b46:	4b63      	ldr	r3, [pc, #396]	@ (8002cd4 <main+0x6dc>)
+ 8002b48:	edc3 7a00 	vstr	s15, [r3]
 			v1 = Encoder_GetVelocity(&encoder1);
- 8002b4e:	485f      	ldr	r0, [pc, #380]	@ (8002ccc <main+0x6d4>)
- 8002b50:	f7fe fa8d 	bl	800106e <Encoder_GetVelocity>
- 8002b54:	eef0 7a40 	vmov.f32	s15, s0
- 8002b58:	4b5f      	ldr	r3, [pc, #380]	@ (8002cd8 <main+0x6e0>)
- 8002b5a:	edc3 7a00 	vstr	s15, [r3]
+ 8002b4c:	485f      	ldr	r0, [pc, #380]	@ (8002ccc <main+0x6d4>)
+ 8002b4e:	f7fe fa8e 	bl	800106e <Encoder_GetVelocity>
+ 8002b52:	eef0 7a40 	vmov.f32	s15, s0
+ 8002b56:	4b60      	ldr	r3, [pc, #384]	@ (8002cd8 <main+0x6e0>)
+ 8002b58:	edc3 7a00 	vstr	s15, [r3]
 			a1 = Encoder_GetAcceleration(&encoder1);
- 8002b5e:	485b      	ldr	r0, [pc, #364]	@ (8002ccc <main+0x6d4>)
- 8002b60:	f7fe fa94 	bl	800108c <Encoder_GetAcceleration>
- 8002b64:	eef0 7a40 	vmov.f32	s15, s0
- 8002b68:	4b5c      	ldr	r3, [pc, #368]	@ (8002cdc <main+0x6e4>)
- 8002b6a:	edc3 7a00 	vstr	s15, [r3]
+ 8002b5c:	485b      	ldr	r0, [pc, #364]	@ (8002ccc <main+0x6d4>)
+ 8002b5e:	f7fe fa95 	bl	800108c <Encoder_GetAcceleration>
+ 8002b62:	eef0 7a40 	vmov.f32	s15, s0
+ 8002b66:	4b5d      	ldr	r3, [pc, #372]	@ (8002cdc <main+0x6e4>)
+ 8002b68:	edc3 7a00 	vstr	s15, [r3]
 
 			p2 = Encoder_GetPosition(&encoder2);
- 8002b6e:	4858      	ldr	r0, [pc, #352]	@ (8002cd0 <main+0x6d8>)
- 8002b70:	f7fe fa6e 	bl	8001050 <Encoder_GetPosition>
- 8002b74:	eef0 7a40 	vmov.f32	s15, s0
- 8002b78:	4b59      	ldr	r3, [pc, #356]	@ (8002ce0 <main+0x6e8>)
- 8002b7a:	edc3 7a00 	vstr	s15, [r3]
+ 8002b6c:	4858      	ldr	r0, [pc, #352]	@ (8002cd0 <main+0x6d8>)
+ 8002b6e:	f7fe fa6f 	bl	8001050 <Encoder_GetPosition>
+ 8002b72:	eef0 7a40 	vmov.f32	s15, s0
+ 8002b76:	4b5a      	ldr	r3, [pc, #360]	@ (8002ce0 <main+0x6e8>)
+ 8002b78:	edc3 7a00 	vstr	s15, [r3]
 			v2 = Encoder_GetVelocity(&encoder2);
- 8002b7e:	4854      	ldr	r0, [pc, #336]	@ (8002cd0 <main+0x6d8>)
- 8002b80:	f7fe fa75 	bl	800106e <Encoder_GetVelocity>
- 8002b84:	eef0 7a40 	vmov.f32	s15, s0
- 8002b88:	4b56      	ldr	r3, [pc, #344]	@ (8002ce4 <main+0x6ec>)
- 8002b8a:	edc3 7a00 	vstr	s15, [r3]
+ 8002b7c:	4854      	ldr	r0, [pc, #336]	@ (8002cd0 <main+0x6d8>)
+ 8002b7e:	f7fe fa76 	bl	800106e <Encoder_GetVelocity>
+ 8002b82:	eef0 7a40 	vmov.f32	s15, s0
+ 8002b86:	4b57      	ldr	r3, [pc, #348]	@ (8002ce4 <main+0x6ec>)
+ 8002b88:	edc3 7a00 	vstr	s15, [r3]
 			a2 = Encoder_GetAcceleration(&encoder2);
- 8002b8e:	4850      	ldr	r0, [pc, #320]	@ (8002cd0 <main+0x6d8>)
- 8002b90:	f7fe fa7c 	bl	800108c <Encoder_GetAcceleration>
- 8002b94:	eef0 7a40 	vmov.f32	s15, s0
- 8002b98:	4b53      	ldr	r3, [pc, #332]	@ (8002ce8 <main+0x6f0>)
- 8002b9a:	edc3 7a00 	vstr	s15, [r3]
+ 8002b8c:	4850      	ldr	r0, [pc, #320]	@ (8002cd0 <main+0x6d8>)
+ 8002b8e:	f7fe fa7d 	bl	800108c <Encoder_GetAcceleration>
+ 8002b92:	eef0 7a40 	vmov.f32	s15, s0
+ 8002b96:	4b54      	ldr	r3, [pc, #336]	@ (8002ce8 <main+0x6f0>)
+ 8002b98:	edc3 7a00 	vstr	s15, [r3]
 
 			Measurement_Pris[0] = Encoder_GetPosition_mm(&encoder1);
- 8002b9e:	484b      	ldr	r0, [pc, #300]	@ (8002ccc <main+0x6d4>)
- 8002ba0:	f7fe fa83 	bl	80010aa <Encoder_GetPosition_mm>
- 8002ba4:	eef0 7a40 	vmov.f32	s15, s0
- 8002ba8:	4b50      	ldr	r3, [pc, #320]	@ (8002cec <main+0x6f4>)
- 8002baa:	edc3 7a00 	vstr	s15, [r3]
+ 8002b9c:	484b      	ldr	r0, [pc, #300]	@ (8002ccc <main+0x6d4>)
+ 8002b9e:	f7fe fa84 	bl	80010aa <Encoder_GetPosition_mm>
+ 8002ba2:	eef0 7a40 	vmov.f32	s15, s0
+ 8002ba6:	4b51      	ldr	r3, [pc, #324]	@ (8002cec <main+0x6f4>)
+ 8002ba8:	edc3 7a00 	vstr	s15, [r3]
 			Measurement_Pris[1] = Encoder_GetVelocity_mm(&encoder1);
- 8002bae:	4847      	ldr	r0, [pc, #284]	@ (8002ccc <main+0x6d4>)
- 8002bb0:	f7fe fa8a 	bl	80010c8 <Encoder_GetVelocity_mm>
- 8002bb4:	eef0 7a40 	vmov.f32	s15, s0
- 8002bb8:	4b4c      	ldr	r3, [pc, #304]	@ (8002cec <main+0x6f4>)
- 8002bba:	edc3 7a01 	vstr	s15, [r3, #4]
+ 8002bac:	4847      	ldr	r0, [pc, #284]	@ (8002ccc <main+0x6d4>)
+ 8002bae:	f7fe fa8b 	bl	80010c8 <Encoder_GetVelocity_mm>
+ 8002bb2:	eef0 7a40 	vmov.f32	s15, s0
+ 8002bb6:	4b4d      	ldr	r3, [pc, #308]	@ (8002cec <main+0x6f4>)
+ 8002bb8:	edc3 7a01 	vstr	s15, [r3, #4]
 			Measurement_Pris[2] = 0;
- 8002bbe:	4b4b      	ldr	r3, [pc, #300]	@ (8002cec <main+0x6f4>)
- 8002bc0:	f04f 0200 	mov.w	r2, #0
- 8002bc4:	609a      	str	r2, [r3, #8]
+ 8002bbc:	4b4b      	ldr	r3, [pc, #300]	@ (8002cec <main+0x6f4>)
+ 8002bbe:	f04f 0200 	mov.w	r2, #0
+ 8002bc2:	609a      	str	r2, [r3, #8]
 			Measurement_Pris[3] = 0;
- 8002bc6:	4b49      	ldr	r3, [pc, #292]	@ (8002cec <main+0x6f4>)
- 8002bc8:	f04f 0200 	mov.w	r2, #0
- 8002bcc:	60da      	str	r2, [r3, #12]
+ 8002bc4:	4b49      	ldr	r3, [pc, #292]	@ (8002cec <main+0x6f4>)
+ 8002bc6:	f04f 0200 	mov.w	r2, #0
+ 8002bca:	60da      	str	r2, [r3, #12]
 			Kalman_SetInput(&kf_pris, V_pris_velo_PID);
- 8002bce:	4b48      	ldr	r3, [pc, #288]	@ (8002cf0 <main+0x6f8>)
- 8002bd0:	edd3 7a00 	vldr	s15, [r3]
- 8002bd4:	eeb0 0a67 	vmov.f32	s0, s15
- 8002bd8:	4846      	ldr	r0, [pc, #280]	@ (8002cf4 <main+0x6fc>)
- 8002bda:	f7fe fb86 	bl	80012ea <Kalman_SetInput>
+ 8002bcc:	4b48      	ldr	r3, [pc, #288]	@ (8002cf0 <main+0x6f8>)
+ 8002bce:	edd3 7a00 	vldr	s15, [r3]
+ 8002bd2:	eeb0 0a67 	vmov.f32	s0, s15
+ 8002bd6:	4847      	ldr	r0, [pc, #284]	@ (8002cf4 <main+0x6fc>)
+ 8002bd8:	f7fe fb87 	bl	80012ea <Kalman_SetInput>
 			Kalman_Predict(&kf_pris);
- 8002bde:	4845      	ldr	r0, [pc, #276]	@ (8002cf4 <main+0x6fc>)
- 8002be0:	f7fe fb93 	bl	800130a <Kalman_Predict>
+ 8002bdc:	4845      	ldr	r0, [pc, #276]	@ (8002cf4 <main+0x6fc>)
+ 8002bde:	f7fe fb94 	bl	800130a <Kalman_Predict>
 			Kalman_Update(&kf_pris, Measurement_Pris);
- 8002be4:	4941      	ldr	r1, [pc, #260]	@ (8002cec <main+0x6f4>)
- 8002be6:	4843      	ldr	r0, [pc, #268]	@ (8002cf4 <main+0x6fc>)
- 8002be8:	f7fe fbdc 	bl	80013a4 <Kalman_Update>
+ 8002be2:	4942      	ldr	r1, [pc, #264]	@ (8002cec <main+0x6f4>)
+ 8002be4:	4843      	ldr	r0, [pc, #268]	@ (8002cf4 <main+0x6fc>)
+ 8002be6:	f7fe fbdd 	bl	80013a4 <Kalman_Update>
 
 			Measurement_Rev[0] = Encoder_GetPosition(&encoder2) / (100/30);
- 8002bec:	4838      	ldr	r0, [pc, #224]	@ (8002cd0 <main+0x6d8>)
- 8002bee:	f7fe fa2f 	bl	8001050 <Encoder_GetPosition>
- 8002bf2:	eeb0 7a40 	vmov.f32	s14, s0
- 8002bf6:	eef0 6a08 	vmov.f32	s13, #8	@ 0x40400000  3.0
- 8002bfa:	e07d      	b.n	8002cf8 <main+0x700>
+ 8002bea:	4839      	ldr	r0, [pc, #228]	@ (8002cd0 <main+0x6d8>)
+ 8002bec:	f7fe fa30 	bl	8001050 <Encoder_GetPosition>
+ 8002bf0:	eeb0 7a40 	vmov.f32	s14, s0
+ 8002bf4:	eef0 6a08 	vmov.f32	s13, #8	@ 0x40400000  3.0
+ 8002bf8:	e07e      	b.n	8002cf8 <main+0x700>
+ 8002bfa:	bf00      	nop
  8002bfc:	f3af 8000 	nop.w
  8002c00:	eb1c432d 	.word	0xeb1c432d
  8002c04:	3f5a36e2 	.word	0x3f5a36e2
@@ -5229,9 +5230,9 @@ int main(void)
  8002c8c:	3da3d70a 	.word	0x3da3d70a
  8002c90:	20000b48 	.word	0x20000b48
  8002c94:	40200000 	.word	0x40200000
- 8002c98:	3e4ccccd 	.word	0x3e4ccccd
- 8002c9c:	20000b84 	.word	0x20000b84
- 8002ca0:	3dcccccd 	.word	0x3dcccccd
+ 8002c98:	3dcccccd 	.word	0x3dcccccd
+ 8002c9c:	3f4ccccd 	.word	0x3f4ccccd
+ 8002ca0:	20000b84 	.word	0x20000b84
  8002ca4:	20000280 	.word	0x20000280
  8002ca8:	200002ec 	.word	0x200002ec
  8002cac:	2000044c 	.word	0x2000044c
@@ -5603,10 +5604,10 @@ int main(void)
  8003064:	4b63      	ldr	r3, [pc, #396]	@ (80031f4 <main+0xbfc>)
  8003066:	edc3 7a00 	vstr	s15, [r3]
 
-		if (current_index >= 59 - 1) {
+		if (current_index >= 46 - 1) {
  800306a:	4b63      	ldr	r3, [pc, #396]	@ (80031f8 <main+0xc00>)
  800306c:	681b      	ldr	r3, [r3, #0]
- 800306e:	2b39      	cmp	r3, #57	@ 0x39
+ 800306e:	2b2c      	cmp	r3, #44	@ 0x2c
  8003070:	dd0f      	ble.n	8003092 <main+0xa9a>
 		    pos_pris = currentPrismatic.end_pos;
  8003072:	4b5b      	ldr	r3, [pc, #364]	@ (80031e0 <main+0xbe8>)
@@ -5765,7 +5766,7 @@ int main(void)
  80031c4:	ee17 2a90 	vmov	r2, s15
  80031c8:	63da      	str	r2, [r3, #60]	@ 0x3c
 	while (1) {
- 80031ca:	e472      	b.n	8002ab2 <main+0x4ba>
+ 80031ca:	e471      	b.n	8002ab0 <main+0x4b8>
  80031cc:	20000b80 	.word	0x20000b80
  80031d0:	20000b74 	.word	0x20000b74
  80031d4:	20000ac4 	.word	0x20000ac4
@@ -6806,10 +6807,10 @@ void updateTrajectoryIfNeeded(float t_global) {
  80039f6:	b086      	sub	sp, #24
  80039f8:	af00      	add	r7, sp, #0
  80039fa:	ed87 0a01 	vstr	s0, [r7, #4]
-    if (current_index >= 59 - 1) return;
+    if (current_index >= 46 - 1) return;
  80039fe:	4b33      	ldr	r3, [pc, #204]	@ (8003acc <updateTrajectoryIfNeeded+0xd8>)
  8003a00:	681b      	ldr	r3, [r3, #0]
- 8003a02:	2b39      	cmp	r3, #57	@ 0x39
+ 8003a02:	2b2c      	cmp	r3, #44	@ 0x2c
  8003a04:	dc5e      	bgt.n	8003ac4 <updateTrajectoryIfNeeded+0xd0>
 
     if (t_global >= next_start_time) {
@@ -6894,7 +6895,7 @@ void updateTrajectoryIfNeeded(float t_global) {
  8003abe:	4a03      	ldr	r2, [pc, #12]	@ (8003acc <updateTrajectoryIfNeeded+0xd8>)
  8003ac0:	6013      	str	r3, [r2, #0]
  8003ac2:	e000      	b.n	8003ac6 <updateTrajectoryIfNeeded+0xd2>
-    if (current_index >= 59 - 1) return;
+    if (current_index >= 46 - 1) return;
  8003ac4:	bf00      	nop
     }
 }
@@ -9518,7 +9519,7 @@ LoopForever:
   ldr r1, =_edata
  8004910:	2000025c 	.word	0x2000025c
   ldr r2, =_sidata
- 8004914:	0800e52c 	.word	0x0800e52c
+ 8004914:	0800e4c4 	.word	0x0800e4c4
   ldr r2, =_sbss
  8004918:	20000260 	.word	0x20000260
   ldr r4, =_ebss
@@ -17017,7 +17018,7 @@ HAL_StatusTypeDef HAL_RCC_ClockConfig(RCC_ClkInitTypeDef  *RCC_ClkInitStruct, ui
  800756c:	40022000 	.word	0x40022000
  8007570:	40021000 	.word	0x40021000
  8007574:	04c4b400 	.word	0x04c4b400
- 8007578:	0800e10c 	.word	0x0800e10c
+ 8007578:	0800e0a4 	.word	0x0800e0a4
  800757c:	20000200 	.word	0x20000200
  8007580:	20000204 	.word	0x20000204
 
@@ -17198,7 +17199,7 @@ uint32_t HAL_RCC_GetPCLK1Freq(void)
  8007680:	4618      	mov	r0, r3
  8007682:	bd80      	pop	{r7, pc}
  8007684:	40021000 	.word	0x40021000
- 8007688:	0800e11c 	.word	0x0800e11c
+ 8007688:	0800e0b4 	.word	0x0800e0b4
 
 0800768c <HAL_RCC_GetPCLK2Freq>:
   * @note   Each time PCLK2 changes, this function must be called to update the
@@ -17225,7 +17226,7 @@ uint32_t HAL_RCC_GetPCLK2Freq(void)
  80076ac:	4618      	mov	r0, r3
  80076ae:	bd80      	pop	{r7, pc}
  80076b0:	40021000 	.word	0x40021000
- 80076b4:	0800e11c 	.word	0x0800e11c
+ 80076b4:	0800e0b4 	.word	0x0800e0b4
 
 080076b8 <RCC_GetSysClockFreqFromPLLSource>:
 /**
@@ -27587,7 +27588,7 @@ HAL_StatusTypeDef UART_SetConfig(UART_HandleTypeDef *huart)
  800b3e2:	bf00      	nop
  800b3e4:	40008000 	.word	0x40008000
  800b3e8:	00f42400 	.word	0x00f42400
- 800b3ec:	0800e124 	.word	0x0800e124
+ 800b3ec:	0800e0bc 	.word	0x0800e0bc
       }
       else
       {
@@ -31159,8 +31160,8 @@ static void UARTEx_SetNbDataToProcess(UART_HandleTypeDef *huart)
  800c988:	f85d 7b04 	ldr.w	r7, [sp], #4
  800c98c:	4770      	bx	lr
  800c98e:	bf00      	nop
- 800c990:	0800e13c 	.word	0x0800e13c
- 800c994:	0800e144 	.word	0x0800e144
+ 800c990:	0800e0d4 	.word	0x0800e0d4
+ 800c994:	0800e0dc 	.word	0x0800e0dc
 
 0800c998 <arm_pid_init_f32>:
  */
@@ -32622,10 +32623,10 @@ arm_status arm_mat_trans_f32(
  800d3d2:	4798      	blx	r3
  800d3d4:	3601      	adds	r6, #1
  800d3d6:	e7f2      	b.n	800d3be <__libc_init_array+0x1e>
- 800d3d8:	0800e524 	.word	0x0800e524
- 800d3dc:	0800e524 	.word	0x0800e524
- 800d3e0:	0800e524 	.word	0x0800e524
- 800d3e4:	0800e528 	.word	0x0800e528
+ 800d3d8:	0800e4bc 	.word	0x0800e4bc
+ 800d3dc:	0800e4bc 	.word	0x0800e4bc
+ 800d3e0:	0800e4bc 	.word	0x0800e4bc
+ 800d3e4:	0800e4c0 	.word	0x0800e4c0
 
 0800d3e8 <memcpy>:
  800d3e8:	440a      	add	r2, r1
@@ -33029,11 +33030,11 @@ arm_status arm_mat_trans_f32(
  800d8c8:	2e85a308 	.word	0x2e85a308
  800d8cc:	43490f80 	.word	0x43490f80
  800d8d0:	3f22f984 	.word	0x3f22f984
- 800d8d4:	0800e14c 	.word	0x0800e14c
+ 800d8d4:	0800e0e4 	.word	0x0800e0e4
  800d8d8:	2e85a300 	.word	0x2e85a300
  800d8dc:	248d3132 	.word	0x248d3132
  800d8e0:	43800000 	.word	0x43800000
- 800d8e4:	0800e1cc 	.word	0x0800e1cc
+ 800d8e4:	0800e164 	.word	0x0800e164
 
 0800d8e8 <fabsf>:
  800d8e8:	ee10 3a10 	vmov	r3, s0
@@ -33370,8 +33371,8 @@ arm_status arm_mat_trans_f32(
  800dca4:	3401      	adds	r4, #1
  800dca6:	eee6 7a87 	vfma.f32	s15, s13, s14
  800dcaa:	e7f0      	b.n	800dc8e <__kernel_rem_pio2f+0x2ca>
- 800dcac:	0800e510 	.word	0x0800e510
- 800dcb0:	0800e4e4 	.word	0x0800e4e4
+ 800dcac:	0800e4a8 	.word	0x0800e4a8
+ 800dcb0:	0800e47c 	.word	0x0800e47c
  800dcb4:	43800000 	.word	0x43800000
  800dcb8:	3b800000 	.word	0x3b800000
  800dcbc:	00000000 	.word	0x00000000
